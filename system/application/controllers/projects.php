@@ -2722,6 +2722,7 @@ class Projects extends My_Controller {
 					$data['actual_stages'] = $query->result_array();
 					$actual_start[$i] = $data['actual_stages'][0]['actual_start_date'];
 					$actual_end[$i]= $data['actual_stages'][0]['actual_end_date'];
+					$percentage[$i]= $data['actual_stages'][0]['percentage_complete'];
 				}
 
 			} 
@@ -2737,7 +2738,7 @@ class Projects extends My_Controller {
 			  $height = 600;
 			$data['height'] = $height; 		
 			$strXML  = "";
-			$strXML .= "<chart dateFormat='yyyy-mm-dd' outputDateFormat='ddds mns yy' ganttWidthPercent='65' canvasBorderColor='999999' canvasBorderThickness='0' gridBorderColor='4567aa' gridBorderAlpha='20' ganttPaneDuration='12' ganttPaneDurationUnit='m' >";
+			$strXML .= "<chart dateFormat='yyyy-mm-dd' showSlackAsFill='0' outputDateFormat='ddds mns yy' showPercentLabel='1' ganttWidthPercent='65' canvasBorderColor='999999' canvasBorderThickness='0' gridBorderColor='4567aa' gridBorderAlpha='20' ganttPaneDuration='12' ganttPaneDurationUnit='m' >";
 			
 			$strXML .= "<categories bgColor='009999'>";
 			$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='Gantt Chart' fontColor='ffffff' fontSize='16'/>";
@@ -2810,7 +2811,7 @@ class Projects extends My_Controller {
 			
 			$strXML .= "<task name=' Planned' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."P' link='../projects' color='4567aa' height='32%25 ' topPadding='12%25 ' label='view month'  /> ";
 		    if($status == "Active")
-			$strXML .= "<task name=' Actual' processId='" . $y . "' start='" . $actual_start[$x] . "' end='" . $actual_end[$x] . "' id='".$y."A' link='../projects' color='EEEEEE' height='32%25 ' topPadding='56%25 ' label='view month'  /> ";
+			$strXML .= "<task name=' Actual' processId='" . $y . "' start='" . $actual_start[$x] . "' end='" . $actual_end[$x] . "' id='".$y."A' link='../projects' color='EEEEEE' height='32%25 ' topPadding='56%25 ' label='view month' percentComplete='".$percentage[$x]."' /> ";
 		   
 		   // $strXML .= "<task name='" . Actual . "' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."A'  color='EEEEEE' alpha='100' topPadding='56%25 ' height='32%25 ' /> ";
 				$y++;
