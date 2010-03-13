@@ -29,7 +29,8 @@ class Projects extends My_Controller {
 		$this->load->model('sites_model');
 		$this->load->model('charts_model');
 		$this->load->library('pagination');
-		$this->load->library('Workdays');		
+		$this->load->library('Workdays');
+		$this->load->plugin( 'fusion' );		
 	}
 /*	function mail()
 	{
@@ -412,27 +413,28 @@ class Projects extends My_Controller {
 	/**
 	* Gives the list of sites which are waiting to be planned and rolled out
 	*
-	* Takes the Project ID as input
+	* Takes the Project ID as input, and parameter in order to filter values according to this parameter
 	*
 	* @access public
 	*/
-	function site_plan($project_id="", $msg="")
+	function site_plan($project_id="", $msg="", $parameter="", $region="", $district="")
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		
+		if($msg == 0)
+		$msg="";
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 		if ( $s == '' ) 
 		{
 			// Sites not planned
-			$results_np = $this->projects_model->get_not_planned_sites($project_id);
+			$results_np = $this->projects_model->get_not_planned_sites($project_id, $parameter, $region, $district);
 			$data['projects_np']= $results_np['values'];
 			$data['error_message']=$msg;
 			// Sites not rolled out
 			$data['plans'] = $this->projects_model->get_processes();
 			$data['calendars'] = $this->projects_model->get_calendars();
-			$results_nr = $this->projects_model->get_planned_sites($project_id);
+			$results_nr = $this->projects_model->get_planned_sites($project_id, $parameter, $region, $district);
 			$data['projects_nr'] = $results_nr['values'];	    			
 		}
 		else
@@ -919,7 +921,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function site_rollout($offset="", $process_id = "", $project_id = "")
+	function site_rollout($process_id = "", $project_id = "", $parameter="", $region="", $district="")
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
@@ -934,31 +936,27 @@ class Projects extends My_Controller {
 		$this->db->where('process_id', $process_id);
         $this->db->from('process_details');
         $rows =$this->db->count_all_results();
-	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout';
+		$ts=$this->uri->total_segments();
+        $offset= $this->uri->segment($ts);
+	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
 		// Do the pagination
-		$config['uri_segment'] = '3';
+		$config['uri_segment'] = $ts;
 		$config['total_rows'] = $rows;
 		$config['per_page'] = $limit = '10';
 		$this->load->library('pagination');
 		$this->pagination->initialize($config);
 		$data['pagination']= $this->pagination->create_links();
 		// get the list of stages  
-		$result =$data['states']= $this->projects_model->get_process($limit, $this->uri->segment(3), $process_id);	
+
+		$result =$data['states']= $this->projects_model->get_process($limit, $offset, $process_id);	
 		
 		$i=0;
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $data['states'][$i]['stage'];
-			$result1 =  $this->projects_model->get_rolledout_sites($s, $f, $data['states'][$i]['stage'], $project_id );
+			$result1 =  $this->projects_model->get_rolledout_sites($s, $f, $data['states'][$i]['stage'], $project_id, $parameter, $region, $district );
 	        $data['states'][$i]['definition'] = $result1['values']; 
-			//print_r($result1);
-			// at parsing exact value of stage_id was not being displayed in 'id' , that's whay i've to add this code
-			/*$j=0;
-			foreach ($result1 as $row1)
-			{
-			$data['states'][$i]['definition'][$j]['stage_id']= $row1['state_id'];
-			$j++;
-			}*/
+
 			$_true = array(array());
 			$_false = array();
 			$data['states'][$i]['if_found'] = ( $data['states'][$i]['definition'] != NULL ) ? $_true : $_false;
@@ -982,13 +980,7 @@ class Projects extends My_Controller {
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['pid'] = $pid;			
-		// Site 
-		/*$query = $this->db->get_where('sites' , array('project_id' => $id));
-		$data['sites'] = $query->result_array();
-		$data['name'] = $data['sites'][0]['name'];
-		
-		$site_id = 	$data['sites'][0]['id'];
-		$data['sid']= $site_id; */
+
 		$site_id = $id;
 		$data['sid'] = $site_id;
 		$data['name'] = $name;
@@ -2593,10 +2585,10 @@ class Projects extends My_Controller {
 		$results = $this->projects_model->get_total_sites_project($project_id);
 		$data['total_sites']= $results['count'];
 		// get not planned sites
-		$results = $this->projects_model->get_not_planned_sites($project_id);
+		$results = $this->projects_model->get_not_planned_sites($project_id, "", "", "");
 		$data['projects_np']= $results['count'];
 		// get planned sites
-		$results=$this->projects_model->get_planned_sites($project_id);
+		$results=$this->projects_model->get_planned_sites($project_id, "", "", "");
 		$data['projects_nr']= $results['count'];	    
         // get rollout sites
 		$this->db->where('status', 'Active');
@@ -2618,7 +2610,7 @@ class Projects extends My_Controller {
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $row['stage'];
-			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], $project_id );
+			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], $project_id, "", "", "");
 			$data['states'][$i]['count'] = $result1['count'];
 			$_true = array(array());
 			$_false = array();
@@ -2639,18 +2631,48 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
+		
+		$data['chart_type']= "Pie3D.swf";
+		$data['chart_type1']= "MSColumn2D.swf";
+		$data['height'] = 360; 
+	    $data['width'] = 360;
 		$data['region'] = $region_name;
 		$data['project_id'] = $project_id;
 		$data['districts'] = $this->projects_model->get_districts_region($project_id, $region_name);
+		/*$_true = array(array());
+        $_false = array();
+        
+		$data['if_district'] = ( $data['candidates'] != NULL ) ? $_true : $_false;
+		$data['if_not_district'] = ( $data['candidates'] == NULL) ? $_true : $_false; */
+		
+		$chart_values= array(array());
+		foreach( $data['districts'] as $row )
+		{
+		  $chart_values[$row['name']] = $row['count'];
+		}
+		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
 		$this->parser->parse('projects/view_districts', $data);
 	}
-	function view_sites_in_district($project_id, $district)
+	function view_sites_in_district($project_id="", $region="", $district="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
+		$data['chart_type']= "Pie3D.swf";
+		$data['chart_type1']= "MSColumn2D.swf";
+		$data['height'] = 360; 
+	    $data['width'] = 360;
+		$data['region'] = $region;
 		$data['district'] = $district;
 		$data['project_id'] = $project_id;
-		$data['sites_in_district'] = $this->projects_model->get_sites_in_district($project_id, $district);
+		$result = $this->projects_model->get_sites_in_district($project_id, $region, $district, "Nominated");
+		$data['sites_np'] = $result['count'];
+		$result = $this->projects_model->get_sites_in_district($project_id, $region, $district, "Planned");
+		$data['sites_p'] = $result['count'];
+		$result = $this->projects_model->get_sites_in_district($project_id, $region, $district, "Active");
+		$data['sites_a'] = $result['count'];
+		$chart_values = array('Planned' => $data['sites_p'] , 'Not Planned' =>$data['sites_np'], 'Active'=>$data['sites_a']);
+		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
+	/*	$data['sites_in_district'] = $this->projects_model->get_sites_in_district($project_id, $district);
 		$i = $x = $y = $z = 0;
 		foreach($data['sites_in_district'] as $row)
 		{
@@ -2676,7 +2698,7 @@ class Projects extends My_Controller {
 			$z++;
 		  }
 		  $i++;
-		}
+		} */
 		$this->parser->parse('projects/sites_in_district', $data);
 	}
 	/**

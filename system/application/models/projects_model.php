@@ -135,7 +135,7 @@ class Projects_model extends Model{
 		  else
 		  return NULL;
 		}
-		function get_planned_sites($project_id)
+		function get_planned_sites($project_id, $parameter, $region, $district)
 		{
 		    $this->db->select('sites.id, sites.name, sites.project_id, sites.status, projects.status As p_status, projects.created_on, projects.start_date, projects.end_date, projects.code, projects.planned_on');
 			$this->db->from('projects');
@@ -144,6 +144,18 @@ class Projects_model extends Model{
 			if($project_id!="")
 			{
 			  $this->db->where('sites.project_id' , $project_id );
+			}
+			if($parameter != "" )
+			{
+			  if($parameter == "district" )
+			  {
+			    $this->db->where( 'region' , $region );
+				$this->db->where( 'district' , $district ); 
+			  }
+			  if($parameter == "region")
+			  {
+			    $this->db->where( 'region' , $region);
+			  }
 			}
 			  $query = $this->db->get();
 			  $result = array(
@@ -154,24 +166,34 @@ class Projects_model extends Model{
 
 		}
 		// to do
-		function get_not_planned_sites($project_id)
+		function get_not_planned_sites($project_id, $parameter, $region, $district)
 		{
-		    $this->db->select('sites.id, sites.name, sites.project_id, sites.status,projects.code, projects.created_on, projects.start_date, projects.end_date, projects.code, projects.planned_on');
+		    $this->db->select('sites.id, sites.name, sites.district, sites.project_id, sites.status,projects.code, projects.created_on, projects.start_date, projects.end_date, projects.code, projects.planned_on');
 			$this->db->from('projects');
 			$this->db->join('sites', 'sites.project_id= projects.id' );
-			//$this->db->where('projects.status' , "Planned" );
 			$this->db->where('sites.process_id' , '0' );
 			$this->db->where('sites.status' , 'Nominated' );
 			if($project_id!="")
 			{
-			  $this->db->where('sites.project_id' , $project_id );
-			 
+			  $this->db->where('sites.project_id' , $project_id ); 
 			}
-		  $query = $this->db->get();
-		  $result = array(
-		  'count' => $query->num_rows(),
-		  'values' => $query->result_array()
-		  );
+			if($parameter != "" )
+			{
+			  if($parameter == "district" )
+			  {
+			    $this->db->where( 'region' , $region );
+				$this->db->where( 'district' , $district ); 
+			  }
+			  if($parameter == "region")
+			  {
+			    $this->db->where( 'region' , $region);
+			  }
+			}
+		  	$query = $this->db->get();
+		  	$result = array(
+		  		'count' => $query->num_rows(),
+		  		'values' => $query->result_array()
+		  	);
 		  return $result;
 
 		}
@@ -188,7 +210,7 @@ class Projects_model extends Model{
 		function get_completed_sites($project_id)
 		{
 		}
-		function get_rolledout_sites($s, $f, $state, $project_id)
+		function get_rolledout_sites($s, $f, $state, $project_id, $parameter, $region, $district)
 		{ 
 			$this->db->select('sites.project_id,sites.name AS s_name, sites.status, states.site_id, states.id AS state_id , states.start, states.end, states.state, states.next_state, states.is_active, stages_planned.percentage_complete, persons.name');
 			$this->db->from('sites');
@@ -227,7 +249,18 @@ class Projects_model extends Model{
 			{
 			  $this->db->where('sites.project_id', $project_id);
 			}
-			//$rows =$this->db->count_all_results();
+			if($parameter != "" )
+			{
+			  if($parameter == "district" )
+			  {
+			    $this->db->where( 'region' , $region );
+				$this->db->where( 'district' , $district ); 
+			  }
+			  if($parameter == "region")
+			  {
+			    $this->db->where( 'region' , $region);
+			  }
+			}
 			$query = $this->db->get();
 
 			  $result = array(
@@ -753,14 +786,27 @@ class Projects_model extends Model{
 		  return $result; 
 		  
 		}
-		function get_sites_in_district($project_id, $district)
+		function get_sites_in_district($project_id, $region, $district, $status)
 		{
 		       $this->db->select('*');
 			   $this->db->from('sites');
-			   $this->db->where('district' , $district );
 			   $this->db->where('project_id' , $project_id );
+			   if($region != "")
+			   {
+			     $this->db->where('region' , $region );
+			   }
+			   $this->db->where('district' , $district );
+			   if($status != "")
+               {
+			     $this->db->where('status', $status);
+			   }
 			   $query=$this->db->get();
-		       return $query->result_array();
+			   $result =array(
+			   'result' => $query->result_array(),
+			   'count' => $query->num_rows(),
+			  );
+			  return $result;	  
+		       // return $query->result_array();
 		}
 		function get_months()
 		{
