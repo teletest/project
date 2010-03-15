@@ -56,7 +56,7 @@ $this->load->view('header');
 	</tr>
 	<tr>
 	  <td><b>Rollout sites</b></td>
-	  <td><a href="{site_url}index.php/projects/site_rollout/0/0/{project_id}">{projects_rollout}</a></td>
+	  <td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{projects_rollout}</a></td>
 	</tr>
 	<tr>
 	  <td>&nbsp;</td>

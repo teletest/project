@@ -44,7 +44,7 @@ $this->load->view('projects/site_search_form');
 	</tr>
 	<tr>
 	  <td><b>Rollout sites</b></td>
-	  <td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/district/{region}/{district}">{sites_a}</a></td>
+	  <td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/district/{region}/{district}/0">{sites_a}</a></td>
 	</tr>
 	<tr>
 	  <td>&nbsp;</td>

@@ -921,13 +921,13 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function site_rollout($process_id = "", $project_id = "", $parameter="", $region="", $district="")
+	function site_rollout($process_id = "", $project_id = "", $parameter="", $region="", $district="",$offset = "" )
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
-		
+	
 		if($process_id == "" || $process_id == 0)
 		{
 		  $process_id = 1;
@@ -936,8 +936,14 @@ class Projects extends My_Controller {
 		$this->db->where('process_id', $process_id);
         $this->db->from('process_details');
         $rows =$this->db->count_all_results();
+		
 		$ts=$this->uri->total_segments();
         $offset= $this->uri->segment($ts);
+	/*	if($project_id == "")
+		$config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id;
+		else if ($parameter == "")
+		$config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id;
+		else */
 	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
 		// Do the pagination
 		$config['uri_segment'] = $ts;

@@ -212,7 +212,7 @@ class Projects_model extends Model{
 		}
 		function get_rolledout_sites($s, $f, $state, $project_id, $parameter, $region, $district)
 		{ 
-			$this->db->select('sites.project_id,sites.name AS s_name, sites.status, states.site_id, states.id AS state_id , states.start, states.end, states.state, states.next_state, states.is_active, stages_planned.percentage_complete, persons.name');
+			$this->db->select('sites.project_id,sites.name AS s_name, sites.status, sites.region, sites.district, states.site_id, states.id AS state_id , states.start, states.end, states.state, states.next_state, states.is_active, stages_planned.percentage_complete, persons.name');
 			$this->db->from('sites');
 			$this->db->join('states', 'sites.id = states.site_id' );
 			$this->db->join('stages_planned', 'states.id = stages_planned.state_id' );
@@ -245,20 +245,20 @@ class Projects_model extends Model{
 			 {
 			   $this->db->like('sites.name', $s);
 			 }*/	
-			if($project_id != "")
+			if($project_id != 0 && $project_id!="")
 			{
 			  $this->db->where('sites.project_id', $project_id);
 			}
-			if($parameter != "" )
+			if($parameter == 'district' || $parameter == 'region')
 			{
 			  if($parameter == "district" )
 			  {
-			    $this->db->where( 'region' , $region );
-				$this->db->where( 'district' , $district ); 
+			    $this->db->where( 'sites.region' , $region );
+				$this->db->where( 'sites.district' , $district ); 
 			  }
 			  if($parameter == "region")
 			  {
-			    $this->db->where( 'region' , $region);
+			    $this->db->where( 'sites.region' , $region);
 			  }
 			}
 			$query = $this->db->get();
