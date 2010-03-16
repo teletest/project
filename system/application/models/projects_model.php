@@ -210,7 +210,7 @@ class Projects_model extends Model{
 		function get_completed_sites($project_id)
 		{
 		}
-		function get_rolledout_sites($s, $f, $state, $project_id, $parameter, $region, $district)
+		function get_rolledout_sites($s, $f, $state, $process_id, $project_id, $parameter, $region, $district)
 		{ 
 			$this->db->select('sites.project_id,sites.name AS s_name, sites.status, sites.region, sites.district, states.site_id, states.id AS state_id , states.start, states.end, states.state, states.next_state, states.is_active, stages_planned.percentage_complete, persons.name');
 			$this->db->from('sites');
@@ -219,6 +219,8 @@ class Projects_model extends Model{
 			$this->db->join('persons', 'stages_planned.user_id = persons.id' );
 			$this->db->where('states.state', $state);
 			$this->db->where('states.is_active', '1');
+			if($process_id != 'none')
+			$this->db->where('process_id', $process_id);
 	
 		/*	if($f=='name' )
 			 {
@@ -732,6 +734,23 @@ class Projects_model extends Model{
 		  
 		  return $result;
 		}
+		function get_sites_in_process($project_id, $process_id, $status)
+		{
+		       $this->db->select('*');
+			   $this->db->from('sites');
+			   $this->db->where('process_id' , $process_id );
+			   $this->db->where('project_id' , $project_id );
+			   if($status != "")
+               {
+			     $this->db->where('status', $status);
+			   }
+			   $query=$this->db->get();
+			   $result =array(
+			   'result' => $query->result_array(),
+			   'count' => $query->num_rows(),
+			  );
+			  return $result;
+		}
 		function get_grouped_stages()
 		{
 		  // to do
@@ -806,7 +825,6 @@ class Projects_model extends Model{
 			   'count' => $query->num_rows(),
 			  );
 			  return $result;	  
-		       // return $query->result_array();
 		}
 		function get_months()
 		{

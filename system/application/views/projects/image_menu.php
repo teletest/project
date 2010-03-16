@@ -4,7 +4,7 @@
   <area shape="rect" coords="96,30,166,65" href="{site_url}index.php/projects/nominal_plans">
   <area shape="rect" coords="3,77,72,111" href="{site_url}index.php/projects/site_plan">
   <area shape="rect" coords="98,75,166,113" href="{site_url}index.php/projects/planing_documents">
-  <area shape="rect" coords="3,150,71,186" href="{site_url}index.php/projects/site_rollout/0/0/0/0/0/0">
+  <area shape="rect" coords="3,150,71,186" href="{site_url}index.php/projects/site_rollout/none/0/0/0/0/0">
   <area shape="rect" coords="98,170,166,208" href="{site_url}index.php/projects/rollout_documents">
   <area shape="rect" coords="95,222,165,256" href="{site_url}index.php/projects/project_monitoring">
   <area shape="rect" coords="4,271,73,306" href="{site_url}index.php/projects/site_closing">

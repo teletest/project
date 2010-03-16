@@ -928,10 +928,16 @@ class Projects extends My_Controller {
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 	
-		if($process_id == "" || $process_id == 0)
+	    if( $process_id == 'none' || $process_id == "" || $process_id == 0)
 		{
 		  $process_id = 1;
-		}	
+		  $pass_process_id = 'none';
+		}
+		else
+		{ 
+		  $pass_process_id = $process_id ;
+		}
+	
 		//Gets list of sites at different stages
 		$this->db->where('process_id', $process_id);
         $this->db->from('process_details');
@@ -939,11 +945,7 @@ class Projects extends My_Controller {
 		
 		$ts=$this->uri->total_segments();
         $offset= $this->uri->segment($ts);
-	/*	if($project_id == "")
-		$config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id;
-		else if ($parameter == "")
-		$config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id;
-		else */
+
 	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
 		// Do the pagination
 		$config['uri_segment'] = $ts;
@@ -960,7 +962,7 @@ class Projects extends My_Controller {
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $data['states'][$i]['stage'];
-			$result1 =  $this->projects_model->get_rolledout_sites($s, $f, $data['states'][$i]['stage'], $project_id, $parameter, $region, $district );
+			$result1 =  $this->projects_model->get_rolledout_sites($s, $f, $data['states'][$i]['stage'], $pass_process_id, $project_id, $parameter, $region, $district );
 	        $data['states'][$i]['definition'] = $result1['values']; 
 
 			$_true = array(array());
@@ -2616,7 +2618,7 @@ class Projects extends My_Controller {
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $row['stage'];
-			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], $project_id, "", "", "");
+			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], "", $project_id, "", "", "");
 			$data['states'][$i]['count'] = $result1['count'];
 			$_true = array(array());
 			$_false = array();
@@ -2678,34 +2680,29 @@ class Projects extends My_Controller {
 		$data['sites_a'] = $result['count'];
 		$chart_values = array('Planned' => $data['sites_p'] , 'Not Planned' =>$data['sites_np'], 'Active'=>$data['sites_a']);
 		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
-	/*	$data['sites_in_district'] = $this->projects_model->get_sites_in_district($project_id, $district);
-		$i = $x = $y = $z = 0;
-		foreach($data['sites_in_district'] as $row)
-		{
-		  if($data['sites_in_district'][$i]['status'] == "Nominated")
-		  {
-		    $data['sites_np'][$x]['id'] = $data['sites_in_district'][$i]['id'];
-			$data['sites_np'][$x]['name'] = $data['sites_in_district'][$i]['name'];
-			$data['sites_np'][$x]['status'] = "Nominated";
-			$x++;
-		  }
-		  else if($data['sites_in_district'][$i]['status'] == "Planned" )
-		  {
-		    $data['sites_p'][$y]['id'] = $data['sites_in_district'][$i]['id'];
-			$data['sites_p'][$y]['name'] = $data['sites_in_district'][$i]['name'];
-			$data['sites_p'][$y]['status'] = "Planned";
-			$y++;
-		  }
-		  else
-		  {
-		    $data['sites_a'][$z]['id'] = $data['sites_in_district'][$i]['id'];
-			$data['sites_a'][$z]['name'] = $data['sites_in_district'][$i]['name'];
-			$data['sites_a'][$z]['status'] = "Active";
-			$z++;
-		  }
-		  $i++;
-		} */
+
 		$this->parser->parse('projects/sites_in_district', $data);
+	}
+	function view_sites_in_process($project_id, $process_id, $process_name)
+	{
+	   $data = tags();
+	   $data['tabs']	= tabs('projects');
+	   $data['chart_type']= "Pie3D.swf";
+	   $data['chart_type1']= "MSColumn2D.swf";
+	   $data['height'] = 360; 
+	   $data['width'] = 360;
+	   $data['process'] = $process_name;
+	   $data['process_id'] = $process_id;
+	   $data['project_id'] = $project_id;
+	   
+	   $result = $this->projects_model->get_sites_in_process($project_id, $process_id, "Planned");
+	   $data['sites_p'] = $result['count'];
+	   $result = $this->projects_model->get_sites_in_process($project_id, $process_id, "Active");
+	   $data['sites_a'] = $result['count'];
+	   $chart_values = array('Planned' => $data['sites_p'] , 'Active'=>$data['sites_a']);
+	   $data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
+
+	   $this->parser->parse('projects/sites_in_process', $data);
 	}
 	/**
 	* Taked Site Id as input

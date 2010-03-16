@@ -80,7 +80,8 @@ $this->load->view('header');
 			 {process}
 			 <tr>
 				 <td>{name}</td>
-				 <td><a href="{site_url}index.php/projects/site_rollout/{process_id}/{project_id}/0">{count}</a></td>
+				<!-- <td><a href="{site_url}index.php/projects/site_rollout/{process_id}/{project_id}/0">{count}</a></td> -->
+			    <td><a href="{site_url}index.php/projects/view_sites_in_process/{project_id}/{process_id}/{name}">{count}</a></td>
 			</tr>
 			{/process}
 	   </tbody>
