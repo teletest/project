@@ -30,7 +30,7 @@ class Projects extends My_Controller {
 		$this->load->model('charts_model');
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
-		$this->load->plugin( 'fusion' );		
+		$this->load->plugin('fusion');		
 	}
 /*	function mail()
 	{

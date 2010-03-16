@@ -38,7 +38,6 @@ class Charts extends My_Controller {
 		// Angular2
 		$strXML  = "";
 		$strXML .= "<chart lowerLimit='0' upperLimit='100' numberSuffix='%25' chartTopMargin='100' bgColor='FFFFFF' showBorder='0' chartBottomMargin='20' basefontColor='FFFFFF' toolTipBgColor='453269'>";
-			
 		$strXML .= "<colorRange>";
 		$strXML .= "<color minValue='0' maxValue='75' code='FF654F'/>";
 	    $strXML .= "<color minValue='75' maxValue='90' code='F6BD0F'/>";

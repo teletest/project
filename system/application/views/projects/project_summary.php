@@ -48,7 +48,7 @@ $this->load->view('header');
 	</tr>
 	<tr>
 	  <td><b>Planned sites</b></td>
-	  <td><a href="{site_url}index.php/projects/site_plan/{project_id}">{projects_nr}</a></td>
+	  <td><a href="{site_url}index.php/projects/site_plan/{project_id}" onclick="scrollWin();"  >{projects_nr}</a></td>
 	</tr>
 	<tr>
 	  <td>&nbsp;</td>
