@@ -946,7 +946,7 @@ class Projects extends My_Controller {
 		$ts=$this->uri->total_segments();
         $offset= $this->uri->segment($ts);
 
-	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$process_id.'/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
+	    $config['base_url'] = BASE_URL . 'index.php/projects/site_rollout/'.$pass_process_id.'/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
 		// Do the pagination
 		$config['uri_segment'] = $ts;
 		$config['total_rows'] = $rows;
@@ -2618,7 +2618,7 @@ class Projects extends My_Controller {
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $row['stage'];
-			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], "", $project_id, "", "", "");
+			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], "none", $project_id, "", "", "");
 			$data['states'][$i]['count'] = $result1['count'];
 			$_true = array(array());
 			$_false = array();

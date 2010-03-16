@@ -219,8 +219,10 @@ class Projects_model extends Model{
 			$this->db->join('persons', 'stages_planned.user_id = persons.id' );
 			$this->db->where('states.state', $state);
 			$this->db->where('states.is_active', '1');
-			if($process_id != 'none')
-			$this->db->where('process_id', $process_id);
+			if($process_id != 'none' && $process_id!= "")
+			{
+				$this->db->where('process_id', $process_id);
+			}
 	
 		/*	if($f=='name' )
 			 {
