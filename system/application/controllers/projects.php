@@ -30,7 +30,7 @@ class Projects extends My_Controller {
 		$this->load->model('charts_model');
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
-		$this->load->plugin('fusion');		
+			
 	}
 /*	function mail()
 	{
@@ -2639,7 +2639,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		
+		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
 		$data['height'] = 360; 
@@ -2665,6 +2665,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
+		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
 		$data['height'] = 360; 
@@ -2687,6 +2688,7 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
+	   $this->load->plugin('fusion');
 	   $data['chart_type']= "Pie3D.swf";
 	   $data['chart_type1']= "MSColumn2D.swf";
 	   $data['height'] = 360; 
