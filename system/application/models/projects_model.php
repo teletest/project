@@ -868,7 +868,64 @@ class Projects_model extends Model{
 				   array ('name' => "2020", 'value' => "20"), 
 				  );			
 		   return $years;
-	
+		}
+		function validate_candidate_info($data)
+		{
+		  $flag = true;
+		  $result = array(array());
+		  // check first value is valid candidate (i.e an alphabetic character)
+		  if(preg_match("[A-Z]", $data[1])) 
+		  {
+		    $result['flag'] = true;
+		  }
+		  else
+		  {
+		    $result['flag'] = false;
+			$result['field'] = 'code';
+		  }
+		  // check second value is valid latitude
+		  if((is_numeric($data[2])))
+		  {
+		    if (preg_match("[-]?[0-9]*[.]{0,1}[0-9]{0,4}", $data[2])) {
+			 $result['flag'] = true;
+			}
+			else{
+			 $result['flag'] = false;
+			 $result['field'] = 'latitude';
+			}
+		  }
+		  // check third value is valid longitude
+		  if((is_numeric($data[3])))
+		  {
+		    if (preg_match("[-]?[0-9]*[.]{0,1}[0-9]{0,4}", $data[3])) {
+			  $result['flag'] = true;
+			}
+			else
+			{
+			  $result['flag'] = false;
+			  $result['field'] = 'longitude';
+			}
+		  }
+		  // check fourth value is a numeric value and valid distance
+		  if((is_numeric($data[4])))
+		  {
+		     $result['flag'] = true;
+		  }
+		  else
+		  {
+		     $result['flag'] = false;
+			 $result['field'] = 'candidate distance';
+		  }
+		  // check power connection value
+		  if((is_numeric($data[10])))
+		  {
+		     $result['flag'] = true;
+		  }
+		  else
+		  {
+		    $result['flag'] = false;
+			$result['field'] = 'power connection';
+		  }
 		}
 }
 ?>

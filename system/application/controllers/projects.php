@@ -1337,10 +1337,10 @@ class Projects extends My_Controller {
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
-		  
+		 //$this->form_validation->set_error('There was a problem with the CSV import, please try another file'); 
 		 if ($this->input->post('submit') != '')
 		{ 
-			$mypath = './uploads';
+		   $mypath = './uploads';
 			if (!is_dir($mypath))
 			{
 				mkdir($mypath,0777,TRUE);
@@ -1383,25 +1383,35 @@ class Projects extends My_Controller {
 					'others' =>$data[12],
 					'isactive' =>$data[13]		
 				  );
-
-				   if( strcmp($s_name, $data[0]) == 0 )
-				   {
-                        $query = "select count(*) as itisexist from candidates where site_id='$site_id' && code='$data[1]' ";
-						$result = mysql_query($query) or die(mysql_error());
-						$line = mysql_fetch_array($result);		
-						if ($line['itisexist'] == 0 ) {
-
-		                   $this->db->insert('candidates', $candidates);
-						}				        
-				   }
-				   else
-				   {
-				     $msg="Plan can not be imported as given site name does not match selected site name";
-    				 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
-	    	         $this->session->set_flashdata('conf_msg', $msg);
-				     redirect( $pieces[1]);				   
-  				   }
-			    }			   
+				    $validation_values = $this->projects_model->validate_candidate_info($data); 
+                    if ($validation_values['flag'])
+				    {
+					   if( strcmp($s_name, $data[0]) == 0 )
+					   {
+							$query = "select count(*) as itisexist from candidates where site_id='$site_id' && code='$data[1]' ";
+							$result = mysql_query($query) or die(mysql_error());
+							$line = mysql_fetch_array($result);		
+							if ($line['itisexist'] == 0 ) {
+	
+							   $this->db->insert('candidates', $candidates);
+							}				        
+					   }
+					   else
+					   {
+						 $msg="Plan can not be imported as given site name does not match selected site name";
+						 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+						 $this->session->set_flashdata('conf_msg', $msg);
+						 redirect( $pieces[1]);				   
+					   }
+					 }
+					 else
+					 {
+					     $msg="File can not be imported as format of ".$validation_values['field']."field is not correct";
+						 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+						 $this->session->set_flashdata('conf_msg', $msg);
+						 redirect( $pieces[1]);
+					 }
+			     } // end if			   
 				} // end while loop
 				$this->rollout_details($site_id,$project_id,$s_name); 												
 			} // end else 

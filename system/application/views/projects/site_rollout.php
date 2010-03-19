@@ -49,7 +49,7 @@ $this->load->view('projects/site_search_form');
 	</tr>
   {if_not_found}	  
 	  <tr >
-	  <td colspan="11">No Site found at this stage</td>
+	  <td colspan="12">No Site found at this stage</td>
 	  </tr>
   {/if_not_found}
   {if_found}
@@ -72,7 +72,7 @@ $this->load->view('projects/site_search_form');
    {/definition} 
  {/if_found}
     <tr >
-	  <td colspan="11"><a href='{site_url}index.php/charts/Bar2D/{stage}' >View progress of all sites at this stage</a></td>
+	  <td colspan="12"><a href='{site_url}index.php/charts/Bar2D/{stage}' >View progress of all sites at this stage</a></td>
 	</tr>
 </table>
 {/states}
