@@ -1,0 +1,4 @@
+ALTER TABLE candidates MODIFY longitude decimal(10,7);
+ALTER TABLE candidates MODIFY latitude decimal(10,7);
+ALTER TABLE sites MODIFY nominal_latitude decimal(10,7);
+ALTER TABLE sites MODIFY nominal_longitude decimal(10,7);

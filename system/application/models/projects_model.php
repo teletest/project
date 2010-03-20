@@ -871,61 +871,70 @@ class Projects_model extends Model{
 		}
 		function validate_candidate_info($data)
 		{
-		  $flag = true;
-		  $result = array(array());
+		  
+		  $result = array(array()); 
+		  $result['flag'] = '1';
+		  $result['field'] = "";
 		  // check first value is valid candidate (i.e an alphabetic character)
-		  if(preg_match("[A-Z]", $data[1])) 
+		  if(preg_match("/^[A-Z]$/", $data[1])) 
 		  {
-		    $result['flag'] = true;
+		    $result['flag'] = '1';
 		  }
 		  else
 		  {
-		    $result['flag'] = false;
+		    $result['flag'] = '0';
 			$result['field'] = 'code';
+			return $result;
 		  }
-		  // check second value is valid latitude
+		  // check second value is valid latitude && Latitude must<90 >=-90
 		  if((is_numeric($data[2])))
-		  {
-		    if (preg_match("[-]?[0-9]*[.]{0,1}[0-9]{0,4}", $data[2])) {
-			 $result['flag'] = true;
+		  { //for decimal [\-+]?[0-9]+\.[0-9]+
+		    if (preg_match("/^(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))$/", $data[2])) {
+			 $result['flag'] = '1';
 			}
 			else{
-			 $result['flag'] = false;
+			 $result['flag'] = '0';
 			 $result['field'] = 'latitude';
+			 return $result;
 			}
 		  }
-		  // check third value is valid longitude
+		  // check third value is valid longitude && longitude must>=-180 & <180.
 		  if((is_numeric($data[3])))
 		  {
-		    if (preg_match("[-]?[0-9]*[.]{0,1}[0-9]{0,4}", $data[3])) {
-			  $result['flag'] = true;
+		    if (preg_match("/^(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)$/", $data[3])) {
+			  $result['flag'] = '1';
 			}
 			else
 			{
-			  $result['flag'] = false;
+			  $result['flag'] = '0';
 			  $result['field'] = 'longitude';
+			  return $result;
 			}
 		  }
 		  // check fourth value is a numeric value and valid distance
 		  if((is_numeric($data[4])))
 		  {
-		     $result['flag'] = true;
+		     $result['flag'] = '1';
 		  }
 		  else
 		  {
-		     $result['flag'] = false;
+		     $result['flag'] = '0';
 			 $result['field'] = 'candidate distance';
+			 return $result;
 		  }
+		  return $result;
 		  // check power connection value
-		  if((is_numeric($data[10])))
+		  /*if((is_numeric($data[10])))
 		  {
-		     $result['flag'] = true;
+		     $result['flag'] = '1';
 		  }
 		  else
 		  {
-		    $result['flag'] = false;
+		    $result['flag'] = '0';
 			$result['field'] = 'power connection';
-		  }
+			return $result;
+		  } */
+		  
 		}
 }
 ?>

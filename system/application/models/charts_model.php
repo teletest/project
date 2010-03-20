@@ -5,7 +5,8 @@ class Charts_model extends Model{
 	function Charts_model()
 	{
 		parent::Model();
-	}	
+	}
+		
 	function get_rolledout_sites($state)
 	{ 
 			$this->db->select('sites.name, states.site_id, states.id AS stage_id , states.start, states.end, states.state, stages_planned.actual_start_date, stages_planned.actual_end_date');
@@ -20,18 +21,21 @@ class Charts_model extends Model{
 			return $query->result_array();
 		
 	}
+	
 	function get_planned_sites_indays($project_id, $start_date, $end_date)
 	{
 	//SELECT * FROM states a JOIN (SELECT s.id sid FROM sites s JOIN projects p ON p.id = s.project_id WHERE p.id = '$project_id') st ON st.sid = a.site_id WHERE end BETWEEN '$start_date' AND '$end_date'";		
 	   $query = $this->db->query("SELECT * FROM states a JOIN (SELECT s.id sid FROM sites s JOIN projects p ON p.id = s.project_id WHERE p.id = '$project_id') st ON st.sid = a.site_id WHERE end BETWEEN '$start_date' AND '$end_date'");
 	   return $query->num_rows();  
 	}
+	
 	function get_actual_sites_indays($project_id, $start_date, $end_date)
 	{
 	   $query = $this->db->query("SELECT * FROM states a JOIN (SELECT s.id sid FROM sites s JOIN projects p ON p.id = s.project_id WHERE p.id = '$project_id') st ON st.sid = a.site_id WHERE end BETWEEN '$start_date' AND '$end_date' AND is_complete='1'");
 	   return $query->num_rows();
 	   
 	}
+	
 	function get_piechart_xml( $values )
 	{
 	   $strXML  = "";
@@ -43,6 +47,7 @@ class Charts_model extends Model{
 	   $strXML .="</chart>";
 	   return $strXML;
 	}
+	
 	function get_mscol2D_xml($project_id, $m="", $y="")
 	{
 	   if($m=="" || $y=="")

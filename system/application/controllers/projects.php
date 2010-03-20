@@ -1341,10 +1341,10 @@ class Projects extends My_Controller {
 		 if ($this->input->post('submit') != '')
 		{ 
 		   $mypath = './uploads';
-			if (!is_dir($mypath))
-			{
+		   if (!is_dir($mypath))
+		   {
 				mkdir($mypath,0777,TRUE);
-			}
+		   }
 		   $config['upload_path'] = './uploads/';
 		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
 		   $config['max_size']	= '4096';
@@ -1363,10 +1363,10 @@ class Projects extends My_Controller {
 				
 				$row = 0;
 				$handle = fopen($temp_csv, "r");
-                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {		
 				$row++;
 				if($row > '1')
-				{   	
+				{  	
 					$candidates =array(
 				    'site_id' => $site_id,
 					'code' => $data[1],
@@ -1384,8 +1384,9 @@ class Projects extends My_Controller {
 					'isactive' =>$data[13]		
 				  );
 				    $validation_values = $this->projects_model->validate_candidate_info($data); 
-                    if ($validation_values['flag'])
-				    {
+ 
+					if ($validation_values['flag']== '1')
+				    { 
 					   if( strcmp($s_name, $data[0]) == 0 )
 					   {
 							$query = "select count(*) as itisexist from candidates where site_id='$site_id' && code='$data[1]' ";
@@ -1394,7 +1395,14 @@ class Projects extends My_Controller {
 							if ($line['itisexist'] == 0 ) {
 	
 							   $this->db->insert('candidates', $candidates);
-							}				        
+							}
+						/*	else
+							{
+							   $msg="Candidate ".$data[1]."alredy exists";
+							   $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+							   $this->session->set_flashdata('conf_msg', $msg);
+							   redirect( $pieces[1]);
+							}*/				        
 					   }
 					   else
 					   {
