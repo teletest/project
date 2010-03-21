@@ -7,6 +7,7 @@ class Projects_model extends Model{
 		parent::Model();
 		$this->load->library('calendar');
 		$this->load->library('Workdays');
+		$this->load->library('Csv_validation');
 
 	}	
 		function get_filtered_results($f, $s, $status)
@@ -870,71 +871,49 @@ class Projects_model extends Model{
 		   return $years;
 		}
 		function validate_candidate_info($data)
-		{
-		  
-		  $result = array(array()); 
-		  $result['flag'] = '1';
-		  $result['field'] = "";
+		{ 
+		  $field = "";
+		  $validation = new Csv_validation();
 		  // check first value is valid candidate (i.e an alphabetic character)
-		  if(preg_match("/^[A-Z]$/", $data[1])) 
+		  $result = $validation->matches_pattern($data['1'], "[A-Z]", ""); 
+		  if($result == '1') 
 		  {
-		    $result['flag'] = '1';
+		    $field = "";
 		  }
 		  else
 		  {
-		    $result['flag'] = '0';
-			$result['field'] = 'code';
-			return $result;
+			return 'code';
 		  }
+		  
 		  // check second value is valid latitude && Latitude must<90 >=-90
-		  if((is_numeric($data[2])))
-		  { //for decimal [\-+]?[0-9]+\.[0-9]+
-		    if (preg_match("/^(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))$/", $data[2])) {
-			 $result['flag'] = '1';
+		  $result = $validation->matches_pattern($data['2'], "", 'latitude'); 
+		  	
+		    if ($result == '1') {
+			 $field = "";
 			}
 			else{
-			 $result['flag'] = '0';
-			 $result['field'] = 'latitude';
-			 return $result;
+			 return 'latitude';
 			}
-		  }
+
 		  // check third value is valid longitude && longitude must>=-180 & <180.
-		  if((is_numeric($data[3])))
-		  {
-		    if (preg_match("/^(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)$/", $data[3])) {
-			  $result['flag'] = '1';
+           $result = $validation->matches_pattern($data['3'], "", 'longitude');
+		    if ($result == '1') {
+			  $field = '1';
 			}
 			else
 			{
-			  $result['flag'] = '0';
-			  $result['field'] = 'longitude';
-			  return $result;
+			  return 'longitude';
 			}
-		  }
 		  // check fourth value is a numeric value and valid distance
 		  if((is_numeric($data[4])))
 		  {
-		     $result['flag'] = '1';
+		     $field = "";
 		  }
 		  else
 		  {
-		     $result['flag'] = '0';
-			 $result['field'] = 'candidate distance';
-			 return $result;
+			 return 'candidate distance';
 		  }
-		  return $result;
-		  // check power connection value
-		  /*if((is_numeric($data[10])))
-		  {
-		     $result['flag'] = '1';
-		  }
-		  else
-		  {
-		    $result['flag'] = '0';
-			$result['field'] = 'power connection';
-			return $result;
-		  } */
-		  
+		  return $field;
 		}
 }
 ?>

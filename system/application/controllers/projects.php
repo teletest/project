@@ -1349,6 +1349,7 @@ class Projects extends My_Controller {
 		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
 		   $config['max_size']	= '4096';
 	       $this->load->library('upload', $config);
+		   $this->load->helper('file');
 			if ( ! $this->upload->do_upload())
 			{ 
 				echo $error = $this->upload->display_errors();
@@ -1357,8 +1358,8 @@ class Projects extends My_Controller {
 			else
 			{ 
 				$data = array('upload_data' => $this->upload->data());
-				$path= $data['upload_data']['file_path'];
-				$tempFile =$data['upload_data']['file_name'];
+				echo $path= $data['upload_data']['file_path'];
+				echo $tempFile =$data['upload_data']['file_name'];
 				$temp_csv = $_FILES['userfile']['tmp_name'];
 				
 				$row = 0;
@@ -1366,7 +1367,7 @@ class Projects extends My_Controller {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {		
 				$row++;
 				if($row > '1')
-				{  	
+				{  
 					$candidates =array(
 				    'site_id' => $site_id,
 					'code' => $data[1],
@@ -1383,9 +1384,9 @@ class Projects extends My_Controller {
 					'others' =>$data[12],
 					'isactive' =>$data[13]		
 				  );
-				    $validation_values = $this->projects_model->validate_candidate_info($data); 
- 
-					if ($validation_values['flag']== '1')
+				    $validation_value = $this->projects_model->validate_candidate_info($data); 
+
+					if ($validation_value == '')
 				    { 
 					   if( strcmp($s_name, $data[0]) == 0 )
 					   {
@@ -1414,13 +1415,14 @@ class Projects extends My_Controller {
 					 }
 					 else
 					 {
-					     $msg="File can not be imported as format of ".$validation_values['field']."field is not correct";
+					     $msg="File can not be imported completely as format of ".$validation_value." field for candidate ".$data[1]." is not correct";
 						 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
 						 $this->session->set_flashdata('conf_msg', $msg);
 						 redirect( $pieces[1]);
 					 }
 			     } // end if			   
 				} // end while loop
+				@unlink($path.$tempFile); // delete file
 				$this->rollout_details($site_id,$project_id,$s_name); 												
 			} // end else 
 	     } // end outer if 
