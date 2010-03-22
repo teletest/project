@@ -30,6 +30,10 @@ class Projects extends My_Controller {
 		$this->load->model('charts_model');
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
+		$this->load->helper(array('form', 'url', 'file'));
+		$this->load->library('form_validation');
+		$this->load->plugin('fusion');
+		$this->load->helper('file');
 			
 	}
 /*	function mail()
@@ -1334,32 +1338,39 @@ class Projects extends My_Controller {
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
 		 $data['redirect']= "candidate_upload";
+		 $data['import'] = "Candidate";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
 		 //$this->form_validation->set_error('There was a problem with the CSV import, please try another file'); 
+		 
 		 if ($this->input->post('submit') != '')
-		{ 
+		 { 
 		   $mypath = './uploads';
 		   if (!is_dir($mypath))
 		   {
 				mkdir($mypath,0777,TRUE);
 		   }
-		   $config['upload_path'] = './uploads/';
-		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
-		   $config['max_size']	= '4096';
-	       $this->load->library('upload', $config);
-		   $this->load->helper('file');
-			if ( ! $this->upload->do_upload())
+		   $this->load->helper(array('form', 'url'));
+		
+		   $this->load->library('form_validation');
+		   //$rules['userfile'] = "callback_userfile";
+		   //$this->validation->set_rules($rules);
+	       $this->form_validation->set_rules('userfile', 'File', 'callback_userfile');
+        
+           if($this->form_validation->run($this) == FALSE)
+		   
+			//if ( ! $this->upload->do_upload())
 			{ 
-				echo $error = $this->upload->display_errors();
-				$this->parser->parse('/projects/upload__candidate', $data);      
+				//echo $error = $this->upload->display_errors();
+				//$this->validation->set_message('_userfile',$this->upload->display_errors());
+				$this->parser->parse('/projects/upload_candidate', $data);      
 			}	
 			else
 			{ 
 				$data = array('upload_data' => $this->upload->data());
-				echo $path= $data['upload_data']['file_path'];
-				echo $tempFile =$data['upload_data']['file_name'];
+				$path= $data['upload_data']['file_path'];
+				$tempFile =$data['upload_data']['file_name'];
 				$temp_csv = $_FILES['userfile']['tmp_name'];
 				
 				$row = 0;
@@ -1448,6 +1459,7 @@ class Projects extends My_Controller {
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
 		 $data['redirect']= "activity_upload";
+		 $data['import'] = "Activities";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
@@ -1522,6 +1534,7 @@ class Projects extends My_Controller {
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
 		 $data['redirect']= "survey_upload";
+		 $data['import'] = "Surveys";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
@@ -2894,6 +2907,21 @@ class Projects extends My_Controller {
 		    $data['xml'] = $strXML;
 	        $this->parser->parse('projects/view_chart', $data);
 	}
+	function userfile()
+	{
+        $config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
+		$config['max_size']	= '4096';
+		$this->load->library('upload', $config);
+		
+	    if (!$this->upload->do_upload('userfile'))
+        {//$this->form_validation->set_message('_check_login_name', 'The callback was called.');
+            $this->form_validation->set_message('userfile',$this->upload->display_errors());
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 }
 /* End of file projects.php */
