@@ -1346,24 +1346,14 @@ class Projects extends My_Controller {
 		 
 		 if ($this->input->post('submit') != '')
 		 { 
-		   $mypath = './uploads';
-		   if (!is_dir($mypath))
-		   {
+		    $mypath = './uploads';
+		    if (!is_dir($mypath))
+		    {
 				mkdir($mypath,0777,TRUE);
-		   }
-		   $this->load->helper(array('form', 'url'));
-		
-		   $this->load->library('form_validation');
-		   //$rules['userfile'] = "callback_userfile";
-		   //$this->validation->set_rules($rules);
-	       $this->form_validation->set_rules('userfile', 'File', 'callback_userfile');
-        
-           if($this->form_validation->run($this) == FALSE)
-		   
-			//if ( ! $this->upload->do_upload())
+		    }
+	        $this->form_validation->set_rules('userfile', 'File', 'callback_userfile');
+            if($this->form_validation->run($this) == FALSE)
 			{ 
-				//echo $error = $this->upload->display_errors();
-				//$this->validation->set_message('_userfile',$this->upload->display_errors());
 				$this->parser->parse('/projects/upload_candidate', $data);      
 			}	
 			else
@@ -1407,14 +1397,7 @@ class Projects extends My_Controller {
 							if ($line['itisexist'] == 0 ) {
 	
 							   $this->db->insert('candidates', $candidates);
-							}
-						/*	else
-							{
-							   $msg="Candidate ".$data[1]."alredy exists";
-							   $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
-							   $this->session->set_flashdata('conf_msg', $msg);
-							   redirect( $pieces[1]);
-							}*/				        
+							}				        
 					   }
 					   else
 					   {
@@ -1472,14 +1455,10 @@ class Projects extends My_Controller {
 			{
 				mkdir($mypath,0777,TRUE);
 			}
-		   $config['upload_path'] = './uploads/';
-		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
-		   $config['max_size']	= '4096';
-	       $this->load->library('upload', $config);
-			if ( ! $this->upload->do_upload())
+		    $this->form_validation->set_rules('userfile', 'File', 'callback_userfile');
+            if($this->form_validation->run($this) == FALSE)
 			{ 
-				echo $error = $this->upload->display_errors();
-				$this->parser->parse('/projects/upload__candidate', $data);      
+				$this->parser->parse('/projects/upload_candidate', $data);      
 			}	
 			else
 			{ 
@@ -1492,6 +1471,7 @@ class Projects extends My_Controller {
 				$handle = fopen($temp_csv, "r");
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 				$row++;
+				// don't insert header row
 				if($row > '1')
 				{   	
 					$activities =array(
@@ -1506,9 +1486,23 @@ class Projects extends My_Controller {
 					'activity_by' =>$data[4],
 					'activity_on' =>$data[5],		
 				  );
-                  $this->db->insert('activities', $activities);
+                  
+				  $validation_value = $this->projects_model->validate_activity_info($data); 
+
+				  if ($validation_value == '')
+				  { 
+					$this->db->insert('activities', $activities);
+				  }
+				  else
+				  {
+					 $msg="File can not be imported completely as format of ".$validation_value." field is not correct";
+					 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+					 $this->session->set_flashdata('conf_msg', $msg);
+					 redirect( $pieces[1]);
+				  }
 			     } // end if			   
 				} // end while loop
+				@unlink($path.$tempFile); // delete file
 				$this->rollout_details($site_id,$project_id,$s_name); 												
 			} // end else 
 	     } // end outer if 
@@ -1547,14 +1541,10 @@ class Projects extends My_Controller {
 			{
 				mkdir($mypath,0777,TRUE);
 			}
-		   $config['upload_path'] = './uploads/';
-		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
-		   $config['max_size']	= '4096';
-	       $this->load->library('upload', $config);
-			if ( ! $this->upload->do_upload())
+		    $this->form_validation->set_rules('userfile', 'File', 'callback_userfile');
+            if($this->form_validation->run($this) == FALSE)
 			{ 
-				echo $error = $this->upload->display_errors();
-				$this->parser->parse('/projects/upload__candidate', $data);      
+				$this->parser->parse('/projects/upload_candidate', $data);      
 			}	
 			else
 			{ 
@@ -1606,9 +1596,23 @@ class Projects extends My_Controller {
 					'summary' => $data[30],
 					'survey_on' => $data[31],
 				  );
-                  $this->db->insert('surveys', $surveys);
+                  
+				  $validation_value = $this->projects_model->validate_activity_info($data); 
+
+				  if ($validation_value == '')
+				  { 
+					$this->db->insert('surveys', $surveys);
+				  }
+				  else
+				  {
+					 $msg="File can not be imported completely as format of ".$validation_value." field is not correct";
+					 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+					 $this->session->set_flashdata('conf_msg', $msg);
+					 redirect( $pieces[1]);
+				  }
 			     } // end if			   
 				} // end while loop
+				@unlink($path.$tempFile); // delete file
 				$this->rollout_details($site_id,$project_id,$s_name); 												
 			} // end else 
 	     } // end outer if 
@@ -2010,8 +2014,7 @@ class Projects extends My_Controller {
 					'feeder_length' =>$data[11],
 					'feeder_type' =>$data[12],
 					'longitude' =>$data[13],
-					'latitude' =>$data[14],
-					
+					'latitude' =>$data[14],	
 					'phase' =>$data[16],
 					'region' =>$data[17],
 					'type' =>$data[18],

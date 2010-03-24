@@ -874,7 +874,7 @@ class Projects_model extends Model{
 		{ 
 		  $field = "";
 		  $validation = new Csv_validation();
-		  // check first value is valid candidate (i.e an alphabetic character)
+		  // check value is valid candidate (i.e an alphabetic character)
 		  $result = $validation->matches_pattern($data['1'], "[A-Z]", ""); 
 		  if($result == '1') 
 		  {
@@ -885,7 +885,7 @@ class Projects_model extends Model{
 			return 'code';
 		  }
 		  
-		  // check second value is valid latitude && Latitude must<90 >=-90
+		  // check value is valid latitude && Latitude must<90 >=-90
 		  $result = $validation->matches_pattern($data['2'], "", 'latitude'); 
 		  	
 		    if ($result == '1') {
@@ -895,7 +895,7 @@ class Projects_model extends Model{
 			 return 'latitude';
 			}
 
-		  // check third value is valid longitude && longitude must>=-180 & <180.
+		  // check value is valid longitude && longitude must>=-180 & <180.
            $result = $validation->matches_pattern($data['3'], "", 'longitude');
 		    if ($result == '1') {
 			  $field = '1';
@@ -904,7 +904,7 @@ class Projects_model extends Model{
 			{
 			  return 'longitude';
 			}
-		  // check fourth value is a numeric value and valid distance
+		  // check value is a numeric value and valid distance
 		  if((is_numeric($data[4])))
 		  {
 		     $field = "";
@@ -914,6 +914,100 @@ class Projects_model extends Model{
 			 return 'candidate distance';
 		  }
 		  return $field;
+		}
+		function validate_activity_info($data)
+		{
+		  $field = "";
+		  $validation = new Csv_validation();
+		  // check value is valid activity type
+		  $type = array("RND","Acquisition","Transmission","Civil Works","Telecom","Other");
+          if (in_array($data['1'], $type)) {  
+		    $field = "";
+		  }
+		  else
+		  {
+			return 'type';
+		  }
+		  
+		  // check value is valid date and correct date format
+		  $result = $validation->matches_pattern($data['6'], "", 'date'); 
+		  	
+		  if ($result == '1') {
+		  $field = "";
+		  } 
+		  else{
+		  return 'activity on';
+		  }
+		  return $field;
+		}
+		function validate_survey_info($data)
+		{
+		  $field = "";
+		  $validation = new Csv_validation();
+		  $category = array('RND','Transmition');
+		  $type = array('Scoping','Intermediate','PSS');
+		  // check value is valid cateogry type 
+		  if (in_array($data['0'], $category)) {  
+			  $field = "";
+		  }
+		  else
+		  {
+			  return 'category';
+		  }
+		  // check value is valid survey type 
+		  if (in_array($data['1'], $type)) {  
+			  $field = "";
+		  }
+		  else
+		  {
+			  return 'type';
+		  }
+		  // check value is valid latitude && Latitude must<90 >=-90
+		  $result = $validation->matches_pattern($data['3'], "", 'latitude');	
+		  if ($result == '1') {
+			 $field = "";
+		  }
+		  else{
+			 return 'latitude';
+		  }
+
+		  // check value is valid longitude && longitude must>=-180 & <180.
+          $result = $validation->matches_pattern($data['4'], "", 'longitude');
+		  if ($result == '1') {
+			  $field = '1';
+		  }
+		  else
+		  {
+			  return 'longitude';
+		  }
+		  // check value is a numeric and valid distance
+		  if((is_numeric($data[5])))
+		  {
+		     $field = "";
+		  }
+		  else
+		  {
+			 return 'candidate distance';
+		  }
+		  // check value is a numeric and valid distance
+		  if((is_numeric($data[6])) && (is_numeric($data[7])))
+		  {
+		     $field = "";
+		  }
+		  else
+		  {
+			 return 'antenna height';
+		  }
+		  // check value is valid date and correct date format
+		  $result = $validation->matches_pattern($data['32'], "", 'date'); 
+		  	
+		  if ($result == '1') {
+		  $field = "";
+		  } 
+		  else{
+		  return 'survey on';
+		  }
+		   return $field;
 		}
 }
 ?>
