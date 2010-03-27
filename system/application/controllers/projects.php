@@ -987,13 +987,13 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/	
-	function rollout_details($id, $pid, $name, $state_id="", $cid=0)
+	function rollout_details($sid, $pid, $name, $state_id="", $cid="")
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['pid'] = $pid;			
 
-		$site_id = $id;
+		$site_id = $sid;
 		$data['sid'] = $site_id;
 		$data['name'] = $name;
 	    $data['state_id'] = $state_id;
@@ -1035,9 +1035,9 @@ class Projects extends My_Controller {
 			$data['if_not_active'] = ($query->num_rows == 0 ) ? $_true : $_false;
 			if($query->num_rows > 0)
 			{
-			$cid = $row[0]['id'];
-			$data['cid']=$cid;
-			$data['cname'] = $row[0]['code'];
+			  $cid = $row[0]['id'];
+			  $data['cid']=$cid;
+			  $data['cname'] = $row[0]['code'];
 		    
 			//get activities
 			$this->db->order_by('activity_on','desc');
