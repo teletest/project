@@ -1,0 +1,2 @@
+ALTER TABLE surveys ADD state_id INT(11) NOT NULL AFTER  candidate_id;
+ALTER TABLE activities ADD state_id INT(11) NOT NULL AFTER  site_id;
