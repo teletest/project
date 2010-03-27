@@ -947,7 +947,7 @@ class Projects_model extends Model{
 		  $category = array('RND','Transmition');
 		  $type = array('Scoping','Intermediate','PSS');
 		  // check value is valid cateogry type 
-		  if (in_array($data['0'], $category)) {  
+		  if (in_array($data['1'], $category)) {  
 			  $field = "";
 		  }
 		  else
@@ -955,7 +955,7 @@ class Projects_model extends Model{
 			  return 'category';
 		  }
 		  // check value is valid survey type 
-		  if (in_array($data['1'], $type)) {  
+		  if (in_array($data['2'], $type)) {  
 			  $field = "";
 		  }
 		  else
@@ -963,7 +963,7 @@ class Projects_model extends Model{
 			  return 'type';
 		  }
 		  // check value is valid latitude && Latitude must<90 >=-90
-		  $result = $validation->matches_pattern($data['3'], "", 'latitude');	
+		  $result = $validation->matches_pattern($data['4'], "", 'latitude');	
 		  if ($result == '1') {
 			 $field = "";
 		  }
@@ -972,7 +972,7 @@ class Projects_model extends Model{
 		  }
 
 		  // check value is valid longitude && longitude must>=-180 & <180.
-          $result = $validation->matches_pattern($data['4'], "", 'longitude');
+          $result = $validation->matches_pattern($data['5'], "", 'longitude');
 		  if ($result == '1') {
 			  $field = '1';
 		  }
@@ -981,7 +981,7 @@ class Projects_model extends Model{
 			  return 'longitude';
 		  }
 		  // check value is a numeric and valid distance
-		  if((is_numeric($data[5])))
+		  if((is_numeric($data[6])))
 		  {
 		     $field = "";
 		  }
@@ -990,7 +990,7 @@ class Projects_model extends Model{
 			 return 'candidate distance';
 		  }
 		  // check value is a numeric and valid distance
-		  if((is_numeric($data[6])) && (is_numeric($data[7])))
+		  if((is_numeric($data[7])) && (is_numeric($data[7])))
 		  {
 		     $field = "";
 		  }
@@ -999,8 +999,7 @@ class Projects_model extends Model{
 			 return 'antenna height';
 		  }
 		  // check value is valid date and correct date format
-		  $result = $validation->matches_pattern($data['32'], "", 'date'); 
-		  	
+		  $result = $validation->matches_pattern($data['33'], "", 'date');   	
 		  if ($result == '1') {
 		  $field = "";
 		  } 
