@@ -998,6 +998,7 @@ class Projects_model extends Model{
 		  {
 			 return 'antenna height';
 		  } */
+		  
 		  // check value is valid date and correct date format
 		  $result = $validation->matches_pattern($data['33'], "", 'date');   	
 		  if ($result == '1') {
