@@ -990,14 +990,14 @@ class Projects_model extends Model{
 			 return 'candidate distance';
 		  }
 		  // check value is a numeric and valid distance
-		  if((is_numeric($data[7])) && (is_numeric($data[7])))
+	/*	  if((is_numeric($data[7])) && (is_numeric($data[8])))
 		  {
 		     $field = "";
 		  }
 		  else
 		  {
 			 return 'antenna height';
-		  }
+		  } */
 		  // check value is valid date and correct date format
 		  $result = $validation->matches_pattern($data['33'], "", 'date');   	
 		  if ($result == '1') {
