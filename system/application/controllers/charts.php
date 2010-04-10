@@ -2507,9 +2507,13 @@ class Charts extends My_Controller {
 	 $data['xml'] = $this->charts_model->get_piechart_xml($values);	
 	 $this->parser->parse('charts/index', $data);
 	}
-	function GanttChart( $site_id="")
+	function GanttChart( $site_id="" , $status="")
 	{
 	  $data = tags();
+	  $data['tabs']	= tabs('charts'); 
+	  $data['chart_type']= "Gantt.swf";
+	  $data['height'] = 1000; 
+	  $data['width'] = 1000;  
 	}
 	
 }
