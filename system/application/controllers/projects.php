@@ -34,6 +34,7 @@ class Projects extends My_Controller {
 		$this->load->library('form_validation');
 		$this->load->plugin('fusion');
 		$this->load->helper('file');
+		$this->load->helper('download');
 			
 	}
 /*	function mail()
@@ -51,6 +52,17 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
+		
+		// setup breadcrumb
+        $bc = array(
+               'title' => 'Project',
+               'url' => 'projects',
+               'isRoot' => true
+        );        
+        $this->breadcrumb->setBreadCrumb($bc);   
+        // pass data onto the views
+		$data['breadcrumbs'] = get_Instance()->breadcrumblist->display();
+		
 		// Fill in the site array with the details after running the query
 		$s = $this->input->post('s');
 		//$f = $this->input->post('f');
@@ -425,6 +437,16 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
+		
+		$bc = array(
+               'title' => 'Site Plam',
+               'url' => 'projects/site_plan',
+               'isRoot' => false
+        );
+		$this->breadcrumb->setBreadCrumb($bc);
+
+		$data['breadcrumbs'] =get_Instance()->breadcrumblist->display();
+		
 		if($msg == 0)
 		$msg="";
 		$s = $this->input->post('s');
@@ -2644,14 +2666,44 @@ class Projects extends My_Controller {
 		$data['projects_comp']=$this->projects_model->get_completed_sites($project_id);
 		
 		$chart_values = array('Planned' => $data['projects_nr'] , 'Not Planned' =>$data['projects_np'], 'Active'=>$data['projects_rollout']);
+			
+		/*$this->db->where('process_id', "1");
+        $this->db->from('process_details');
+        $rows =$this->db->count_all_results();
+		$result =$data['states']= $this->projects_model->get_process( "" , "", "1");	
+		$i=0;
+		foreach ($result as $row)
+		{
+			$data['states'][$i]['stage'] = $row['stage'];
+			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], "none", $project_id, "", "", "");
+			$data['states'][$i]['count'] = $result1['count'];
+			$_true = array(array());
+			$_false = array();
+			$data['states'][$i]['if_found'] = ( $result1['count'] != 0 ) ? $_true : $_false;
+			$data['states'][$i]['if_not_found'] = ( $result1['count'] == 0 ) ? $_true : $_false;    
+			$i++; 
+		}*/
 		
+		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
+		$data['bargraph_xml'] = $this->charts_model->get_mscol2D_xml($project_id, $month, $year);
 		
+		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
+	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
+		//
+		/*$this->load->plugin('to_excel');
+		to_excel($query, ['filename']);
+		*/
+		$this->parser->parse('projects/project_summary', $data);	   
+	}
+	function rollout_summary( $project_id = "")
+	{
+	    $data = tags();
+		$data['tabs']	= tabs('projects');
 		$this->db->where('process_id', "1");
         $this->db->from('process_details');
         $rows =$this->db->count_all_results();
 		$result =$data['states']= $this->projects_model->get_process( "" , "", "1");	
 		$i=0;
-		
 		foreach ($result as $row)
 		{
 			$data['states'][$i]['stage'] = $row['stage'];
@@ -2663,14 +2715,7 @@ class Projects extends My_Controller {
 			$data['states'][$i]['if_not_found'] = ( $result1['count'] == 0 ) ? $_true : $_false;    
 			$i++; 
 		}
-		
-		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
-		$data['bargraph_xml'] = $this->charts_model->get_mscol2D_xml($project_id, $month, $year);
-		
-		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
-	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
-		
-		$this->parser->parse('projects/project_summary', $data);	   
+		$this->parser->parse('projects/rollout_summary', $data);
 	}
 	function view_districts($region_name="", $project_id="")
 	{
@@ -2926,7 +2971,83 @@ class Projects extends My_Controller {
             return true;
         }
     }
-
+	/**
+	*
+	* takes input file name
+	*
+	* download file on your system
+	**/
+	/*function download_file()
+	{
+	    $path = $_SERVER['DOCUMENT_ROOT']."/path2file/"; // change the path to fit your websites document structure
+		$fullPath = $path.$_GET['download_file'];
+		 
+		if ($fd = fopen ($fullPath, "r")) {
+			$fsize = filesize($fullPath);
+			$path_parts = pathinfo($fullPath);
+			$ext = strtolower($path_parts["extension"]);
+			switch ($ext) {
+				case "pdf":
+				header("Content-type: application/pdf"); // add here more headers for diff. extensions
+				header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
+				break;
+				default;
+				header("Content-type: application/octet-stream");
+				header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
+			}
+			header("Content-length: $fsize");
+			header("Cache-control: private"); //use this to open files directly
+			while(!feof($fd)) {
+				$buffer = fread($fd, 2048);
+				echo $buffer;
+			}
+		}
+		fclose ($fd);
+		exit;
+		// example: place this kind of link into the document where the file download is offered:
+		// <a href="download.php?download_file=some_file.pdf">Download here</a>
+	} */
+	function download_file( $filename ="" )
+	{
+	   echo  $path_to_file = BASE_URL."uploads/".$filename;
+	
+		if (file_exists($path_to_file)) {
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename='.$filename);
+			header('Content-Transfer-Encoding: binary');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($path_to_file));
+			ob_clean();
+			flush();
+			echo readfile($path_to_file);
+			exit();
+		}
+		else
+		{
+		   echo "error";
+		}
+	//    $data = file_get_contents($path_to_file, true); // Read the file's contents
+       /* if ($fd = fopen ($path_to_file, "r")) {
+			echo "hello";
+			/*while(!feof($fd)) {
+				$buffer = fread($fd, 2048);
+				echo $buffer;
+			}*/
+		/*} 
+		else
+		{
+		   echo "file not opening";
+		}*/
+	   
+	   // echo $buffer;
+		$name = $filename;
+	    $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
+		redirect($pieces[1]);
+        //force_download($name, $data);
+    }
 }
 /* End of file projects.php */
 /* Location| ./system/application/controllers/projects.php */

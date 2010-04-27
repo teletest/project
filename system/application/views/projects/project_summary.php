@@ -12,6 +12,7 @@ $this->load->view('header');
       location.href = strAddress; 
 	}
 </script>
+
 <div id="main-content">
 
 <h1>Site Rollout</h1>
@@ -56,9 +57,10 @@ $this->load->view('header');
 	</tr>
 	<tr>
 	  <td><b>Rollout sites</b></td>
-	  <td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{projects_rollout}</a></td>
+	  <!--<td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{projects_rollout}</a></td>-->
+	  <td><a href="{site_url}index.php/projects/rollout_summary/{project_id}">{projects_rollout}</a></td>
 	</tr>
-	<tr>
+<!--	<tr>
 	  <td>&nbsp;</td>
 	  <td>&nbsp;</td>
 	</tr>
@@ -69,8 +71,9 @@ $this->load->view('header');
 	<td>{count}</td>
 	</tr>
  {/if_found}
- {/states}
+ {/states} -->
 </table>
+<!-- second report -->
 <h3>Report based on processes</h3>
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	   <tbody>

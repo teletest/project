@@ -96,7 +96,7 @@ class Projects_model extends Model{
 				$this->db->like('attachements.filename', $s);
 				}
 				$query = $this->db->get();
-			   return $query->result_array();
+			    return $query->result_array();
 		}
 		function change_status($status, $id)
 		{ 
