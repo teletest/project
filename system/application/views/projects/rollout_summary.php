@@ -29,7 +29,7 @@ $this->load->view('header');
   {if_found}
     <tr>
 	<td>{stage}</td>
-	<td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{projects_rollout}</a>{count}</td>
+	<td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{count}</a></td>
 	</tr>
  {/if_found}
  {/states}

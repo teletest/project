@@ -2355,6 +2355,7 @@ class Charts extends My_Controller {
 		// that store the data of our chart
 		$xml_file = "./Charts/amcolumn/floating/chart_data.xml";
 		$data['chart_type']="floating";
+		$data['object_type'] ="amcolumn.swf";
 		$data['height'] = 520;
 		$data['width'] = 400;
 		// format data into xml data 
@@ -2391,6 +2392,7 @@ class Charts extends My_Controller {
 		// title of chart 
 		$chart_title = 'Column and line charts';
 		$data['chart_type']="col_and_line";
+		$data['object_type'] ="amcolumn.swf";
 		$data['height'] = 800;
 		$data['width'] = 600;
 		// path to file of our chart_data.xml, 
@@ -2426,6 +2428,32 @@ class Charts extends My_Controller {
 		file_put_contents($xml_file, $xml_data);
 		$this->parser->parse('charts/amcharts', $data);
 
+	}
+	function am_pie()
+	{
+	   $data = tags();
+	   $data['tabs']	= tabs('charts'); 
+	   
+	   // title of chart 
+	   $chart_title = 'Column and line charts';
+	   $data['chart_type']="pie";
+       $data['height'] = 800;
+	   $data['width'] = 600;
+	   $data['object_type'] ="ampie.swf";
+	   // path to file of our chart_data.xml, 
+	   // that store the data of our chart
+	   $xml_file = "./Charts/amcolumn/pie/chart_data.xml";
+	   $xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
+	   $xml_data .= '<pie>'."\n";
+	  
+	   $xml_data .= '<slice title="Twice a day" pull_out="true">358</slice>'."\n";
+	   $xml_data .= '<slice title="Once a day">258</slice>'."\n";
+	   $xml_data .= '<slice title="Once a week">154</slice>'."\n";
+	   $xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	   $xml_data .= '</pie>'."\n";
+	   
+	   file_put_contents($xml_file, $xml_data);
+	   $this->parser->parse('charts/amcharts', $data); 
 	}
 	function Bar2D($state="")
 	{

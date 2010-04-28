@@ -2699,6 +2699,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
+		$data['project_id'] = $project_id;
 		$this->db->where('process_id', "1");
         $this->db->from('process_details');
         $rows =$this->db->count_all_results();
