@@ -1,6 +1,6 @@
 <?php  if (!defined('APPPATH')) exit('No direct script access allowed');
 
-session_start();
+//session_start();
 
 /*
  * @Author: Dean Ericson
