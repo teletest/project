@@ -2601,7 +2601,7 @@ class Projects extends My_Controller {
 	  $data['stages']=$query->result_array();
 	  $this->parser->parse('projects/view_planned_stages', $data);
 	}
-	function project_summary($project_id="", $month="", $year="")
+	function project_summary($project_id="",  $month="", $year="",$export_option="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
@@ -2611,7 +2611,8 @@ class Projects extends My_Controller {
 		$data['height'] = 360; 
 	    $data['width'] = 360;
 		$data['project_id']=$project_id;
-		if($month=="" && $year=="")
+
+		if( ($month=="" || $month==0) && ($year=="" || $year==0))
 		{
 		  $month = date('m');
 	      $year = date('y');
@@ -2664,25 +2665,21 @@ class Projects extends My_Controller {
 		$data['projects_rollout']=$this->db->count_all_results();
 		// get complete site
 		$data['projects_comp']=$this->projects_model->get_completed_sites($project_id);
-		
-		$chart_values = array('Planned' => $data['projects_nr'] , 'Not Planned' =>$data['projects_np'], 'Active'=>$data['projects_rollout']);
-			
-		/*$this->db->where('process_id', "1");
-        $this->db->from('process_details');
-        $rows =$this->db->count_all_results();
-		$result =$data['states']= $this->projects_model->get_process( "" , "", "1");	
-		$i=0;
-		foreach ($result as $row)
+		// export data
+		if($export_option== 1)
 		{
-			$data['states'][$i]['stage'] = $row['stage'];
-			$result1 = $data['states'][$i]['definition'] = $this->projects_model->get_rolledout_sites("", "", $data['states'][$i]['stage'], "none", $project_id, "", "", "");
-			$data['states'][$i]['count'] = $result1['count'];
-			$_true = array(array());
-			$_false = array();
-			$data['states'][$i]['if_found'] = ( $result1['count'] != 0 ) ? $_true : $_false;
-			$data['states'][$i]['if_not_found'] = ( $result1['count'] == 0 ) ? $_true : $_false;    
-			$i++; 
-		}*/
+		  header("Content-type:text/octect-stream");
+		  header("Content-Disposition:attachment;filename=data.csv");
+		  
+			 print '"' . 'Total Sites' . $data['total_sites'] . "\"\n";
+			 print '"' . 'Sites Not Planned' . $data['projects_np'] . "\"\n";
+			 print '"' . 'Planned Sites' . $data['projects_nr'] . "\"\n";
+			 print '"' . 'Rollout Sites' . $data['projects_rollout'] . "\"\n";
+		  
+		    exit;
+		
+		}
+		$chart_values = array('Planned' => $data['projects_nr'] , 'Not Planned' =>$data['projects_np'], 'Active'=>$data['projects_rollout']);
 		
 		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
 		$data['bargraph_xml'] = $this->charts_model->get_mscol2D_xml($project_id, $month, $year);
@@ -2978,39 +2975,9 @@ class Projects extends My_Controller {
 	*
 	* download file on your system
 	**/
-	/*function download_file()
-	{
-	    $path = $_SERVER['DOCUMENT_ROOT']."/path2file/"; // change the path to fit your websites document structure
-		$fullPath = $path.$_GET['download_file'];
-		 
-		if ($fd = fopen ($fullPath, "r")) {
-			$fsize = filesize($fullPath);
-			$path_parts = pathinfo($fullPath);
-			$ext = strtolower($path_parts["extension"]);
-			switch ($ext) {
-				case "pdf":
-				header("Content-type: application/pdf"); // add here more headers for diff. extensions
-				header("Content-Disposition: attachment; filename=\"".$path_parts["basename"]."\""); // use 'attachment' to force a download
-				break;
-				default;
-				header("Content-type: application/octet-stream");
-				header("Content-Disposition: filename=\"".$path_parts["basename"]."\"");
-			}
-			header("Content-length: $fsize");
-			header("Cache-control: private"); //use this to open files directly
-			while(!feof($fd)) {
-				$buffer = fread($fd, 2048);
-				echo $buffer;
-			}
-		}
-		fclose ($fd);
-		exit;
-		// example: place this kind of link into the document where the file download is offered:
-		// <a href="download.php?download_file=some_file.pdf">Download here</a>
-	} */
 	function download_file( $filename ="" )
 	{
-	   echo  $path_to_file = BASE_URL."uploads/".$filename;
+	   $path_to_file = $_SERVER['DOCUMENT_ROOT']."/uploads/".$filename;
 	
 		if (file_exists($path_to_file)) {
 			header('Content-Description: File Transfer');
@@ -3023,7 +2990,7 @@ class Projects extends My_Controller {
 			header('Content-Length: ' . filesize($path_to_file));
 			ob_clean();
 			flush();
-			echo readfile($path_to_file);
+			readfile($path_to_file);
 			exit();
 		}
 		else
@@ -3049,6 +3016,20 @@ class Projects extends My_Controller {
 		redirect($pieces[1]);
         //force_download($name, $data);
     }
+	
+	function CSVExport( $finename="")
+	{
+	
+	    /*$sql_csv = mysql_query($query) or die("Error: " . mysql_error()); //Replace this line with what is appropriate for your DB abstraction layer
+    
+		header("Content-type:text/octect-stream");
+		header("Content-Disposition:attachment;filename=data.csv");
+		while($row = mysql_fetch_row($sql_csv)) {
+			print '"' . stripslashes(implode('","',$row)) . "\"\n";
+		}
+		exit;
+		}*/
+	}
 }
 /* End of file projects.php */
 /* Location| ./system/application/controllers/projects.php */
