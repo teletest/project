@@ -60,18 +60,10 @@ $this->load->view('header');
 	  <!--<td><a href="{site_url}index.php/projects/site_rollout/0/{project_id}/0/0/0/0">{projects_rollout}</a></td>-->
 	  <td><a href="{site_url}index.php/projects/rollout_summary/{project_id}">{projects_rollout}</a></td>
 	</tr>
-<!--	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	</tr>
-  {states}	
-  {if_found}
     <tr>
-	<td>{stage}</td>
-	<td>{count}</td>
+	  <td></td>
+	  <td><a href="{site_url}index.php/projects/project_summary/{project_id}/0/0/1">export summary</a></td>
 	</tr>
- {/if_found}
- {/states} -->
 </table>
 <!-- second report -->
 <h3>Report based on processes</h3>

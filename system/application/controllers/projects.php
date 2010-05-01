@@ -2669,12 +2669,12 @@ class Projects extends My_Controller {
 		if($export_option== 1)
 		{
 		  header("Content-type:text/octect-stream");
-		  header("Content-Disposition:attachment;filename=data.csv");
+		  header("Content-Disposition:attachment;filename=project_summary.csv");
 		  
-			 print '"' . 'Total Sites' . $data['total_sites'] . "\"\n";
-			 print '"' . 'Sites Not Planned' . $data['projects_np'] . "\"\n";
-			 print '"' . 'Planned Sites' . $data['projects_nr'] . "\"\n";
-			 print '"' . 'Rollout Sites' . $data['projects_rollout'] . "\"\n";
+			 print '"' . 'Total Sites' ."\",". $data['total_sites'] . "\n";
+			 print '"' . 'Sites Not Planned' ."\"," . $data['projects_np'] . "\n";
+			 print '"' . 'Planned Sites' ."\",". $data['projects_nr'] . "\n";
+			 print '"' . 'Rollout Sites' ."\",". $data['projects_rollout'] . "\n";
 		  
 		    exit;
 		
@@ -2977,44 +2977,13 @@ class Projects extends My_Controller {
 	**/
 	function download_file( $filename ="" )
 	{
-	   $path_to_file = $_SERVER['DOCUMENT_ROOT']."/uploads/".$filename;
-	
-		if (file_exists($path_to_file)) {
-			header('Content-Description: File Transfer');
-			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename='.$filename);
-			header('Content-Transfer-Encoding: binary');
-			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-			header('Pragma: public');
-			header('Content-Length: ' . filesize($path_to_file));
-			ob_clean();
-			flush();
-			readfile($path_to_file);
-			exit();
-		}
-		else
-		{
-		   echo "error";
-		}
-	//    $data = file_get_contents($path_to_file, true); // Read the file's contents
-       /* if ($fd = fopen ($path_to_file, "r")) {
-			echo "hello";
-			/*while(!feof($fd)) {
-				$buffer = fread($fd, 2048);
-				echo $buffer;
-			}*/
-		/*} 
-		else
-		{
-		   echo "file not opening";
-		}*/
-	   
-	   // echo $buffer;
-		$name = $filename;
+	    $path_to_file = $_SERVER['DOCUMENT_ROOT']."/uploads/".$filename;
+	    $data = file_get_contents($path_to_file); // Read the file's contents
+
+		force_download($filename, $data);
 	    $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
 		redirect($pieces[1]);
-        //force_download($name, $data);
+       
     }
 	
 	function CSVExport( $finename="")
