@@ -438,14 +438,14 @@ class Projects extends My_Controller {
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		
-		$bc = array(
+		/*$bc = array(
                'title' => 'Site Plam',
                'url' => 'projects/site_plan',
                'isRoot' => false
         );
 		$this->breadcrumb->setBreadCrumb($bc);
 
-		$data['breadcrumbs'] =get_Instance()->breadcrumblist->display();
+		$data['breadcrumbs'] =get_Instance()->breadcrumblist->display(); */
 		
 		if($msg == 0)
 		$msg="";
@@ -931,7 +931,7 @@ class Projects extends My_Controller {
 		$config['uri_segment'] = '3';
 		$config['total_rows'] = $rows;
 		$config['per_page'] = $limit = '10';
-		
+
 		$this->load->library('pagination');
 		$this->pagination->initialize($config);
 		$data['pagination']= $this->pagination->create_links();
@@ -2986,18 +2986,21 @@ class Projects extends My_Controller {
        
     }
 	
-	function CSVExport( $finename="")
+	function view_googlemap()
 	{
+	    $data = tags();
+		$data['tabs']	= tabs('projects');
 	
-	    /*$sql_csv = mysql_query($query) or die("Error: " . mysql_error()); //Replace this line with what is appropriate for your DB abstraction layer
-    
-		header("Content-type:text/octect-stream");
-		header("Content-Disposition:attachment;filename=data.csv");
-		while($row = mysql_fetch_row($sql_csv)) {
-			print '"' . stripslashes(implode('","',$row)) . "\"\n";
-		}
-		exit;
-		}*/
+	    // Google MAp
+		$this->load->library('cigooglemapapi');
+		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ'); 
+			
+		$this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
+		$this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
+		$this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
+        
+		// End google map
+		$this->parser->parse('projects/google_map', $data);
 	}
 }
 /* End of file projects.php */
