@@ -2686,6 +2686,17 @@ class Projects extends My_Controller {
 		
 		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
 	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
+		
+		$xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
+	    $xml_data .= '<pie>'."\n";
+	    $xml_data .= '<slice title="Twice a day" pull_out="true">358</slice>'."\n";
+	    $xml_data .= '<slice title="Once a day">258</slice>'."\n";
+	    $xml_data .= '<slice title="Once a week">154</slice>'."\n";
+	    $xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	    $xml_data .= '</pie>'."\n";
+		$data['object_type'] ="ampie.swf";
+		$data['chart_type2']="pie";
+		$data['xml_data'] = $xml_data;
 		//
 		/*$this->load->plugin('to_excel');
 		to_excel($query, ['filename']);
@@ -2993,7 +3004,7 @@ class Projects extends My_Controller {
 	
 	    // Google MAp
 		$this->load->library('cigooglemapapi');
-		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ'); 
+		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
 			
 		$this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
 		$this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
