@@ -637,9 +637,14 @@ class Projects extends My_Controller {
 	
 	function site_details($id)
 	{
+	   $data = tags();
+	   $data['tabs']	= tabs('projects');
 	   // gets the details of site
 	   $data['sites_details']= $this->projects_model->get_site_details($id);
-	   $this->parser->parse('projects/site_details', $data);
+
+	   // gets candidates for site
+	   //$data['candidates'] = 
+	   $this->parser->parse('projects/sites_details', $data);
 	}
 	/**
 	* Updates the details of Site
