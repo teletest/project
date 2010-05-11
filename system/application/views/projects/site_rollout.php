@@ -55,7 +55,7 @@ $this->load->view('projects/site_search_form');
   {if_found}
     {definition}
 	<tr>
-	  <td><a href='{site_url}index.php/projects/site_details/{site_id}' rel="lyteframe">{s_name}</a></td>
+	  <td><a href='{site_url}index.php/projects/site_details/{site_id}' >{s_name}</a></td>
 	  <td>{status}</td>
 	  <td>{start}</td>
 	  <td>{end}</td>
