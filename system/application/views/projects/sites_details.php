@@ -76,6 +76,21 @@ $this->load->view('header');
   </tbody>
 {/sites_details}
 </table>
+<table>
+
+  <tr>
+	 <th colspan="2" align="center">Site Candidates</th>
+  </tr>
+  {candidates}
+  <tr>
+     <td>{code}</td>
+	 <td><a href="{site_url}index.php/projects/view_candidate/{site_id}/{id}">view candidate</a></td>
+  </tr>
+ {/candidates}
+ <tr>
+    <td colspan="2">&nbsp;</td>
+ </tr>
+</table>
 
 </div>
 

@@ -122,7 +122,17 @@ class Projects_model extends Model{
 				return false;
 			}
 		}
-		
+		function get_candidates_in_site( $site_id="" )
+		{
+		   //$this->db->select('candidates.id as cid, candidates.code, activities.project_id, activities.state_id ');
+		   $this->db->select('*');
+		   $this->db->from('candidates');
+		  // $this->db->join('activities', 'candidates.id= activities.candidate_id' );
+		   //$this->db->where('candidates.site_id', $site_id);
+		   $this->db->where('site_id', $site_id);
+		   $query = $this->db->get();
+		   return $query->result_array();  
+		}
 		function get_updated($id)
 		{
 		   $query = $this->db->get_where('projects', array('id' => $id ));

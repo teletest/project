@@ -639,9 +639,11 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
+	   $data['site_name'] = $this->projects_model->get_site_name($id);
+	   $data['site_id'] = $id;
 	   // gets the details of site
 	   $data['sites_details']= $this->projects_model->get_site_details($id);
-
+       $data['candidates'] = $this->projects_model->get_candidates_in_site($id);
 	   // gets candidates for site
 	   //$data['candidates'] = 
 	   $this->parser->parse('projects/sites_details', $data);
@@ -1318,6 +1320,16 @@ class Projects extends My_Controller {
 				$this->db->insert('candidates', $data);
 		}
 				$this->rollout_details($sid, $pid, $sname); 
+	}
+	function view_candidate( $site_id = "", $candidate_id = "")
+	{
+	        $data = tags();
+			$data['tabs']	= tabs('projects');
+			$data['site_id']= $site_id;
+			
+		    $query = $this->db->get_where('candidates', array('id' => $candidate_id));
+            $data['candidate'] = $query->result_array();	
+		    $this->parser->parse('projects/view_candidate', $data);
 	}
 	/**
 	* Marks a candidate active
@@ -3010,7 +3022,7 @@ class Projects extends My_Controller {
 	    // Google MAp
 		$this->load->library('cigooglemapapi');
 		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
-			
+			                              
 		$this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
 		$this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
 		$this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
