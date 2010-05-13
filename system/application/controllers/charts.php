@@ -2454,6 +2454,7 @@ class Charts extends My_Controller {
 	   $xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
 	   $xml_data .= '</pie>'."\n";
 	   
+	   //$data['xml_data'] = $xml_data;
 	   file_put_contents($xml_file, $xml_data);
 	   $this->parser->parse('charts/amcharts', $data); 
 	}
