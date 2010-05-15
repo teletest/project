@@ -3021,8 +3021,9 @@ class Projects extends My_Controller {
 	
 	    // Google MAp
 		$this->load->library('cigooglemapapi');
-	 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
-	 //$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
+	 // domain $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
+	    $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
+	 // local $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		$this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
 		$this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
 		$this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
