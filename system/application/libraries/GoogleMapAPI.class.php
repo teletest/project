@@ -268,7 +268,7 @@ class GoogleMapAPI {
      * @var array
      */
     var $_markers = array();
-    
+    var $exist_icn = array();
     /**
      * maximum longitude of all markers
      * 
@@ -773,34 +773,37 @@ class GoogleMapAPI {
      * @param string $infoWindowAnchorY Y coordinate for info window anchor point
      */
     function createMarkerIcon($iconImage,$iconShadowImage = '',$iconAnchorX = 'x',$iconAnchorY = 'x',$infoWindowAnchorX = 'x',$infoWindowAnchorY = 'x') {
-        $_icon_image_path = strpos($iconImage,'http') === 0 ? $iconImage : $_SERVER['DOCUMENT_ROOT'] . $iconImage;
-        if(!($_image_info = @getimagesize($_icon_image_path))) {
+     
+	      $_icon_image_path = strpos($iconImage,'http') === 0 ? $iconImage : $_SERVER['DOCUMENT_ROOT'] . $iconImage;
+          $icon_width = '25';
+			$icon_height = '25';
+	/*    if(!($_image_info = getimagesize($_icon_image_path))) {
             die('GoogleMapAPI:createMarkerIcon: Error reading image: ' . $iconImage);   
-        }
-        if($iconShadowImage) {
-            $_shadow_image_path = strpos($iconShadowImage,'http') === 0 ? $iconShadowImage : $_SERVER['DOCUMENT_ROOT'] . $iconShadowImage;
+        } */
+       /* if($iconShadowImage) {
+          echo  $_shadow_image_path = strpos($iconShadowImage,'http') === 0 ? $iconShadowImage : $_SERVER['DOCUMENT_ROOT'] . $iconShadowImage;
             if(!($_shadow_info = @getimagesize($_shadow_image_path))) {
                 die('GoogleMapAPI:createMarkerIcon: Error reading image: ' . $iconShadowImage);
             }
-        }
+        }*/
         
         if($iconAnchorX === 'x') {
-            $iconAnchorX = (int) ($_image_info[0] / 2);
+            $iconAnchorX = (int) ( $icon_width / 2);
         }
         if($iconAnchorY === 'x') {
-            $iconAnchorY = (int) ($_image_info[1] / 2);
+            $iconAnchorY = (int) ($icon_height / 2);
         }
         if($infoWindowAnchorX === 'x') {
-            $infoWindowAnchorX = (int) ($_image_info[0] / 2);
+            $infoWindowAnchorX = (int) ( $icon_width / 2);
         }
         if($infoWindowAnchorY === 'x') {
-            $infoWindowAnchorY = (int) ($_image_info[1] / 2);
+            $infoWindowAnchorY = (int) ($icon_height / 2);
         }
                         
         $icon_info = array(
                 'image' => $iconImage,
-                'iconWidth' => $_image_info[0],
-                'iconHeight' => $_image_info[1],
+                'iconWidth' =>  $icon_width,
+                'iconHeight' =>  $icon_width,
                 'iconAnchorX' => $iconAnchorX,
                 'iconAnchorY' => $iconAnchorY,
                 'infoWindowAnchorX' => $infoWindowAnchorX,
@@ -808,8 +811,8 @@ class GoogleMapAPI {
                 );
         if($iconShadowImage) {
             $icon_info = array_merge($icon_info, array('shadow' => $iconShadowImage,
-                                                       'shadowWidth' => $_shadow_info[0],
-                                                       'shadowHeight' => $_shadow_info[1]));
+                                                       'shadowWidth' => $icon_width,
+                                                       'shadowHeight' => $icon_height));
         }
         return $icon_info;
     }
@@ -818,7 +821,8 @@ class GoogleMapAPI {
      * set the marker icon for ALL markers on the map
      */
     function setMarkerIcon($iconImage,$iconShadowImage = '',$iconAnchorX = 'x',$iconAnchorY = 'x',$infoWindowAnchorX = 'x',$infoWindowAnchorY = 'x') {
-        $this->_icons = array($this->createMarkerIcon($iconImage,$iconShadowImage,$iconAnchorX,$iconAnchorY,$infoWindowAnchorX,$infoWindowAnchorY));
+       
+	    $this->_icons = array($this->createMarkerIcon($iconImage,$iconShadowImage,$iconAnchorX,$iconAnchorY,$infoWindowAnchorX,$infoWindowAnchorY));
     }
     
     /**
@@ -899,13 +903,16 @@ class GoogleMapAPI {
 
         if(!empty($this->_icons)) {
             $_output .= 'var icon = [];' . "\n";
-            for($i = 0; $this->_icons[$i]; $i++) {
+            
+			$length = count($this->_icons);
+			for($i = 0; $i<$length; $i++) {
                 $info = $this->_icons[$i];
-
+                
                 // hash the icon data to see if we've already got this one; if so, save some javascript
                 $icon_key = md5(serialize($info));
-                if(!is_numeric($exist_icn[$icon_key])) {
-                    $exist_icn[$icon_key] = $i;
+                //if(!is_numeric($exist_icn[$icon_key])) {
+				if(!is_numeric($icon_key)) {
+                   // $exist_icn[$icon_key] = $i;
 
                     $_output .= "icon[$i] = new GIcon();\n";   
                     $_output .= sprintf('icon[%s].image = "%s";',$i,$info['image']) . "\n";   
@@ -917,7 +924,7 @@ class GoogleMapAPI {
                     $_output .= sprintf('icon[%s].iconAnchor = new GPoint(%s,%s);',$i,$info['iconAnchorX'],$info['iconAnchorY']) . "\n";   
                     $_output .= sprintf('icon[%s].infoWindowAnchor = new GPoint(%s,%s);',$i,$info['infoWindowAnchorX'],$info['infoWindowAnchorY']) . "\n";
                 } else {
-                    $_output .= "icon[$i] = icon[$exist_icn[$icon_key]];\n";
+                    $_output .= "icon[$i] = icon[$icon_key];\n";
                 }
             }
         }

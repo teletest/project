@@ -66,8 +66,8 @@ function CiGoogleMapAPI(){
                'lat' => $lat,
                
             );
-                $this->ci->db->insert($this->_db_cache_table, $data); 
-                return true;
+            $this->ci->db->insert($this->_db_cache_table, $data); 
+            return true;
           }
      }
 ?>

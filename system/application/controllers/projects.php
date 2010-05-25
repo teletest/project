@@ -35,6 +35,7 @@ class Projects extends My_Controller {
 		$this->load->plugin('fusion');
 		$this->load->helper('file');
 		$this->load->helper('download');
+		$this->load->helper('url');
 			
 	}
 /*	function mail()
@@ -3018,16 +3019,36 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-	
+
 	    // Google MAp
 		$this->load->library('cigooglemapapi');
-	 // domain $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
-	    $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
-	 // local $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
-		$this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
-		$this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
-		$this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
-        
+
+	   // $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
+
+	    // local
+		if( $_SERVER['SERVER_NAME'] == "localhost")
+		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
+		else
+		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
+		
+		// $this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
+		// $this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
+		 // $this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
+		//$this->cigooglemapapi->addMarkerByAddress('Hazi IVilla  322/B East Vesunna  Eryx, 45.75820 ,103.38940',"Site 1","<b>Site 1</b>");
+		//$this->cigooglemapapi->addMarkerByAddress(' 45.74670  103.40750',"Site 2","<b>Site 2</b>");
+        $this->load->helper('url');
+		$image_path =base_url().'images/image.png';
+		$shadow_path =base_url().'images/shadow.png';
+		$this->cigooglemapapi->width  = '800px';
+        $this->cigooglemapapi->height = '300px';
+        $this->cigooglemapapi->disableTypeControls();
+        $this->cigooglemapapi->disableSidebar();
+        $this->cigooglemapapi->disableDirections();
+        $this->cigooglemapapi->setControlSize('small');
+		 $this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
+		// echo getimagesize($_SERVER['DOCUMENT_ROOT'].'/ttest/project/images/image.png');
+		 //$this->cigooglemapapi->addMarkerByAddress('12 33 58.44 N 104 59 27.47E',"Site 2","<b>Site 2</b>");
+		$this->cigooglemapapi->addMarkerByAddress('31 32 42.18 N 74 20 26.46E',"Site 2","<b>Lahore</b>");
 		// End google map
 		$this->parser->parse('projects/google_map', $data);
 	}

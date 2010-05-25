@@ -17,9 +17,7 @@ $this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"V
         behavior:url(#default#VML);
       }
     </style>
-	<script type="text/jscript">
-	alert(window.location.host);
-    </script>
+
 	</head>
     <body onload="onLoad()">
     <table border=1>
