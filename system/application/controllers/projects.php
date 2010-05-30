@@ -30,6 +30,7 @@ class Projects extends My_Controller {
 		$this->load->model('charts_model');
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
+		$this->load->library('cigooglemapapi');
 		$this->load->helper(array('form', 'url', 'file'));
 		$this->load->library('form_validation');
 		$this->load->plugin('fusion');
@@ -1941,7 +1942,7 @@ class Projects extends My_Controller {
 	  $this->parser->parse('projects/nominal_plans', $data);	
 	}
 	/**
-	* Taked type as input
+	* Take type as input
 	*
 	* if type is '0' then directs to import plan page and if type is '1' then directs to view list of plan page
 	*
@@ -2704,6 +2705,7 @@ class Projects extends My_Controller {
 		
 		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
 	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
+		$data['region_values'] = $this->projects_model->get_project_regions( $project_id , '1');
 		
 		$xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
 	    $xml_data .= '<pie>'."\n";
@@ -2720,6 +2722,15 @@ class Projects extends My_Controller {
 		to_excel($query, ['filename']);
 		*/
 		$this->parser->parse('projects/project_summary', $data);	   
+	}
+	function view_regions_in_googlemap($project_id="", $region_name)
+	{
+	     $data = tags();
+		 $data['tabs']	= tabs('projects');
+		 
+		 $data['region_values'] = $this->projects_model->get_region_sites( $project_id , $region_name);
+		 $this->view_googlemap($data['region_values']);
+		 //$this->parser->parse('projects/google_map', $data);
 	}
 	function rollout_summary( $project_id = "")
 	{
@@ -3015,27 +3026,17 @@ class Projects extends My_Controller {
        
     }
 	
-	function view_googlemap()
+	function view_googlemap($values = "")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
-	    // Google MAp
-		$this->load->library('cigooglemapapi');
-
-	   // $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRS-gpOChiM26Rd_5zOAO-vbYVgsoRTqO-cizb48K2Qk0mawDq5L6dZnMw'); 
-
+      
 	    // local
 		if( $_SERVER['SERVER_NAME'] == "localhost")
 		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		else
 		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
-		
-		// $this->cigooglemapapi->addMarkerByAddress('621 N 48th St # 6 Lincoln NE 68502','PJ Pizza','<b>PJ Pizza</b>');
-		// $this->cigooglemapapi->addMarkerByAddress('826 P St Lincoln NE 68502','Old Chicago','<b>Old Chicago</b>');
-		 // $this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"Valentino's","<b>Valentino's</b>");
-		//$this->cigooglemapapi->addMarkerByAddress('Hazi IVilla  322/B East Vesunna  Eryx, 45.75820 ,103.38940',"Site 1","<b>Site 1</b>");
-		//$this->cigooglemapapi->addMarkerByAddress(' 45.74670  103.40750',"Site 2","<b>Site 2</b>");
+
         $this->load->helper('url');
 		$image_path =base_url().'images/image.png';
 		$shadow_path =base_url().'images/shadow.png';
@@ -3045,12 +3046,72 @@ class Projects extends My_Controller {
         $this->cigooglemapapi->disableSidebar();
         $this->cigooglemapapi->disableDirections();
         $this->cigooglemapapi->setControlSize('small');
-		 $this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
-		// echo getimagesize($_SERVER['DOCUMENT_ROOT'].'/ttest/project/images/image.png');
-		 //$this->cigooglemapapi->addMarkerByAddress('12 33 58.44 N 104 59 27.47E',"Site 2","<b>Site 2</b>");
-		$this->cigooglemapapi->addMarkerByAddress('31 32 42.18 N 74 20 26.46E',"Site 2","<b>Lahore</b>");
+		$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
+        $i = 0;
+		foreach($values as $value)
+		{ 
+		  $this->cigooglemapapi->addMarkerByAddress( $value['nominal_latitude']." ".$value['nominal_longitude'],$value['name'],"<b>".$value['name']."</b>");   
+	
+		}
+		
+        //$this->cigooglemapapi->addMarkerByAddress('21.886146 105.784809', "Site 3", "<b>Kararchi</b>" );
+
 		// End google map
 		$this->parser->parse('projects/google_map', $data);
+	}
+	/**
+	* Plan is uploaded and the values are inserted into database
+	*
+	* shows imported plan
+	*/	
+	function site_lat_updated()
+	{
+	    if ($this->input->post('submit') != '')
+		{ 
+			$mypath = './uploads';
+			if (!is_dir($mypath))
+			{
+				mkdir($mypath,0777,TRUE);
+			}
+		   $config['upload_path'] = './uploads/';
+		   $config['allowed_types'] = 'gif|jpg|png|txt|pdf|csv';
+		   $config['max_size']	= '4096';
+	       $this->load->library('upload', $config);
+			if ( ! $this->upload->do_upload())
+			{ 
+				echo $error = $this->upload->display_errors();
+				$this->parser->parse('/projects/site_attach_documents', $data);      
+			}	
+			else
+			{ 
+				$data = array('upload_data' => $this->upload->data());
+				$path= $data['upload_data']['file_path'];
+				$tempFile =$data['upload_data']['file_name'];
+				$temp_csv = $_FILES['userfile']['tmp_name'];
+
+			    $id = '660';
+                $end = '855';	
+				$row = 0;
+				$handle = fopen($temp_csv, "r");
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE  || $id <= '855') {
+				$row++;
+				if($row > '1')
+				{	
+					$plan_details =array(
+					'nominal_latitude' => $data[0],
+				    'nominal_longitude' => $data[1],
+		
+				  );
+     
+					 $this->db->update('sites', $plan_details, array('id' => $id));
+					 $id++;
+				  
+			    }			   
+				} // end while loop												
+			} // end else 
+	     } // end outer if    
+		$this->display_nominal_plan($plan_id); 
+		//$this->display_nominal_plan(1);
 	}
 }
 /* End of file projects.php */

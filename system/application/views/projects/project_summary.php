@@ -89,13 +89,14 @@ $this->load->view('header');
 	         <tr>
 			 <th> Region </th>
 			 <th> Quantity </th>
-			 <th>&nbsp; </th>
+			 <th colspan="2">&nbsp; </th>
 			 </tr>
 			 {region}
 			 <tr>
 				 <td>{name}</td>
 				 <td><a href="#">{count}</a></td>
 				 <td><a href="{site_url}index.php/projects/view_districts/{name}/{project_id}">view district</a></td>
+				  <td><a href="{site_url}index.php/projects/view_regions_in_googlemap/{project_id}/{name}">view googlemaps</a></td>
 			 </tr>
 			 {/region}
 	   </tbody>
@@ -113,6 +114,35 @@ $this->load->view('header');
 			</tr>
 	   </tbody>
 </table>
+<!-- am pice chart 
+<div>	
+   <table cellspacing="0" cellpadding="2" align="center" width="700">
+	   <tbody>
+			 <tr>
+				 <td class="textBold" align="center">Charts</td>
+			 </tr>
+			 <tr>
+				 <td><script type="text/javascript" src="{site_url}charts/amcolumn/swfobject.js"></script>
+		                 <div id="flashcontent">
+			              <strong>You need to upgrade your Flash Player</strong>
+		                 </div>
+		             <script type="text/javascript">
+					// <![CDATA[		
+					var myChart = new SWFObject("{site_url}charts/amcolumn/{object_type}", "my_id", "{height}", "{width}", "8", "#FFFFFF");
+					myChart.addVariable("chart_id", "my_id");
+					myChart.addVariable("path", ".{site_url}charts/amcolumn/");
+					myChart.addVariable("settings_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_setting.xml"));
+					myChart.addVariable("data_file", "{xml_data}");		
+					myChart.addVariable("preloader_color", "#999999");
+					myChart.write("flashcontent");
+						// ]]>
+					</script>
+                </td>
+			</tr>
+	   </tbody>
+   </table>
+  </div>
+<!-- end am pice chart -->
 
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	   <tbody>

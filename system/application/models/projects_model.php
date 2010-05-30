@@ -768,7 +768,7 @@ class Projects_model extends Model{
 		{
 		  // to do
 		}
-		function get_project_regions($project_id)
+		function get_project_regions($project_id ="")
 		{
 		  $this->db->select('region');
 		  $this->db->distinct();
@@ -783,13 +783,27 @@ class Projects_model extends Model{
 			   $this->db->from('sites');
 			   $this->db->where('region' , $row->region );
 			   $this->db->where('project_id' , $project_id );
-			   $rows =$this->db->count_all_results();
-			
-			   $result[$i]['name'] = $row->region;
-			   $result[$i]['count'] = $rows;
+
+			     $rows =$this->db->count_all_results();
+			     $result[$i]['name'] = $row->region;
+			     $result[$i]['count'] = $rows;
+			 
+			   
 			   $i++;
 		  } 
 		  return $result;
+		}
+		function get_region_sites( $project_id, $region_name)
+		{
+		       $this->db->select('*');
+			   $this->db->from('sites');
+			   $this->db->where('region' , $region_name );
+			   $this->db->where('project_id' , $project_id );
+			  
+			   $query=$this->db->get();
+		       $results = $query->result_array();
+			   
+			   return $results;
 		}
 		function get_districts_region( $project_id, $region)
 		{
