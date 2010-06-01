@@ -2732,6 +2732,14 @@ class Projects extends My_Controller {
 		 $this->view_googlemap($data['region_values']);
 		 //$this->parser->parse('projects/google_map', $data);
 	}
+	function view_districts_in_region_googlemap($project_id="", $region_name="", $district_name="")
+	{
+	     $data = tags();
+		 $data['tabs']	= tabs('projects');
+		 
+		 $data['site_values'] = $this->projects_model->get_region_district_sites( $project_id , $region_name, $district_name);
+		 $this->view_googlemap($data['site_values']);
+	}
 	function rollout_summary( $project_id = "")
 	{
 	    $data = tags();
@@ -3038,12 +3046,12 @@ class Projects extends My_Controller {
 		$this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
 
         $this->load->helper('url');
-		$image_path =base_url().'images/image.png';
-		$shadow_path =base_url().'images/shadow.png';
+		$image_path =base_url().'images/tower_images/image2.png';
+		$shadow_path =base_url().'images/tower_images/image2_shadowshadow.png';
 		$this->cigooglemapapi->width  = '800px';
         $this->cigooglemapapi->height = '300px';
         $this->cigooglemapapi->disableTypeControls();
-        $this->cigooglemapapi->disableSidebar();
+        //$this->cigooglemapapi->disableSidebar();
         $this->cigooglemapapi->disableDirections();
         $this->cigooglemapapi->setControlSize('small');
 		$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);

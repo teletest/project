@@ -805,6 +805,19 @@ class Projects_model extends Model{
 			   
 			   return $results;
 		}
+		function get_region_district_sites( $project_id , $region_name, $district_name)
+		{
+		       $this->db->select('*');
+			   $this->db->from('sites');
+			   $this->db->where('region' , $region_name );
+			   $this->db->where('project_id' , $project_id );
+			   $this->db->where('district' , $district_name );
+			  
+			   $query=$this->db->get();
+		       $results = $query->result_array();
+			   
+			   return $results;
+		}
 		function get_districts_region( $project_id, $region)
 		{
 		  
