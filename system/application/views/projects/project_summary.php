@@ -96,9 +96,12 @@ $this->load->view('header');
 				 <td>{name}</td>
 				 <td><a href="#">{count}</a></td>
 				 <td><a href="{site_url}index.php/projects/view_districts/{name}/{project_id}">view district</a></td>
-				  <td><a href="{site_url}index.php/projects/view_regions_in_googlemap/{project_id}/{name}">view googlemaps</a></td>
+				 <td><a href="{site_url}index.php/projects/view_regions_in_googlemap/{project_id}/{name}">view googlemaps</a></td>
 			 </tr>
 			 {/region}
+			 <tr>
+			     <td colspan="4" align="right"><a href="{site_url}index.php/projects/view_districts_regions_googlemap/{project_id}">view region district googlemaps</a></td>
+			 </tr>
 	   </tbody>
 </table>
 </div>

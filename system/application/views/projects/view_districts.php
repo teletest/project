@@ -19,8 +19,10 @@ $this->load->view('header');
 	         <tr>
 				 <th> District </th>
 				 <th> Quantity </th>
+				 <th> View Map</th>
 			 </tr>
 			 <tr>
+				 <td>&nbsp;</td>
 				 <td>&nbsp;</td>
 				 <td>&nbsp;</td>
 			 </tr>
@@ -28,9 +30,14 @@ $this->load->view('header');
 			 <tr>
 				 <td>{name}</td>
 				 <td><a href="{site_url}index.php/projects/view_sites_in_district/{project_id}/{region}/{name}">{count}</a></td> 
-				
+				 <td><a href="{site_url}index.php/projects/view_districts_in_region_googlemap/{project_id}/{region}/{name}">View google map</a></td>
+				 
 			</tr>
+			
 			{/districts}
+			<tr>
+			     <td colspan="3"><a href="{site_url}index.php/projects/view_all_districts_in_region_googlemap/{project_id}/{region}">View sites in google map</a></td> 
+			</tr>
 	   </tbody>
 </table>
 

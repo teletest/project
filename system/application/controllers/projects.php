@@ -2740,6 +2740,75 @@ class Projects extends My_Controller {
 		 $data['site_values'] = $this->projects_model->get_region_district_sites( $project_id , $region_name, $district_name);
 		 $this->view_googlemap($data['site_values']);
 	}
+	function view_districts_regions_googlemap($project_id = "")
+	{
+	     $data = tags();
+		 $data['tabs']	= tabs('projects');
+		 if( $_SERVER['SERVER_NAME'] == "localhost")
+		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
+		 else
+		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
+
+         $this->load->helper('url');
+
+        // $this->cigooglemapapi->disableTypeControls();
+       //  $this->cigooglemapapi->disableDirections();
+        // $this->cigooglemapapi->setControlSize('small');
+		 
+		 
+		 $data['values'] = $this->projects_model->get_all_sites( $project_id );
+		 $i=1;
+		 foreach( $data['values'] as $row)
+		 {
+		    $image_path =base_url().'images/tower_images/image'.$i.'.png';
+		    $shadow_path =base_url().'images/tower_images/image'.$i.'_shadow.png';
+			//$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
+			$this->cigooglemapapi->addMarkerIcon($image_path,$shadow_path,13,30,20,1);
+
+		      foreach( $row as $value)
+		      { 
+		      $this->cigooglemapapi->addMarkerByAddress( $value['nominal_latitude']." ".$value['nominal_longitude'],$value['name'],"<b>".$value['name']."</b>");   
+		      }
+          $i++;
+		}
+		// End google map
+		$this->parser->parse('projects/google_map', $data);
+	}
+	function view_all_districts_in_region_googlemap( $project_id ="", $region="")
+	{
+	   	     $data = tags();
+		 $data['tabs']	= tabs('projects');
+		 if( $_SERVER['SERVER_NAME'] == "localhost")
+		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
+		 else
+		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRSxN_HAqdbUd6G3u3SYCdprmZYLMBTrBY9l-apTAFT3TueR1Sl0qG4cZQ');
+
+         $this->load->helper('url');
+
+         $this->cigooglemapapi->disableTypeControls();
+         $this->cigooglemapapi->disableDirections();
+         $this->cigooglemapapi->setControlSize('small');
+		 
+		 
+		 $data['values'] = $this->projects_model->get_distinct_sites_in_region( $project_id , $region );
+		 
+		 $i=1;
+		 foreach( $data['values'] as $row)
+		 {
+		    $image_path =base_url().'images/tower_images/image'.$i.'.png';
+		    $shadow_path =base_url().'images/tower_images/image'.$i.'_shadow.png';
+			//$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
+			$this->cigooglemapapi->addMarkerIcon($image_path,$shadow_path,13,30,20,1);
+
+		      foreach( $row as $value)
+		      { 
+		      $this->cigooglemapapi->addMarkerByAddress( $value['nominal_latitude']." ".$value['nominal_longitude'],$value['name'],"<b>".$value['name']."</b>");   
+		      }
+           $i++;
+		}
+		// End google map
+		$this->parser->parse('projects/google_map', $data);
+	}
 	function rollout_summary( $project_id = "")
 	{
 	    $data = tags();
@@ -3061,9 +3130,6 @@ class Projects extends My_Controller {
 		  $this->cigooglemapapi->addMarkerByAddress( $value['nominal_latitude']." ".$value['nominal_longitude'],$value['name'],"<b>".$value['name']."</b>");   
 	
 		}
-		
-        //$this->cigooglemapapi->addMarkerByAddress('21.886146 105.784809', "Site 3", "<b>Kararchi</b>" );
-
 		// End google map
 		$this->parser->parse('projects/google_map', $data);
 	}

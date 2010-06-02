@@ -768,6 +768,29 @@ class Projects_model extends Model{
 		{
 		  // to do
 		}
+		function get_all_sites($project_id = "")
+		{
+		   $this->db->select('region');
+		   $this->db->distinct();
+		   $this->db->from('sites');
+		   $this->db->where('project_id', $project_id);
+		   $query=$this->db->get();
+		   $result =array();
+	
+		   foreach ($query->result() as $row)
+		   {
+			   $this->db->select('*');
+			   $this->db->from('sites');
+			   $this->db->where('region' , $row->region );
+			   $this->db->where('project_id' , $project_id );
+
+		       $query=$this->db->get();
+		       $result[$row->region] = $query->result_array();
+			  
+		   } 
+		   return $result;
+		       
+		}
 		function get_project_regions($project_id ="")
 		{
 		  $this->db->select('region');
@@ -787,6 +810,32 @@ class Projects_model extends Model{
 			     $rows =$this->db->count_all_results();
 			     $result[$i]['name'] = $row->region;
 			     $result[$i]['count'] = $rows;
+			 
+			   
+			   $i++;
+		  } 
+		  return $result;
+		}
+		function get_distinct_sites_in_region($project_id, $region_name)
+		{
+		  $this->db->select('district');
+		  $this->db->distinct();
+		  $this->db->from('sites');
+		  $this->db->where('project_id', $project_id);
+		  $this->db->where('region', $region_name);
+		  $query=$this->db->get();
+		  $result =array();
+		  $i = 0;
+		  foreach ($query->result() as $row)
+		  {
+			   $this->db->select('*');
+			   $this->db->from('sites');
+			   $this->db->where('region' , $region_name );
+			   $this->db->where('project_id' , $project_id );
+               $this->db->where('district' , $row->district );
+			   $query = $this->db->get();
+			   $result[$row->district] = $query->result_array();
+			
 			 
 			   
 			   $i++;
