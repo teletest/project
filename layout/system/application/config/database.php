@@ -37,10 +37,10 @@
 $active_group = "default";
 $active_record = TRUE;
 
-//$db['default']['hostname'] = "neosense.local"; 
-$db['default']['hostname'] = "localhost"; 
-$db['default']['username'] = "root";
-//$db['default']['password'] = "toor";
+$db['default']['hostname'] = "neosense.local"; 
+//$db['default']['hostname'] = "localhost"; 
+//$db['default']['username'] = "root";
+$db['default']['password'] = "toor";
 $db['default']['password'] = "";
 $db['default']['database'] = "teletest_project";
 //$db['default']['database'] = "test";
