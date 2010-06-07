@@ -1,0 +1,25 @@
+fatal: bad config file line 1 in C:\Users\Ammara/.gitconfig
+fatal: bad config file line 1 in C:\Users\Ammara/.gitconfig
+    while executing
+"exec {C:/Program Files/Git/libexec/git-core/git-config.exe} --global --add gui.recentrepo D:/programme/xampp/htdocs/teletestproject/project"
+    ("eval" body line 1)
+    invoked from within
+"eval exec $opt $cmdp $args"
+    (procedure "git" line 23)
+    invoked from within
+"git config --global --add gui.recentrepo $path"
+    (procedure "_append_recentrepos" line 16)
+    invoked from within
+"_append_recentrepos [pwd]"
+    (procedure "choose_repository::_do_open2" line 12)
+    invoked from within
+"choose_repository::_do_open2 ::choose_repository::__o1::__d"
+    invoked from within
+".buttons.next invoke"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel #0 [list $w invoke]"
+    (procedure "tk::ButtonUp" line 24)
+    invoked from within
+"tk::ButtonUp .buttons.next"
+    (command bound to event)

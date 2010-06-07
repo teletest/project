@@ -1,0 +1,181 @@
+body {
+	margin:10px;
+	padding:10px;
+	font-family: verdana, arial, "lucida console", sans-serif;
+	font-size: 12px;
+}
+
+.topbar {
+	margin:0;
+	padding:2px;
+	background-color:#9999CC;
+	color:#FFFFFF;
+	text-align:right;
+	}
+	
+.topbar a , .topbar a:hover{
+	font-size:11px;
+	font-weight:bolder;
+	color:#FFFFFF;
+	text-decoration:none;
+	}
+
+.loginbar {
+	margin:0;
+	padding:2px;
+	background-color:#CCCCFF;
+	font-size:11px;
+	text-align:right;
+	}
+	
+.wrapper {
+	margin:10px;
+	padding:10px;
+}
+
+a {
+	color: #000088;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #EE0000;
+	}
+	
+.hr_header{
+	color:#999999;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+	
+.hr_footer{
+	color:#999999;
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #006600;
+	}
+
+fieldset {
+	padding:5px;
+	/* border:1px solid #000080; */
+	background-color: #FFFFCC;
+}
+
+fieldset legend{
+	font-weight: bolder; 
+	color: #CC0000; 
+	}
+
+fieldset input, select, textarea {
+	color: #0000CC; 
+	border: 1px solid #666666
+	}
+
+.message {
+	margin:20px;
+	padding:10px;
+	border: 1px solid #CCCCCC;
+	background-color: #FFFFEE;
+	font-weight: bolder; 
+	color: #CC0000; 
+	}
+
+.copyright {
+	text-align: center;
+	font-size: 10px;
+	}
+
+.phpWebFileManager table {
+	margin:5px;
+	border: 1px solid #333333;
+	border-collapse: collapse;
+	/* cellspacing:2px;
+	cellpadding:2px; */
+	}
+	
+.phpWebFileManager table tr td {
+	border: 1px solid #999999;
+	}
+
+.list table {
+	margin:5px;
+	border: 1px solid #333333;
+	border-collapse: collapse;
+	/* cellspacing:2px;
+	cellpadding:2px; */
+	}
+	
+.list table tr td {
+	border: 1px solid #999999;
+	}
+
+.alternate {
+	background-color: #EECCCC;
+
+	}
+	
+/* Claendar */
+.calendar table{
+	margin:5px;
+	border: 1px solid #666666;
+	border-collapse: collapse;
+	/* cellspacing:2px;
+	cellpadding:2px; */
+	}
+	
+.calendar table th {
+	height: 35px;
+	}
+
+.calendar table td a{
+	color: #CC0000;
+	font-weight: bolder; 
+	}
+	
+.title{
+	color:#FFFFFF;
+	background-color: #CC0000;
+	}
+
+.bottom a {
+	margin:0;	
+	padding:0;
+	color:#FFFFFF;
+	text-decoration:none;
+	border: 1px solid #CCCCCC;
+	background-color: #CC0000;
+	}
+	
+.bottom a:hover {
+	color:#FFFFFF;
+	border: 1px solid #666666;
+	background-color: #EE0000;
+	}
+	
+.weekDays { 
+	text-align:center;
+	font-weight: bolder; 
+	color: #CC0000; 
+	}
+
+.Today { 
+	color:#FFFFFF;
+	background-color: #CC0000;
+	/* border: 1px solid #CC0000; */
+	font-weight: bolder; 
+	text-align:center;
+	}
+	
+.monthDay, .nonMonthDay{ 
+	color: #0000CC;
+	background-color: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	text-align: center;
+	}
+
+
+
+	

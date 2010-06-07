@@ -1,0 +1,10 @@
+The project portion of teletest.
+
+
+for local machine:
+
+- create database from teletest_project.sql
+
+- modify system/application/config/database.php and fill in the connectivity parameters.
+
+- use admin/admin as credentials to login.
