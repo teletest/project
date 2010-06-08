@@ -166,13 +166,13 @@ function FP_swapImgRestore() {//v1.0
           <table border="0" width="100%" cellspacing="1">
             <tr> 
               <td>&nbsp;</td>
-              <td width="30"> <div align="center"><a title="Home" href="#"> <img border="0" src="../images/images/home.png" width="25" height="25" id="img1" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img1',/*url*/'images/images/homeover.png')"></a></div></td>
+              <td width="30"> <div align="center"><a title="Home" href="#"> <img border="0" src="{site_url}images/images/home.png" width="25" height="25" id="img1" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img1',/*url*/'images/images/homeover.png')"></a></div></td>
               <td width="30"> <div align="center"><a title="My Account" href="#"> 
-                  <img border="0" src="../images/images/account.png" width="25" height="25" id="img2" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img2',/*url*/'layout/images/images/accountover.png')"></a></div></td>
+                  <img border="0" src="{site_url}images/images/account.png" width="25" height="25" id="img2" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img2',/*url*/'layout/images/images/accountover.png')"></a></div></td>
               <td width="30"> <div align="center"><a title="Search" href="#"> 
-                  <img border="0" src="../images/images/search.png" width="25" height="25" id="img3" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img3',/*url*/'images/images/searchover.png')"></a></div></td>
-              <td width="30"> <div align="center"><a title="Logout" href="#"> 
-                  <img border="0" src="../images/images/log_out.png" width="25" height="25" id="img19" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img19',/*url*/'images/images/log_outover.png')"></a></div></td>
+                  <img border="0" src="{site_url}images/images/search.png" width="25" height="25" id="img3" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img3',/*url*/'images/images/searchover.png')"></a></div></td>
+              <td width="30"> <div align="center"><a title="Logout" href="{site_url}index.php/logout"> 
+                  <img border="0" src="{site_url}images/images/log_out.png" width="25" height="25" id="img19" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img19',/*url*/'images/images/log_outover.png')"></a></div></td>
             </tr>
           </table>
         </div>
