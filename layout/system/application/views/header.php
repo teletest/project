@@ -63,13 +63,10 @@ header('Content-Type: text/html; Charset=UTF-8');
 
 {extraHeadContent}
 
+<script type=text/javascript>
+var ICONPATH = '<?php echo base_url()."images/"; ?>';
+</script>
 
-
-
-
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
-
-<head>
 
     <meta http-equiv="Content-Language" content="en-us">
 
@@ -81,11 +78,11 @@ header('Content-Type: text/html; Charset=UTF-8');
 
 
 
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="{site_url}theme/js/script.js"></script>
 
 
 
-    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{site_url}theme/style.css" type="text/css" media="screen" />
 
     <!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" />
 
@@ -95,11 +92,11 @@ header('Content-Type: text/html; Charset=UTF-8');
 
 	<![endif]-->
 
-	<script type="text/javascript" src="images/stmenu.js"></script>
+	<script type="text/javascript" src="{site_url}theme/js/stmenu.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="images/mouseovertabs.css" />
+	<link rel="stylesheet" type="text/css" href="{site_url}theme/mouseovertabs.css" />
 
-	<script src="images/mouseovertabs.js" type="text/javascript">
+	<script src="{site_url}theme/js/mouseovertabs.js" type="text/javascript">
 
 	</script>
 
@@ -168,7 +165,7 @@ function FP_swapImgRestore() {//v1.0
               <td>&nbsp;</td>
               <td width="30"> <div align="center"><a title="Home" href="#"> <img border="0" src="{site_url}images/images/home.png" width="25" height="25" id="img1" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img1',/*url*/'images/images/homeover.png')"></a></div></td>
               <td width="30"> <div align="center"><a title="My Account" href="#"> 
-                  <img border="0" src="{site_url}images/images/account.png" width="25" height="25" id="img2" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img2',/*url*/'layout/images/images/accountover.png')"></a></div></td>
+                  <img border="0" src="{site_url}images/images/account.png" width="25" height="25" id="img2" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img2',/*url*/'images/images/accountover.png')"></a></div></td>
               <td width="30"> <div align="center"><a title="Search" href="#"> 
                   <img border="0" src="{site_url}images/images/search.png" width="25" height="25" id="img3" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img3',/*url*/'images/images/searchover.png')"></a></div></td>
               <td width="30"> <div align="center"><a title="Logout" href="{site_url}index.php/logout"> 
@@ -180,22 +177,21 @@ function FP_swapImgRestore() {//v1.0
       <div> 
         <script type="text/javascript">
 
-						<!--
-                        stm_bm(["images/menu45ba",889,"","images/blank.gif",0,"","",1,0,250,0,1000,1,0,0,"","875",0,0,1,2,"default","hand","",1,25],this);
+                        stm_bm(["{site_url}images/images/menu45ba",889,"","{site_url}images/images/blank.gif",0,"","",1,0,250,0,1000,1,0,0,"","875",0,0,1,2,"default","hand","",1,25],this);
 
-						stm_bp("p0",[0,4,0,0,2,0,0,0,100,"",-2,"",-2,40,2,3,"#999999","transparent","images/bluefireback14.gif",1,1,1,"#c1c1c1 #D1D1D1 #B4C8B4"]);
+						stm_bp("p0",[0,4,0,0,2,0,0,0,100,"",-2,"",-2,40,2,3,"#999999","transparent","{site_url}images/images/bluefireback14.gif",1,1,1,"#c1c1c1 #D1D1D1 #B4C8B4"]);
 
-						stm_ai("p0i0",[1,"Our Company","","",-1,-1,0,"#","_self","","","","",0,0,0,"","",0,0,0,1,1,"#00CCFF",1,"#B5BED6",1,"","images/bg5.gif",3,3,0,0,"#FFFFF7","#000000","#000000","#FFFFFF","9pt Verdana","9pt Verdana",0,0,"","images/bg4.gif","","images/bg6.gif",6,6,25],85,25);
+						stm_ai("p0i0",[1,"Our Company","","",-1,-1,0,"#","_self","","","","",0,0,0,"","",0,0,0,1,1,"#00CCFF",1,"#B5BED6",1,"","{site_url}images/images/bg5.gif",3,3,0,0,"#FFFFF7","#000000","#000000","#FFFFFF","9pt Verdana","9pt Verdana",0,0,"","{site_url}images/images/bg4.gif","","{site_url}images/images/bg6.gif",6,6,25],85,25);
 
 						stm_aix("p0i1","p0i0",[0,"Our Services","","",-1,-1,0,"#","_self","","","","",0,0,0,"","",0,0,0,1,1,"#FFFFF7"],85,25);
 
-						stm_aix("p0i2","p0i1",[0,"Site Plane"],85,25);
+						stm_aix("p0i2","p0i1",[0,"Site Plan"],85,25);
 
 						stm_aix("p0i3","p0i1",[0,"Site Rollout"],85,25);
 
 						stm_aix("p0i4","p0i1",[0,"Reports & Graph"],85,25);
 
-						stm_aix("p0i5","p0i1",[0,"Contact Mangement System"],85,25);
+						stm_aix("p0i5","p0i1",[0,"Contact Management System"],85,25);
 
 						stm_aix("p0i6","p0i1",[0,"Career"],85,25);
 
@@ -204,7 +200,7 @@ function FP_swapImgRestore() {//v1.0
 						stm_ep();
 
 						stm_em();
-   					    //-->
+   
 
 						</script>
       </div>

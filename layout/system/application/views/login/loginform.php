@@ -1,22 +1,4 @@
 
-
-		<!--	<dl>
-				<dt>Username:</label></dt>
-				<dd><input tabindex="1" name="username" id="username" size="25" value="" type="text"></dd>
-			</dl>
-			<dl>
-				<dt><label for="password">Password:</label></dt>
-				<dd><input tabindex="2" id="password" name="password" size="25" type="password"></dd>
-			</dl>
-			
-			<dl>
-				<dt>&nbsp;</dt>
-				<dd></dd>
-			</dl> -->	
-	
-
-	
-
  <div class="art-contentLayout"> 
         <div class="art-content" style="width: 870px; height: 400px"> 
           <div class="art-administrator-png" style="position: absolute; left: 0px; top: 0px; height: 417px"> 
