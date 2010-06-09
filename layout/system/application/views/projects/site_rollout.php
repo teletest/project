@@ -2,20 +2,15 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
-
-<h1>Site Rollout</h1>
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
-
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/site_search_form');
-?>
-<br />
 
 
 <h2>Sites being rolledout</h2>
@@ -78,12 +73,8 @@ $this->load->view('projects/site_search_form');
 {/states}
 
 {pagination}
-</div>
-
-
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

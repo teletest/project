@@ -2,17 +2,17 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Site Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/site_search_form');
-?>
+<h1>Site Plan</h1>
+
 <br /><br />
 <!-- <p style="padding-top:15px;" id="scrolltest"> 
 <input type="button" onclick="if($.browser.opera){$('html').animate({scrollTop: $('#showplan').offset().top}, 2000);} else $('html,body').animate({scrollTop: $('#showplan').offset().top}, 2000);" value="Click here to go to sites planned" style="border:#333 solid 1px;background-color:#666;color:#fff;"><br /> 
@@ -174,12 +174,6 @@ Sites</a><br><br>
 {/projects_nr}                  
                   
 </table>
-
-
-</div>
-
-</div>
-
 
 
 </div>

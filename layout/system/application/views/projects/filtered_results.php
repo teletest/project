@@ -2,11 +2,16 @@
 $this->load->view('header');
 ?>
 
-<h1>Nominal Plan</h1>
+<div class="art-contentLayout"> 
+
 <div style="float:left">
-<?php $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
+<h1>Nominal Plan</h1>
+
 <form name="editplan" action="{site_url}index.php/projects/plan_edited/2" method="post"  >
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	<tr>
@@ -178,7 +183,6 @@ $this->load->view('header');
 </table>
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

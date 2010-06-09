@@ -2,18 +2,18 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-
-<h1>Nominal Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/search_form');
-?>
+
+<h1>Nominal Plan</h1>
+
     <br>
     <li>
 	<a href='create_plan/0' >Do you want to import Nominal Plan </a>
@@ -40,9 +40,8 @@ $this->load->view('projects/search_form');
 	<br>
 	</li>
 
-</div>
-</div>
 
+</div>
 <?php
 $this->load->view('footer');
 ?>

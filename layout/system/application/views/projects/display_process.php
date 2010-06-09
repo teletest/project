@@ -2,18 +2,14 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-
-<h1>Nominal Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
-
-<?php
-$this->load->view('projects/search_form');
-?>
 <h3>Process</h3>
 
 
@@ -46,11 +42,8 @@ $this->load->view('projects/search_form');
                   
                 </tbody></table>
 				<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
-                
-				
-</div>
-</div>
 
+</div>
 <?php
 $this->load->view('footer');
 ?>

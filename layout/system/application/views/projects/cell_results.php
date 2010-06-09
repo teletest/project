@@ -1,11 +1,16 @@
 <?php
 $this->load->view('header');
 ?>
-<h1>Nominal Plan</h1>
+
+<div class="art-contentLayout"> 
+
 <div style="float:left">
-<?php $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
+
 <table class="filterable" border="0" cellpadding="1" cellspacing="2" width="100%" id="report">
 	<tr>
 	  <th align="center" bgcolor="#e8e8d0" ><strong>ID</strong></th>
@@ -155,7 +160,6 @@ $this->load->view('header');
 </table>
 <br>
 <br>
-
 
 </div>
 

@@ -1,16 +1,17 @@
 <?php
 $this->load->view('header');
 ?>
+<div class="art-contentLayout"> 
 
-<h1>Nominal Plan</h1>
 <div style="float:left">
-<?php $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/search_form');
-?>
+<h1>Nominal Plan</h1>
+
 
  {states}
 <table class="{class}">
@@ -176,8 +177,6 @@ $this->load->view('projects/search_form');
 {/states}
 {pagination}
 
-
-</div>
 </div>
 
 <?php

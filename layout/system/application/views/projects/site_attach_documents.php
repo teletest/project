@@ -1,24 +1,19 @@
-
 <?php
-
 $this->load->view('header');
-
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Attached Documets</h1>
 <div style="float:left">
-<? //$this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
-
-<br /><br />
+<div style="float:left;margin-left:20px;">
 <h3>Add Attachement</h3>
 
 
-<?php
-$this->load->view('projects/attachment_form');
-?>
+
 <br /><br />
 
 
@@ -54,7 +49,6 @@ $this->load->view('projects/attachment_form');
 
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

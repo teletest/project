@@ -5,15 +5,14 @@ $this->load->view('header');
 
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>{projects_title}</h1>
-{projects_menu}
-<br /><br />
-
+<div style="float:left">
 <?php
-$this->load->view('projects/search_form');
+$this->load->view('sidebar');
 ?>
+</div>
+<div style="float:left;margin-left:20px;">
 <br /><br />
 
 

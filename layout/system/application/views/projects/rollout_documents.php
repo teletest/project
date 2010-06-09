@@ -1,17 +1,18 @@
 <?php
 $this->load->view('header');
 ?>
-<div id="main-content">
 
-<h1>Rollout Documents</h1>
+<div class="art-contentLayout"> 
+
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/search_form');
-?>
+<h1>Rollout Documents</h1>
+
 
 <table align="center" border="0" cellpadding="1" cellspacing="2">
                   <tbody><tr>
@@ -41,11 +42,6 @@ $this->load->view('projects/search_form');
 				{pagination}
 
 </div>
-
-
-
-</div>
-
 <?php
 $this->load->view('footer');
 ?>

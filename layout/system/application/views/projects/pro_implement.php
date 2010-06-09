@@ -1,17 +1,16 @@
 <?php
 $this->load->view('header');
 ?>
-<div id="main-content">
-<h1>Implement Process</h1>
+
+<div class="art-contentLayout"> 
+
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-//$this->load->view('projects/site_search_form');
-?>
-<?php //echo validation_errors(); ?>
 <h2>Process Implementation</h2>
 <br>
 <table class="table" border="0" cellpadding="0" cellspacing="1" width="100%">
@@ -87,9 +86,8 @@ $this->load->view('header');
 </tbody>
 </table>
 
-</div>
-</div>
 
+</div>
 <?php
 $this->load->view('footer');
 ?>

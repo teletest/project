@@ -2,18 +2,15 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
-
-
-
-<h1>Project Monitoring</h1>
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
-</div>
 <?php
-$this->load->view('projects/search_form');
+$this->load->view('sidebar');
 ?>
+</div>
+<div style="float:left;margin-left:20px;">
+
 <?php //echo anchor('projects/summary','Summary'); ?>  <?php //echo anchor('projects/graph','Graph'); ?>
 
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="60%">
@@ -40,7 +37,6 @@ $this->load->view('projects/search_form');
 
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

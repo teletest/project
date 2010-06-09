@@ -1,12 +1,14 @@
 <?php
 $this->load->view('header');
 ?>
-<div id="main-content">
-<h1>Site Plan</h1>
-<div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
-</div>
 
+<div class="art-contentLayout"> 
+
+<div style="float:left">
+<?php
+$this->load->view('sidebar');
+?>
+</div>
 <div style="float:left;margin-left:20px;">
 
 <script type="text/javascript">
@@ -94,7 +96,7 @@ Sites</a><br><br>
         <input name="Submit"  value="Plan" type="submit" class="button" />
 
 </form>
-</div>
+
 </div>
 <?php
 $this->load->view('footer');

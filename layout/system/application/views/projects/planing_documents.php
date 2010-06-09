@@ -2,18 +2,18 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-
-<h1>Planing Documents</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/search_form');
-?>
+
+<h1>Planing Documents</h1>
+
 
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	<tr>
@@ -49,16 +49,6 @@ $this->load->view('projects/search_form');
               </tr>
 			  <tr><td><a href='{site_url}index.php/projects/view_googlemap' target="_blank">View Google Map</a> </td></tr>
             </tbody></table>
-
-
-
-
-
-
-
-
-
-</div>
 
 
 

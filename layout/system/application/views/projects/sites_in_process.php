@@ -2,17 +2,14 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Site Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
-
-<?php
-$this->load->view('projects/site_search_form');
-?>
 
 <h2>Sites in process {process}</h2>
 <br>
@@ -58,6 +55,8 @@ $this->load->view('projects/site_search_form');
 	   </tbody>
 </table>
 </div>
+
+
 
 
 </div>

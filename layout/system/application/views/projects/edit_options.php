@@ -16,16 +16,16 @@ $this->load->view('header');
   });
 </script>
 
-<div id="main-content">
-<h1>Nominal Plan</h1>
+<div class="art-contentLayout"> 
+
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
+<h1>Nominal Plan</h1>
 
-<?php
-$this->load->view('projects/search_form');
-?>
     <br>
 	<span style="color:red;"><?php echo validation_errors();?></span>
     <br>
@@ -47,11 +47,8 @@ $this->load->view('projects/search_form');
 			    <div style="float:left;"> <?php  $this->load->view("projects/edit_cell"); ?></div> 
 			</div>
 	<br>
-   
-	
-</div>
-</div>
 
+</div>
 <?php
 $this->load->view('footer');
 ?>

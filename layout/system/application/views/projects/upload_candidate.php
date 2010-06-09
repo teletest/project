@@ -2,14 +2,15 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
-
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
-
 <div style="float:left;margin-left:20px;">
+
 <h3>Import {import}</h3>
 <span style="color:red;"><?php echo $this->session->flashdata('conf_msg'); ?></span>
 <table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
@@ -32,7 +33,8 @@ $this->load->view('header');
 </tbody>
 </form>
 </table>
-</div>
+
+
 </div>
 
 <?php

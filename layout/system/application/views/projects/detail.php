@@ -1,16 +1,13 @@
 <?php  $this->load->view('header');  ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Activity timeline of {id}</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
-
-<?php
-$this->load->view('projects/search_form');
-?>
 
 <table width="100%">
 <tr>
@@ -45,8 +42,4 @@ $this->load->view('projects/search_form');
 <input value="back" onclick="javascript:history.back(-1);" class="button" type="button">
 
 </div>
-
-
-</div>
-
 <?php $this->load->view('footer'); ?>

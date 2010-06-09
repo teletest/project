@@ -1,13 +1,12 @@
 <?php
 $this->load->view('header');
 ?>
+<div class="art-contentLayout"> 
 
-<div id="main-content">
-
-
-<h1>New Project</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
@@ -162,14 +161,7 @@ $this->load->view('header');
 </form>
 
 
-
-
 </div>
-
-
-
-</div>
-
 <?php
 $this->load->view('footer');
 ?>

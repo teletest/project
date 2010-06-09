@@ -2,17 +2,14 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Close Project</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
-
-<?php
-$this->load->view('projects/search_form');
-?>
 
 <br /><br />
 <h2>Projects ready to be closed</h2>
@@ -95,12 +92,8 @@ $this->load->view('projects/search_form');
                 </tbody></table>
 
 
-</div>
-
-
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

@@ -96,45 +96,41 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
       aux1 = insFld(foldersTree, gFld("Site Plan", "index.php/projects/site_plan"))
 
-      aux1.iconSrc = ICONPATH + "complexType.gif"
+    //  aux1.iconSrc = ICONPATH + "complexType.gif"
 
-      aux1.iconSrcClosed = ICONPATH + "complexType.gif"
+    //  aux1.iconSrcClosed = ICONPATH + "complexType.gif"
 
       aux2 = insFld(aux1, gFld("Nominal Plan", "index.php/projects/nominal_plans"))
 
-      aux2.iconSrc = ICONPATH + "view.png"
+    //  aux2.iconSrc = ICONPATH + "view.png"
 
-	  aux2.iconSrcClosed = ICONPATH + "view.png"
+	//  aux2.iconSrcClosed = ICONPATH + "view.png"
 
-	  insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg" , "rightcolumn"))
+	//  insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg" , "rightcolumn"))
 
-	  insDoc(aux2, gLnk("R", "View Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+	  insDoc(aux2, gLnk("R", "View Plan", "index.php/projects/create_plan/1"))
 
-	  insDoc(aux2, gLnk("R", "Edit Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+	  insDoc(aux2, gLnk("R", "Edit Plan", "index.php/projects/create_plan/1"))
 
-	  insDoc(aux2, gLnk("R", "Import Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+	  insDoc(aux2, gLnk("R", "Import Plan", "index.php/projects/create_plan/0"))
 
-	  insDoc(aux2, gLnk("R", "Display Existing Process", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+	  insDoc(aux2, gLnk("R", "Display Existing Process", "index.php/projects/display_process/1"))
 
-	  insDoc(aux2, gLnk("R", "Upload Calender Holiday", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+	  insDoc(aux2, gLnk("R", "Upload Calender Holiday", "index.php/projects/upload_calendar"))
 
-      insDoc(aux2, gLnk("R", "Test A", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
 
-	  insDoc(aux2, gLnk("R", "Test 2", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
 
-      insDoc(aux2, gLnk("R", "Test III", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      aux2 = insFld(aux1, gFld("Planning Documents", "http://www.treeview.net/treemenu/demopics/beenthere_europe.gif"))
+      aux2 = insFld(aux1, gFld("Planning Documents", "index.php/projects/planing_documents"))
 
 
 
 //Rool out Menu
 
- aux1 = insFld(foldersTree, gFld("Site Rollout", "javascript:parent.op()"))
+ aux1 = insFld(foldersTree, gFld("Site Rollout", "index.php/projects/site_rollout/none/0/0/0/0/0"))
 
 
 
-    aux2 = insFld(aux1, gFld("Rollout Log", "http://www.treeview.net/treemenu/demopics/beenthere_unitedstates.gif"))
+    aux2 = insFld(aux1, gFld("Rollout Log", "index.php/projects/rollout_log"))
 
       //insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
 
@@ -156,17 +152,17 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
 
 
-    aux2 = insFld(aux1, gFld("Rollout Documents", "http://www.treeview.net/treemenu/demopics/beenthere_europe.gif"))
+    aux2 = insFld(aux1, gFld("Rollout Documents", "index.php/projects/rollout_documents"))
 
 	
 
 	//Site Close Menu
 
-	 aux1 = insFld(foldersTree, gFld("Site Close", "javascript:parent.op()"))
+	 aux1 = insFld(foldersTree, gFld("Site Close", "index.php/projects/site_closing"))
 
 
 
-    aux2 = insFld(aux1, gFld("Closing Documents", "http://www.treeview.net/treemenu/demopics/beenthere_unitedstates.gif"))
+    aux2 = insFld(aux1, gFld("Closing Documents", "index.php/projects/closing_documents"))
 
       //insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
 
@@ -188,7 +184,7 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
 
 
-    aux2 = insFld(aux1, gFld("Planning Documents", "http://www.treeview.net/treemenu/demopics/beenthere_europe.gif"))
+    aux2 = insFld(aux1, gFld("Planning Documents", "index.php/projects/planing_documents"))
 
 
 
@@ -234,11 +230,11 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
 
 
-  aux1 = insFld(foldersTree, gFld("Site Closing", "javascript:parent.op()"))
+  aux1 = insFld(foldersTree, gFld("Site Closing", "index.php/projects/site_closing"))
 
-  aux1.iconSrc = ICONPATH + "diffFolder.gif"
+//  aux1.iconSrc = ICONPATH + "diffFolder.gif"
 
-  aux1.iconSrcClosed = ICONPATH + "diffFolder.gif"
+//  aux1.iconSrcClosed = ICONPATH + "diffFolder.gif"
 
    // docAux = insDoc(aux1, gLnk("B", "D/L Treeview", "http://www.treeview.net/treemenu/download.asp"))
 

@@ -2,17 +2,18 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Site Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/site_search_form');
-?>
+<h1>Site Plan</h1>
+
+
 
 <h2>Sites in district {district}</h2>
 <br>
@@ -65,11 +66,9 @@ $this->load->view('projects/site_search_form');
 			</tr>
 	   </tbody>
 </table>
-</div>
 
 
 </div>
-
 <?php
 $this->load->view('footer');
 ?>

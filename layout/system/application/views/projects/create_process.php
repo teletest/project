@@ -2,18 +2,15 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-
-<h1>Nominal Plan</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/search_form');
-?>
 <h3>Nominal Plans</h3>
 <?php echo validation_errors(); ?>
 <?php //echo $this->validation->error_string; ?>
@@ -57,9 +54,8 @@ $this->load->view('projects/search_form');
 				<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
 				<input type="button"  value="Implement New Process" onclick="this.form.submit();" />
 				</form>
-</div>
-</div>
 
+</div>
 <?php
 $this->load->view('footer');
 ?>

@@ -2,15 +2,13 @@
 $this->load->view('header');
 ?>
 
-
-<div id="main-content">
-
-<h1>Site Rollout</h1>
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
-
 <div style="float:left;margin-left:20px;">
 
 <h3>Rollout Summary</h3>
@@ -34,12 +32,9 @@ $this->load->view('header');
  {/if_found}
  {/states}
 </table>
+
+
 </div>
-
-
-
-</div> 
-
 <?php
  $this->load->view('footer');
 ?>

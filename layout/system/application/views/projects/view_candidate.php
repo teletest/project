@@ -1,16 +1,14 @@
 <?php  $this->load->view('header');  ?>
 
-<div id="main-content">
-<h1>Project Management</h1>
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
-</div>
-
-<div style="float:left;margin-left:20px;">
 <?php
-$this->load->view('projects/search_form');
+$this->load->view('sidebar');
 ?>
+</div>
+<div style="float:left;margin-left:20px;">
+
 {candidate}
 <h3>View Candidate {code} data</h3>
 
@@ -71,8 +69,6 @@ $this->load->view('projects/search_form');
 
 </table>
 {/candidate}
-</div>
-
 </div>
 
 <?php $this->load->view('footer'); ?>

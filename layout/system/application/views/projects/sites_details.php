@@ -1,22 +1,19 @@
-
 <?php
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
+
+<div style="float:left">
+<?php
+$this->load->view('sidebar');
+?>
+</div>
+<div style="float:left;margin-left:20px;">
 
 <h1>Site Details</h1>
 
-<div style="float:left">
-<? // $this->load->view('projects/image_menu.php'); ?>
-</div>
 
-<div style="float:left;margin-left:20px;">
-
-<?php
-//$this->load->view('projects/site_search_form');
-?>
-<br />
 
 <table class="table" cellspacing="2" cellpadding="2" border="0" width="100%">
 {sites_details}
@@ -92,7 +89,6 @@ $this->load->view('header');
  </tr>
 </table>
 
-</div>
 
 </div>
 

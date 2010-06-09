@@ -2,20 +2,18 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
+
+<div style="float:left">
+<?php
+$this->load->view('sidebar');
+?>
+</div>
+<div style="float:left;margin-left:20px;">
 
 <h1>Site Rollout</h1>
 
-<div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
-</div>
 
-<div style="float:left;margin-left:20px;">
-
-<?php
-$this->load->view('projects/search_form');
-?>
-<br />
 
 
 <h2>Site - {name}</h2>
@@ -181,19 +179,7 @@ $this->load->view('projects/search_form');
  {/if_active}
 {/if_candidate}
 
-
-
-
-
-
-
-
 </div>
-
-
-
-</div>
-
 <?php
 $this->load->view('footer');
 ?>

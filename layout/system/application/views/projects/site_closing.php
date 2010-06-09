@@ -2,17 +2,17 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-<h1>Site Closing</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
-<?php
-$this->load->view('projects/site_search_form');
-?>
+<h1>Site Closing</h1>
+
 <br /><br />
 <h2>Sites ready to be closed</h2>
 <table class="table" align="center" border="0" cellpadding="1" cellspacing="2" width="98%">
@@ -101,11 +101,6 @@ $this->load->view('projects/site_search_form');
 
 
 </div>
-
-
-
-</div>
-
 <?php
 $this->load->view('footer');
 ?>

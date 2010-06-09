@@ -1,14 +1,13 @@
 <?php  $this->load->view('header');  ?>
 
-<div id="main-content">
-<h1>{projects_title}</h1>
-{projects_menu}
-<br /><br />
+<div class="art-contentLayout"> 
 
+<div style="float:left">
 <?php
-$this->load->view('projects/search_form');
+$this->load->view('sidebar');
 ?>
-<br /><br />
+</div>
+<div style="float:left;margin-left:20px;">
 
 <h3>Adding an Activity to {id}</h3>
 {a_details}
@@ -84,8 +83,6 @@ $this->load->view('projects/search_form');
 </form>
 </table>
 {/a_details}
-
-
 
 </div>
 

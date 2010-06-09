@@ -2,14 +2,15 @@
 <?php
 $this->load->view('header');
 ?>
-
-<div id="main-content">
-
-<h1>Project Management</h1>
+<div class="art-contentLayout"> 
 
 <div style="float:left">
-<?  $this->load->view('projects/image_menu.php'); ?>
-</div> 
+<?php
+$this->load->view('sidebar');
+?>
+</div>
+<div style="float:left;margin-left:20px;">
+
 <div id="index"	style="float:left; padding:5px">
 	<div id="pagewrap">
 		  <div id="search">
@@ -53,8 +54,7 @@ $this->load->view('header');
 		   </div>
 	 </div>
 
-  </div>
- </div> 
+</div>
 <?php
 $this->load->view('footer');
 ?>

@@ -1,15 +1,8 @@
 <?php  $this->load->view('header');  ?>
 
-<div id="main-content">
-
-<h1>List</h1>
-<div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
-</div>
-<div style="float:left;margin-left:20px;">
-
+<div class="art-contentLayout"> 
 <?php
-$this->load->view('projects/search_form');
+$this->load->view('sidebar');
 ?>
 
 <table border="1" align="center"  width="400px" style="border-collapse:collapse;border:1px solid #ccc">
@@ -34,9 +27,5 @@ $this->load->view('projects/search_form');
 
 <input value="back" onclick="javascript:history.back(-1);" class="button" type="button"> {pagination}
 
-
-</div>
-
-</div>
 
 <?php $this->load->view('footer'); ?>

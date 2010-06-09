@@ -2,12 +2,12 @@
 $this->load->view('header');
 ?>
 
-<div id="main-content">
+<div class="art-contentLayout"> 
 
-
-<h1>New Project</h1>
 <div style="float:left">
-<? $this->load->view('projects/image_menu.php'); ?>
+<?php
+$this->load->view('sidebar');
+?>
 </div>
 <div style="float:left;margin-left:20px;">
 
@@ -55,16 +55,6 @@ $this->load->view('header');
 </tr>
 {/projects}
 </table>
-
-
-
-
-
-
-</div>
-
-
-
 </div>
 
 <?php
