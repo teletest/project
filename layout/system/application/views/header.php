@@ -156,10 +156,11 @@ function FP_swapImgRestore() {//v1.0
     <div class="art-Sheet-cr"></div>
     <div class="art-Sheet-cc"></div>
     <div class="art-Sheet-body">  
-      <div class="art-Header"> 
+      <div class="art-Header"> <a href="javascript:void(0);" class="setLiquid"><span>SetPageWidth</span></a>
         <div class="art-Header-png"></div>
         <div class="art-Header-jpeg"></div>
         <div class="art-Logo" style="position: absolute; left: 602px; top: 116px; width: 242px"> 
+		
           <table border="0" width="100%" cellspacing="1">
             <tr> 
               <td>&nbsp;</td>
@@ -205,7 +206,7 @@ function FP_swapImgRestore() {//v1.0
 						</script>
       </div>
 
-
+     
 
 
 

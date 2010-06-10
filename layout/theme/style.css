@@ -72,6 +72,7 @@ table.position
 	position: relative;
 	z-index: 1;
 	padding: 13px;
+	
 }
 
 .art-Sheet-tr, .art-Sheet-tl, .art-Sheet-br, .art-Sheet-bl, .art-Sheet-tc, .art-Sheet-bc,.art-Sheet-cr, .art-Sheet-cl
@@ -2175,3 +2176,25 @@ font-family: Arial, Helvetica, Sans-Serif;
 {
 	background-image: none;
 }
+/*** top right page extend ***/
+
+a.setLiquid{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: transparent url(images/pagewidth.png) no-repeat left top;
+}
+
+a.setLiquid:hover{
+  background-position: right top;
+}
+
+a.setLiquid span{
+  display: none;
+}
+
+
+/*** WORDPRESS SPECIFIC STYLES ***/

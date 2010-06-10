@@ -1,9 +1,14 @@
 <?php  $this->load->view('header');  ?>
 
 <div class="art-contentLayout"> 
+
+<div style="float:left">
 <?php
 $this->load->view('sidebar');
 ?>
+</div>
+<div style="float:left;margin-left:20px;">
+
 
 <table border="1" align="center"  width="400px" style="border-collapse:collapse;border:1px solid #ccc">
 <tr>
@@ -27,5 +32,5 @@ $this->load->view('sidebar');
 
 <input value="back" onclick="javascript:history.back(-1);" class="button" type="button"> {pagination}
 
-
+</div>
 <?php $this->load->view('footer'); ?>
