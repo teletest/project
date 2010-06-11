@@ -38,7 +38,11 @@ USETEXTLINKS = 1
 
 STARTALLOPEN = 0
 
+USEFRAMES = 0
 
+WRAPTEXT = 1
+PRESERVESTATE = 1
+HIGHLIGHT = 1
 
 // Specify if the images are in a subdirectory;
 
@@ -48,178 +52,67 @@ STARTALLOPEN = 0
 
 
 
-foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
+    foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
-  foldersTree.treeID = "Frameset"
+    foldersTree.treeID = "Frameset"
 
+    aux1 = insFld(foldersTree, gFld("New Project", SITEURL+"/projects/new_project"))
 
-
-  aux1 = insFld(foldersTree, gFld("New Project", "index.php/projects/new_project"))
-
-
-
-   // aux2 = insFld(aux1, gFld("United States", "http://www.treeview.net/treemenu/demopics/beenthere_america.gif"))
-
-    //  insDoc(aux2, gLnk("R", "Boston", "http://www.treeview.net/treemenu/demopics/beenthere_boston.jpg"))
-
-     // insDoc(aux2, gLnk("R", "New York", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      //insDoc(aux2, gLnk("R", "Washington", "http://www.treeview.net/treemenu/demopics/beenthere_washington.jpg"))
-
-
-
- //   aux2 = insFld(aux1, gFld("Europe", "http://www.treeview.net/treemenu/demopics/beenthere_europe.gif"))
-
- //     insDoc(aux2, gLnk("R", "Edinburgh", "http://www.treeview.net/treemenu/demopics/beenthere_edinburgh.gif"))
-
- //     insDoc(aux2, gLnk("R", "London", "http://www.treeview.net/treemenu/demopics/beenthere_london.jpg"))
-
- //     insDoc(aux2, gLnk("R", "Munich", "http://www.treeview.net/treemenu/demopics/beenthere_munich.jpg"))
-
- //     insDoc(aux2, gLnk("R", "Athens", "http://www.treeview.net/treemenu/demopics/beenthere_athens.jpg"))
-
-  //    insDoc(aux2, gLnk("R", "Florence", "http://www.treeview.net/treemenu/demopics/beenthere_florence.jpg"))
-
-      //
-
-      // The next three links have their http protocol appended by the script
-
-      //
-
-      //insDoc(aux2, gLnk("Rh", "Pisa", "www.treeview.net/treemenu/demopics/beenthere_pisa.jpg"))
-
-      //insDoc(aux2, gLnk("Rh", "Rome", "www.treeview.net/treemenu/demopics/beenthere_rome.jpg"))
-
-      //insDoc(aux2, gLnk("Rh", "Lisboa", "www.treeview.net/treemenu/demopics/beenthere_lisbon.jpg"))
-
-
-
-      aux1 = insFld(foldersTree, gFld("Site Plan", "index.php/projects/site_plan"))
+    aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
 
     //  aux1.iconSrc = ICONPATH + "complexType.gif"
 
     //  aux1.iconSrcClosed = ICONPATH + "complexType.gif"
+	aux2 = insFld(foldersTree, gFld("Nominal Plan", SITEURL+"/projects/nominal_plans"))
 
-      aux2 = insFld(aux1, gFld("Nominal Plan", "index.php/projects/nominal_plans"))
+    insDoc(aux2, gLnk("S", "View Plan", SITEURL+"/projects/create_plan/1"))
 
-    //  aux2.iconSrc = ICONPATH + "view.png"
+	  insDoc(aux2, gLnk("S", "Edit Plan", SITEURL+"/projects/create_plan/1"))
 
-	//  aux2.iconSrcClosed = ICONPATH + "view.png"
+	  insDoc(aux2, gLnk("S", "Import Plan", SITEURL+"/projects/create_plan/0"))
 
-	//  insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg" , "rightcolumn"))
+	  insDoc(aux2, gLnk("S", "Display Existing Process", SITEURL+"/projects/display_process/1"))
 
-	  insDoc(aux2, gLnk("R", "View Plan", "index.php/projects/create_plan/1"))
-
-	  insDoc(aux2, gLnk("R", "Edit Plan", "index.php/projects/create_plan/1"))
-
-	  insDoc(aux2, gLnk("R", "Import Plan", "index.php/projects/create_plan/0"))
-
-	  insDoc(aux2, gLnk("R", "Display Existing Process", "index.php/projects/display_process/1"))
-
-	  insDoc(aux2, gLnk("R", "Upload Calender Holiday", "index.php/projects/upload_calendar"))
+	  insDoc(aux2, gLnk("S", "Upload Calender Holiday", SITEURL+"/projects/upload_calendar"))
 
 
 
-      aux2 = insFld(aux1, gFld("Planning Documents", "index.php/projects/planing_documents"))
+      aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
 
 
 
-//Rool out Menu
+    //Rool out Menu
 
- aux1 = insFld(foldersTree, gFld("Site Rollout", "index.php/projects/site_rollout/none/0/0/0/0/0"))
-
-
-
-    aux2 = insFld(aux1, gFld("Rollout Log", "index.php/projects/rollout_log"))
-
-      //insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "View Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Edit Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Import Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Display Existing Process", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Upload Calender Holiday", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      //insDoc(aux2, gLnk("R", "Test A", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Test 2", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      //insDoc(aux2, gLnk("R", "Test III", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+    aux1 = insFld(foldersTree, gFld("Site Rollout", SITEURL+"/projects//site_rollout/none/0/0/0/0/0"))
 
 
 
-    aux2 = insFld(aux1, gFld("Rollout Documents", "index.php/projects/rollout_documents"))
+    aux2 = insFld(aux1, gFld("Rollout Log", SITEURL+"/projects//rollout_log"))
+
+
+
+
+
+    aux2 = insFld(aux1, gFld("Rollout Documents", SITEURL+"/projects//rollout_documents"))
 
 	
 
 	//Site Close Menu
 
-	 aux1 = insFld(foldersTree, gFld("Site Close", "index.php/projects/site_closing"))
+	 aux1 = insFld(foldersTree, gFld("Site Close", SITEURL+"/projects//site_closing"))
 
 
 
-    aux2 = insFld(aux1, gFld("Closing Documents", "index.php/projects/closing_documents"))
-
-      //insDoc(aux2, gLnk("R", "New Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "View Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Edit Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Import Plan", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Display Existing Process", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Upload Calender Holiday", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      //insDoc(aux2, gLnk("R", "Test A", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	  //insDoc(aux2, gLnk("R", "Test 2", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-      //insDoc(aux2, gLnk("R", "Test III", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+    aux2 = insFld(aux1, gFld("Closing Documents", SITEURL+"/projects/closing_documents"))
 
 
-
-    aux2 = insFld(aux1, gFld("Planning Documents", "index.php/projects/planing_documents"))
+    aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
 
 
 
 
 
-    //
-
-    // Netscape 4.x needs the HREF to be non-empty to process other events such as open folder,
-
-    // hence the need for the op function
-
-    //
-
-    //aux2 = insFld(aux1, gFld("Rollout Log", "javascript:parent.op()"))
-
-      //insDoc(aux2, gLnk("R", "New York", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
-
-	//aux2 = insFld(aux1, gFld("Rollout Documents", "javascript:parent.op()"))
-
-	//aux2 = insFld(aux1, gFld("Project Monitoring", "javascript:parent.op()"))
-
-	
-
-  //aux1 = insFld(foldersTree, gFld("Site Rollout", "javascript:parent.op()"))
-
-   // insDoc(aux1, gLnk("R", "Rollout Log", "http://www.treeview.net/treemenu/demopics/beenthere_edinburgh.gif"))
-
-//   insDoc(aux1, gLnk("B", "Rollout Documents", "http://www.treeview.net/treemenu/demopics/beenthere_london.jpg"))
-
- // insDoc(aux1, gLnk("T", "Whole window", "http://www.treeview.net/treemenu/demopics/beenthere_munich.jpg"))
-
-      //insDoc(aux1, gLnk("S", "This frame", "http://www.treeview.net/treemenu/demopics/beenthere_athens.jpg"))
-
-      //
-
+  
       // The S target is required.
 
       // The \\\ is needed to escape the ' character for string arguments.
@@ -230,7 +123,7 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
 
 
-  aux1 = insFld(foldersTree, gFld("Site Closing", "index.php/projects/site_closing"))
+//  aux1 = insFld(foldersTree, gFld("Site Closing", SITEURL+"/projects/site_closing"))
 
 //  aux1.iconSrc = ICONPATH + "diffFolder.gif"
 
@@ -242,9 +135,10 @@ foldersTree = gFld("<i>Treeview Demo</i>", "demoFramesetRightFrame.html")
 
 
 
-  aux1 = insFld(foldersTree, gFld("<font color=red>C</font><font color=blue>l</font><font color=pink>o</font><font color=green>s</font><font color=red>e</font><font color=blue>t</font><font color=brown>Project</font>", "javascript:parent.op()"))
+  //aux1 = insFld(foldersTree, gFld("<font color=red>C</font><font color=blue>l</font><font color=pink>o</font><font color=green>s</font><font color=red>e</font><font color=blue>t</font><font color=brown>Project</font>", "javascript:parent.op()"))
 
-    docAux = insDoc(aux1, gLnk("R", "<div class=specialClass>CSS Class</div>", "http://www.treeview.net/treemenu/demopics/beenthere_newyork.jpg"))
+  aux1 = insFld(foldersTree, gFld("Project Closing",  SITEURL+"/projects/close_project"))
+  docAux = insDoc(aux1, gLnk("S", "Project Close",  SITEURL+"/projects/close_project"))
 
 
 

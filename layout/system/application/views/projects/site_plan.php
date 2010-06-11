@@ -10,7 +10,7 @@ $this->load->view('sidebar');
 ?>
 </div>
 <div style="float:left;margin-left:20px;">
-
+<div id = "main_contents" style="float:left;margin-left:20px;">
 <h1>Site Plan</h1>
 
 <br /><br />
@@ -175,6 +175,8 @@ Sites</a><br><br>
                   
 </table>
 
+
+</div>
 
 </div>
 

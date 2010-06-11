@@ -65,6 +65,7 @@ header('Content-Type: text/html; Charset=UTF-8');
 
 <script type=text/javascript>
 var ICONPATH = '<?php echo base_url()."images/"; ?>';
+var SITEURL = '<?php echo site_url(); ?>';
 </script>
 
 

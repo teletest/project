@@ -1,6 +1,6 @@
   </div>
     <div class="cleared"></div>
-    <div class="art-Footer"> 
+    <div id="art-Footer" class="art-Footer"> 
       <div class="art-Footer-inner"> 
         <div class="art-Footer-text"> 
           <p><a href="#">Contact Us</a> | <a href="#">Terms of Use</a> | <a href="#">Trademarks</a> 

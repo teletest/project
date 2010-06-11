@@ -11,7 +11,7 @@ $this->load->view('sidebar');
 </div>
 <div style="float:left;margin-left:20px;">
 
-
+<div id = "main_contents" style="float:left;">
 <h3>Add a project</h3>
 <form action='{site_url}index.php/projects/new_project' method='post'>
 	
@@ -55,6 +55,8 @@ $this->load->view('sidebar');
 </tr>
 {/projects}
 </table>
+
+</div>
 </div>
 
 <?php

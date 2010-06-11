@@ -11,7 +11,7 @@ $this->load->view('sidebar');
 </div>
 <div style="float:left;margin-left:20px;">
 
-
+<div id = "main_contents" style="float:left;margin-left:20px;">
 <h1>Planing Documents</h1>
 
 
@@ -45,7 +45,7 @@ $this->load->view('sidebar');
                 <td class="headings">Google Map View of Site</td>
               </tr>
               <tr>
-                <td align="center"><img src="{site_url}images/site_map.jpg" height="420" width="634"></td>
+                <td align="center"><img src="{site_url}images/site_map.jpg" height="420" width="534"></td>
               </tr>
 			  <tr><td><a href='{site_url}index.php/projects/view_googlemap' target="_blank">View Google Map</a> </td></tr>
             </tbody></table>
@@ -53,7 +53,7 @@ $this->load->view('sidebar');
 
 
 </div>
-
+</div>
 <?php
 $this->load->view('footer');
 ?>

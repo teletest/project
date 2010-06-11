@@ -55,7 +55,8 @@ function setPagewidth(){
 	
 	//var hnetWidth = netWidth-27;
 	//alert(hnetWidth)
-	//$('div.art-Header').css('width', hNetwidth);
+	//$('.art-Footer').css('width', hNetwidth);
+	//$('.art-Footer-background').css('width', hNetwidth);
 	
 
   createCookie('pageWidth', newWidth, 365);
