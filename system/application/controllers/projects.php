@@ -2788,8 +2788,7 @@ class Projects extends My_Controller {
          $this->cigooglemapapi->disableTypeControls();
          $this->cigooglemapapi->disableDirections();
          $this->cigooglemapapi->setControlSize('small');
-		 
-		 
+			 
 		 $data['values'] = $this->projects_model->get_distinct_sites_in_region( $project_id , $region );
 		 
 		 $i=1;
@@ -3121,7 +3120,7 @@ class Projects extends My_Controller {
         $this->cigooglemapapi->height = '300px';
         $this->cigooglemapapi->disableTypeControls();
         //$this->cigooglemapapi->disableSidebar();
-        $this->cigooglemapapi->disableDirections();
+        //$this->cigooglemapapi->disableDirections();
         $this->cigooglemapapi->setControlSize('small');
 		$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
         $i = 0;
