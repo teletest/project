@@ -531,6 +531,7 @@ class Projects_model extends Model{
 		  {
 			   foreach ($query->result() as $row)
 			   {
+				 set_time_limit(60);
 				 // calculate end date frome leadtime
 				 $timeStamp =  strtotime($date);
 				 $lead_time = $row->lead_time;
