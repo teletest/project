@@ -24,7 +24,7 @@ $this->cigooglemapapi->addMarkerByAddress('3457 Holdrege St Lincoln NE 68502',"V
     <tr><td>
     <?php $this->cigooglemapapi->printMap(); ?>
     </td><td>
-    <?php $this->cigooglemapapi->printSidebar(); ?>
+    <?php //$this->cigooglemapapi->printSidebar(); ?>
     </td></tr>
     </table>
     </body>
