@@ -2198,14 +2198,14 @@ a.setLiquid span{
 
 
 /*** WORDPRESS SPECIFIC STYLES ***/
-#main_contents
+/**#main_contents
 {
 -moz-box-sizing:border-box;
 background-color:#FFFFFF;
-/*border:2px solid #818DB9;*/
-cursor:default;
+border:2px solid #818DB9;*/
+/*cursor:default;
 padding:5px;
-margin:2px;
+margin:2px;*/
 /*height:365px;*/
 /*left:101px; */
 /*outline-offset:-1px;
@@ -2215,4 +2215,4 @@ position:absolute;
 top:1px;
 width:608px;
 z-index:200162;*/
-}
+/*} **/

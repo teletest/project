@@ -16,17 +16,10 @@ header('Content-Type: text/html; Charset=UTF-8');
 <script type="text/javascript" src="{site_url}theme/js/confirm.js"></script>
 
 <link rel="stylesheet" href="{site_url}theme/style.css" type="text/css" media="screen">
-<!-- LyteBox Script -->
 
-<script type="text/javascript" src="{site_url}/lytebox/js/lytebox.js"></script>
-<link rel="stylesheet" href="{site_url}/lytebox/css/lytebox.css" type="text/css" media="screen">
-
-<!-- End LyteBox Script -->
 <!--[if lte IE 7]>
 	<link rel="stylesheet" href="{site_url}theme/ie.css" type="text/css" media="screen" /><![endif]-->	
 	<meta name='robots' content='noindex,nofollow' />
-
-
 
 <!-- calendar icon -->
 <!--<base href="http://www.monkeyphysics.com/" /> -->
@@ -134,7 +127,17 @@ function FP_swapImgRestore() {//v1.0
 // -->
 </script>
 
-
+<!-- tabs div-->
+<script src="{site_url}theme/js/jquery-1.1.3.1.pack.js" type="text/javascript"></script>
+<script src="{site_url}theme/js/jquery.history_remote.pack.js" type="text/javascript"></script>
+<script src="{site_url}theme/js/jquery.tabs.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#ShowTab').tabs({ fxSlide: true });
+	});
+</script>
+<link rel="stylesheet" href="{site_url}theme/jquery.tabs.css" type="text/css" media="print, projection, screen">
+<!-- tabs div -->
 
 </head>
 
@@ -207,7 +210,7 @@ function FP_swapImgRestore() {//v1.0
 						</script>
       </div>
 
-     
+  <div class="art-contentLayout">    
 
 
 
