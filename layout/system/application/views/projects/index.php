@@ -12,10 +12,10 @@ $this->load->view('sidebar');
 <div style="width:600px;" >
     <div id="ShowTab">
     <ul>
-    <li><a href="#Tab1"><span>View</span></a></li>
-    <li><a href="#Tab2"><span>Activity Calendar</span></a></li>
+    <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
+    <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
-        <div id="Tab1" >
+        <div id="view" >
         <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	    <tr>
 		  <td align="center" bgcolor="#e8e8d0" ><strong>Code</strong></td>
@@ -59,15 +59,15 @@ $this->load->view('sidebar');
                   
 </table> 
         </div>
-        <div id="Tab2">
+        <div id="activity_calendar">
 		<h2>Activity Calendar</h2>  
 		<br>
 		<form action="{site_url}index.php/projects/" method="post">  
 		<table class="calendar">
 		<tr> 
-			<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}"> <img  height="40" src="{site_url}images/PrevF.gif" /> </a></th>
+			<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/PrevF.gif" /> </a></th>
 			<th colspan="5">{month}{year}</th>
-			<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}"> <img height ="40" src="{site_url}images/NextF.gif" /> </a></th>		
+			<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar""> <img height ="40" src="{site_url}images/NextF.gif" /> </a></th>		
 		</tr>
 		<tr>
 			<th>Sun</th>
