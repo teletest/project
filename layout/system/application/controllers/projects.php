@@ -588,7 +588,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function do_upload()
+	/*function do_upload()
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');    
@@ -628,6 +628,40 @@ class Projects extends My_Controller {
 		}  
 		// redirect to this page when uploaded successfully temporarily.. a suuccess page can be added later
 		redirect('projects/site_plan');
+	} */
+	function do_upload()
+	{
+	   $data = tags();
+	   $data['tabs']	= tabs('projects'); 
+	      
+	   if ($this->input->post('submit') != '')
+	   {
+     
+			$name = $this->input->post('file_info');;
+			$value = json_decode($name);
+			$name = $value->{'file_name'};
+			$location = $value->{'file_path'};
+				$data = array(
+					'site_id' 	=> $this->input->post('id'),
+					'stage_id' => $this->input->post('stage_id'),
+					'filename' 	=> $name,
+					'is_active' 	=> $this->input->post('is_active'),
+					'attached_on' => $this->input->post('attached_on'),
+				);
+			   /*$id=$this->input->post('id');
+			    if ( ! empty($_FILES)) {
+                  // renames file from filename to projectID_fileanme
+				  rename($path.$_FILES['userfile']['name'], $path.$id.'_'.$tempFile); 
+				}*/
+				 //adds attachement related info in database 
+				$this->db->insert('attachements', $data); 
+				redirect("projects/site_attach_document/$id");
+
+					
+			
+			
+						
+		}
 	}
 	/**
 	* Returns the details of site whose ID has been passed to it

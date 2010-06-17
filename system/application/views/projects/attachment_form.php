@@ -11,7 +11,7 @@ Is Active :<select xml:lang="en" dir="ltr" name="is_active" id="is_active">
 	
 	</select>
 	<br>
-Attach File :<input type="file" name="userfile" size="20" id="userfile"/>
+Attach File :<input type="file" name="Filedata" size="20" id="userfile"/>
 
 <br /><br />
 <link href="http://site.com/css/printer.css" rel="stylesheet" type="text/css" media="print" />
