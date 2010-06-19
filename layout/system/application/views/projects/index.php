@@ -16,18 +16,18 @@ $this->load->view('sidebar');
     <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
         <div id="view" >
-        <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-	    <tr>
-		  <td align="center" bgcolor="#e8e8d0" ><strong>Code</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Status</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Created on</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Planned on</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Start Date</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>End Date</strong></p></td>                    
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>View Progress</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>% Complete</strong></p></td>                  
+        <table align="center" class="ewTable" id="ewlistmain" width="100%">
+	    <tr class="ewTableHeader">
+		  <td valign="top" >Code</td>
+		  <td valign="top">Status</td>
+		  <td valign="top">Created on</td>
+		  <td valign="top">Planned on</td>
+		  <td valign="top">Start Date</td>
+		  <td valign="top">End Date</td>                    
+		  <td valign="top">View Progress</td>
+		  <td valign="top">% Complete</td>                  
 		</tr>
-		<tr>
+		<tr class="ewTableRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
@@ -38,13 +38,17 @@ $this->load->view('sidebar');
 		  <td>&nbsp;</td>
 		</tr>
 	{if_not_found}
-    <tr>
+    <tr class="ewTableAltRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
 	<td colspan="8"> Your search did not return any results. </td>
 	</tr>
 	{/if_not_found}
 	{if_found}
+
     {projects}
-	<tr>
+	<!--<tr class="ewTableAltRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style=""> -->
+
+	<tr class="ewTableRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
+
 	  <td><a href='{site_url}index.php/projects/project_summary/{id}' >{code}</a></td>
 	  <td>{status}</td>
 	  <td>{created_on}</td>
@@ -52,8 +56,9 @@ $this->load->view('sidebar');
 	  <td>{start_date}</td>
 	  <td>{end_date}</td>
 	  <td><a href='{site_url}index.php/charts/MSCol2D/{id}' >View Graph</a></td>
-	  <td> <img src="/images/progress_bar1.jpg" height="13" width="96"> </td>
+	  <td> <img src="{site_url}images/progress_bar1.jpg" height="13" width="96"> </td>
 	</tr>
+	
     {/projects} 
    {/if_found}                 
                   
@@ -63,13 +68,13 @@ $this->load->view('sidebar');
 		<h2>Activity Calendar</h2>  
 		<br>
 		<form action="{site_url}index.php/projects/" method="post">  
-		<table class="calendar">
-		<tr> 
-			<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/PrevF.gif" /> </a></th>
+		<table  align="center" class="ewTable" id="ewlistmain" width="100%">
+		<tr bordercolorlight="#999999" bordercolordark="#666666"> 
+			<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/prev.jpg" /> </a></th>
 			<th colspan="5">{month}{year}</th>
-			<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar""> <img height ="40" src="{site_url}images/NextF.gif" /> </a></th>		
+			<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar""> <img height ="40" src="{site_url}images/next.jpg" /> </a></th>		
 		</tr>
-		<tr>
+		<tr  class="ewTableHeader" >
 			<th>Sun</th>
 			<th>Mon</th>
 			<th>Tue</th>
@@ -80,7 +85,7 @@ $this->load->view('sidebar');
 			
 		</tr>		
 		{weeks}	
-			<tr>
+		<tr class="ewTableRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
 		{days}	
 				<td>{day}<br />
 				<ul>

@@ -78,13 +78,7 @@ var SITEURL = '<?php echo site_url(); ?>';
 
     <link rel="stylesheet" href="{site_url}theme/style.css" type="text/css" media="screen" />
 
-    <!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" />
 
-	<![endif]-->
-
-    <!--[if IE 7]><link rel="stylesheet" href="style.ie7.css" type="text/css" media="screen" />
-
-	<![endif]-->
 
 	<script type="text/javascript" src="{site_url}theme/js/stmenu.js"></script>
 
@@ -127,6 +121,23 @@ function FP_swapImgRestore() {//v1.0
 // -->
 </script>
 
+
+<!-- table div -->
+<LINK href="{site_url}theme/eweb-style.css" rel="stylesheet" type="text/css">
+<SCRIPT type="text/javascript" src="{site_url}theme/js/eweb-js.js"></SCRIPT>
+<SCRIPT type="text/javascript">
+<!--
+var firstrowoffset = 1;
+var lastrowoffset = 0;
+var EW_LIST_TABLE_NAME = 'ewlistmain';
+var rowclass = 'ewTableRow';
+var rowaltclass = 'ewTableAltRow';
+var rowmoverclass = 'ewTableHighlightRow';
+var rowselectedclass = 'ewTableSelectRow';
+var roweditclass = 'ewTableEditRow';
+//-->
+</SCRIPT>
+<!-- end table div -->
 <!-- tabs div-->
 <script src="{site_url}theme/js/jquery-1.1.3.1.pack.js" type="text/javascript"></script>
 <script src="{site_url}theme/js/jquery.history_remote.pack.js" type="text/javascript"></script>
