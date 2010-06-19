@@ -9,14 +9,14 @@ $this->load->view('sidebar');
 </div>
 
 <div id = "main_contents" style="float:left;margin-left:10px;" class="art-Post-inner art-article" >
-<div style="width:410px;" >
+<div style="width:418px;" >
     <div id="ShowTab">
     <ul>
     <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
     <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
         <div id="view" >
-        <table align="center" class="ewTable" id="ewlistmain" width="60%">
+        <table align="left" class="ewTable" id="ewlistmain" width="20%">
 	    <tbody>
 		<tr class="ewTableHeader">
 		  <td valign="top" >Code</td>
@@ -24,7 +24,7 @@ $this->load->view('sidebar');
 		  <td valign="top">Created on</td>
 		  <td valign="top">Planned on</td>
 		  <td valign="top">Start Date</td>
-		  <td valign="top">End Date</td>                    
+		  <!--<td valign="top">End Date</td> -->                    
 		  <td valign="top">View Progress</td>
 		 <!-- <td valign="top">% Complete</td>  -->                
 		</tr>
@@ -37,7 +37,7 @@ $this->load->view('sidebar');
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
+		  <!--<td>&nbsp;</td> -->
 		 <!-- <td>&nbsp;</td> -->
 		</tr>
 	{if_not_found}
@@ -57,7 +57,7 @@ $this->load->view('sidebar');
 	  <td>{created_on}</td>
 	  <td>{planned_on}</td>
 	  <td>{start_date}</td>
-	  <td>{end_date}</td>
+	  <!-- <td>{end_date}</td> -->
 	  <td><a href='{site_url}index.php/charts/MSCol2D/{id}' >View Graph</a></td>
 	 <!-- <td> <img src="{site_url}images/progress_bar1.jpg" height="13" width="96"> </td> -->
 	</tr>
@@ -66,41 +66,7 @@ $this->load->view('sidebar');
    {/if_found}                 
      </tbody>             
 </table> 
-<table align="center" class="ewTable" id="ewlistmain" style="width:178px">
-<tbody>
-    <tr class="ewTableHeader">
-    <td valign="top"><strong>Application</strong></td>
-    <td valign="top"><strong>Remaining</strong></td>
-    <td valign="top"><strong>Used</strong></td>
-    </tr>
-</tbody>
-<tbody id="thetable">
-        <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" onclick="ew_Click(this);" >
-          <td><div>13</div></td>
-          <td><div>admin</div></td>
-          <td><div>98</div></td>
-          
-        </tr>
-        <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" onclick="ew_Click(this);">
-          <td><div>14</div></td>
-          <td><div>asd</div></td>
-          <td><div>asd</div></td>
-         
-        </tr>
-        <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" onclick="ew_Click(this);">
-          <td><div>15</div></td>
-          <td><div>fgh</div></td>
-          <td><div>fhf</div></td>
-          
-        </tr>
-        <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" onclick="ew_Click(this);">
-          <td><div>16</div></td>
-          <td><div>fgh</div></td>
-          <td><div>fhf</div></td>
-          
-        </tr>
-</tbody>
-</table>
+
         </div>
         <div id="activity_calendar">
 		<h2>Activity Calendar</h2>  
