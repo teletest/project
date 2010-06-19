@@ -8,7 +8,7 @@ $this->load->view('sidebar');
 ?>
 </div>
 
-<div id = "main_contents" style="float:left;margin-left:20px;"
+<div id = "main_contents" style="float:left;margin-left:20px;">
 <div style="width:600px;" >
     <div id="ShowTab">
     <ul>
@@ -109,5 +109,6 @@ $this->load->view('sidebar');
 
 
 <?php
+$this->load->view('sidebar2');
 $this->load->view('footer');
 ?>
