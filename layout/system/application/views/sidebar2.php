@@ -1,4 +1,4 @@
-<div id = "main_contents" style="float:left;margin-left:20px;">
+<div id = "art_border" style="float:left;margin-left:10px;">
  <div class="art-sidebar2">
 
                         <div class="art-Block">
@@ -22,15 +22,15 @@
 
 															<td width="16">
 
-															<img border="0" src="images/minimize.png" width="16" height="16" id="img10" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img10',/*url*/'images/minimize2.png')"></td>
+															<img border="0" src="{site_url}images/minimize.png" width="16" height="16" id="img10" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img10',/*url*/'images/minimize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/maximize.png" width="16" height="16" id="img11" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img11',/*url*/'images/maximize2.png')"></td>
+															<img border="0" src="{site_url}images/maximize.png" width="16" height="16" id="img11" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img11',/*url*/'images/maximize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/close.png" width="16" height="16" id="img12" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img12',/*url*/'images/close2.png')"></td>
+															<img border="0" src="{site_url}images/close.png" width="16" height="16" id="img12" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img12',/*url*/'images/close2.png')"></td>
 
 														</tr>
 
@@ -131,15 +131,15 @@
 
 															<td width="16">
 
-															<img border="0" src="images/minimize.png" width="16" height="16" id="img13" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,0,/*id*/'img13',/*url*/'images/minimize2.png')"></td>
+															<img border="0" src="{site_url}images/minimize.png" width="16" height="16" id="img13" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,0,/*id*/'img13',/*url*/'images/minimize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/maximize.png" width="16" height="16" id="img14" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img14',/*url*/'images/maximize2.png')"></td>
+															<img border="0" src="{site_url}images/maximize.png" width="16" height="16" id="img14" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img14',/*url*/'images/maximize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/close.png" width="16" height="16" id="img15" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img15',/*url*/'images/close2.png')"></td>
+															<img border="0" src="{site_url}images/close.png" width="16" height="16" id="img15" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img15',/*url*/'images/close2.png')"></td>
 
 														</tr>
 
@@ -226,15 +226,15 @@
 
 															<td width="16">
 
-															<img border="0" src="images/minimize.png" width="16" height="16" id="img16" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img16',/*url*/'images/minimize2.png')"></td>
+															<img border="0" src="{site_url}images/minimize.png" width="16" height="16" id="img16" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img16',/*url*/'images/minimize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/maximize.png" width="16" height="16" id="img17" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img17',/*url*/'images/maximize2.png')"></td>
+															<img border="0" src="{site_url}images/maximize.png" width="16" height="16" id="img17" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img17',/*url*/'images/maximize2.png')"></td>
 
 															<td width="16">
 
-															<img border="0" src="images/close.png" width="16" height="16" id="img18" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img18',/*url*/'images/close2.png')"></td>
+															<img border="0" src="{site_url}images/close.png" width="16" height="16" id="img18" onmouseout="FP_swapImgRestore()" onmouseover="FP_swapImg(1,1,/*id*/'img18',/*url*/'images/close2.png')"></td>
 
 														</tr>
 

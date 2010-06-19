@@ -135,6 +135,22 @@ var rowaltclass = 'ewTableAltRow';
 var rowmoverclass = 'ewTableHighlightRow';
 var rowselectedclass = 'ewTableSelectRow';
 var roweditclass = 'ewTableEditRow';
+
+function alternate(id){ 
+ if(document.getElementsByTagName){  
+   var table = document.getElementById(id);   
+   var rows = table.getElementsByTagName("tr");   
+   alert(rows);
+   for(i = 0; i < rows.length; i++){           
+ //manipulate rows 
+     if(i % 2 == 0){ 
+       rows[i].className = "ewTableRow"; 
+     }else{ 
+       rows[i].className = "ewTableAltRow"; 
+     }       
+   } 
+ } 
+}
 //-->
 </SCRIPT>
 <!-- end table div -->
@@ -152,7 +168,7 @@ var roweditclass = 'ewTableEditRow';
 
 </head>
 
-<body onload="FP_preloadImgs(/*url*/'file:///E:/Radii%20Project/28-03/lblack/images/homeover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/accountover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/searchover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/minimize2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/maximize2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/close2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/log_outover.png')">
+<body onload="FP_preloadImgs(/*url*/'file:///E:/Radii%20Project/28-03/lblack/images/homeover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/accountover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/searchover.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/minimize2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/maximize2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/close2.png', /*url*/'file:///E:/Radii%20Project/28-03/lblack/images/log_outover.png')"; alternate('thetable');>
 
 <div id="art-page-background-simple-gradient">
 
