@@ -165,22 +165,79 @@ class Login extends Controller {
 		
 	}
 	
-	function change_password( $user_id = "")
+	function change_password( $user_id = "", $value = "")
+	{
+	    $data = tags();
+		$data['tabs']	= tabs('projects');
+		$data['page_title'] = $this->lang->line('login_change_password');
+		
+	//	if($this->session->userdata('logged_in')) {
+		    $username = $this->session->userdata('username');
+			$user_id = $this->session->userdata('id');
+		    $data['username'] = $username;
+			$data['user_id'] = $user_id;
+			if($this->input->post('save')!="")
+			{
+			   $this->load->helper(array('form', 'url'));
+			   $this->load->library('form_validation');
+			   $this->form_validation->set_rules('password', 'Old Password', 'required|callback_matches_curr_pw');
+			   $this->form_validation->set_rules('new_password', 'New Password', 'required|min_length[3]|max_length[32]|matches[re_new_password]');
+			   $this->form_validation->set_rules('re_new_password', 'Confirm New Password', 'required|min_length[3]|max_length[32]');
+			   $this->form_validation->set_message('matches', $this->lang->line('login_password_reconfirm'));
+			 
+			   if ($this->form_validation->run() == FALSE)
+			   {
+				  $this->redirect_to($user_id, validation_errors());
+			   }
+			   else
+			   { 
+			    $new_password = $this->input->post('new_password');
+				$password = md5($new_password); 
+				$pswd = array(
+						'password' =>  $password,
+					);
+				$this->db->update('persons', $pswd, array('id' => $user_id));
+			    $this->parser->parse('login/password_success',$data);
+			   }
+			}   
+			else
+			{	
+			   $this->parser->parse('login/change_password',$data);	
+			}
+		
+		//}
+		
+		 
+	}
+	function redirect_to($usr_id ="" , $value ="")
 	{
 	    $data = tags();
 		$data['tabs']	= array();
-		if($this->session->userdata('logged_in')) {
-				
-			$username = $_SESSION['sess_username'];
-			$old_password = $_SESSION['sess_password'];
-			$data['page_title'] = $this->lang->line('login_login');
-			$data['username'] = $username;
-			$data['password'] = $old_password;
+		$data['page_title'] = $this->lang->line('login_change_password');
 		
-		}
-		$this->parser->parse('login/change_password',$data);
-		 
+		$username = $this->session->userdata('username');
+		$user_id = $this->session->userdata('id');
+		$data['username'] = $username;
+		$data['user_id'] = $user_id;
+	    $this->parser->parse('login/change_password',$data);
 	}
+	function matches_curr_pw($str) {
+        if(empty($str)) {
+            return true;
+        } else {
+            $curr_pw = md5($str);
+            $this->db->where('ID', $this->session->userdata('id'));
+            $qry = $this->db->get('persons');
+            $row = $qry->row_array();
+            $db_pw = $row['password'];
+            if($curr_pw == $db_pw) {
+                return true;
+            } else {
+                $this->form_validation->set_message('matches_curr_pw', ' %s is not correct');
+                return false;
+            }    
+        }
+    }
 
 	function log_in()
 	{

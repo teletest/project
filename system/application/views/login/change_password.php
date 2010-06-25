@@ -1,0 +1,13 @@
+<?php
+$this->load->view('header');
+?>
+<h2>{page_title}</h2>
+<p class="error"><?php // echo $this->lang->line('login_password_reconfirm');?></p>
+<?php  $this->load->view('login/change_pswd_form');?>
+<ul>
+<li><?php echo $this->lang->line('login_caps_lock');?></li>
+</ul>
+
+<?php
+$this->load->view('footer');
+?>
