@@ -190,13 +190,20 @@ class Simplelogin
 			{
 			  $this->CI->session->set_userdata(array('id' => $row['id'], 'logged_in' => true , 'is_admin' => true, 'username' => $user));
 			}
-			else if($row['group_id'] == '3')
+			else if($row['group_id'] == '2')
 			{
-			  $this->CI->session->set_userdata(array('id' => $user_id, 'logged_in' => true , 'is_user' => true, 'username' => $user));			
+			  $this->CI->session->set_userdata(array('id' => $row['id'], 'logged_in' => true , 'is_user' => true, 'username' => $user));			
+			}
+			else if($row['group_id'] == '4')
+			{
+			  $this->CI->session->set_userdata(array('id' => $row['id'], 'logged_in' => true , 'is_tl' => true, 'username' => $user));			
+			}else if($row['group_id'] == '5')
+			{
+			  $this->CI->session->set_userdata(array('id' => $row['id'], 'logged_in' => true , 'is_mt' => true, 'username' => $user));			
 			}
 			else
 			{
-			  $this->CI->session->set_userdata(array('id' => $user_id, 'logged_in' => true , 'is_officer' => true, 'username' => $user));
+			  $this->CI->session->set_userdata(array('id' => $row['id'], 'logged_in' => true , 'is_guest' => true, 'username' => $user));
 			}
 			//Login was successful			
 			return true;

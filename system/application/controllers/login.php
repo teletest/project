@@ -164,6 +164,23 @@ class Login extends Controller {
 		}			
 		
 	}
+	
+	function change_password( $user_id = "")
+	{
+	    $data = tags();
+		$data['tabs']	= array();
+		if($this->session->userdata('logged_in')) {
+				
+			$username = $_SESSION['sess_username'];
+			$old_password = $_SESSION['sess_password'];
+			$data['page_title'] = $this->lang->line('login_login');
+			$data['username'] = $username;
+			$data['password'] = $old_password;
+		
+		}
+		$this->parser->parse('login/change_password',$data);
+		 
+	}
 
 	function log_in()
 	{
