@@ -2747,10 +2747,7 @@ class Projects extends My_Controller {
 		$data['object_type'] ="ampie.swf";
 		$data['chart_type2']="pie";
 		$data['xml_data'] = $xml_data;
-		//
-		/*$this->load->plugin('to_excel');
-		to_excel($query, ['filename']);
-		*/
+
 		$this->parser->parse('projects/project_summary', $data);	   
 	}
 	function view_regions_in_googlemap($project_id="", $region_name)
