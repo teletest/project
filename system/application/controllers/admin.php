@@ -239,7 +239,7 @@ class Admin extends My_Controller {
 				
 				//==========  group component associatin
 
-				$ar_components = $this->input->post('comp');
+				/* $ar_components = $this->input->post('comp');
 				
 				$final_components = "";
 				
@@ -260,7 +260,7 @@ class Admin extends My_Controller {
 				
 				
 				//$this->db->set($groups_components);
-				$this->db->insert('group_component' , $groups_components); 
+				$this->db->insert('group_component' , $groups_components); */
 
 				
 				
@@ -273,8 +273,8 @@ class Admin extends My_Controller {
 			
 			//=============== getting components ======================
 			
-			$q = $this->db->get('components');
-			$data['components'] = $q->result_array();
+			/*$q = $this->db->get('components');
+			$data['components'] = $q->result_array();*/
 
 
 		
@@ -324,8 +324,8 @@ class Admin extends My_Controller {
 			
 			//=============== getting components ======================
 			
-			$q = $this->db->get('components');
-			$data['components'] = $q->result_array();
+			/*$q = $this->db->get('components');
+			$data['components'] = $q->result_array(); */
 
 
 		
