@@ -492,12 +492,22 @@ class Admin extends My_Controller {
 			   $this->form_validation->set_rules('login', 'Login', 'required');
 			   $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[32]|matches[password_check]');
 			   $this->form_validation->set_rules('password_check', 'Confirm New Password', 'required|min_length[3]|max_length[32]');
+			   $this->form_validation->set_rules('group_id', 'Group', 'required');
 			   $this->form_validation->set_message('matches', $this->lang->line('login_password_reconfirm'));
 			 
 			   if ($this->form_validation->run() == FALSE)
 			   {
 				 // $this->redirect_to($user_id, validation_errors());
-				  $this->parser->parse("add", "", validation_errors());
+				 // $this->parser->parse("add", "", validation_errors());
+						 // company names
+					$qry = $this->db->get('companies');
+					$data['companies'] = $qry->result_array();
+					
+					// group names
+					$qry = $this->db->get('groups');
+					$data['groups'] = $qry->result_array();
+					
+					$action =  'admin/persons_add';
 			   }
 			   else
 			   {	
@@ -629,6 +639,7 @@ class Admin extends My_Controller {
 			   $this->form_validation->set_rules('login', 'Login', 'required');
 			   $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[32]|matches[password_check]');
 			   $this->form_validation->set_rules('password_check', 'Confirm New Password', 'required|min_length[3]|max_length[32]');
+			   $this->form_validation->set_rules('group_id', 'Group', 'required');
 			   $this->form_validation->set_message('matches', $this->lang->line('login_password_reconfirm'));
 			 
 			   if ($this->form_validation->run() == FALSE)
