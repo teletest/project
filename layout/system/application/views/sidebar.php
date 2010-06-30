@@ -1,6 +1,4 @@
-
- <div class="art-contentLayout"> 
-        <div class="art-sidebar1"> 
+<div class="art-sidebar1"> 
           <div class="art-Block"> 
             <div class="art-Block-body"> 
               <div class="art-BlockHeader"> 
@@ -114,11 +112,19 @@
                     <span class="art-button-wrapper"> <span class="l"><?php echo form_submit('login', $this->lang->line('login_login'), 'id="login" class="art-button"');?> </span></span> 
                     </fieldset>
 
-                </div>
-              </div>
-            </div>
-          </div>
+               		<div class="cleared"></div>
 
+						</div>
+
+					</div>
+
+			<div class="cleared"></div>
+
+		</div>
+
+	</div>
+
+</div>
 
 
 

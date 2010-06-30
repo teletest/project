@@ -1,4 +1,3 @@
-<div id = "art_border" style="float:left;margin-left:10px;">
  <div class="art-sidebar2">
 
                         <div class="art-Block">
@@ -290,7 +289,7 @@
 
                                         		<div class="cleared"></div>
 
-                                            </div>
+                                             </div>
 
                                         </div>
 
@@ -299,8 +298,3 @@
                             </div>
 
                         </div>
-
-                    </div>
-
-                </div>
-</div>

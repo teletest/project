@@ -1,15 +1,13 @@
 <?php
 $this->load->view('header');
 ?>
-
-<div style="float:left">
+<div class="art-contentLayout">
 <?php
 $this->load->view('sidebar');
 ?>
-</div>
-
-<div id = "main_contents" style="float:left;margin-left:10px;" class="art-Post-inner art-article" >
-<div style="width:418px;" >
+<div class="art-content">
+ <div class="art-Post">
+  <div class="art-Post-body">
     <div id="ShowTab">
     <ul>
     <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
@@ -105,14 +103,16 @@ $this->load->view('sidebar');
 		</form>
         </div>
     </div>
+
+  </div>
+
+ </div>
+
 </div>
+
+
+
+
+<?php $this->load->view('sidebar2'); ?>
 </div>
-
-
-
-
-
-<?php
-$this->load->view('sidebar2');
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer'); ?>

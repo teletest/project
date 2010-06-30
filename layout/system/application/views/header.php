@@ -70,7 +70,11 @@ var SITEURL = '<?php echo site_url(); ?>';
 
     <title>Welcome to RADII Solutions </title>
 
-
+      <SCRIPT src="{site_url}theme/js/ua.js"></SCRIPT>
+	  <!-- Infrastructure code for the TreeView. DO NOT REMOVE.    -->
+	  <SCRIPT type="text/javascript" src="{site_url}theme/js/ftiens4.js"></SCRIPT>
+	  <!-- Scripts that define the tree. DO NOT REMOVE.            -->
+	  <SCRIPT src="{site_url}theme/js/demoFramesetNodes.js"></SCRIPT>
 
     <script type="text/javascript" src="{site_url}theme/js/script.js"></script>
 
@@ -237,7 +241,7 @@ function alternate(id){
 						</script>
       </div>
 
-  <div class="art-contentLayout">    
+  <!--<div class="art-contentLayout">  -->  
 
 
 
