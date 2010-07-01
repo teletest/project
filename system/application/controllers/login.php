@@ -83,7 +83,7 @@ class Login extends Controller {
 	// --------------------------------------------------------------------
 
 	function index()
-	{
+	{ 
 		//This assumes you used the sample MySQL table
 		$user_table = 'persons';
 		$data = tags();
@@ -261,7 +261,8 @@ class Login extends Controller {
 			redirect('/login/');			
 
 		} else {
-			//Create account
+			//Create account 
+			
 			if($this->simplelogin->login($this->input->post('login_username'), $this->input->post('login_password'))) {
                 redirect('/projects/');
 					

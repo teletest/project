@@ -994,7 +994,7 @@ class Admin extends My_Controller {
 		*/
 		
 		$this->db->select('
-		p.id as id, p.name as person, g.name as groupname, c.name as company
+		p.id as id, p.name as person,p.login as login, g.name as groupname, c.name as company
 		from persons p
 		left join groups g on g.id=p.group_id
 		left join companies c on c.id = p.company_id;

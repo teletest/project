@@ -51,6 +51,7 @@ function tags()
 			'main_menu'		=> '',
 			'user'			=> '',
 			'logout'		=> '',
+			'change_password' => '',
 			'is_admin'		=> FALSE,
 			'message'		=> '',
 			'debug'			=> '',
