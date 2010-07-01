@@ -3,7 +3,7 @@
 
 <div id="loginformdiv">
 
-   <form action="login/log_in" method="post">
+   <form action="{site_url}index.php/login/log_in" method="post">
 					
 <label for="login_username">Username:</label>
 <input type="text" id="login_username" name="login_username" value="" /><br />
