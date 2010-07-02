@@ -14,7 +14,9 @@ header('Content-Type: text/html; Charset=UTF-8');
 <script type="text/javascript" src="{site_url}theme/js/fusion.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
 <script type="text/javascript" src="{site_url}theme/js/confirm.js"></script>
-
+<!-- validation jquery -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 <link rel="stylesheet" href="{site_url}theme/style.css" type="text/css" media="screen">
 <!-- LyteBox Script -->
 
