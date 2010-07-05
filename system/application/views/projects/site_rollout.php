@@ -64,10 +64,13 @@ $this->load->view('projects/site_search_form');
 	  <td><a href='{site_url}index.php/projects/chart/{site_id}/Active' target="_blank">view Status</a> </td>
 	  <td><a href='{site_url}index.php/projects/rollout_details/{site_id}/{project_id}/{s_name}/{state_id}/0'>Details</a> </td>
 	  <td><a href='{site_url}index.php/projects/site_attach_document/{site_id}/{state_id}' >Document</a> </td>
+	  <?php if($this->session->userdata('is_admin')) { ?>  
 	  <td><a href='{site_url}index.php/projects/stages_planned/edit/{site_id}'>Edit</a></td>
 	  <td><a href='{site_url}index.php/projects/stages_planned/mark_complete/{state_id}/{next_state}/{site_id}' >Mark Complete</a></td>
 	  <td><a href='{site_url}index.php/projects/stages_planned/delete/{state_id}' >Delete</a></td>
-	  
+	  <?php } else { ?>
+	  <td colspan="3">&nbsp;</td>
+	  <?php } ?>
 	</tr>
    {/definition} 
  {/if_found}

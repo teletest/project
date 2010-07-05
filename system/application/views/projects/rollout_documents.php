@@ -33,8 +33,12 @@ $this->load->view('projects/search_form');
                     <td><strong>{filename}</strong></td>
                     <td>{attached_on}</td>
                     <td align="center"><a href='{site_url}uploads/{site_id}_{filename}' rel="lyteframe"><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td>
-                    <td align="center"><a href='attachment_delete/{id}/{site_id}'  class="confirmClick" title="Delete this file"><img src="{site_url}/images/delete.png" height="24" width="24"></a></td>
+                 
                     <td align="center"><a href='download_file/{site_id}_{filename}' ><img src="{site_url}/images/download_icon.jpg" height="24" width="24"></a></td>
+				    <?php if($this->session->userdata('is_admin')) { ?>
+				    <td align="center"><a href='attachment_delete/{id}/{site_id}'  class="confirmClick" title="Delete this file"><img src="{site_url}/images/delete.png" height="24" width="24"></a></td>
+				    <?php } else { ?> <td>&nbsp;</td> <?php } ?>
+					
 				  </tr>
 				  {/rolled_out_doc}
                 </tbody></table>

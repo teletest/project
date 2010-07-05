@@ -56,18 +56,24 @@ $this->load->view('projects/search_form');
 	  <td>{latitude}</td>
 	  <td>{longitude}</td>
 	  <td>{isactive}</td>
+	  <?php if($this->session->userdata('is_admin')) { ?>  
 	  {if_not_active}	  
 	  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Activate</a></td>
 	  {/if_not_active}
 	  {if_active}
 	  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Deactivate</a></td>
 	  {/if_active}
+	  <?php } else { ?>
+	  <td>&nbsp;</td>
+	  <?php } ?>
 	  <td><a href='{site_url}index.php/projects/rollout_details/{sid}/{pid}/{name}/{state_id}/{id}'>View Activities</a></td>
 	</tr>
     {/candidates}
 </table>
+<?php if($this->session->userdata('is_admin')) { ?>
 <a href='{site_url}index.php/projects/candidate_add/{sid}/{pid}/{name}'>Add Candidate</a> <br />
 <a href='{site_url}index.php/projects/candidate_upload/{sid}/{pid}/{name}'>Upload Candidate</a> <br />
+<?php } ?>
 {if_not_active}
   <br>
   No active candidate found for this site
@@ -107,8 +113,10 @@ $this->load->view('projects/search_form');
     {/activities}
     {/if_activities}
 </table>
+<?php if($this->session->userdata('is_admin')) { ?>
 <a href='{site_url}index.php/projects/add_activity/{pid}/{sid}/{name}/{state_id}/{cid}' >Add Another Activity</a><br />
 <a href='{site_url}index.php/projects/activity_upload/{sid}/{pid}/{name}/{state_id}/{cid}'>Upload Activities</a> <br />
+<?php } ?>
 <h3>Surveys</h3>
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	<tr>
@@ -144,9 +152,10 @@ $this->load->view('projects/search_form');
 	{/surveys}
 	{/if_surveys}
 </table>
+<?php if($this->session->userdata('is_admin')) { ?>
 <a href='{site_url}index.php/projects/survey_add/{pid}/{sid}/{name}/{cid}' >Add Another Survey</a><br />
 <a href='{site_url}index.php/projects/survey_upload/{sid}/{pid}/{name}/{state_id}/{cid}'>Upload Surveys</a> <br />
-
+<?php } ?>
 <h3>Atachments</h3>
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	<tr>
