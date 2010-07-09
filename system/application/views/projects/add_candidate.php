@@ -1,4 +1,6 @@
 <?php  $this->load->view('header');  ?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 <script type="text/javascript">
     $(document).ready(function() { 
       $("#candidate_Frm").validate({ 
@@ -41,7 +43,7 @@ $this->load->view('projects/search_form');
 <input type="hidden" value="{sname}" name="sname" />
 <tbody>
 <tr>
-    <td align="right" width="230">* Code:</td>
+    <td align="right" width="230"><label for="login_username"><span class="label">* Code:</span></label></td>
     <td><span style="color:red;"><?php echo form_error('code'); ?></span><input type="text" name="code" value="{code}"  /></td>
 </tr>
 <tr>

@@ -15,8 +15,7 @@ header('Content-Type: text/html; Charset=UTF-8');
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
 <script type="text/javascript" src="{site_url}theme/js/confirm.js"></script>
 <!-- validation jquery -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+
 <link rel="stylesheet" href="{site_url}theme/style.css" type="text/css" media="screen">
 <!-- LyteBox Script -->
 
@@ -48,7 +47,6 @@ header('Content-Type: text/html; Charset=UTF-8');
 <!-- end calendar icon -->
 
 <!-- js expand -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="{site_url}theme/js/jExpand.js"></script>
 <link rel="stylesheet" href="{site_url}theme/js_expand.css" type="text/css" media="screen">
 <!-- end js expand -->
@@ -60,7 +58,7 @@ header('Content-Type: text/html; Charset=UTF-8');
 
 <!-- zebra filtering script -->
 <link rel="stylesheet" href="{site_url}theme/zebra_filter.css" type="text/css" media="screen" charset="utf-8">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script> 
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script> -->
 <script src="{site_url}theme/js/zebra_filter.js" type="text/javascript" charset="utf-8"></script> 
 <!-- end zebra filtering script -->
           
@@ -71,7 +69,7 @@ header('Content-Type: text/html; Charset=UTF-8');
 <!-- uploadify -->
 <link href="{site_url}theme/default.css" rel="stylesheet" type="text/css" />
 <link href="{site_url}theme/uploadify.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="{site_url}theme/js/uploadify/jquery-1.3.2.min.js"></script>
+<!--<script type="text/javascript" src="{site_url}theme/js/uploadify/jquery-1.3.2.min.js"></script> -->
 <script type="text/javascript" src="{site_url}theme/js/uploadify/swfobject.js"></script>
 <script type="text/javascript" language="javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 <script type="text/javascript" src="{site_url}theme/js/uploadify/jquery.uploadify.v2.1.0.min.js"></script>
@@ -101,21 +99,22 @@ $(document).ready(function() {
 												$.post('<?php echo site_url('upload/uploadify');?>',{filearray: response},function(info){
 													$("#target").append("<input type='hidden' name='name' value='" +response+ "' />");  //Add response returned by controller																		  
 												 $('#name').val(response);
-												$("#success").empty(this).append("<h3>Image Successfully Uploaded</h3>"); //clears browse button, replaces with success message
+												$("#success").empty(this).append("<h3>File Successfully Uploaded</h3>"); //clears browse button, replaces with success message
   
 												});								 			
 							}
 	});
 });
 </script>
-</head>
+
 <!-- end uploadify -->
 {extraHeadContent}
 
 </head>
 
-<!--<body onload="document.getElementById('showplan').scrollTop =600;">-->
-<body >
+<!--<body onload="document.getElementById('showplan').scrollTop =600;"> -->
+<body>
+
   <div id="page-wrap1">
     <div id="page-wrap2">
       <!-- page (actual site content, custom width) -->
