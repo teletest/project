@@ -1,20 +1,14 @@
 <?php
 $this->load->view('header');
 ?>
-<div class="art-contentLayout">
-<?php
-$this->load->view('sidebar');
-?>
-<div class="art-content">
- <div class="art-Post">
-  <div class="art-Post-body">
-    <div id="ShowTab">
+
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
     <ul>
     <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
     <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
         <div id="view" >
-        <table align="left" class="ewTable" id="ewlistmain" width="20%">
+        <table align="left" class="ewTable" id="ewlistmain" width="100%">
 	    <tbody>
 		<tr class="ewTableHeader">
 		  <td valign="top" >Code</td>
@@ -104,15 +98,5 @@ $this->load->view('sidebar');
         </div>
     </div>
 
-  </div>
 
- </div>
-
-</div>
-
-
-
-
-<?php $this->load->view('sidebar2'); ?>
-</div>
 <?php $this->load->view('footer'); ?>

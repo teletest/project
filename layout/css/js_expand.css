@@ -1,0 +1,12 @@
+<style type="text/css">
+       body { font-family:Arial, Helvetica, Sans-Serif; font-size:0.8em;}
+        #report { border-collapse:collapse;}
+        #report h4 { margin:0px; padding:0px;}
+        #report img { float:right;}
+        #report ul { margin:10px 0 10px 40px; padding:0px;}
+        #report th { background:#ebebeb url(header_bkg.png) repeat-x scroll center left;  border-right: 1px solid #d9d9d9;   border-top: 1px solid #d9d9d9; color:#000; padding:3px 6px; text-align:left;}
+        #report td { background:#fff none repeat-x scroll center left; border-right: 1px solid #d9d9d9;   border-top: 1px solid #d9d9d9; color:#000; padding:3px 6px; }
+        #report tr.odd td { background:#fff url(row_bkg.png) repeat-x scroll center left; cursor:pointer; }
+        #report div.arrow { background:transparent url(images/arrows.png) no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
+        #report div.up { background-position:0px 0px;}
+    </style>

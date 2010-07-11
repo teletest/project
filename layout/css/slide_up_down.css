@@ -1,0 +1,48 @@
+
+body{
+	font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;	/* Font to use */
+	margin:0px;
+	
+}
+.dhtmlgoodies_question{	/* Styling question */
+	/* Start layout CSS */
+	color:#000;
+	font-size:0.9em;
+	background-color:#ebebeb;
+	width:430px;
+	margin-bottom:2px;
+	margin-top:2px;
+	padding-left:2px;
+	padding-top:5px;
+	background-image:url('images/bg_answer.gif');
+	background-repeat:no-repeat;
+	background-position:top right;	
+	height:28px;
+	font-weight:bold;
+	text-align: center;
+	border:1px solid #317082;
+	/* End layout CSS */
+	
+	overflow:hidden;
+	cursor:pointer;
+}
+.dhtmlgoodies_answer{	/* Parent box of slide down content */
+	/* Start layout CSS */
+	/*border:1px solid #317082;
+	background-color:#E2EBED;
+	width:400px;
+	*/
+	/* End layout CSS */
+	
+	visibility:hidden;
+	height:0px;
+	overflow:hidden;
+	position:relative;
+
+}
+.dhtmlgoodies_answer_content{	/* Content that is slided down */
+	padding:1px;
+	font-size:0.9em;	
+	position:relative;
+}
+
