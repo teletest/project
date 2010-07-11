@@ -8,7 +8,7 @@
     <div id="add" >
 
 	<h3>Adding an Activity to {id}</h3>
-{a_details}
+    {a_details}
 	<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
 	<form name="addFrm" action="{site_url}index.php/projects/activity_edit" method="post" >
 	<input type="hidden" value="{pid}" name="pid" />
@@ -20,7 +20,7 @@
 	<tr>
 		<td align="right" width="230">Date:</td>
     <td><input class="text" name="act_date" value="{date}"  /></td>
-</tr>
+    </tr>
 	<tr>
 	<td align="right" width="230">Type:
 	</td>
@@ -38,20 +38,20 @@
 	<tr>
 		<td align="right">* Subject:</td>
     <td><input class="text" name="act_subject" value="{subject}" maxlength="255" size="50" type="text" /> </td>
-</tr>
+    </tr>
 	<tr>
 		<td align="right" valign="top">* Description:</td>
     <td><textarea class="text"  cols="50" name="act_desc" style="height: 100px;">{desc}</textarea></td>
-</tr>
+    </tr>
 	
 	<tr>
 		<td align="right" valign="top">* Comments:</td>
     <td><textarea class="text" cols="50" name="act_comments" style="height: 100px;">{comments}</textarea></td>
-</tr>
+    </tr>
 	<tr>
 		<td align="right" >Activity By:</td>
     <td><input class="text" name="activity_by" value="{activity_by}" maxlength="255" size="50" type="text" /> </td>
-</tr>
+    </tr>
 	
 	<tr>
 	
@@ -67,7 +67,8 @@
 	<tr>
 		<td align="right">* Required Fields</td>
     <td></td>
-</tr><tr>
+    </tr>
+    <tr>
 		<td align="left">
 			<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
 		</td>

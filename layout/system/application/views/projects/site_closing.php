@@ -2,14 +2,12 @@
 $this->load->view('header');
 ?>
 
-<div class="art-contentLayout"> 
-
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+    <ul>
+    <li><a href="{site_url}index.php/projects/site_closing/#add"><span>Site Closing</span></a></li>
+    
+    </ul>
+    <div id="add" >
 
 <h1>Site Closing</h1>
 
@@ -100,6 +98,7 @@ $this->load->view('sidebar');
                   </table>
 
 
+</div>
 </div>
 <?php
 $this->load->view('footer');

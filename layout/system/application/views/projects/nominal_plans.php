@@ -2,17 +2,14 @@
 $this->load->view('header');
 ?>
 
-<div class="art-contentLayout"> 
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+    <ul>
+    <li><a href="{site_url}index.php/projects/nominal_plans/#add"><span>Nominal Plan</span></a></li>
+    
+    </ul>
+    <div id="add" >
 
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
-
-
-<h1>Nominal Plan</h1>
+    <h1>Nominal Plan</h1>
 
     <br>
     <li>
@@ -40,7 +37,7 @@ $this->load->view('sidebar');
 	<br>
 	</li>
 
-
+    </div>
 </div>
 <?php
 $this->load->view('footer');

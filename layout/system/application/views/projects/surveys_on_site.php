@@ -2,42 +2,39 @@
 $this->load->view('header');
 ?>
 
-<div class="art-contentLayout"> 
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+    <ul>
+    <li><a href="{site_url}index.php/projects/surveys_on_site/#add"><span>Surveys On Site</span></a></li>
+    
+    </ul>
+    <div id="add" >
 
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
-
-
-<h3>Surveys made on Site</h3>
+	<h3>Surveys made on Site</h3>
 	
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
-	
-	<tr>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Surveys Made By</strong></td>
+		
+		<tr>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Surveys Made By</strong></td>
 	  <td align="center" bgcolor="#e8e8d0"><strong>Type</strong></td>
 	  <td align="center" bgcolor="#e8e8d0"><p><strong>Details</strong></p></td>           
 	</tr>
-
-	<tr>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	  <td>&nbsp;</td>
-	</tr>
-{surveys}
-	<tr>
-	  <td>{code}</td>
+	
+		<tr>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		  <td>&nbsp;</td>
+		</tr>
+	{surveys}
+		<tr>
+		  <td>{code}</td>
 	  <td>{type}</td>
 	  <td><a href='../survey_details/{id}' rel="lyteframe" >Details</a> </td>
 	</tr>
-
-{/surveys}    
-    
-</table>
-
+	
+	{/surveys}    
+		
+	</table>
+    </div>
 
 
 </div>

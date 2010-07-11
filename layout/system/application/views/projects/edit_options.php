@@ -16,15 +16,13 @@ $this->load->view('header');
   });
 </script>
 
-<div class="art-contentLayout"> 
-
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
-<h1>Nominal Plan</h1>
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+    <ul>
+    <li><a href="{site_url}index.php/projects/edit_options/#add"><span>Edit Options</span></a></li>
+    
+    </ul>
+    <div id="add" >
+    <h1>Edit Plan</h1>
 
     <br>
 	<span style="color:red;"><?php echo validation_errors();?></span>
@@ -47,7 +45,7 @@ $this->load->view('sidebar');
 			    <div style="float:left;"> <?php  $this->load->view("projects/edit_cell"); ?></div> 
 			</div>
 	<br>
-
+    </div>
 </div>
 <?php
 $this->load->view('footer');

@@ -11,65 +11,62 @@ $this->load->view('header');
 	}
 </script>
 
-<div class="art-contentLayout"> 
+<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+    <ul>
+    <li><a href="{site_url}index.php/projects/upload_calendar/#add"><span>Upload Calendar</span></a></li>
+    
+    </ul>
+    <div id="add" >
 
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
-
-
-<h3>Import Calendar</h3>
+	<h3>Import Calendar</h3>
 <table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
-<form name="calendarForm" id="calendarForm" action="{site_url}index.php/projects/calendar_uploaded" method="post"  enctype="multipart/form-data">
-<tbody>
-<tr>
-    <td align="right" width="230">Calendar Name:</td>
+	<form name="calendarForm" id="calendarForm" action="{site_url}index.php/projects/calendar_uploaded" method="post"  enctype="multipart/form-data">
+	<tbody>
+	<tr>
+		<td align="right" width="230">Calendar Name:</td>
     <td><input class="text" type="text" name="calendar_name" id="calendar_name" value="<?php  echo set_value('calendar_name'); ?>"  maxlength="15" onkeyup="disable_upload(document.calendarForm);" />  
-	<span style="color:red;"><?php echo form_error('calendar_name'); ?>{error_msg} <?php echo $this->session->flashdata('conf_msg'); ?></span>
-	<p id="response"></p>
+		<span style="color:red;"><?php echo form_error('calendar_name'); ?>{error_msg} <?php echo $this->session->flashdata('conf_msg'); ?></span>
+		<p id="response"></p>
 	 </td>
-</tr>
-<tr>
-    <td>&nbsp;</td>
-    <td align="right" width="230" colspan="2"><input type="checkbox" name="overwrite" value="1" <?php echo set_checkbox('overwrite', '1'); ?>  />
-	Overwrite if name already exists?
-	</td>
-</tr>
-<tr>
-    <td align="right">Import File:</td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td align="right" width="230" colspan="2"><input type="checkbox" name="overwrite" value="1" <?php echo set_checkbox('overwrite', '1'); ?>  />
+		Overwrite if name already exists?
+		</td>
+	</tr>
+	<tr>
+		<td align="right">Import File:</td>
 	<td> <input name="userfile" type="file" value="" size="35" disabled="disabled" ></td>
    
 </tr>
-<tr>
-    <td align="left">
-        <input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
-    </td>
-    <td align="right">
-		<input type="submit" value="upload" name="submit" id="submit_button" />
-    </td>
-</tr>
-</tbody>
-</form>
-</table>
-
-<h3>Already Created Calendars</h3>
+	<tr>
+		<td align="left">
+			<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
+		</td>
+		<td align="right">
+			<input type="submit" value="upload" name="submit" id="submit_button" />
+		</td>
+	</tr>
+	</tbody>
+	</form>
+	</table>
+	
+	<h3>Already Created Calendars</h3>
 
 <table>
-<tr>
-	<th>Name</th><th>Action</th>
+	<tr>
+		<th>Name</th><th>Action</th>
 </tr>
-{calendar}
-<tr>
-	<td>{name} </td>
+	{calendar}
+	<tr>
+		<td>{name} </td>
 	<td><a href='calendar_details/{id}'  >Details</a> | <a href='calendar_edit/{id}'>Edit</a> | <a href='calendar_delete/{id}'>Delete</a></td>
 </tr>
-{/calendar}
-</table>
+	{/calendar}
+	</table>
 
-
+   </div>
 </div>
 <?php
 $this->load->view('footer');
