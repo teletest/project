@@ -2156,7 +2156,7 @@ var PERSERVESTATE = 0; //backward compatibility
 
 var PRESERVESTATE = 0;
 
-//var ICONPATH = '<?php echo base_url()."images/"; ?>';
+//var ICONPATH = '../images/';
 
 var HIGHLIGHT = 0;
 

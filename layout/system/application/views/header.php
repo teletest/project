@@ -70,7 +70,11 @@ header('Content-Type: text/html; Charset=UTF-8');
         <![endif]-->
         
 <!--Tab End-->
+<script type=text/javascript>
+var ICONPATH = '<?php echo base_url()."images/"; ?>';
 
+var SITEURL = '<?php echo site_url(); ?>';
+</script>
 <!--Tree Menu-->
 <SCRIPT src="{site_url}js/ua.js"></SCRIPT>
 <SCRIPT src="{site_url}js/ftiens4.js"></SCRIPT>
@@ -142,7 +146,7 @@ function HideMe(srcElement) {
 								</table>                </td>
           </tr>
           <tr>
-            <td height="34" colspan="3" align="center" valign="top" background="images/menu-bg.jpg" style="padding-top:4px;"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <td height="34" colspan="3" align="center" valign="top" background="{site_url}images/menu-bg.jpg" style="padding-top:4px;"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
                 <td height="22" align="center" class="MenuText">Our Company</td>
                 <td align="center" class="MenuText">Our Company</td>
