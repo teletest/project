@@ -7,10 +7,10 @@ $this->load->view('header');
     <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
     <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
-        <div id="view" >
-        <table align="left" class="ewTable" id="ewlistmain" width="100%">
+	<div id="view" >
+     <table width="90%">
 	    <tbody>
-		<tr class="ewTableHeader">
+		<tr>
 		  <td valign="top" >Code</td>
 		  <td valign="top">Status</td>
 		  <td valign="top">Created on</td>
@@ -21,8 +21,8 @@ $this->load->view('header');
 		 <!-- <td valign="top">% Complete</td>  -->                
 		</tr>
 		</tbody>
-		<tbody id="thetable">
-		<tr onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
+		<tbody >
+		<tr>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
@@ -33,16 +33,14 @@ $this->load->view('header');
 		 <!-- <td>&nbsp;</td> -->
 		</tr>
 	{if_not_found}
-    <tr onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
+    <tr>
 	<td colspan="8"> Your search did not return any results. </td>
 	</tr>
 	{/if_not_found}
 	{if_found}
 
     {projects}
-	<!--<tr class="ewTableAltRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style=""> -->
-
-	<tr onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
+	<tr>
 
 	  <td><a href='{site_url}index.php/projects/project_summary/{id}' >{code}</a></td>
 	  <td>{status}</td>
@@ -57,46 +55,46 @@ $this->load->view('header');
     {/projects} 
    {/if_found}                 
      </tbody>             
-</table> 
+     </table> 
 
-        </div>
-        <div id="activity_calendar">
-		<h2>Activity Calendar</h2>  
-		<br>
-		<form action="{site_url}index.php/projects/" method="post">  
-		<table  align="center" class="ewTable" id="ewlistmain" width="100%">
-		<tr bordercolorlight="#999999" bordercolordark="#666666"> 
-			<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/prev.jpg" /> </a></th>
-			<th colspan="5">{month}{year}</th>
-			<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar""> <img height ="40" src="{site_url}images/next.jpg" /> </a></th>		
+	</div>
+	<div id="activity_calendar">
+	<h2>Activity Calendar</h2>  
+	<br>
+	<form action="{site_url}index.php/projects/" method="post">  
+	<table  align="center" width="100%">
+	<tr bordercolorlight="#999999" bordercolordark="#666666"> 
+		<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/prev.jpg" /> </a></th>
+		<th colspan="5">{month}{year}</th>
+		<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar"> <img height ="40" src="{site_url}images/next.jpg" /> </a></th>		
+	</tr>
+	<tr>
+		<th>Sun</th>
+		<th>Mon</th>
+		<th>Tue</th>
+		<th>Wed</th>
+		<th>Thu</th>
+		<th>Fri</th>
+		<th>Sat</th>
+		
+	</tr>		
+	{weeks}	
+	<tr>
+	{days}	
+			<td>{day}<br />
+			<ul>
+			{activities}
+			<li><a href='../../../../project/system/application/views/projects/projects/projects_details/%7Bid%7D' rel="lyteframe" >{code}</a></li>
+			{/activities}
+			</ul>
+			</td>
+	{/days}	
 		</tr>
-		<tr  class="ewTableHeader" >
-			<th>Sun</th>
-			<th>Mon</th>
-			<th>Tue</th>
-			<th>Wed</th>
-			<th>Thu</th>
-			<th>Fri</th>
-			<th>Sat</th>
-			
-		</tr>		
-		{weeks}	
-		<tr class="ewTableRow" onMouseOver="ew_MouseOver(this);" onMouseOut="ew_MouseOut(this);" onClick="ew_Click(this);" style="">
-		{days}	
-				<td>{day}<br />
-				<ul>
-				{activities}
-				<li><a href='../../../../project/system/application/views/projects/projects/projects_details/%7Bid%7D' rel="lyteframe" >{code}</a></li>
-				{/activities}
-				</ul>
-				</td>
-		{/days}	
-			</tr>
-		{/weeks}
-		</table>
-		</form>
-        </div>
-    </div>
+	{/weeks}
+	</table>
+	</form>
+	</div>
+</div>
 
 
 <?php $this->load->view('footer'); ?>
