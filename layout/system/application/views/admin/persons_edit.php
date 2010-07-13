@@ -430,8 +430,8 @@ $this->load->view('header');
           </tr>
 
           <tr>
-            <td align="right">Is user?</td>
-            <td><input name="is_user" type="checkbox" id="is_user" value="1" onChange="adjust_form()" {isactive}></td>
+            <!--<td align="right">Is user?</td>
+            <td><input name="is_user" type="checkbox" id="is_user" value="1" onChange="adjust_form()" {isactive}></td>-->
             <td align="right"> User Group:</td>
             <td>
               <select name="group_id" id="group_id" class="text" size="1" >
@@ -441,20 +441,22 @@ $this->load->view('header');
 				<?php endforeach;?>
               </select>
             </td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
           </tr>
 		  
 		  <tr>
             <td align="right">* Email:</td>
             <td><input class="text" name="email" value="{email}" maxlength="255" size="40" type="text"></td>
             <td align="right" width="230">* Login ID:</td>
-            <td><input class="text" name="login" id="login" value="{login}" disabled></td>
+            <td><span style="color:red;"><?php echo form_error('login'); ?></span><input class="text" name="login" id="login" value="<?php  echo set_value('login'); ?>" ></td>
           </tr>
           
 		  <tr>
             <td align="right">* Password:</td>
-            <td><input class="text" name="password" id="password" value="{password}" maxlength="32" size="32" type="password" disabled> </td>
+            <td><span style="color:red;"><?php echo form_error('password'); ?></span><input class="text" name="password" id="password" value="<?php  echo set_value('password'); ?>" maxlength="32" size="32" type="password"> </td>
             <td align="right">* Confirm Password:</td>
-            <td><input class="text" name="password_check" id="password_check" value="{password_check}" maxlength="32" size="32" type="password" disabled></td>
+            <td><?php echo form_error('password_check'); ?></span><input class="text" name="password_check" id="password_check" value="<?php  echo set_value('password_check'); ?>" maxlength="32" size="32" type="password"></td>
           </tr>
 
 		  <tr>
@@ -485,12 +487,12 @@ $this->load->view('header');
 				if(document.getElementById('is_user').checked)	
 					{
 						document.getElementById('login').disabled = false;
-						document.getElementById('group').disabled = false;
+						document.getElementById('group_id').disabled = false;
 						document.getElementById('password').disabled = false;
 						document.getElementById('password_check').disabled = false;
 					}else{
 						document.getElementById('login').disabled = true;
-						document.getElementById('group').disabled = true;
+						document.getElementById('group_id').disabled = true;
 						document.getElementById('password').disabled = true;
 						document.getElementById('password_check').disabled = true;
 					}

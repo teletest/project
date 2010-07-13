@@ -61,8 +61,12 @@ $this->load->view('header');
 	{calendar}
 	<tr>
 		<td>{name} </td>
-	<td><a href='calendar_details/{id}'  >Details</a> | <a href='calendar_edit/{id}'>Edit</a> | <a href='calendar_delete/{id}'>Delete</a></td>
-</tr>
+	<td><a href='calendar_details/{id}'  >Details</a>
+	 <?php if($this->session->userdata('is_admin')) { ?>  
+	 | <a href='calendar_edit/{id}'>Edit</a> | <a href='calendar_delete/{id}'>Delete</a>
+	 <?php } ?>
+	 </td>
+    </tr>
 	{/calendar}
 	</table>
 

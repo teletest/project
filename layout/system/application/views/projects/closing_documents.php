@@ -30,8 +30,10 @@ $this->load->view('header');
 						  <td>{filename}</td>
 					  <td>{attached_on}</td>
 					  <td><a href='{site_url}uploads/{project_id}_{filename}' rel="lyteframe">View</a> | <a href='{site_url}uploads/{project_id}_{filename}'  onClick="window.print();return false">Print</a>
-							 |<a href='{site_url}/index.php/projects/attachment_delete/{id}/{project_id}' class="confirmClick" title="Delete this project" >Delete</a>
-						  </td>
+					  <?php if($this->session->userdata('is_admin')) { ?>      
+						 |<a href='{site_url}/index.php/projects/attachment_delete/{id}/{project_id}' class="confirmClick" title="Delete this project" >Delete</a>
+					  <?php } ?> 
+					  </td>
 					</tr>	
 					{/closing_attachments}     
 					  

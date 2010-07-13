@@ -30,13 +30,17 @@ $this->load->view('header');
 					  {plan}
 					  <tr>
 						<td>{plan_name}</td>
-					<!--<td>{project_name}</td>-->
+					    <!--<td>{project_name}</td>-->
 						<!--<td align="center"><a href='{site_url}index.php/projects/display_nominal_plan/{id}' ><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td> -->
 						<td align="center"><a href='{site_url}index.php/projects/plan_summary/{id}' ><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td>
-					<td align="center"><a href='{site_url}index.php/projects/delete_plan/{id}/{project_id}'  class="confirmClick" title="Delete this project"><img src="{site_url}/images/delete.png" height="24" width="24"></a></td>
-                    <td align="center"><a href='{site_url}index.php/projects/edit_plan/{id}' >edit</a></td> 
-                  
-                  </tr>
+						<?php if($this->session->userdata('is_admin')) { ?>    
+						<td align="center"><a href='{site_url}index.php/projects/delete_plan/{id}/{project_id}'  class="confirmClick" title="Delete this project"><img src="{site_url}/images/delete.png" height="24" width="24"></a></td>
+						<td align="center"><a href='{site_url}index.php/projects/edit_plan/{id}' >edit</a></td> 
+						<?php } else { ?>
+						<td colspan="2">&nbsp;</td>
+						<?php } ?>		
+					  
+                      </tr>
 					  {/plan}
 	
 					</tbody></table>

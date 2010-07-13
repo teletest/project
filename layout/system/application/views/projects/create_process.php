@@ -50,7 +50,9 @@ $this->load->view('header');
 					</tbody></table>
 					
 					<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
-					<input type="button"  value="Implement New Process" onclick="this.form.submit();" />
+					<?php if($this->session->userdata('is_admin')) { ?>
+				     <input type="button"  value="Implement New Process" onclick="this.form.submit();" />
+				    <?php } ?>
 					</form>
         </div>
 </div>

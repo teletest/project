@@ -109,7 +109,11 @@ $this->load->view('header');
 		<tr valign="top" height="20">
 			<td align="right">&nbsp;</td>
 			<td>
-				<input type="button"  value="Plan" onclick="this.form.submit();" />
+				<?php if($this->session->userdata('is_admin')) { ?>  
+             	<input type="button"  value="Plan" onclick="this.form.submit();" />
+			    <?php } else { ?>
+			    &nbsp;
+			    <?php } ?>
 			</td> 
 		</tr>
 		
@@ -161,8 +165,11 @@ $this->load->view('header');
 		  
 		  </td> -->
 		  <td><a href='{site_url}index.php/projects/chart/{id}/Planned'   target="_blank" >View Planned Stages</a> |
-		  <a href='{site_url}index.php/projects/site_dorollout/{id}/{project_id}'>Activate</a> | <a href='{site_url}index.php/projects/site_attach_document/{id}/0'>Document</a>
-		  
+		  <?php if($this->session->userdata('is_admin')) { ?>  
+	       <a href='{site_url}index.php/projects/site_dorollout/{id}/{project_id}'>Activate</a> |
+	      <?php } ?>
+		  <a href='{site_url}index.php/projects/site_attach_document/{id}/0'>Document</a>
+	  
 		  </td>
 		</tr>
 	{/projects_nr}                  

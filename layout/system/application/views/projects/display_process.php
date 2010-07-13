@@ -32,8 +32,11 @@ $this->load->view('header');
 				  
 						<td>{name}</td>
 						<td align="center"><a href='{site_url}index.php/projects/process_details/{id}' rel="lyteframe"><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td>
+						<?php if($this->session->userdata('is_admin')) { ?>    
 						<td align="center"><a href='{site_url}index.php/projects/delete_process/{id}'  class="confirmClick" title="Delete this process"><img src="{site_url}/images/delete.png" height="24" width="24"></a></td>
-						<!--<td align="center"><a href='edit_plan/{id}' rel="lyteframe" ><img src="{site_url}/images/edit.jpg" height="24" width="24"></a></td> -->
+                    	<?php } else { ?>
+						<td>&nbsp;</td>
+						<?php } ?><!--<td align="center"><a href='edit_plan/{id}' rel="lyteframe" ><img src="{site_url}/images/edit.jpg" height="24" width="24"></a></td> -->
 					  
 					  </tr>
 					  {/process}

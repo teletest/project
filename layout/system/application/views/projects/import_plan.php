@@ -42,9 +42,13 @@ $this->load->view('header');
 		<td align="left">
 			<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
 		</td>
+		<?php if($this->session->userdata('is_admin')) { ?>    
 		<td align="right">
 			<input type="submit" value="upload" name="submit" />
 		</td>
+		<?php } else { ?>
+		<td>&nbsp;</td>
+		<?php } ?>
 	</tr>
 	</tbody>
 	</form>

@@ -15,7 +15,9 @@ Attach File :<input type="file" name="userfile" size="20" id="userfile"/>
 
 <br /><br />
 <link href="http://site.com/css/printer.css" rel="stylesheet" type="text/css" media="print" />
+<?php if($this->session->userdata('is_admin')) { ?>
 <input type="submit" value="upload" name="submit"/>
+<?php } ?>
 	    <div id="target">
         
         </div>

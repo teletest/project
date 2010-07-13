@@ -27,12 +27,14 @@ $this->load->view('header');
 					<td> <textarea name="desc" wrap="VIRTUAL" cols="60" rows="6"></textarea>  </td> 
 				</tr>
 					
+				<?php if($this->session->userdata('is_admin')) { ?>    
 				<tr valign="top" height="20">
 					<td align="right">&nbsp;</td>
 					<td>
 						<input type="submit" name="submit" value="Submit" onclick="this.form.submit();" />
 					</td> 
 				</tr>
+				<?php } ?>
 				
 				
 			</table>

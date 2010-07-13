@@ -1,4 +1,3 @@
-
 <head>
 <style type="text/css">
 .style1 {
@@ -11,6 +10,7 @@
 <?php
 $this->load->view('header');
 ?>
+
 
 <div id="main-content">
 
@@ -39,6 +39,7 @@ $this->load->view('header');
     <td><input class="checkbox" name="isactive" type="checkbox" {isactive} > </td>
 </tr>
 {/groups}
+<!--
 <tr>
     <td class="style1" colspan="2"> <strong>List of all associated components</strong></td>
 </tr>
@@ -57,7 +58,7 @@ $this->load->view('header');
     <td width="25%">{type}</td>
 </tr>
 {/components}
-
+-->
 
 </tbody></table>
 

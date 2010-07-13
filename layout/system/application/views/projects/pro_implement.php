@@ -74,9 +74,11 @@ $this->load->view('header');
 						</tr>
 						<tr>
 							 <td colspan="2"> <input value="back" onclick="javascript:history.back(-1);" class="button" type="button" /></td>
-							 <td colspan="3">				
-							 <input type="button"  value="Create Process" onclick="this.form.submit();" />
-							 </td>
+							 <?php if($this->session->userdata('is_admin')) { ?>    				
+							 <td colspan="3">
+							 <input type="button"  value="Create Process" onclick="this.form.submit();" /></td>
+							 <?php  else { ?> <td colspan="3">&nbsp;  </td><?php } ?>
+						 
 						</tr>
 	
 	</form>

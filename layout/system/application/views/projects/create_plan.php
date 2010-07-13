@@ -17,9 +17,12 @@
     <td align="left">
         <input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
     </td>
-    <td align="right">
+    <?php if($this->session->userdata('is_admin')) { ?>
+	<td align="right">
 			<input value="submit"  type="button" onclick="this.form.submit();" />
     </td>
+	<?php } else { ?> &nbsp;
+	<?php } ?>
 </tr>
 </tbody>
 </form>
