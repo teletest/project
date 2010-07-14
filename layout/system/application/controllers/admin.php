@@ -6,10 +6,10 @@ class Admin extends My_Controller {
 		parent::My_Controller();
 		$this->load->model('admin_model');
 		
-		if ( ! $this->site_sentry->is_admin())
+		/*if ( ! $this->site_sentry->is_admin())
 		{
 			redirect('');
-		}
+		}*/
 		
 		
 	}
@@ -20,6 +20,10 @@ class Admin extends My_Controller {
 		$data['tabs']	= tabs('admin');
 		$data['admin_title'] = 'Administration - General';
 		$data['admin_menu'] = $this->admin_model->menu();
+		if(!$this->session->userdata('logged_in'))
+		{
+		  redirect('login/');
+		}
 		
 		if ($this->input->post('submit') != '')
 		{
@@ -235,7 +239,7 @@ class Admin extends My_Controller {
 				
 				//==========  group component associatin
 
-				$ar_components = $this->input->post('comp');
+				/* $ar_components = $this->input->post('comp');
 				
 				$final_components = "";
 				
@@ -256,7 +260,7 @@ class Admin extends My_Controller {
 				
 				
 				//$this->db->set($groups_components);
-				$this->db->insert('group_component' , $groups_components); 
+				$this->db->insert('group_component' , $groups_components); */
 
 				
 				
@@ -269,8 +273,8 @@ class Admin extends My_Controller {
 			
 			//=============== getting components ======================
 			
-			$q = $this->db->get('components');
-			$data['components'] = $q->result_array();
+			/*$q = $this->db->get('components');
+			$data['components'] = $q->result_array();*/
 
 
 		
@@ -320,8 +324,8 @@ class Admin extends My_Controller {
 			
 			//=============== getting components ======================
 			
-			$q = $this->db->get('components');
-			$data['components'] = $q->result_array();
+			/*$q = $this->db->get('components');
+			$data['components'] = $q->result_array(); */
 
 
 		
@@ -461,7 +465,7 @@ class Admin extends My_Controller {
 		$this->parser->parse($action, $data);		
 	}
 	
-	function persons($action='' , $id='')
+	function persons($action='' , $id='', $values="")
 	{
 		$data = tags();
 		$data['tabs'] = tabs('admin');
@@ -483,6 +487,30 @@ class Admin extends My_Controller {
 			//if data submitted
 			if($this->input->post('Submit') != '')
 			{
+			   $this->load->helper(array('form', 'url'));
+			   $this->load->library('form_validation');
+			   $this->form_validation->set_rules('login', 'Login', 'required');
+			   $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[32]|matches[password_check]');
+			   $this->form_validation->set_rules('password_check', 'Confirm New Password', 'required|min_length[3]|max_length[32]');
+			   $this->form_validation->set_rules('group_id', 'Group', 'required');
+			   $this->form_validation->set_message('matches', $this->lang->line('login_password_reconfirm'));
+			 
+			   if ($this->form_validation->run() == FALSE)
+			   {
+				 // $this->redirect_to($user_id, validation_errors());
+				 // $this->parser->parse("add", "", validation_errors());
+						 // company names
+					$qry = $this->db->get('companies');
+					$data['companies'] = $qry->result_array();
+					
+					// group names
+					$qry = $this->db->get('groups');
+					$data['groups'] = $qry->result_array();
+					
+					$action =  'admin/persons_add';
+			   }
+			   else
+			   {	
 				$person = array(
 				'title' => $this->input->post('title'),
 				'job_title' => $this->input->post('job_title'),
@@ -580,14 +608,16 @@ class Admin extends My_Controller {
 				'isactive' => ($this->input->post('is_user') == '')?0:1,
 				'login' => $this->input->post('login'),
 				'password' => md5($this->input->post('password')),
+				'password_check' => md5($this->input->post('password_check')),
 				'group_id' => $this->input->post('group_id')
 				);
 				
 				// inserting data
 				$this->db->insert('persons' , $person);				
 				redirect('admin/persons');
+			  }
 			}
-
+ 
 			// company names
 			$qry = $this->db->get('companies');
 			$data['companies'] = $qry->result_array();
@@ -603,6 +633,25 @@ class Admin extends My_Controller {
 		//if update request
 			if($this->input->post('Edit') == 'submit')
 			{
+			   $this->load->helper(array('form', 'url'));
+			   $this->load->library('form_validation');
+			  // $this->form_validation->set_rules('password', 'Old Password', 'required|callback_matches_curr_pw');
+			   $this->form_validation->set_rules('login', 'Login', 'required');
+			   $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[32]|matches[password_check]');
+			   $this->form_validation->set_rules('password_check', 'Confirm New Password', 'required|min_length[3]|max_length[32]');
+			   $this->form_validation->set_rules('group_id', 'Group', 'required');
+			   $this->form_validation->set_message('matches', $this->lang->line('login_password_reconfirm'));
+			 
+			   if ($this->form_validation->run() == FALSE)
+			   {
+				 // $this->redirect_to($user_id, validation_errors());
+				  //$this->input->post('Edit')= "";
+				  $errors= validation_errors();
+				 // redirect("admin/persons/edit/$id/$errors");
+				 // $this->persons("edit", $id, validation_errors());
+			   }
+			   else
+			   {
 				$person = array(
 				'title' => $this->input->post('title'),
 				'job_title' => $this->input->post('job_title'),
@@ -712,6 +761,7 @@ class Admin extends My_Controller {
 				$this->db->update('persons', $person , array('id' => $id));	
 
 				redirect('admin/persons');
+			  }
 			}
 
 			$this->db->where('id',$id);
@@ -944,7 +994,7 @@ class Admin extends My_Controller {
 		*/
 		
 		$this->db->select('
-		p.id as id, p.name as person, g.name as groupname, c.name as company
+		p.id as id, p.name as person,p.login as login, g.name as groupname, c.name as company
 		from persons p
 		left join groups g on g.id=p.group_id
 		left join companies c on c.id = p.company_id;

@@ -234,9 +234,9 @@ class Projects extends My_Controller {
 			{
 				mkdir($mypath,0777,TRUE);
 			}
-			   $this->load->helper(array('form', 'url'));
-			   $this->load->library('form_validation');
-			   $this->form_validation->set_rules('calendar_name', 'Calendar Name', 'required');
+		    $this->load->helper(array('form', 'url'));
+		    $this->load->library('form_validation');
+		    $this->form_validation->set_rules('calendar_name', 'Calendar Name', 'required');
 			if ($this->form_validation->run() == FALSE)
 			{
 				$this->upload_calendar(validation_errors());
@@ -648,18 +648,14 @@ class Projects extends My_Controller {
 					'is_active' 	=> $this->input->post('is_active'),
 					'attached_on' => $this->input->post('attached_on'),
 				);
-			   /*$id=$this->input->post('id');
-			    if ( ! empty($_FILES)) {
+			   $id=$this->input->post('id');
+			    /*if ( ! empty($_FILES)) {
                   // renames file from filename to projectID_fileanme
 				  rename($path.$_FILES['userfile']['name'], $path.$id.'_'.$tempFile); 
 				}*/
 				 //adds attachement related info in database 
 				$this->db->insert('attachements', $data); 
-				redirect("projects/site_attach_document/$id");
-
-					
-			
-			
+				redirect("projects/site_attach_document/$id");	
 						
 		}
 	}
@@ -1293,7 +1289,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function candidate_add($sid, $pid, $name)
+	function candidate_add($sid="", $pid="", $name="", $values="")
 	{
 		    $data = tags();
 			$data['tabs']	= tabs('projects');
@@ -1338,24 +1334,40 @@ class Projects extends My_Controller {
 		$sname=$this->input->post('sname');
         if($this->input->post('submit') != '')
 		{ 
-		  $data = array(
-					'site_id' => $this->input->post('sid'),
-                    'code' =>  $this->input->post('code'),
-  					'latitude' 	=> $this->input->post('latitude'),
-					'longitude' 	=> $this->input->post('longitude'),
-					'candidate_distance' => $this->input->post('candidate_distance'),
-					'approval1' => $this->input->post('approval1'),
-					'approval2' => $this->input->post('approval2'),
-					'approval3' => $this->input->post('approval3'),
-					'approval4' => $this->input->post('approval4'),
-					'approval5' => $this->input->post('approval5'),
-					'power_connection' => $this->input->post('power_connection'),
-					'gen_set' => $this->input->post('gen_set'),
-					'others' => $this->input->post('others'),
-				);			  
-				$this->db->insert('candidates', $data);
+		    $this->load->helper(array('form', 'url'));
+		    $this->load->library('form_validation');
+		    $this->form_validation->set_rules('code', 'Code', 'required');
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('candidate_distance', 'Candidate Distance', 'required');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				//$this->upload_calendar(validation_errors());
+				$this->candidate_add($sid, $pid, $sname, validation_errors());
+			}
+			else
+			{ 
+			  $data = array(
+						'site_id' => $this->input->post('sid'),
+						'code' =>  $this->input->post('code'),
+						'latitude' 	=> $this->input->post('latitude'),
+						'longitude' 	=> $this->input->post('longitude'),
+						'candidate_distance' => $this->input->post('candidate_distance'),
+						'approval1' => $this->input->post('approval1'),
+						'approval2' => $this->input->post('approval2'),
+						'approval3' => $this->input->post('approval3'),
+						'approval4' => $this->input->post('approval4'),
+						'approval5' => $this->input->post('approval5'),
+						'power_connection' => $this->input->post('power_connection'),
+						'gen_set' => $this->input->post('gen_set'),
+						'others' => $this->input->post('others'),
+					);			  
+					$this->db->insert('candidates', $data);
+					$this->rollout_details($sid, $pid, $sname); 
+			}
 		}
-				$this->rollout_details($sid, $pid, $sname); 
+		
 	}
 	function view_candidate( $site_id = "", $candidate_id = "")
 	{
@@ -2751,10 +2763,7 @@ class Projects extends My_Controller {
 		$data['object_type'] ="ampie.swf";
 		$data['chart_type2']="pie";
 		$data['xml_data'] = $xml_data;
-		//
-		/*$this->load->plugin('to_excel');
-		to_excel($query, ['filename']);
-		*/
+
 		$this->parser->parse('projects/project_summary', $data);	   
 	}
 	function view_regions_in_googlemap($project_id="", $region_name)
@@ -2819,9 +2828,9 @@ class Projects extends My_Controller {
 
          $this->load->helper('url');
 
-         $this->cigooglemapapi->disableTypeControls();
-         $this->cigooglemapapi->disableDirections();
-         $this->cigooglemapapi->setControlSize('small');
+         //$this->cigooglemapapi->disableTypeControls();
+        // $this->cigooglemapapi->disableDirections();
+        // $this->cigooglemapapi->setControlSize('small');
 			 
 		 $data['values'] = $this->projects_model->get_distinct_sites_in_region( $project_id , $region );
 		 
@@ -3154,8 +3163,8 @@ class Projects extends My_Controller {
         $this->cigooglemapapi->height = '300px';
         $this->cigooglemapapi->disableTypeControls();
         //$this->cigooglemapapi->disableSidebar();
-        $this->cigooglemapapi->disableDirections();
-        $this->cigooglemapapi->setControlSize('small');
+        //$this->cigooglemapapi->disableDirections();
+        //$this->cigooglemapapi->setControlSize('small');
 		$this->cigooglemapapi->setMarkerIcon($image_path,$shadow_path,13,30,20,1);
         $i = 0;
 		foreach($values as $value)
