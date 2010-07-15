@@ -78,6 +78,7 @@ class Login extends Controller {
 		$this->load->helper('string');
 		$this->load->library('encrypt');
 		$this->load->library('email');
+	
 	}
 
 	// --------------------------------------------------------------------
@@ -89,6 +90,8 @@ class Login extends Controller {
 		$data = tags();
 		$data['tabs']	= tabs('project');
 		$data['page_title'] = "Login";
+		$data['ShowLeftSide']	=	false;
+        $data['ShowRightSide']	=	false;
 		//Load the URL helper
 		$this->load->helper('url');
 		
@@ -244,7 +247,8 @@ class Login extends Controller {
 		//Load
 		$this->load->helper('url');
 		$this->load->library('validation');
-		
+		$data['ShowLeftSide']	=	false;
+        $data['ShowRightSide']	=	false;
 		//Check incoming variables
 		$rules['login_username']	= "required|min_length[4]|max_length[32]|alpha_dash";
 		$rules['login_password']	= "required|min_length[4]|max_length[32]|alpha_dash";		
@@ -276,7 +280,8 @@ class Login extends Controller {
 	{
 		//Load
 		$this->load->helper('url');
-
+        $data['ShowLeftSide']	=	false;
+        $data['ShowRightSide']	=	false;
 		//Logout
 		$this->simplelogin->logout();
 		redirect('/login/');

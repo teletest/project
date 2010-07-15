@@ -1225,7 +1225,21 @@ blockquote,
 /* end PostQuote */
 
 /* begin Button */
- 
+ .art-button
+{
+	display:inline-block;
+	width: auto;
+	outline:none;
+	border:none;
+	background:none;
+	line-height:26px;
+	margin:0 ;
+	padding:0 ;
+	overflow: visible;
+	cursor: default;
+	text-decoration: none;
+	z-index:0;
+}
 
 .art-button-wrapper
 {

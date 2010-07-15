@@ -1,6 +1,8 @@
 </td>
             <td width="210" align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
+            <!-- Start Right Column-->
+            <?php if ($ShowRightSide){ ?>
+			  <tr>
                 <td height="4"></td>
               </tr>
               <tr>
@@ -50,7 +52,11 @@
                 <td height="4"></td>
               </tr>
            
-            </table></td>
+            </table>
+			
+			 <?php }?>
+            <!-- End Right Column-->
+			</td>
           </tr>
         </table></td>
         </tr>

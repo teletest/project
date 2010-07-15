@@ -34,38 +34,44 @@
 </script>
 <div id="loginformdiv">
 
-   <form action="{site_url}index.php/login/log_in" method="post" id="form1">
+   
 					
-<label for="login_username"><span class="label">Username:</span></label>
-<input type="text" id="login_username" name="login_username" value="" /><br />
+
+
 	
-<label for="login_password">Password:</label>
-<input type="password" id="login_password" name="login_password" value="" /><br />
+
+
 	
-<input type="submit" id="login" name="login" value="Login" />
+
 	
+
+<form action="{site_url}index.php/login/log_in" method="post" id="form1">
+<tr>
+<td height="20">&nbsp;</td>
+<td width="79" height="20" align="left" nowrap="nowrap">
+<label for="login_username"><span class="label">Username:</span></label></td>
+<td height="20" colspan="2"> 
+<input type="text" id="login_username" name="login_username" value="" /></td>
+<td height="20" width="152">&nbsp;</td>
+</tr>
+<tr>
+<td height="20">&nbsp;</td>
+<td width="79" height="20" align="left" nowrap="nowrap">
+<label for="login_password">Password:</label></td>
+<td height="20" colspan="2">
+<input type="password" id="login_password" name="login_password" value="" /><br /></td>
+<td width="152" height="20">&nbsp;</td>
+</tr>
+<tr>
+<td height="20">&nbsp;</td>
+<td width="79" height="20" align="left" nowrap="nowrap">
+Remember Me</td>
+<td width="43" height="20" align="left">
+<input id="modlgn_remember" type="checkbox" name="remember" class="inputbox" value="yes" alt="Remember Me" /></td>
+<td width="46"><input type="submit" id="login" name="login" value="Login" /></td>
+<td width="152" height="20">&nbsp;</td>
+</tr>
 </form>
-
-	<?php // echo form_open('login/log_in', array('id' => 'loginform'));?>
-   <!--
-	<fieldset>
-			<dl>
-				<dt><label for="username">Username:</label></dt>
-				<dd><input tabindex="1" name="username" id="username" size="25" value="" type="text"></dd>
-			</dl>
-			<dl>
-				<dt><label for="password">Password:</label></dt>
-				<dd><input tabindex="2" id="password" name="password" size="25" type="password"></dd>
-			</dl>
-			
-			<dl>
-				<dt>&nbsp;</dt>
-				<dd><?php // echo form_submit('login', $this->lang->line('login_login'), 'id="login" class="submitbutton"');?></dd>
-			</dl>	
-	</fieldset> -->
-
-	<?php // echo form_close();?>
-
 </div>
 
 <br>

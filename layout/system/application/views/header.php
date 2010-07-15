@@ -96,7 +96,13 @@ function HideMe(srcElement) {
 </script>
 
 </head>
-<body>>      
+<body>
+<?php /*if($ShowLeftSide=="")
+{
+        $ShowLeftSide = true;
+		$ShowRightSide= true;
+		}*/
+?>     
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td  width="8" height="8"><img src="{site_url}images/corner-top-left.gif" width="8" height="8" alt=""></td>
@@ -167,7 +173,9 @@ function HideMe(srcElement) {
         <td height="158" align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td width="210" height="129" align="center" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
+             <!-- Start right Column-->
+            <?php if ($ShowLeftSide){ ?>
+			  <tr>
                 <td height="4"></td>
               </tr>
               <tr>
@@ -250,7 +258,10 @@ function HideMe(srcElement) {
                 <td height="4"></td>
               </tr>
            
-            </table></td>
+            </table>
+			<?php }?>
+            <!-- End right Column-->
+			</td>
             <td align="center" valign="top" style="padding-top:4px;" >
 
 

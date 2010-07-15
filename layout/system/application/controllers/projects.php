@@ -37,6 +37,8 @@ class Projects extends My_Controller {
 		$this->load->helper('file');
 		$this->load->helper('download');
 		$this->load->helper('url');
+		$data['ShowLeftSide']	=	true;
+        $data['ShowRightSide']	=	true;
 			
 	}
 /*	function mail()
@@ -54,7 +56,8 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		
+				$data['ShowLeftSide']	=	true;
+        $data['ShowRightSide']	=	true;
 		// setup breadcrumb
         $bc = array(
                'title' => 'Project',
