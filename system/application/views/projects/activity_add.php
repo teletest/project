@@ -36,9 +36,9 @@ $this->load->view('projects/search_form');
 ?>
 
 <h3>Adding an Activity to {sname}</h3>
-
-<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
 <form name="activityFrm" id="activityFrm" action="{site_url}index.php/projects/activity_added" method="post" >
+<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
+
 <input type="hidden" value="{pid}" name="pid" />
 <input type="hidden" value="{sid}" name="sid" />
 <input type="hidden" value="{cid}" name="cid" />

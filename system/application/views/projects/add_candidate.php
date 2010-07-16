@@ -2,21 +2,56 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 <script type="text/javascript">
+jQuery.validator.setDefaults({
+	debug: true,
+	success: "valid"
+});;
+</script>
+<script type="text/javascript">
     $(document).ready(function() { 
-      $("#candidate_Frm").validate({ 
+	  // define lognitude latitude format
+	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
+	
+		//phone_number = phone_number.replace(/\s+/g, ""); 
+		return this.optional(element)  || 
+			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
+        
+		}, "Please specify a valid latitude");
+		
+      $("#candidate_Frm").validate({  
         rules: {
           code: "required",// simple rule, converted to {required:true}
-          latitude: "required",
-		  longitude: "required",
-		  candidate_distance: "required",
-		  email: {// compound rule
+		  longitude: {
+		    required:true,
+		    number:true,
+			
+		   },
+		  candidate_distance:
+		  {
+		   required: true,
+		   number:true
+		  },
+		  latitude: {// compound rule
           required: true,
-          email: true
+          number: true,
+		  Latitude: true
         }
         },
         messages: {
-          code: "Please enter a code."
-        }
+          code: "Please enter a code.",
+		  latitude: {
+		   required : "Please enter latitude",
+		   number: "Please specify valid No"
+		   },
+		  longitude: {
+		   required : "Please enter longitude",
+		   number: "Please specify valid longitude value"
+		   },
+		  candidate_distance: {
+		   required : "Please enter candidate distance",
+		   number : "Please specify valid candidate distance"
+		   }
+		  }
       });
     });
 </script>
@@ -34,9 +69,8 @@ $this->load->view('projects/search_form');
 ?>
 
 <h3>Adding Candidate to {sname}</h3>
-
-<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
 <form name="candidate_Frm" id="candidate_Frm" action="{site_url}index.php/projects/candidate_added" method="post" >
+<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
 
 <input type="hidden" value="{sid}" name="sid" />
 <input type="hidden" value="{pid}" name="pid" />
@@ -102,9 +136,8 @@ $this->load->view('projects/search_form');
     </td>
 </tr>
 </tbody>
-</form>
 </table>
-
+</form>
 </div>
 
 </div>
