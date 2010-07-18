@@ -1189,7 +1189,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function add_activity($pid, $sid, $name, $state_id, $cid)
+	function add_activity($pid, $sid, $name, $state_id, $cid, $values="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
@@ -1211,11 +1211,23 @@ class Projects extends My_Controller {
 	*/
 	function activity_added()
 	{  
-               $pid=$this->input->post('pid');
-			   $sid=$this->input->post('sid');
-			   $cid=$this->input->post('cid');
-			   $state_id=$this->input->post('state_id');
-			   $sname=$this->input->post('sname');
+		   $pid=$this->input->post('pid');
+		   $sid=$this->input->post('sid');
+		   $cid=$this->input->post('cid');
+		   $state_id=$this->input->post('state_id');
+		   $sname=$this->input->post('sname');
+		   $this->form_validation->set_rules('act_subject', 'Subject', 'required');
+		   $this->form_validation->set_rules('act_desc', 'Description', 'required');
+		   $this->form_validation->set_rules('act_comments', 'Comments', 'required');
+
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				//$this->upload_calendar(validation_errors());
+				$this->activity_add($pid, $sid, $sname, $state_id, $cid, validation_errors());
+			}
+			else
+			{ 
 			   
 	           $data = array(
 					'project_id' 	=> $this->input->post('pid'),
@@ -1231,6 +1243,7 @@ class Projects extends My_Controller {
 				);			  
 				$this->db->insert('activities', $data);
 				$this->rollout_details($sid,$pid,$sname,$cid); 
+			}
 	}
 	/**
 	* Taked Activity Id, Project Id, Site ID and Candidate Id as input
@@ -1343,7 +1356,6 @@ class Projects extends My_Controller {
 			
 			if ($this->form_validation->run() == FALSE)
 			{
-				//$this->upload_calendar(validation_errors());
 				$this->candidate_add($sid, $pid, $sname, validation_errors());
 			}
 			else
@@ -1719,7 +1731,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function survey_add($pid, $sid, $name, $cid)
+	function survey_add($pid, $sid, $name, $cid, $values="")
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
@@ -1745,6 +1757,17 @@ class Projects extends My_Controller {
 		$sid=$this->input->post('sid');
 		$name=$this->input->post('sname');
 		$cid = $this->input->post('cid');
+		
+		$this->form_validation->set_rules('latitude', 'Latitude', 'required');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+		$this->form_validation->set_rules('comments', 'Comments', 'required');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->survey_add($pid, $sid, $name, $cid, validation_errors());
+		}
+		else
+		{ 
 		$data = array(
 					'site_id' => $this->input->post('sid'),
 					'candidate_id' => $this->input->post('cid'),
@@ -1784,6 +1807,7 @@ class Projects extends My_Controller {
 				);			  
 				$this->db->insert('surveys', $data);
 				$this->rollout_details($sid,$pid,$name,$cid); 
+			}
 	}
 	/**
 	* Shows the details of survey
@@ -1810,7 +1834,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function survey_update($id, $sid, $cid, $pid)
+	function survey_update($id, $sid, $cid, $pid, $values="")
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
@@ -1834,9 +1858,21 @@ class Projects extends My_Controller {
 	  	$data = tags();
 		$data['tabs']	= tabs('projects');
         $pid=$this->input->post('pid');
+		$cid = $this->input->post('cid');
+		$sid = $this->input->post('sid');
 		$id= $this->input->post('id');
 		if ($this->input->post('submit') != '')
 		{
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('comments', 'Comments', 'required');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->survey_update($id, $sid, $cid, $pid, validation_errors());
+			}
+			else
+			{ 
 			$project = array(
 				    'site_id' => $this->input->post('sid'),
 					'candidate_id' => $this->input->post('cid'),
@@ -1873,7 +1909,8 @@ class Projects extends My_Controller {
 					'summary' => $this->input->post('summary'),
 					'survey_on' => $this->input->post('survey_on'),
 			);
-			$this->db->update('surveys', $project, array('id' => $id));	
+			$this->db->update('surveys', $project, array('id' => $id));
+		   }	
 		}
 		$this->rollout_details($pid,0); 
 	}

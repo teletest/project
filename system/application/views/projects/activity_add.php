@@ -64,16 +64,16 @@ $this->load->view('projects/search_form');
 </tr>
 <tr>
     <td align="right"><label for="act_subject"><span class="label">* Subject:</span></label></td>
-    <td><input name="act_subject" type="text" /> </td>
+    <td><span style="color:red;"><?php echo form_error('act_subject'); ?></span><input name="act_subject" type="text" /> </td>
 </tr>
 <tr>
     <td align="right" valign="top"><label for="act_desc"><span class="label">* Description:</span></label></td>
-    <td><textarea name="act_desc" style="height: 100px;"></textarea></td>
+    <td><span style="color:red;"><?php echo form_error('act_desc'); ?></span><textarea name="act_desc" style="height: 100px;"></textarea></td>
 </tr>
 
 <tr>
     <td align="right" valign="top"><label for="act_comments"><span class="label">* Comments:</span></label></td>
-    <td><textarea name="act_comments" style="height: 100px;"></textarea></td>
+    <td><span style="color:red;"><?php echo form_error('act_comments'); ?></span><textarea name="act_comments" style="height: 100px;"></textarea></td>
 </tr>
 <tr>
     <td align="right" >Activity By:</td>

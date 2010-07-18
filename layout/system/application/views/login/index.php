@@ -27,28 +27,30 @@ $this->load->view('header');
 
 
 										
-												<tr>
-													<td>&nbsp;</td>
-													<td colspan="3" align="left">
-											
+<tr>
+<td>&nbsp;</td>
+<td colspan="3" align="left">
 
-													 <ul> 
 
-                                                  <li><a href="#">Forgot your password?</a></li>
+<ul> 
 
-                                                  <li><a href="#">Forgot your username?</a></li>
+<li><a href="#">Forgot your password?</a></li>
 
-                                                  <li><a href="#">Create an account</a></li> 
-                                                 </ul>													 </td>
-												  <td width="152">&nbsp;</td>
-		</tr>
-												<tr>
-													<td height="2"></td>
-													<td colspan="3" height="2">													</td>
-													<td width="152" height="2"></td>
-		</tr>
-											
-	</table></td>
+<li><a href="#">Forgot your username?</a></li>
+
+<li><a href="#">Create an account</a></li> 
+</ul>													 
+</td>
+<td width="152">&nbsp;</td>
+</tr>
+<tr>
+<td height="2"></td>
+<td colspan="3" height="2">		
+</td>
+<td width="152" height="2"></td>
+</tr>
+
+</table></td>
   </tr>
     <tr>
     <td width="353" height="50" align="center" valign="middle" ></td>

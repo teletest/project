@@ -42,12 +42,12 @@ $this->load->view('header');
 		</tr>
 		<tr valign="top" height="20">
 			<td align="right"> <b> Area : </b> </td>
-			<td> <input type="text" name="area" size="25" value="{area}">  </td> 
+			<td><span style="color:red;"><?php echo form_error('latitude'); ?></span><input type="text" name="area" size="25" value="{area}">  </td> 
 		</tr>
 	
 		<tr valign="top" height="20">
 			<td align="right"> <b> Latitude : </b> </td>
-			<td> <input type="text" name="latitude" size="20" value="{latitude}">  </td> 
+			<td><span style="color:red;"><?php echo form_error('longitude'); ?></span><input type="text" name="latitude" size="20" value="{latitude}">  </td> 
 		</tr>
 		 <tr valign="top" height="20">
 			<td align="right"> <b> Longitude : </b> </td>
@@ -156,7 +156,7 @@ $this->load->view('header');
 		</tr>
 		<tr valign="top" height="20">
 			<td align="right"> <b> Comments : </b> </td>
-			<td> <textarea name="comments" cols="60" rows="6" >{comments}</textarea>  </td> 
+			<td><span style="color:red;"><?php echo form_error('comments'); ?></span><textarea name="comments" cols="60" rows="6" >{comments}</textarea>  </td> 
 		</tr>
 		<tr valign="top" height="20">
 			<td align="right"> <b> Summary : </b> </td>

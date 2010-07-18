@@ -1,22 +1,20 @@
 <?php  $this->load->view('header');  ?>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
-<script type="text/javascript">
-jQuery.validator.setDefaults({
-	debug: true,
-	success: "valid"
-});;
-</script>
+
 <script type="text/javascript">
     $(document).ready(function() { 
 	  // define lognitude latitude format
 	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
-	
-		//phone_number = phone_number.replace(/\s+/g, ""); 
 		return this.optional(element)  || 
 			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
         
 		}, "Please specify a valid latitude");
+		jQuery.validator.addMethod("Longitude", function(longitude, element) {
+		return this.optional(element)  || 
+			 longitude.match(/(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)/);
+        
+		}, "Please specify a valid longitude"); 
 		
       $("#candidate_Frm").validate({  
         rules: {
@@ -24,7 +22,7 @@ jQuery.validator.setDefaults({
 		  longitude: {
 		    required:true,
 		    number:true,
-			
+			Longitude: true
 		   },
 		  candidate_distance:
 		  {
@@ -41,11 +39,11 @@ jQuery.validator.setDefaults({
           code: "Please enter a code.",
 		  latitude: {
 		   required : "Please enter latitude",
-		   number: "Please specify valid No"
+		   number: "Longitude value should be Number"
 		   },
 		  longitude: {
 		   required : "Please enter longitude",
-		   number: "Please specify valid longitude value"
+		   number: "Longitude value should be Number"
 		   },
 		  candidate_distance: {
 		   required : "Please enter candidate distance",
@@ -53,7 +51,7 @@ jQuery.validator.setDefaults({
 		   }
 		  }
       });
-    });
+    }); 
 </script>
 
 <div id="main-content">
