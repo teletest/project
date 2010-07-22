@@ -31,6 +31,7 @@ class Projects extends My_Controller {
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
 		$this->load->library('cigooglemapapi');
+		$this->load->library('Csv_validation');
 		$this->load->helper(array('form', 'url', 'file'));
 		$this->load->library('form_validation');
 		$this->load->plugin('fusion');
@@ -1350,8 +1351,8 @@ class Projects extends My_Controller {
 		    $this->load->helper(array('form', 'url'));
 		    $this->load->library('form_validation');
 		    $this->form_validation->set_rules('code', 'Code', 'required');
-			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
-			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
 			$this->form_validation->set_rules('candidate_distance', 'Candidate Distance', 'required');
 			
 			if ($this->form_validation->run() == FALSE)
@@ -1758,8 +1759,8 @@ class Projects extends My_Controller {
 		$name=$this->input->post('sname');
 		$cid = $this->input->post('cid');
 		
-		$this->form_validation->set_rules('latitude', 'Latitude', 'required');
-		$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
 		$this->form_validation->set_rules('comments', 'Comments', 'required');
 		
 		if ($this->form_validation->run() == FALSE)
@@ -1863,8 +1864,8 @@ class Projects extends My_Controller {
 		$id= $this->input->post('id');
 		if ($this->input->post('submit') != '')
 		{
-			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
-			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
 			$this->form_validation->set_rules('comments', 'Comments', 'required');
 			
 			if ($this->form_validation->run() == FALSE)
@@ -2376,6 +2377,8 @@ class Projects extends My_Controller {
 	    $this->load->library('form_validation');
 		$this->form_validation->set_rules('commit', 'Commit ', 'required');
 		$this->form_validation->set_rules('fields[]', 'At least 1 ', 'required|isset');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'callback_valid_latitude');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'callback_valid_longitude');
 	    //$this->form_validation->set_message('required', 'Please supply a commit message if you want to make changes');
         $nmp_id = $this->input->post('nominal_plan_id');
 		$id = $this->input->post('id');
@@ -3265,6 +3268,34 @@ class Projects extends My_Controller {
 	     } // end outer if    
 		$this->display_nominal_plan($plan_id); 
 		//$this->display_nominal_plan(1);
+	}
+	function valid_longitude($str)
+	{
+	   $validation = new Csv_validation();
+	   // check value is valid longitude && longitude must>=-180 & <180.
+       $result = $validation->matches_pattern($str, "", 'longitude'); 
+	   if ($result == '1') {
+			  return true;
+	   }
+	   else
+	   {
+		  $this->form_validation->set_message('valid_longitude', ' %s must>=-180 & <180');
+          return false;
+	   }
+	}
+	function valid_latitude($str)
+	{
+	    $validation = new Csv_validation(); 
+		// check value is valid latitude && Latitude must<90 >=-90
+		$result = $validation->matches_pattern($str, "", 'latitude');
+		if ($result == '1') {
+			  return true;
+		}
+		else
+		{
+			$this->form_validation->set_message('valid_latitude', ' %s must<90 >=-90');
+            return false;
+		}
 	}
 }
 /* End of file projects.php */

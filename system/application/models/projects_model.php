@@ -1061,7 +1061,7 @@ class Projects_model extends Model{
 		  // check value is valid longitude && longitude must>=-180 & <180.
           $result = $validation->matches_pattern($data['5'], "", 'longitude');
 		  if ($result == '1') {
-			  $field = '1';
+			  $field = '';
 		  }
 		  else
 		  {

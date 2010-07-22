@@ -115,12 +115,16 @@
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="longitude" <?php //echo set_checkbox('fields[]', 'longitude'); ?>/></td>
 			<td align="right">Longitude</td>
-			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="longitude" value="" /></span> </td>
+			<td ><span class="divClass" id="input1ID" style="display:block">
+			<span style="color:red;"><?php echo form_error('longitude'); ?></span>
+			<input class="text" name="longitude" value="" /></span> </td>
 		</tr>
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="latitude" <?php //echo set_checkbox('fields[]', 'latitude'); ?>/></td>
 			<td align="right">Latitude</td>
-			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="latitude" value="" /></span> </td>
+			<td ><span class="divClass" id="input1ID" style="display:block">
+			<span style="color:red;"><?php echo form_error('latitude'); ?></span>
+			<input class="text" name="latitude" value="" /></span> </td>
 		</tr>
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="phase" <?php //echo set_checkbox('fields[]', 'phase'); ?>/></td>
