@@ -87,12 +87,12 @@ $this->load->view('projects/search_form');
 
 <tr>
     <td align="right">Longitude</td>
-    <td ><input class="text" name="longitude" value="{longitude}" /> </td>
+    <td ><span style="color:red;"><?php echo form_error('longitude'); ?></span><input class="text" name="longitude" value="{longitude}" /> </td>
 </tr>
 
 <tr>
     <td align="right">Latitude</td>
-    <td ><input class="text" name="latitude" value="{latitude}" /> </td>
+    <td ><span style="color:red;"><?php echo form_error('latitude'); ?></span><input class="text" name="latitude" value="{latitude}" /> </td>
 </tr>
 <!--
 <tr>

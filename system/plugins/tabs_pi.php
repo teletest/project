@@ -12,6 +12,7 @@
 			
 			'about'		=> "About|" . BASE_URL  . "index.php/about",
 			'charts'	=> "Charts|" . BASE_URL  . "index.php/charts",
+			'blog'	=> "Blog|" . BASE_URL  . "blog",
 		);
 		
 		

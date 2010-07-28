@@ -2444,7 +2444,7 @@ class Charts extends My_Controller {
 	   // path to file of our chart_data.xml, 
 	   // that store the data of our chart
        echo "document root".$_SERVER['DOCUMENT_ROOT'];
-	   $xml_file =  $_SERVER['DOCUMENT_ROOT']."/charts/amcolumn/pie/chart_data.xml";
+	   $xml_file =  $_SERVER['DOCUMENT_ROOT']."/Charts/amcolumn/pie/chart_data.xml";
 	   $xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
 	   $xml_data .= '<pie>'."\n";
 	  
