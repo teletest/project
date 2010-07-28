@@ -474,21 +474,22 @@ class Projects extends My_Controller {
 		$this->parser->parse('projects/site_plan', $data);	
 	}
 	/**
-	* Gives the documents attached to site whose ID has been passed to it
+	* Gives the documents attached to site whose ID has been passed to it (pass site id)
 	*
 	* Takes the Project ID as input
 	*
 	* @access public
 	*/
-	function site_attach_document($id, $state="")
+	function site_attach_document($site_id="", $state_id="")
 	{    
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-        
-		$query = $this->db->get_where('sites' , array('id' => $id));
+        $data['site_id'] = $site_id;
+		$data['state_id'] = $state_id;
+		$query = $this->db->get_where('sites' , array('id' => $site_id));
 		$result = $query->result_array();
 		$data['site_code']  = $result[0]['name'];
-		$data['attachements'] = $this->projects_model->get_attachement($id);
+		$data['attachements'] = $this->projects_model->get_attachement($site_id, $state_id);
 	 
 		$_true = array(array());
         $_false = array();
@@ -641,10 +642,15 @@ class Projects extends My_Controller {
 			$name = $this->input->post('file_info');;
 			$value = json_decode($name);
 			$name = $value->{'file_name'};
-			$location = $value->{'file_path'};
+			$path = $value->{'file_path'};
+			
+			$site_id = $this->input->post('id');
+			$state_id = $this->input->post('state_id');
+			rename($path.$name, $path.$site_id.'_'.$state_id.'_'.$name); 
+			
 				$data = array(
-					'site_id' 	=> $this->input->post('id'),
-					'stage_id' => $this->input->post('stage_id'),
+					'site_id' 	=> $site_id,
+					'stage_id' => $state_id,
 					'filename' 	=> $name,
 					'is_active' 	=> $this->input->post('is_active'),
 					'attached_on' => $this->input->post('attached_on'),
@@ -656,7 +662,7 @@ class Projects extends My_Controller {
 				}*/
 				 //adds attachement related info in database 
 				$this->db->insert('attachements', $data); 
-				redirect("projects/site_attach_document/$id");	
+				redirect("projects/site_attach_document/$site_id/$state_id");	
 						
 		}
 	}
@@ -943,7 +949,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function attachment_delete($id,$project_id)
+	function attachment_delete($id="")
 	{
 	    $update = array(
 				'is_active' 	=> '0',

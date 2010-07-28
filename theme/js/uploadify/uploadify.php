@@ -65,12 +65,15 @@
 if (!empty($_FILES)) {
 
 
-//  $path = $_SERVER['DOCUMENT_ROOT'] ."/ttest/project". $_REQUEST['folder'] . '/';
   $path = $_SERVER['DOCUMENT_ROOT'] . $_REQUEST['folder'] . '/';
 	
-	
 
- 
+
+   /*$userdata = $_GET["userdata"];
+   $userdata = base64_decode($userdata);
+   $userdata = $CI->encrypt->decode($userdata);
+   $userdata = json_decode($userdata);//userdata is an object...
+   print_r($userdata); */
    //$client_id = $_GET['client_id'];
    $file_temp = $_FILES['Filedata']['tmp_name'];
    $file_name = prep_filename($_FILES['Filedata']['name']);
@@ -89,8 +92,10 @@ if (!empty($_FILES)) {
    $filearray['real_name'] = $real_name;
    $filearray['file_ext'] = $file_ext;
    $filearray['file_size'] = $file_size;
-   $filearray['file_path'] = $targetFile;
+   //$filearray['file_path'] = $targetFile;
+   $filearray['file_path'] = $path;
    $filearray['file_temp'] = $file_temp;
+  // $filearray['folder_path'] = $path;
    //$filearray['client_id'] = $client_id;
 
    $json_array = json_encode($filearray);
