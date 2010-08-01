@@ -2397,7 +2397,8 @@ class Charts extends My_Controller {
 		$data['width'] = 600;
 		// path to file of our chart_data.xml, 
 		// that store the data of our chart
-		$xml_file = "./Charts/amcolumn/col_and_line/chart_data.xml";
+		
+		$xml_file =  $_SERVER['DOCUMENT_ROOT']."/charts/amcolumn/col_and_line/chart_data.xml";
 		// format data into xml data 
 		$xml_data = '   <?xml version="1.0" encoding="UTF-8"?>'."\n";
 		$xml_data.= '	<chart>'."\n";
