@@ -2354,7 +2354,7 @@ class Charts extends My_Controller {
 		$chart_title = ' Floating Chart ';
 		// path to file of our chart_data.xml, 
 		// that store the data of our chart
-		$xml_file = $server_path['server_path']"./charts/amcolumn/floating/chart_data.xml";
+		$xml_file = $server_path['server_path']."/charts/amcolumn/floating/chart_data.xml";
 		$data['chart_type']="floating";
 		$data['object_type'] ="amcolumn.swf";
 		$data['height'] = 520;
