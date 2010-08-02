@@ -38,6 +38,15 @@ function tags()
 {		
 
 		$CI =& get_instance();
+
+		if( $_SERVER['SERVER_NAME'] == "localhost")
+		{
+		   		$server_path = $_SERVER['DOCUMENT_ROOT']."/ttest/project";
+		}
+		else
+		{
+		   		$server_path = $_SERVER['DOCUMENT_ROOT'];
+		}
 		
 		// Tags used in the theme
 		$tags = array(
@@ -53,6 +62,7 @@ function tags()
 			'logout'		=> '',
 			'change_password' => '',
 			'is_admin'		=> FALSE,
+			'server_path'   => $server_path,
 			'message'		=> '',
 			'debug'			=> '',
 			

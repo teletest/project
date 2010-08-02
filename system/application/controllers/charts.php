@@ -2345,7 +2345,8 @@ class Charts extends My_Controller {
 	function am_floating()
 	{
 	    $data = tags();
-	    $data['tabs']	= tabs('charts');  
+	    $data['tabs']	= tabs('charts'); 
+		$server_path = tags('server_path'); 
 	   	$data1 = array( 'John' , 'Joe' , 'Susan', 'Eaton' );
 		$data2 = array( 11, 13, 18, 19);
 		$start = array( 8, 10, 11, 15);
@@ -2353,7 +2354,7 @@ class Charts extends My_Controller {
 		$chart_title = ' Floating Chart ';
 		// path to file of our chart_data.xml, 
 		// that store the data of our chart
-		$xml_file = "./Charts/amcolumn/floating/chart_data.xml";
+		$xml_file = $server_path['server_path']"./charts/amcolumn/floating/chart_data.xml";
 		$data['chart_type']="floating";
 		$data['object_type'] ="amcolumn.swf";
 		$data['height'] = 520;
@@ -2386,7 +2387,8 @@ class Charts extends My_Controller {
 	function am_col_and_line()
 	{
 	    $data = tags();
-	    $data['tabs']	= tabs('charts');  
+	    $data['tabs']	= tabs('charts'); 
+		$server_path = tags('server_path'); 
 	    $data1 = array(19.73,18.43,18.08,19.01,19.57,19.58,19.43,20.83,19.73,18.87,18.43,18.31,18.19,17.89,17.60,17.20,16.84,16.56,16.00,15.95,15.52,15.85,15.36,16.59,26.39,27.00,27.26,26.78,26.14,32.98,49.63,66.20,55.98,49.80,47.18,42.40,21.62,25.68,20.14,24.22,29.03,23.00,21.59,18.68,16.86,18.17,22.40,20.39,12.66,17.78,29.54,23.39,23.78,28.42,54.93,47.97,58.30);
 		$data2 = array(2.51,2.53,2.53,2.68,2.78,2.77,2.79,3.09,3.01,2.90,2.88,2.89,2.90,2.89,2.88,2.86,2.88,2.92,2.94,3.09,3.18,3.39,3.39,3.89,6.87,7.67,8.19,8.57,9.00,12.64,21.59,31.77,28.52,26.19,25.88,24.09,12.51,15.40,12.58,15.86,20.03,16.54,15.99,14.25,13.19,14.62,18.46,17.23,10.87,15.56,26.72,21.84,22.51,27.54,38.93,46.47,58.30);
 		// title of chart 
@@ -2398,7 +2400,7 @@ class Charts extends My_Controller {
 		// path to file of our chart_data.xml, 
 		// that store the data of our chart
 		
-		$xml_file =  $_SERVER['DOCUMENT_ROOT']."/charts/amcolumn/col_and_line/chart_data.xml";
+		$xml_file =  $server_path['server_path']."/charts/amcolumn/col_and_line/chart_data.xml";
 		// format data into xml data 
 		$xml_data = '   <?xml version="1.0" encoding="UTF-8"?>'."\n";
 		$xml_data.= '	<chart>'."\n";
@@ -2434,7 +2436,7 @@ class Charts extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('charts'); 
-	   
+	   $server_path = tags('server_path');
 	   // title of chart 
 	   $chart_title = 'Column and line charts';
 	   $data['chart_type']="pie";
@@ -2444,8 +2446,8 @@ class Charts extends My_Controller {
 	   
 	   // path to file of our chart_data.xml, 
 	   // that store the data of our chart
-       echo "document root".$_SERVER['DOCUMENT_ROOT'];
-	   $xml_file =  $_SERVER['DOCUMENT_ROOT']."/charts/amcolumn/pie/chart_data.xml";
+
+	   $xml_file = $server_path['server_path']."/charts/amcolumn/pie/chart_data.xml";
 	   $xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
 	   $xml_data .= '<pie>'."\n";
 	  

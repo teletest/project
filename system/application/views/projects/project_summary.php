@@ -117,35 +117,7 @@ $this->load->view('header');
 			</tr>
 	   </tbody>
 </table>
-<!-- am pice chart 
-<div>	
-   <table cellspacing="0" cellpadding="2" align="center" width="700">
-	   <tbody>
-			 <tr>
-				 <td class="textBold" align="center">Charts</td>
-			 </tr>
-			 <tr>
-				 <td><script type="text/javascript" src="{site_url}charts/amcolumn/swfobject.js"></script>
-		                 <div id="flashcontent">
-			              <strong>You need to upgrade your Flash Player</strong>
-		                 </div>
-		             <script type="text/javascript">
-					// <![CDATA[		
-					var myChart = new SWFObject("{site_url}charts/amcolumn/{object_type}", "my_id", "{height}", "{width}", "8", "#FFFFFF");
-					myChart.addVariable("chart_id", "my_id");
-					myChart.addVariable("path", ".{site_url}charts/amcolumn/");
-					myChart.addVariable("settings_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_setting.xml"));
-					myChart.addVariable("data_file", "{xml_data}");		
-					myChart.addVariable("preloader_color", "#999999");
-					myChart.write("flashcontent");
-						// ]]>
-					</script>
-                </td>
-			</tr>
-	   </tbody>
-   </table>
-  </div>
-<!-- end am pice chart -->
+
 
 <table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
 	   <tbody>
@@ -176,7 +148,36 @@ $this->load->view('header');
 	   </tbody>
 </table>
 </div>
-
+<div>
+<!-- am pice chart -->
+	
+   <table cellspacing="0" cellpadding="2" align="center" width="100%">
+	   <tbody>
+			 <tr>
+				 <td class="textBold" align="center">Charts</td>
+			 </tr>
+			 <tr>
+				 <td><script type="text/javascript" src="{site_url}charts/amcolumn/swfobject.js"></script>
+		                 <div id="flashcontent">
+			              <strong>You need to upgrade your Flash Player</strong>
+		                 </div>
+		             <script type="text/javascript">
+					// <![CDATA[		
+					var myChart = new SWFObject("{site_url}charts/amcolumn/{object_type}", "my_id", "800", "400", "8", "#FFFFFF");
+					myChart.addVariable("chart_id", "my_id");
+					myChart.addVariable("path", ".{site_url}charts/amcolumn/");
+					myChart.addVariable("settings_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_setting.xml"));
+					myChart.addVariable("data_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_data.xml"));		
+					myChart.addVariable("preloader_color", "#999999");
+					myChart.write("flashcontent");
+						// ]]>
+					</script>
+                </td>
+			</tr>
+	   </tbody>
+   </table>
+</div> 
+<!-- end am pice chart -->
 
 
 </div> 

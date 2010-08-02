@@ -172,9 +172,9 @@ Sites</a><br><br>
 	  </td> -->
       <td><a href='{site_url}index.php/projects/chart/{id}/Planned'   target="_blank" >View Planned Stages</a> |
 	 <?php if($this->session->userdata('is_admin')) { ?>  
-	  <a href='{site_url}index.php/projects/site_dorollout/{id}/{project_id}'>Activate</a> |
+	  <a href='{site_url}index.php/projects/site_dorollout/{id}/{project_id}'>Activate</a> 
 	  <?php } ?>
-	  <a href='{site_url}index.php/projects/site_attach_document/{id}/0'>Document</a>
+	  <!-- <a href='{site_url}index.php/projects/site_attach_document/{id}/0'>Document</a> -->
 	  
 	  </td>
 	</tr>

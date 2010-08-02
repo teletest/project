@@ -138,9 +138,9 @@ class Projects_model extends Model{
 		   $query = $this->db->get_where('projects', array('id' => $id ));
 		   return $query->result_array();
 		}
-		function get_attachement($id)
+		function get_attachement($id, $state_id)
 		{
-		  $query = $this->db->get_where('attachements', array('site_id' => $id, 'is_active'=>'1'));
+		  $query = $this->db->get_where('attachements', array('site_id' => $id, 'stage_id' => $state_id, 'is_active'=>'1'));
 		  if($query->num_rows()>0)
 		  return $query->result_array();
 		  else

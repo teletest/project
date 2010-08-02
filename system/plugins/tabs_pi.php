@@ -2,7 +2,7 @@
 
 	function tabs($current_page) {
 		$tabs_array = array();
-	
+	    
 		$tabs = array(
 			'dashboard' => "Dashboard|" . BASE_URL,
 			'projects'	=> "Projects|" . BASE_URL  . "index.php/projects",

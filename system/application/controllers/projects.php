@@ -2716,6 +2716,8 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
+	    $server_path = tags('server_path');
+		 
 		$this->load->plugin( 'fusion' );
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -2790,6 +2792,7 @@ class Projects extends My_Controller {
 		    exit;
 		
 		}
+		$url = $this->config->item('base_url'); 
 		$chart_values = array('Planned' => $data['projects_nr'] , 'Not Planned' =>$data['projects_np'], 'Active'=>$data['projects_rollout']);
 		
 		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
@@ -2798,14 +2801,18 @@ class Projects extends My_Controller {
 		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
 	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
 		$data['region_values'] = $this->projects_model->get_project_regions( $project_id , '1');
+		$xml_file =  $server_path['server_path']."/charts/amcolumn/pie/chart_data.xml";
 		
 		$xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
 	    $xml_data .= '<pie>'."\n";
-	    $xml_data .= '<slice title="Twice a day" pull_out="true">358</slice>'."\n";
-	    $xml_data .= '<slice title="Once a day">258</slice>'."\n";
-	    $xml_data .= '<slice title="Once a week">154</slice>'."\n";
-	    $xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	    //$xml_data .= '"<message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[Project Summary]]></message>'."\n";
+		$xml_data .= '"<slice title="Sites Not Planned" url="'.$url .'index.php/projects/site_plan/'.$project_id.'" pull_out="false">'. $data['projects_np'] . "</slice>\n";
+		$xml_data .= '"<slice title="Planned Sites" url="'.$url .'index.php/projects/site_plan/'.$project_id.'" pull_out="false">'. $data['projects_nr'] . "</slice>\n";
+		$xml_data .= '"<slice title="Rollout Sites" url="'.$url .'index.php/projects/rollout_summary/'.$project_id.'" pull_out="false">'. $data['projects_rollout'] . "</slice>\n";
+	    //$xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	   
 	    $xml_data .= '</pie>'."\n";
+		file_put_contents($xml_file, $xml_data);
 		$data['object_type'] ="ampie.swf";
 		$data['chart_type2']="pie";
 		$data['xml_data'] = $xml_data;
@@ -3004,173 +3011,22 @@ class Projects extends My_Controller {
 		    $data['tabs']	= tabs('projects');
 			$data['site_id'] =  $this->projects_model->get_site_name($site_id);
 		    $this->load->plugin( 'fusion' );
-		    $this->db->order_by("id", "asc");
-		    $query = $this->db->get_where('states' , array('site_id' => $site_id));
+			$query = $this->db->get_where('states' , array('site_id' => $site_id));
 		    $length = $query->num_rows();
-			if( $length <= 0)
-			{
-			   $this->session->set_flashdata('conf_msg', "");
-			}
-			else
-			{
-				$first = $query->first_row('array');
-				$start_date = $first['start'];
-				$pieces = explode("-", $start_date);
-				$year_F = $year_f = $pieces[0]; 
-				$month_F = $month_f = $pieces[1];
-				if( $year_F == 0000 || $month_F == 00 )
-				{
-				   $this->session->set_flashdata('conf_msg', "");
-				}
-				else
-				{
-				    $dm_f = cal_days_in_month(0, $month_f, $year_f) ;
-				
-					$last = $query->last_row('array'); 
-					$end_date = $last['end'];
-					$pieces = explode("-", $end_date);
-					$year_L = $year_l = $pieces[0]; 
-					$month_L = $month_l = $pieces[1];
-					$dm_l = cal_days_in_month(0, $month_l, $year_l) ;
-					
-					$data['stages'] = $query->result_array();
-					for ($i = 0; $i < $length; $i++)
-					{
-						$start[$i] = $data['stages'][$i]['start'];
-						$end[$i] = $data['stages'][$i]['end'];
-						$state[$i] = $data['stages'][$i]['state'];
-						$state_id = $data['stages'][$i]['id'];
-						if($status == "Active" )
-						{
-							$query = $this->db->get_where('stages_planned' , array('state_id' => $state_id));
-							$data['actual_stages'] = $query->result_array();
-							$actual_start[$i] = $data['actual_stages'][0]['actual_start_date'];
-							$actual_end[$i]= $data['actual_stages'][0]['actual_end_date'];
-							$percentage[$i]= $data['actual_stages'][0]['percentage_complete'];
-						}
-		
-					} 
-					//$data['chart_details']=$this->projects_model->get_chart_details($id);
-					$height = 300;
-					if ($length >= 30)
-					  $height = 1800;
-					else if ($length >= 20 )
-					  $height = 1200;
-					else if ($length >= 10)
-					  $height = 800;
-					else if ($length>= 5)
-					  $height = 600;
-					$data['height'] = $height; 		
-					$strXML  = "";
-					$strXML .= "<chart dateFormat='yyyy-mm-dd' showSlackAsFill='0' outputDateFormat='ddds mns yy' showPercentLabel='1' ganttWidthPercent='65' canvasBorderColor='999999' canvasBorderThickness='0' gridBorderColor='4567aa' gridBorderAlpha='20' ganttPaneDuration='12' ganttPaneDurationUnit='m' >";
-					
-					$strXML .= "<categories bgColor='009999'>";
-					$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='Gantt Chart' fontColor='ffffff' fontSize='16'/>";
-					$strXML .= "</categories>";
-				   
-					$strXML .= "<categories bgColor='4567aa' fontColor='ff0000'>";
-					$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='Years' alpha='' font='Verdana' fontColor='ffffff' fontSize='16' />";
-					$strXML .= "</categories>";
-					
-					$strXML .= "<categories bgColor='4567aa' fontColor='ff0000'>";
-					for($y=$year_f; $y<=$year_l; $y++)
-					{
-					$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='".$y."' alpha='' font='Verdana' fontColor='ffffff' fontSize='16' />";
-					}
-					$strXML .= "</categories>";          
-							
-					$strXML .= "<categories bgColor='ffffff' fontColor='1288dd' fontSize='10' isBold='1' align='center'>";
-				
-					for($year_F = $year_f; $year_F<= $year_l; $year_F++  )
-					{
-						if ($year_L == $year_F)
-						{
-						  for( $c = $month_F; $c <=$month_l; $c++)
-						  {
-							$dm = cal_days_in_month(0, $c, $year_l) ;
-							$name = date('F', mktime(0,0,0,$c,1));
-							$strXML .= "<category start='".$year_F."-".$c."-"."01' end='".$year_F."-".$c."-".$dm."' name='".$name."' />";
-						  }
-						}		  
-						else
-						{
-						  $month_L = 12;
-						  for( $c = $month_F; $c <=$month_L; $c++)
-						  {
-							$dm = cal_days_in_month(0, $c, $year_F) ;
-							$name = date('F', mktime(0,0,0,$c,1));
-							$strXML .= "<category start='".$year_F."-".$c."-"."01' end='".$year_F."-".$c."-".$dm."' name='".$name."' />";
-						  }
-						}
-						$month_F = 01;
-						$month_L = $month_l;
-					}
-					$strXML .= "</categories>"; 
-					
-					$strXML .= "<processes headerText='Task' fontColor='000000' fontSize='11' isAnimated='1' bgColor='4567aa' headerVAlign='bottom' headerAlign='left' headerbgColor='4567aa' headerFontColor='ffffff' headerFontSize='16' align='left' isBold='1' bgAlpha='25' >"; 
-					$y = 1;
-					for($x = 0 ; $x < $length ; $x++){ 
-					$strXML .= "<process Name='" . $state[$x] . "' id='" . $y . "' />";
-					   $y++;
-					} 
-					$strXML .= "</processes>";
-					
-					$strXML .= "<dataTable showProcessName='1' nameAlign='left' fontColor='000000' fontSize='10' vAlign='right' align='center' headerVAlign='bottom' headerAlign='left' headerbgColor='567aa' headerFontColor='ffffff' headerFontSize='16' >";
-					$strXML .= "<dataColumn bgColor='eeeeee' headerText='Start'>";
-					for($x = 0 ; $x < $length ; $x++){ 
-					$strXML .= "<text label='" . $start[$x] . "' />";
-					} 
-					$strXML .= "</dataColumn>";
-						
-					$strXML .= "<dataColumn bgColor='eeeeee' headerText='Finish'>";	
-					for($x = 0 ; $x < $length ; $x++){ 		
-					$strXML .= "<text label='" . $end[$x] . "' />";
-					} 
-					$strXML .= "</dataColumn>";
-					$strXML .= "</dataTable>";
-					
-					$strXML .= "<tasks width='10' showEndDate='1'>";
-					$y = 1;
-					for($x = 0 ; $x < $length ; $x++){ 
-					
-					$strXML .= "<task name=' Planned' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."P' link='../projects' color='4567aa' height='32%25 ' topPadding='12%25 ' label='view month'  /> ";
-					if($status == "Active")
-					$strXML .= "<task name=' Actual' processId='" . $y . "' start='" . $actual_start[$x] . "' end='" . $actual_end[$x] . "' id='".$y."A' link='../projects' color='EEEEEE' height='32%25 ' topPadding='56%25 ' label='view month' percentComplete='".$percentage[$x]."' /> ";
-				   
-				   // $strXML .= "<task name='" . Actual . "' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."A'  color='EEEEEE' alpha='100' topPadding='56%25 ' height='32%25 ' /> ";
-						$y++;
-					} 
-					$strXML .= "</tasks>";
-					// connectors
-					$strXML .= "<connectors>";
-					$y = 1; 
-					$z= 2;
-					for($x = 0 ; $x < $length ; $x++){ 
-					
-					$strXML .= "<connector fromTaskId='". $y ."P' toTaskId='". $z ."P' color='4567aa' thickness='2' fromTaskConnectStart='0'/>";
-					$strXML .= "<connector fromTaskId='". $y ."A' toTaskId='". $z ."A' color='EEEEEE' thickness='2' fromTaskConnectStart='0'/>";
-					 $y++; $z++;
-					} 
-					$strXML .= "</connectors>";
-					$strXML .="<legend>";
-								 $strXML .= "<item label='Planned' color='4567aa' />";
-								 $strXML .= "<item label='Actual' color='999999' />";
-								 $strXML .= "<item label='Slack (Delay)' color='FF5E5E' />";
-								 $strXML .= "</legend>";
-								
-					$strXML .="<styles>";						
-								 $strXML .= "<definition>";
-								 $strXML .= "<style type='Font' name='legendFont' size='12' />";
-								 $strXML .= "</definition>";
-								
-								 $strXML .= "<application>";
-								 $strXML .= "<apply toObject='LEGEND' styles='legendFont' />";
-								 $strXML .= "</application>";
-					$strXML .= "</styles>"; 
-					$strXML .= "</chart>";
-					$data['xml'] = $strXML;
-					}
-			}
+		    
+			$strXML = $this->charts_model->get_ganttchart_xml($site_id , $status);
+			$data['xml'] = $strXML;
+			$height = 300;
+			if ($length >= 30)
+			  $height = 1800;
+			else if ($length >= 20 )
+			  $height = 1200;
+			else if ($length >= 10)
+			  $height = 800;
+			else if ($length>= 5)
+			  $height = 600;
+			$data['height'] = $height; 
+			
 	        $this->parser->parse('projects/view_chart', $data);
 	}
 	function userfile()
