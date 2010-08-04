@@ -12,8 +12,9 @@ class Logout extends MY_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= array();
-		$data['ShowLeftSide']	=	false;
-        $data['ShowRightSide']	=	false;		
+		$data['ShowLeftSide']	= "No";		
+		$data['ShowRightSide']	= "No";
+				
 		$data['page_title'] = $this->lang->line('login_logout');
 		
 		

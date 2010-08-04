@@ -1,0 +1,272 @@
+
+
+
+
+
+
+input, textarea, select {	
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+} 
+
+a:active {
+	color: ; /* active link color */
+}
+
+a:link {
+	color: ; /* link color */
+}
+
+a:visited {
+	color: ; /* visited link color */
+}
+
+/* template layout */
+.ewLayout {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	width: 100%;
+	height: 100%;
+}
+
+.ewHeaderRow {
+	background-color: #0000FF; /* background color */	
+}
+
+.ewContentTable {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */	
+	
+}
+
+.ewMenuColumn {
+	background-color: #F5F5F5; /* background color */
+	vertical-align: top;
+	padding: 4px;	
+}
+
+.ewContentColumn {
+	background-color: inherit; /* background color */
+	vertical-align: top;
+	padding: 10px;
+}
+
+.ewFooterRow {
+	background-color: #0000FF; /* background color */
+	color: #FFFFFF; /* footer font color */	
+	padding: 2px;
+}
+
+.ewFooterText {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */	
+}
+
+/* main table */
+.ewTable {	
+	color: inherit; /* text color */
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	border: 0px outset; /* border */
+	border-collapse: collapse;
+}
+
+/* main table data cells */
+.ewTable td {
+	padding: 4px; /* cell padding */
+	border: 1px solid; /* cell spacing */
+	border-color: #CCCCCC;  /* table background color */
+}
+
+.ewBasicSearch {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	border: 0px;
+	border-collapse: collapse;
+}
+
+.ewBasicSearch td {
+	border: 0px;
+	padding: 1px;
+}
+
+.ewSearchOpr {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	color: maroon;
+}
+
+.ewListAdd {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	border: 0px;
+	border-collapse: collapse;
+}
+
+.ewListAdd td {
+	border: 0px;
+	padding: 2px;
+}
+
+.aspmakerlist td {
+	color: inherit; /* text color */
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	border: 0px;
+	padding: 0px;
+	vertical-align: top; 
+}
+
+.ewAddOption td {
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	padding: 2px; /* cell padding */	
+	border: 0px;	
+}
+
+/* main table header cells */
+.ewTableHeader {
+background-image:url(../images/tbl_headerbg.gif);
+	/* background-color: #c6c9ce; /* header color */
+	color: #000000; /* header font color */	
+	vertical-align: top;	
+}
+
+.ewTableHeader a:link {	
+	color: #FFFFFF; /* header font color */	
+}
+
+.ewTableHeader a:visited {	
+	color: #FFFFFF; /* header font color */	
+}
+
+/* main table row color */
+.ewTableRow {
+	background-color: #ffffff;  /* alt row color 1 */
+}
+
+/* main table alternate row color */
+.ewTableAltRow {
+	background-color: #f5f6f7; /* alt row color 2 */	
+}
+
+/* main table edit mode row color */
+.ewTableEditRow {
+	background-color: #000033; /* edit mode color */
+}
+
+/* main table highlight color */
+.ewTableHighlightRow {
+background-image:url(images/tbl_onoverbg.gif);
+	background-color: #d4e8ff; /* highlight color */
+}
+
+/* main table select color */
+.ewTableSelectRow {
+background-image:url(images/tbl_selectedbg.gif);
+	background-color: #d4e8ff; /* select color */
+}
+
+/* main table footer section */
+.ewTableFooter {
+	background-color: #FFFFCC; /* footer color */
+}
+
+/* separator */
+.ewSeparator {
+    color: gray;
+}
+
+/* classes for report */
+.ewReportTable {
+    border: 0px;
+    border-collapse: collapse;
+}
+
+.ewReportTable td {
+    padding: 3px;
+}
+
+.ewGroupField {
+	font-weight: bold;
+}
+
+.ewGroupName {
+	font-weight: bold;
+}
+
+.ewGroupHeader {
+	border-bottom: 3px double Gray;
+	border-top: 3px double Gray;
+}
+
+.ewGroupSummary {
+	border-top: 1px solid Gray;
+} 
+
+.ewGroupAggregate {
+	font-weight: bold;
+}
+
+.ewGrandSummary {
+	border-top: 1px solid Gray;
+}
+
+/* message */
+.ewmsg {
+	color: red; /* message color */
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */	
+}
+
+/* highlight */
+.ewHighlightSearch {
+	font-weight: bold;
+	background-color: yellow;
+}
+
+/* Ajax */
+.ewAstList {
+	border: 1px solid black;
+	background: #ffffff;
+	position: absolute;
+	padding: 0;
+	white-space: nowrap;
+}
+
+.ewAstListBase {
+	position: absolute;
+	padding: 1;
+}
+
+.ewAstListItem {
+	color: black;
+	background: #ffffff;
+	cursor: hand;
+	cursor: pointer;
+	white-space: nowrap;
+	padding: 1;
+}
+
+.ewAstSelListItem {
+	color: white;
+	background: Highlight;
+	cursor: hand;
+	cursor: pointer;
+	white-space: nowrap;
+	padding: 1;
+}
+
+/* MultiPage pager table */
+.ewMultiPagePager {
+	color: inherit; /* text color */
+	font-family: Verdana; /* font name */
+	font-size: xx-small; /* font size */
+	border: 0px; /* border */	
+}
+
+.ewMultiPagePager td {
+	padding: 2px; /* cell padding */	
+}
+
+/*END_SYSTEM_STYLES*/

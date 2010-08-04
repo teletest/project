@@ -53,7 +53,7 @@ function MM_validateForm() { //v4.0
   <td align="right">Is Active?:</td>
   <td colspan="3"><input class="checkbox" name="isactive" type="checkbox"></td>
 </tr>
-<!--<tr>
+<tr>
   <td colspan="4" align="center"><strong>Components Association : </strong></td>
   </tr>
 
@@ -69,9 +69,9 @@ function MM_validateForm() { //v4.0
     <td width="3%"><input type="checkbox" name="comp[]" value="{id}"></td>
     <td width="37%">{name}</td>
     <td width="25%">{type}</td>
-</tr> 
+</tr>
 {/components}
--->
+
 </tbody></table>
 
 <input value="back" onclick="javascript:history.back(-1);" class="button" type="button" /> <input name="submit" value="submit" class="button" type="submit" />

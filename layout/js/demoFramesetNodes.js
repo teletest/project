@@ -92,7 +92,25 @@ HIGHLIGHT = 1
           aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
 
 
-         aux1 = insFld(foldersTree, gFld("Project Closing",  SITEURL+"/projects/close_project"))
-         docAux = insDoc(aux1, gLnk("S", "Project Close",  SITEURL+"/projects/close_project"))
+		 aux1 = insFld(foldersTree, gFld("Project Closing",  SITEURL+"/projects/close_project"))
+		 docAux = insDoc(aux1, gLnk("S", "Project Close",  SITEURL+"/projects/close_project"))
+		 
+   
+    aux1 = insFld(foldersTree, gFld("Admin", SITEURL+"/admin"))
+    
+	aux1.iconSrc = ICONPATH + "complexType.gif"
+
+    aux1.iconSrcClosed = ICONPATH + "complexType.gif"
+
+    aux2 = insFld(aux1, gFld("General", SITEURL+"/admin"))
+    aux2 = insFld(aux1, gFld("System", SITEURL+"/admin/system"))	
+    aux2 = insFld(aux1, gFld("Components", SITEURL+"/admin/components"))	
+    aux2 = insFld(aux1, gFld("Updates", SITEURL+"/admin/updates"))
+    aux2 = insFld(aux1, gFld("Groups", SITEURL+"/admin/groups"))
+    aux2 = insFld(aux1, gFld("Companies", SITEURL+"/admin/companies"))	
+    aux2 = insFld(aux1, gFld("Persons", SITEURL+"/admin/persons"))
+    aux2 = insFld(aux1, gFld("Feed Back", SITEURL+"/admin/feedback"))	
+    aux2 = insFld(aux1, gFld("FM", SITEURL+"/admin/fm"))	
+
 
 

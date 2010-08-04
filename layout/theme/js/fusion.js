@@ -33,31 +33,12 @@ function eraseCookie(name)
 // style switch: liquid <> fixed
 function setPagewidth(){
 
-  	var currentWidth = $('.art-Sheet').css('width');
-	
+  	var currentWidth = $('#page').css('width');
    //	var currentFontSizeNum = parseFloat(currentFontSize, 10);
-    if (currentWidth=="95%") 
-	{
-	 newWidth = "900px";
-	 hNetwidth = "874px";
-	}
-    else if (currentWidth=="900px")
-	{
-	 newWidth = "95%";
-	 hNetwidth = "2000px";
-    }
-	else
-	{
-	 newWidth = "900px";
-	 hNetwidth = "874px";
-	}
-	$('.art-Sheet').css('width', newWidth);
-	
-	//var hnetWidth = netWidth-27;
-	//alert(hnetWidth)
-	//$('.art-Footer').css('width', hNetwidth);
-	//$('.art-Footer-background').css('width', hNetwidth);
-	
+    if (currentWidth=="95%") newWidth = "960px";
+    else if (currentWidth=="960px") newWidth = "95%";
+    else newWidth = "960px";
+	$('#page').css('width', newWidth);
 
   createCookie('pageWidth', newWidth, 365);
 }
@@ -71,8 +52,6 @@ $(document).ready(function(){
     return false;
   });
   var c = readCookie('pageWidth');
-  if (c) { $('.art-Sheet').css('width', c);
-  
-  }
+  if (c) $('#page').css('width', c);
 
 });

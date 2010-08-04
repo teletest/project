@@ -1,5 +1,69 @@
-// JavaScript for ASPMaker 6+
-//(C) 2001-2007 e.World Technology Ltd.
+
+
+var firstrowoffset = 1;
+var lastrowoffset = 0;
+var EW_LIST_TABLE_NAME = 'ewlistmain';
+var rowclass = 'ewTableRow';
+var rowaltclass = 'ewTableAltRow';
+var rowmoverclass = 'ewTableHighlightRow';
+var rowselectedclass = 'ewTableSelectRow';
+var roweditclass = 'ewTableEditRow';
+
+
+function alternate(id){ 
+ if(document.getElementsByTagName){  
+   var table = document.getElementById(id);   
+   var rows = table.getElementsByTagName("tr");   
+   for(i = 0; i < rows.length; i++){           
+ //manipulate rows 
+     if(i % 2 == 0){ 
+       rows[i].className = "ewTableRow"; 
+     }else{ 
+       rows[i].className = "ewTableAltRow"; 
+     }       
+   } 
+ } 
+}
+
+function ajax(dv,fl)
+{
+if (fl.length==0)
+  { 
+  document.getElementById(dv).innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById(dv).innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET",fl,true);
+xmlhttp.send();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Include another client script
 function ew_ClientScriptInclude(path) {
@@ -768,17 +832,7 @@ function ew_SetColor(row) {
 	}
 }
 
-// Set selected row color
-function ew_Click(row) {
-	if (row.deleteclicked)
-		row.deleteclicked = false; // Reset delete button/checkbox clicked
-	else {
-		var bselected = row.selected;
-		ew_ClearSelected(); // Clear all other selected rows
-		if (!row.deleterow) row.selected = !bselected; // Toggle
-		ew_SetColor(row);
-	}
-}
+
 
 // Clear selected rows color
 function ew_ClearSelected() {

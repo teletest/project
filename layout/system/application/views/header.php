@@ -154,16 +154,20 @@ function HideMe(srcElement) {
           <tr>
             <td height="34" colspan="3" align="center" valign="top" background="{site_url}images/menu-bg.jpg" style="padding-top:4px;"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td height="22" align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>                
-                <td align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>                
-                <td align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>                
-                <td align="center" class="MenuText">Our Company</td>
-                <td align="center" class="MenuText">Our Company</td>                
+                <td height="22" width="80" align="center" class="TopMenuText">Dash Board</td>
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">Projects</td>
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">Reports</td>                
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">Contacts</td>                
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">About Us</td>  
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">Charts</td>                 
+                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
+               	<td height="22" width="80" align="center" class="TopMenuText">Admin</td>                 
+                                  
               </tr>
             </table></td>
             </tr>

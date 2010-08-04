@@ -1,37 +1,52 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<div id="main-content">
+<?php $this->load->view('header-new');?>
 
-<h1>{admin_title}</h1>
-{admin_menu}
 
-	<h2>Persons Management</h2>
 
-    <?php
-	echo anchor('admin/persons/add',	'Add a person');
-?>
-<br /><br />
 
 	<form action="" method="post">
-		<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
-		<tr><th>Users</th><th>Login</th><th>Group</th><th>Stakeholder</th><th colspan="3">Action</th></tr>
+
+
+
+<div id="ShowTab" style="width:96%;overflow:hidden;">
+    <ul>
+    <li><a href="#Tab1"><span>Persons Management</span></a></li>
+    </ul>
+        <div id="Tab1" class="TabSpec" >
+        {admin_menu}
+        <br />
+            <?php
+	echo anchor('admin/persons/add',	'Add a person');
+?>
+<br/>
+		<table border="0" cellpadding="0" cellspacing="1" class="ewTable" width="100%">
+		<tr class="ewTableHeader"><td width="20%" align="left"><strong>Users</strong>
+	        </td>
+		
+		<td width="28%" align="left"><strong>Group</strong>		    </td>
+		
+		<td width="29%" align="left"><strong>Stakeholder</strong>		    </td>
+		
+		<td colspan="2" align="center"><strong>Action</strong>
+		    </td>
+		</tr>
+        <tbody id="persons">
 		{persons}	
-		<tr><td>{person}</td>
-		<td>{login}</td>
-		<td>{groupname}</td>
-		<td>{company}</td>
-		<td><a href="{site_url}index.php/admin/persons/edit/{id}">Edit</a></td>
-		<td><a href="{site_url}index.php/admin/persons/delete/{id}">Delete</a></td>
-		<td><a href="{site_url}index.php/login/change_password/{id}">Change Password</a></td>
+		<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);"><td align="left">{person}</td>
+		<td align="left">{groupname}</td>
+		<td align="left">{company}</td>
+		<td width="11%" align="center"><a href="{site_url}index.php/admin/persons/edit/{id}">Edit</a></td>
+		<td width="12%" align="center"><a href="{site_url}index.php/admin/persons/delete/{id}">Delete</a></td>
 		</tr>
 		{/persons}
+        </tbody>
 		</table>
+
+    </div>
+       
+    </div>
 	</form>	
-
-</div>
-
 <?php
-$this->load->view('footer');
+$this->load->view('footer-new');
 ?>
