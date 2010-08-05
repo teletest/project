@@ -1,23 +1,25 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/create_process/#add"><span>Create Process</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add"  class="TabSpec" >
 
 	<h3>Create Process</h3>
 	<?php echo validation_errors(); ?>
 	<?php //echo $this->validation->error_string; ?>
 	<form action='{site_url}index.php/projects/implement_process' method='post' name="planForm">
-	<table align="center" border="0" cellpadding="1" cellspacing="2">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	
 					  <tbody>
-					  <th colspan="4">Select process which you want to modify</th>
-					  <tr>
+					  <tr class="ewTableHeader">
+					  <td colspan="4">Select process which you want to modify</td>
+					  </tr>
+					  <tr class="ewTableHeader">
 						<td bgcolor="#e8e8d0"><strong>Select</strong></td>
 						<td bgcolor="#e8e8d0"><strong>Process Name</strong></td>
 						<td align="center" bgcolor="#e8e8d0"><p><strong>View</strong></p></td>
@@ -56,6 +58,5 @@ $this->load->view('header');
 					</form>
         </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

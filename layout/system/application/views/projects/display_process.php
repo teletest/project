@@ -1,25 +1,25 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/stages_planned/#add"><span>Stages Planned</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 	<h3>Process</h3>
 
 
-<table align="center" border="0" cellpadding="1" cellspacing="2">
-	
-					  <tbody><tr>
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+	<tbody>
+	                <tr class="ewTableHeader">
 					
-						<td bgcolor="#e8e8d0"><strong>Process Name</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><p><strong>View</strong></p></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Delete</strong></td>
+				      <td><strong>Process Name</strong></td>
+                      <td align="center"><strong>View</strong></td>
+                      <td align="center"><strong>Delete</strong></td>
                     <!--<td align="center" bgcolor="#e8e8d0"><strong>Edit</strong></td>-->
-					  </tr>
+					 </tr>
 					  <tr>
 						
 						<td>&nbsp;</td>
@@ -45,6 +45,5 @@ $this->load->view('header');
 					<input value="back" onclick="javascript:history.back(-1);" class="button" type="button" />
      </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

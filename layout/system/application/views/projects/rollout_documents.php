@@ -1,23 +1,23 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/rollout_documents/#add"><span>Rollout Documents</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 	<h1>Rollout Documents</h1>
 
 
-<table align="center" border="0" cellpadding="1" cellspacing="2">
-					  <tbody><tr>
-						<td bgcolor="#e8e8d0"><strong>File Name</strong></td>
-                    <td bgcolor="#e8e8d0"><strong>Date</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><p><strong>View</strong></p></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Delete</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Download</strong></td>
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+					  <tbody><tr class="ewTableHeader">
+						<td><strong>File Name</strong></td>
+                    <td ><strong>Date</strong></td>
+                    <td align="center" ><strong>View</strong></td>
+                    <td align="center" ><strong>Delete</strong></td>
+                    <td align="center" ><strong>Download</strong></td>
                   </tr>
 					  <tr>
 						<td>&nbsp;</td>
@@ -42,6 +42,5 @@ $this->load->view('header');
 					{pagination}
       </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

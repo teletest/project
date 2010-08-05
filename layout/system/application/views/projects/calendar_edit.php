@@ -1,7 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<?php
-$this->load->view('header');
-?>
 
 <script type='text/javascript'>
 				window.addEvent('load', function() {
@@ -15,21 +15,21 @@ $this->load->view('header');
 					 my_datepicker.attach('date_toggled');
 					});
 	        </script>  
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/calendar_edit/#add"><span>Edit Calendar</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h3>Event Detais</h3>
 <form name="addFrm" action="{site_url}index.php/projects/calendar_edited" method="post" >	
-	<table cellspacing="2" cellpadding="2" border="0" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		
-		<tr>
-			<th> Select </th>
-		<th> Event </th>
-		<th> Date </th>
+		<tr class="ewTableHeader">
+			<td> Select </td>
+		<td> Event </td>
+		<td> Date </td>
 	</tr>
 		 <tr>
 			<td colspan="3"><span style="color:red;"><?php echo form_error('id[]'); ?></span></td>
@@ -64,6 +64,5 @@ $this->load->view('header');
 
 </div>
 
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

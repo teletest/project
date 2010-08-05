@@ -1,16 +1,16 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/pro_implement/#add"><span>Process Implement</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 	<h2>Process Implementation</h2>
 <br>
-	<table class="table" border="0" cellpadding="0" cellspacing="1" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	<form name="addFrm" action="{site_url}index.php/projects/process_implemented" method="post" >
 	<input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="created_on"  />
 	<input type="hidden" name="created_by" value="<?php echo $this->session->userdata('username'); ?>" />
@@ -24,10 +24,10 @@ $this->load->view('header');
 					 <tr>
 					   
 						<td bgcolor="#e8e8d0"><strong>Select</strong></td>
-					<td bgcolor="#e8e8d0"><strong> ID</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><p><strong>Stage Name</strong></p></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Lead Time</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Dependency</strong></td>
+					<td ><strong> ID</strong></td>
+                    <td align="center" ><strong>Stage Name</strong></td>
+                    <td align="center"><strong>Lead Time</strong></td>
+                    <td align="center"><strong>Dependency</strong></td>
                   </tr>
 					  <tr>
 						<!--<td>&nbsp;</td>
@@ -87,6 +87,5 @@ $this->load->view('header');
     </div>
 
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php //  $this->load->view('footer'); ?>

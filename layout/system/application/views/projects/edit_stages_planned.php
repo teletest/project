@@ -1,7 +1,7 @@
-<?php
-$this->load->view('header');
-?>
- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
+
 <script type="text/javascript">
 	function reload(form, id){
 
@@ -15,12 +15,12 @@ $this->load->view('header');
 	  
 } 
 </script>
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/edit_stages_planned/#add"><span>Edit Stages Planned</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 	<a href="#" onClick="checkAll('states[]',1);">Check All Sites</a> | <a href="#" onClick="checkAll('states[]',0);">Uncheck All 
 	Sites</a><br><br>
 	
@@ -32,7 +32,7 @@ $this->load->view('header');
 	{states}
 	<input type="hidden" value="{id}" size="10" name="state_id"/>
 	
-	<table cellspacing="2" cellpadding="2" border="0" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		<tr valign="top" height="20">
 			<td align="right"><input type="checkbox" value="{id}" name="states[]"  />  <b> Stage : </b> </td>
 			<td><h4>{state}</h4></td>
@@ -84,6 +84,5 @@ $this->load->view('header');
 	</form>
     </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

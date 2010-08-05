@@ -1,20 +1,19 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div class="art-contentLayout"> 
+<div id="ShowTab" style="width:96%;overflow:auto;">
+<ul>
+<li><a href="#add"><span>Filtered Results</span></a></li>
 
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
+</ul>
+<div id="add"  class="TabSpec" >
+
 <h1>Nominal Plan</h1>
 
 <form name="editplan" action="{site_url}index.php/projects/plan_edited/2" method="post"  >
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-	<tr>
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+	<tr class="ewTableHeader">
 	  <td align="center" bgcolor="#e8e8d0" ><strong>ID</strong></td>
 	  <td align="center" bgcolor="#e8e8d0"><p><strong>Site ID</strong></p></td>                
 	</tr>
@@ -41,7 +40,7 @@ $this->load->view('sidebar');
 <br>
 <br>
 <h2>Edit Fields</h2>
-<table >
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	  <form name="editplan" action="{site_url}index.php/projects/plan_edited/2" method="post"  >
       <input type="hidden" name="login_id" value="<?php echo $this->session->userdata('username'); ?>" />
       <input type="hidden" name="id" value="{id}" />
@@ -179,10 +178,10 @@ $this->load->view('sidebar');
 		   <td colspan="2"> <input value="Commit"  class="confirmClick" title="change these fields" type="button" onclick="this.form.submit();" /></td>
 		 </tr>
 	  </tbody>
-	  </form>
+	  
 </table>
-
+</form>
 </div>
-<?php
-$this->load->view('footer');
-?>
+</div>
+<?php $this->load->view('footer-new');?> 
+<?php //  $this->load->view('footer'); ?>

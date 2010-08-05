@@ -1,16 +1,17 @@
-<?php
-$this->load->view('header');
-?>
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
+
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/new_project/#add"><span>Add Project</span></a></li>
     <li><a href="{site_url}index.php/projects/new_project/#view"><span>View Project</span></a></li>
     </ul>
-        <div id="add" >
+        <div id="add" class="TabSpec">
 			<h3>Add a project</h3>
 			<form action='{site_url}index.php/projects/new_project' method='post'>
 				
-			<table cellspacing="2" cellpadding="2" border="0" width="100%">
+			<tablewidth="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 			
 				<tr valign="top" height="20">
 					<td align="right"> <b> Code : </b> </td>
@@ -56,6 +57,5 @@ $this->load->view('header');
 
       </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php //  $this->load->view('footer'); ?>

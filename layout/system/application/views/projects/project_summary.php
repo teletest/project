@@ -1,6 +1,7 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
+
 <script type="text/javascript">
 	var month;
 	var year;
@@ -13,21 +14,21 @@ $this->load->view('header');
 	}
 </script>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/project_summary/#add"><span>Project Summary</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h3>Project Summary</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		  <thead>
-			<tr>
-			  <th>Site Information</th>
-		  <th>Quantity</th>
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		
+			<tr class="ewTableHeader">
+			  <td>Site Information</td>
+		     <td>Quantity</td>
 		</tr>
-		  </thead>
+	
 		<tr>
 		  <td><b>Total sites in this project</b></td>
 	  <td>{total_sites}</td>
@@ -64,7 +65,7 @@ $this->load->view('header');
 	</table>
 	<!-- second report -->
 	<h3>Report based on processes</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
 				 <th colspan="2">
 					 Sites Summary
@@ -81,12 +82,12 @@ $this->load->view('header');
 	
 	
 	<h3>Report based on region</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <tr>
-				 <th> Region </th>
-			 <th> Quantity </th>
-			 <th colspan="2">&nbsp; </th>
+				 <tr class="ewTableHeader">
+				 <td> Region </td>
+			 <td> Quantity </td>
+			 <td colspan="2">&nbsp; </td>
 			 </tr>
 				 {region}
 				 <tr>
@@ -104,11 +105,13 @@ $this->load->view('header');
 	</div>
 	
 	<div style="float:left;margin-left:20px;">
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <th>
+				 <tr class="ewTableHeader">
+				 <td>
 					 Sites Summary
-				 </th>
+				 </td>
+				 </tr>
 				 <tr>
 					 <td><?php echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "{width}", "{height}"); ?></td>
 				</tr>
@@ -144,9 +147,10 @@ $this->load->view('header');
 	  </div>
 	<!-- end am pice chart -->
 	
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <th>
+				 <tr class="ewTableHeader">
+				 <td>
 						<span style="font-family: Arial,Arial;">
 						<strong>
 						<font size="2">Select Month & Year </font>	
@@ -166,7 +170,8 @@ $this->load->view('header');
 						{/years}
 						</select>
 						</form>";?>
-				 </th>
+				 </td>
+				 </tr>
 				 <tr>
 					 <td><?php echo renderChart( "{site_url}charts/"."{chart_type1}",  "", "{bargraph_xml}" , "chart1", "{width}", "{height}"); ?></td>
 				</tr>
@@ -175,6 +180,5 @@ $this->load->view('header');
     </div>
 
 </div>
-<?php
- $this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

@@ -1,20 +1,20 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/cell_results/#add"><span>Cell Results</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec" >
 
 	<table class="filterable" border="0" cellpadding="1" cellspacing="2" width="100%" id="report">
 		<tr>
-		  <th align="center" bgcolor="#e8e8d0" ><strong>ID</strong></th>
-		  <th align="center" bgcolor="#e8e8d0" ><strong>Cell ID</strong></th>
-		  <th align="center" bgcolor="#e8e8d0"><p><strong>Site ID</strong></p></th> 
-		  <th align="center" bgcolor="#e8e8d0">&nbsp;</th>            
+		  <th align="center" ><strong>ID</strong></th>
+		  <th align="center" ><strong>Cell ID</strong></th>
+		  <th align="center" ><p><strong>Site ID</strong></p></th> 
+		  <th align="center" >&nbsp;</th>            
 		</tr>
 	<!--
 		{if_not_found}
@@ -161,6 +161,5 @@ $this->load->view('header');
     </div>
 </div>
 
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

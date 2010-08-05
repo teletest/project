@@ -1,16 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-$this->load->view('header');
+$this->load->view('header-new');
+//$this->load->view('header');
 ?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/#view"><span>View</span></a></li>
     <li><a href="{site_url}index.php/projects/#activity_calendar"><span>Activity Calendar</span></a></li>
     </ul>
-	<div id="view" >
-     <table width="90%">
+	<div id="view" class="TabSpec">
+     <table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable" >
 	    <tbody>
-		<tr>
+		<tr class="ewTableHeader">
 		  <td valign="top" >Code</td>
 		  <td valign="top">Status</td>
 		  <td valign="top">Created on</td>
@@ -58,24 +60,24 @@ $this->load->view('header');
      </table> 
 
 	</div>
-	<div id="activity_calendar">
+	<div id="activity_calendar" class="TabSpec">
 	<h2>Activity Calendar</h2>  
 	<br>
 	<form action="{site_url}index.php/projects/" method="post">  
-	<table  align="center" width="100%">
-	<tr bordercolorlight="#999999" bordercolordark="#666666"> 
-		<th><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  height="40" src="{site_url}images/prev.jpg" /> </a></th>
-		<th colspan="5">{month}{year}</th>
-		<th><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar"> <img height ="40" src="{site_url}images/next.jpg" /> </a></th>		
+	<table  align="center" border="0" cellpadding="0" cellspacing="1" class="ewTable" width="80%">
+	<tr> 
+		<td align="center"><a href="{site_url}index.php/projects/getPrevMonth/{m}/{year}#activity_calendar"> <img  src="{site_url}images/prev.jpg"  height="15" alt="Prev Month" title="Prev Month" /> </a></td>
+		<td colspan="5" class="ewTableHeader" align="center">{month}{year}</td>
+		<td align="center"><a href="{site_url}index.php/projects/getNextMonth/{m}/{year}#activity_calendar"> <img height ="15" src="{site_url}images/next.jpg" alt="Next Month" title="Next Month"/> </a></td>		
 	</tr>
-	<tr>
-		<th>Sun</th>
-		<th>Mon</th>
-		<th>Tue</th>
-		<th>Wed</th>
-		<th>Thu</th>
-		<th>Fri</th>
-		<th>Sat</th>
+	<tr class="ewTableHeader">
+		<td>Sun</td>
+		<td>Mon</td>
+		<td>Tue</td>
+		<td>Wed</td>
+		<td>Thu</td>
+		<td>Fri</td>
+		<td>Sat</td>
 		
 	</tr>		
 	{weeks}	
@@ -96,5 +98,5 @@ $this->load->view('header');
 	</div>
 </div>
 
-
-<?php $this->load->view('footer'); ?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

@@ -1,13 +1,13 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/rollout_details/#add"><span>Rollout Details</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h1>Rollout Details</h1>
 	
@@ -25,14 +25,14 @@ $this->load->view('header');
 		{/if_not_candidate}
 	{if_candidate}
 	<h3>Candidates</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Code</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Latitude</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Longitude</strong></p></td> 
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Is Active</strong></p></td> 	  
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Activate</strong></p></td>
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Action</strong></p></td>               
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center"><strong>Code</strong></td>
+	  <td align="center"><strong>Latitude</strong></td>
+	  <td align="center"><strong>Longitude</strong></td> 
+	  <td align="center"><strong>Is Active</strong></td> 	  
+	  <td align="center"><strong>Activate</strong></td>
+	  <td align="center"><strong>Action</strong></td>               
 	</tr>
 		
 		<tr>
@@ -76,12 +76,12 @@ $this->load->view('header');
 	<h2>Candidate {cname}</h2>
 
 <h3>Activities</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>On</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Subject</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Description</strong></p></td> 
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Comments</strong></p></td>         
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center"><strong>On</strong></td>
+	  <td align="center"><strong>Subject</strong></td>
+	  <td align="center"><strong>Description</strong></td> 
+	  <td align="center"><strong>Comments</strong></td>         
 	</tr>
 		
 		<tr>
@@ -112,13 +112,13 @@ $this->load->view('header');
 	<a href='{site_url}index.php/projects/activity_upload/{sid}/{pid}/{name}/{state_id}/{cid}'>Upload Activities</a> <br />
 	<?php } ?>
 	<h3>Surveys</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Date</strong></p></td>  
-	  <td align="center" bgcolor="#e8e8d0"><strong>Category</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Type</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Reason</strong></p></td> 
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>View Details</strong></p></td> 
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center"><strong>Date</strong></td>  
+	  <td align="center" ><strong>Category</strong></td>
+	  <td align="center" ><strong>Type</strong></td>
+	  <td align="center" ><strong>Reason</strong></td> 
+	  <td align="center" ><strong>View Details</strong></td> 
 	             
 	</tr>
 		
@@ -152,11 +152,11 @@ $this->load->view('header');
 	<?php } ?>
 	
 	<h3>Atachments</h3>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Filename</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><p><strong>Attached on</strong></p></td>     
-	  <td align="center" bgcolor="#e8e8d0">&nbsp;</td>            
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" ><strong>Filename</strong></td>
+	  <td align="center" ><strong>Attached on</strong></td>     
+	  <td align="center" >&nbsp;</td>            
 	</tr>
 	
 		<tr>
@@ -186,6 +186,5 @@ $this->load->view('header');
 	{/if_candidate}
    </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

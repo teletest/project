@@ -14,7 +14,7 @@ header('Content-Type: text/html; Charset=UTF-8');
 <!--<form name="process_details" method="POST" action="">
 
 <input type="hidden" name="id" size="20" value="{id}">-->
-<table cellspacing="2" cellpadding="2" border="0" width="100%">
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 {process}
     <tr>
 	    <td><b>Created on</b></td>

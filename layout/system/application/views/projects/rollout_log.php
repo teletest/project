@@ -1,25 +1,26 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/rollout_log/#add"><span>Rollout Log</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h1>Rollout Log</h1>
 	
 	<h3>Activities on all of the sites</h3>
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Site</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Activity On</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Subject</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Description</strong></p></td> 
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Comments</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Action</strong></p></td>           
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" ><strong>Site</strong></td>
+		  <td align="center" ><strong>Activity On</strong></td>
+		  <td align="center" ><strong>Subject</strong></td>
+		  <td align="center" ><strong>Description</strong></td> 
+		  <td align="center" ><strong>Comments</strong></td>
+		  <td align="center" ><strong>Action</strong></td>           
 		</tr>
 		
 		<tr>
@@ -47,6 +48,5 @@ $this->load->view('header');
 	 {pagination}
   </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

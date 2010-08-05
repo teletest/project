@@ -37,8 +37,7 @@ class Projects extends My_Controller {
 		$this->load->helper('file');
 		$this->load->helper('download');
 		$this->load->helper('url');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+		
 			
 	}
 /*	function mail()
@@ -56,8 +55,8 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
+		
 		// setup breadcrumb
         $bc = array(
                'title' => 'Project',
@@ -116,8 +115,7 @@ class Projects extends My_Controller {
 	
 		 $m = $data['month'];
 		 $y = $data['year'];
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 	
 		// calculate the first day of the month and the total days in month
 		 $d1 = date("w", mktime(0, 0, 0, $m, 1, $y));
@@ -223,8 +221,7 @@ class Projects extends My_Controller {
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['projects_title'] = 'Projects';
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$query = $this->db->get('calendars');
         $data['calendar'] = $query->result_array();
@@ -234,8 +231,7 @@ class Projects extends My_Controller {
 	
 	function calendar_uploaded()
 	{
-	    $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		if ($this->input->post('submit') != '')
 		{  
@@ -357,8 +353,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
 
 		$query = $this->db->get_where('event_details', array('calendar_id' => $id));
 		$data['event_details'] = $query->result_array();
@@ -369,8 +363,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$query = $this->db->get_where('event_details', array('calendar_id' => $id));
 		$data['event_details'] = $query->result_array();
@@ -379,8 +372,7 @@ class Projects extends My_Controller {
 	} 
 	function calendar_edited()
 	{
-	        $data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 
 		    $this->load->helper(array('form', 'url'));
 			$this->load->library('form_validation');
@@ -412,8 +404,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$this->db->delete('calendars' , array('id' => $id));
 		$this->db->delete('event_details' , array('calendar_id' => $id));	
@@ -463,8 +454,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
 
 		/*$bc = array(
                'title' => 'Site Plam',
@@ -509,8 +498,7 @@ class Projects extends My_Controller {
 	{    
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-        $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$query = $this->db->get_where('sites' , array('id' => $id));
 		$result = $query->result_array();
@@ -539,8 +527,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		/*
 		   $name = $this->input->post('project_code');
@@ -594,8 +581,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		if ($this->input->post('submit') != '')
 		{
@@ -667,8 +653,6 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects'); 
-	   $data['ShowLeftSide']	=	true;
-       $data['ShowRightSide']	=	true;
 
 	      
 	   if ($this->input->post('submit') != '')
@@ -708,8 +692,6 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-	   $data['ShowLeftSide']	=	true;
-       $data['ShowRightSide']	=	true;
 
 	   $data['site_name'] = $this->projects_model->get_site_name($id);
 	   $data['site_id'] = $id;
@@ -732,8 +714,7 @@ class Projects extends My_Controller {
 	   $id = $this->input->post('id');
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-	   $data['ShowLeftSide']	=	true;
-       $data['ShowRightSide']	=	true;
+
 
 
 		if ($this->input->post('submit') != '')
@@ -843,8 +824,6 @@ class Projects extends My_Controller {
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['site_id'] = $id;
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
 
 		if($action == 'add'){
 		
@@ -1010,8 +989,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$query = $this->db->get_where('attachements', array('is_active'=>'0'));
 		$rows=$query->num_rows();
@@ -1040,8 +1018,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
@@ -1106,8 +1083,7 @@ class Projects extends My_Controller {
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['pid'] = $pid;			
-        $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$site_id = $sid;
 		$data['sid'] = $site_id;
@@ -1192,8 +1168,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		
 		$s= $this->input->post('s');
@@ -1223,8 +1198,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 
 		$s=$this->input->post('s');
 		$config['base_url'] = BASE_URL . 'index.php/projects/rollout_documents';
@@ -1255,8 +1229,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$data['pid']= $pid;
 		$data['sid']= $sid;
 	    $data['cid']= $cid;
@@ -1311,8 +1284,7 @@ class Projects extends My_Controller {
 		$data['pid']= $pid;
 		$data['sid']= $sid;
 	    $data['cid']= $cid;
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$data['state_id']= $state_id;
 		$query = $this->db->get_where('activities' , array('id'=>$id));
 		$data['a_details'] = $query->result_array();
@@ -1359,8 +1331,7 @@ class Projects extends My_Controller {
 	{
 		    $data = tags();
 			$data['tabs']	= tabs('projects');
-			$data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 			//$data['projects_menu'] = $this->projects_model->menu();
 			$data['sid']= $sid;
 			$data['pid']= $pid;
@@ -1442,8 +1413,7 @@ class Projects extends My_Controller {
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
 			$data['site_id']= $site_id;
-			$data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 			
 		    $query = $this->db->get_where('candidates', array('id' => $candidate_id));
             $data['candidate'] = $query->result_array();	
@@ -1496,8 +1466,7 @@ class Projects extends My_Controller {
 		 $data['tabs']	= tabs('projects');
 		 $data['redirect']= "candidate_upload";
 		 $data['import'] = "Candidate";
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
@@ -1600,8 +1569,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 $data['redirect']= "activity_upload";
 		 $data['import'] = "Activities";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
@@ -1688,8 +1656,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 $data['redirect']= "survey_upload";
 		 $data['import'] = "Surveys";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
@@ -1799,8 +1766,7 @@ class Projects extends My_Controller {
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
-            $data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 			$data['sid']= $sid;
 			$data['cid']= $cid;
 			$data['pid']= $pid;
@@ -1873,8 +1839,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		//gets the details of site		
 		$query = $this->db->get_where('surveys' , array('id'=>$id));
 		$data['survey_details'] = $query->result_array();
@@ -1893,8 +1858,7 @@ class Projects extends My_Controller {
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
-			$data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 
 			$data['sid']= $sid;
 			$data['cid']= $cid;
@@ -1914,8 +1878,7 @@ class Projects extends My_Controller {
 	{  
 	  	$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
         $pid=$this->input->post('pid');
 		$id= $this->input->post('id');
 		if ($this->input->post('submit') != '')
@@ -1971,8 +1934,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$s=$this->input->post('s');
 		$data['project_monitoring']= $this->projects_model->get_project_monitoring($s);		
 		$this->parser->parse('projects/project_monitoring', $data);	
@@ -1990,8 +1952,7 @@ class Projects extends My_Controller {
 	{  
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$data['surveys']= $this->projects_model->get_survey_on_site($site_id);		
 		$this->parser->parse('projects/surveys_on_site', $data);	
 	}
@@ -2006,8 +1967,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 		$data['closing_sites']= $this->projects_model->get_closing_sites($s, $f);		
@@ -2024,8 +1984,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+	
 		$s = $this->input->post('s');
 		$data['closing_attachments'] = $this->projects_model->get_closing_documents( $s );			
 		$this->parser->parse('projects/closing_documents', $data);	
@@ -2041,8 +2000,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$s = $this->input->post('s');
 		$data['closing_projects']= $this->projects_model->get_closing_projects($s);
 		$this->parser->parse('projects/close_project', $data);	
@@ -2077,8 +2035,7 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-	  $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	  $data['projects_title'] = 'Projects - Nominal Plan';
 	  $this->parser->parse('projects/nominal_plans', $data);	
 	}
@@ -2093,8 +2050,7 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-	  $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	  $data['projects_title'] = 'Projects - Nominal Plan';
        // import plan
 	  if($value == '0')
@@ -2254,8 +2210,7 @@ class Projects extends My_Controller {
 	    $data['tabs']	= tabs('projects');
 	    $data['projects_title'] = 'Projects - Nominal Plan';
 	    $data['plan_id'] = $plan_id;
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$this->db->where('nominal_plan_id', $plan_id);
         $this->db->from('nominal_plan_details');
 
@@ -2300,8 +2255,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+	
 		$this->db->delete('nominal_plan' , array('id' => $id));
 		$this->db->delete('nominal_plan_details' , array('nominal_plan_id' => $id));
 		$this->db->delete('sites' , array('project_id' => $project_id));
@@ -2320,8 +2274,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$this->db->delete('processes' , array('id' => $id));
 		$this->db->delete('process_details' , array('process_id' => $id));
 	    $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
@@ -2338,8 +2291,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	    $data['projects_title'] = 'Projects - Nominal Plan';
 		$data['plan_id'] = $plan_id;
 		$this->db->where('nominal_plan_id', $plan_id);
@@ -2393,8 +2345,7 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-	  $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	  $data['projects_title'] = 'Projects - Nominal Plan';
 	  $s = $this->input->post('s');
 	  $dis = $this->input->post('district');
@@ -2580,8 +2531,7 @@ class Projects extends My_Controller {
 	{ 
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-		  $data['ShowLeftSide']	=	true;
-          $data['ShowRightSide']	=	true;
+
 		  $data['projects_title'] = 'List of Processes';
 		  $query = $this->db->get("processes");
 		  $data['process']= $query->result_array(); 
@@ -2720,8 +2670,7 @@ class Projects extends My_Controller {
 	{    
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-		  $data['ShowLeftSide']	=	true;
-          $data['ShowRightSide']	=	true;
+
 		  $data['projects_title'] = 'List of Processes';
 		  $query = $this->db->get_where('processes' ,array('id' => $id));
 		  $data['process']= $query->result_array(); 
@@ -2734,8 +2683,7 @@ class Projects extends My_Controller {
 	{
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-		  $data['ShowLeftSide']	=	true;
-          $data['ShowRightSide']	=	true;
+
 		  $data['projects_title'] = 'Plan Summary';
 		  
 		  $filters = array("district","bsc","msc","region", "phase" , "division");
@@ -2759,8 +2707,7 @@ class Projects extends My_Controller {
 	{
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-		  $data['ShowLeftSide']	=	true;
-          $data['ShowRightSide']	=	true;
+
 		  $data['projects_title'] = 'Plan Summary';
 		  $data['field']=$field;
 		  $data['value']=$value;
@@ -2771,8 +2718,6 @@ class Projects extends My_Controller {
 	}
 	function display_counted_sites($field, $value)
 	{
-	      $data['ShowLeftSide']	=	true;
-          $data['ShowRightSide']	=	true;
 		  $data['sites'] = $this->projects_model->get_site_count_details($field, $value);
 		  $this->parser->parse('projects/counted_sites', $data);
 	}
@@ -2781,16 +2726,14 @@ class Projects extends My_Controller {
 	  $this->db->order_by("id", "asc"); 
 	  $query=$this->db->get_where("states", array('site_id' => $site_id));
 	  $data['stages']=$query->result_array();
-	  $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	  $this->parser->parse('projects/view_planned_stages', $data);
 	}
 	function project_summary($project_id="",  $month="", $year="",$export_option="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$this->load->plugin( 'fusion' );
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -2891,8 +2834,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 $data['region_values'] = $this->projects_model->get_region_sites( $project_id , $region_name);
 		 $this->view_googlemap($data['region_values']);
 		 //$this->parser->parse('projects/google_map', $data);
@@ -2901,8 +2843,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 
 		 $data['site_values'] = $this->projects_model->get_region_district_sites( $project_id , $region_name, $district_name);
 		 $this->view_googlemap($data['site_values']);
@@ -2911,8 +2852,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 if( $_SERVER['SERVER_NAME'] == "localhost")
 		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		 else
@@ -2947,8 +2887,7 @@ class Projects extends My_Controller {
 	{
 	   	 $data = tags();
 		 $data['tabs']	= tabs('projects');
-		 $data['ShowLeftSide']	=	true;
-         $data['ShowRightSide']	=	true;
+
 		 if( $_SERVER['SERVER_NAME'] == "localhost")
 		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		 else
@@ -2983,8 +2922,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$data['project_id'] = $project_id;
 		$this->db->where('process_id', "1");
         $this->db->from('process_details');
@@ -3036,8 +2974,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -3061,8 +2998,7 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-	   $data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 	   $this->load->plugin('fusion');
 	   $data['chart_type']= "Pie3D.swf";
 	   $data['chart_type1']= "MSColumn2D.swf";
@@ -3092,8 +3028,7 @@ class Projects extends My_Controller {
 	{
 		    $data = tags();
 		    $data['tabs']	= tabs('projects');
-			$data['ShowLeftSide']	=	true;
-            $data['ShowRightSide']	=	true;
+
 			$data['site_id'] =  $this->projects_model->get_site_name($site_id);
 		    $this->load->plugin( 'fusion' );
 		    $this->db->order_by("id", "asc");
@@ -3287,8 +3222,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
       
 	    // local
 		if( $_SERVER['SERVER_NAME'] == "localhost")
