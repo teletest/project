@@ -51,9 +51,11 @@ HIGHLIGHT = 1
 
 
 
-  foldersTree = gFld("New Project", SITEURL+"/projects/new_project")
+  foldersTree = gFld("Project Explorer", SITEURL+"/projects/")
 
   foldersTree.treeID = "Frameset"
+  
+  aux1 = insFld(foldersTree, gFld("New Project", SITEURL+"/projects/new_project"))
 
   aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
   aux2 = insFld(foldersTree, gFld("Nominal Plan", SITEURL+"/projects/nominal_plans"))
