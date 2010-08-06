@@ -1,15 +1,13 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div class="art-contentLayout"> 
-
-<div style="float:left">
-<?php
-$this->load->view('sidebar');
-?>
-</div>
-<div style="float:left;margin-left:20px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
+    <ul>
+    <li><a href="#add"><span>Add Attachment</span></a></li>
+    
+    </ul>
+    <div id="add" class="TabSpec">
 <h3>Add Attachement</h3>
 
 
@@ -18,11 +16,11 @@ $this->load->view('sidebar');
 
 
 <h2>Attachments</h2>
-<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-	<tr>
-	  <td align="center" bgcolor="#e8e8d0"><strong>File name</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Attached On</strong></td>
-	  <td align="center" bgcolor="#e8e8d0"><strong>Actions</strong></td>          
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+	<tr class="ewTableHeader">
+	  <td align="center" ><strong>File name</strong></td>
+	  <td align="center" ><strong>Attached On</strong></td>
+	  <td align="center" ><strong>Actions</strong></td>          
 	</tr>
 	<tr>
 	  <td>&nbsp;</td>
@@ -49,8 +47,7 @@ $this->load->view('sidebar');
        {/if_att}          
 </table> 
 
-
 </div>
-<?php
-$this->load->view('footer');
-?>
+</div>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

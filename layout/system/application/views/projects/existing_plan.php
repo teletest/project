@@ -15,11 +15,11 @@
 					  <tbody>
 					  <tr class="ewTableHeader">
 					   
-						<td bgcolor="#e8e8d0"><strong>Plan Name</strong></td>
+						<td><strong>Plan Name</strong></td>
 					<!--<td bgcolor="#e8e8d0"><strong>Project Name</strong></td>-->
-						<td align="center" bgcolor="#e8e8d0"><p><strong>View Plan</strong></p></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Delete</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Edit</strong></td>
+						<td align="center" ><strong>View Plan</strong></td>
+                    <td align="center"><strong>Delete</strong></td>
+                    <td align="center"><strong>Edit</strong></td>
                   </tr>
 					  <tr>
 						<td>&nbsp;</td>

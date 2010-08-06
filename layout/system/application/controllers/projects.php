@@ -2946,8 +2946,7 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
+
 		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";

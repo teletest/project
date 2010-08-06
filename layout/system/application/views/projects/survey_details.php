@@ -1,16 +1,16 @@
-<?php
-$this->load->view('header');
-?>
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/survey_details/#add"><span>Survey Details</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec" >
 
 	<h3>Survey Detais</h3>
 {survey_details}	
-	<table cellspacing="2" cellpadding="2" border="0" width="100%">
+	<table  width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		
 		<tr>
 			<td valign="top" heitght="20">Category:
@@ -159,6 +159,6 @@ $this->load->view('header');
 
     </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>
+

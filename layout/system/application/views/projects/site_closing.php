@@ -1,24 +1,24 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/site_closing/#add"><span>Site Closing</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec" >
 
 <h1>Site Closing</h1>
 
 <br /><br />
 <h2>Sites ready to be closed</h2>
-<table class="table" align="center" border="0" cellpadding="1" cellspacing="2" width="98%">
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
                   <tbody>
 				  
-				    <tr>
-                    <td bgcolor="#e8e8d0"><strong>Site Code</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Action</strong></td>
+				    <tr class="ewTableHeader">
+                    <td ><strong>Site Code</strong></td>
+                    <td align="center" ><strong>Action</strong></td>
                     </tr>
 					
 					<tr>
@@ -100,6 +100,5 @@ $this->load->view('header');
 
 </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

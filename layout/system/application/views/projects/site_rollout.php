@@ -1,27 +1,27 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/site_rollout/#add"><span>Site Rollout</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h2>Sites being rolledout</h2>
 	{states}
 	<h3>{stage}:</h3>
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Name</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Status</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Start</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>End</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Assignee</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>% Complete</strong></p></td>  
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>View Status</strong></p></td>    
-		  <td align="center" bgcolor="#e8e8d0" colspan="5">&nbsp;</td>            
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" ><strong>Name</strong></td>
+		  <td align="center" ><strong>Status</strong></td>
+		  <td align="center" ><strong>Start</strong></td>
+		  <td align="center" ><strong>End</strong></td>
+		  <td align="center" ><strong>Assignee</strong></td>
+		  <td align="center" ><strong>% Complete</strong></td>  
+		  <td align="center" ><strong>View Status</strong></td>    
+		  <td align="center"  colspan="5">&nbsp;</td>            
 		</tr>
 	
 		<tr>
@@ -74,6 +74,5 @@ $this->load->view('header');
 	{pagination}
     </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

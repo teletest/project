@@ -14,9 +14,9 @@
 				<tbody>
 							  
 					<tr class="ewTableHeader">
-					  <td align="center" bgcolor="#e8e8d0"><strong>File name</strong></td>
-					  <td align="center" bgcolor="#e8e8d0"><strong>Attached On</strong></td>
-					  <td align="center" bgcolor="#e8e8d0"><strong>Actions</strong></td>          
+					  <td align="center"><strong>File name</strong></td>
+					  <td align="center"><strong>Attached On</strong></td>
+					  <td align="center"><strong>Actions</strong></td>          
 					</tr>
 			
 					<tr>

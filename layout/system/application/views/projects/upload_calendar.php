@@ -1,6 +1,6 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 <script language="JavaScript">
 	function disable_upload(form_obj)
 	{
@@ -11,15 +11,15 @@ $this->load->view('header');
 	}
 </script>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; >
     <ul>
     <li><a href="{site_url}index.php/projects/upload_calendar/#add"><span>Upload Calendar</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h3>Import Calendar</h3>
-<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
+<table  width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	<form name="calendarForm" id="calendarForm" action="{site_url}index.php/projects/calendar_uploaded" method="post"  enctype="multipart/form-data">
 	<tbody>
 	<tr>
@@ -72,6 +72,5 @@ $this->load->view('header');
 
    </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

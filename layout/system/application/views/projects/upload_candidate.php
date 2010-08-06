@@ -1,17 +1,17 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/upload_candidate/#add"><span>Upload Candidate</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h3>Import {import}</h3>
 <span style="color:red;"><?php echo $this->session->flashdata('conf_msg'); ?></span>
-	<table class="std" border="0" cellpadding="0" cellspacing="1" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	<?php echo form_open_multipart("projects/{redirect}");?>
 	
 	<input type="hidden" name='project_id' value="{project_id}" />
@@ -35,6 +35,5 @@ $this->load->view('header');
 
 </div>
 
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

@@ -1,23 +1,23 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/sites_details/#add"><span>Sites Details</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h1>Site Details</h1>
 	
 	
 	
-	<table class="table" cellspacing="2" cellpadding="2" border="0" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	{sites_details}
 	  <tbody>
-		<tr>
-		 <th colspan="4" align="center">Site Details</th>
+		<tr class="ewTableHeader">
+		 <td colspan="4" align="center">Site Details</td>
 		</tr>
 		<tr>
 		  <td colspan="4">&nbsp;</td>
@@ -90,7 +90,6 @@ $this->load->view('header');
     </div>
 </div>
 
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>
 

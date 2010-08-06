@@ -1,21 +1,21 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/sites_in_district/#add"><span>Sites in District</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec">
 
 	<h2>Sites in district {district}</h2>
 	<br>
 	<h3>Sites Not Planned</h3>
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Code</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Status</strong></td>                            
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" ><strong>Code</strong></td>
+		  <td align="center" ><strong>Status</strong></td>                            
 		</tr>
 		<tr>
 		  <td>&nbsp;</td>
@@ -50,11 +50,13 @@ $this->load->view('header');
 	
 	</div>
 	<div style="float:left;margin-left:20px;">
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <th>
+				 <Tr class="ewTableHeader">
+				 <td>
 					 Sites Summary
-				 </th>
+				 </td>
+				 </Tr>
 				 <tr>
 					 <td><?php echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "{width}", "{height}"); ?></td>
 				</tr>
@@ -63,7 +65,6 @@ $this->load->view('header');
     </div>
    </div>
 </div>
-<?php
-$this->load->view('footer');
-?>
 
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>

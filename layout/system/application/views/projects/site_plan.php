@@ -1,25 +1,25 @@
-<?php
-$this->load->view('header');
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php  // $this->load->view('header');  ?>
+<?php $this->load->view('header-new');?>
 
-<div id="ShowTab" style="width:96%;overflow:auto; padding:5px;height:200px;">
+<div id="ShowTab" style="width:96%;overflow:auto; ">
     <ul>
     <li><a href="{site_url}index.php/projects/site_plan/#add"><span>Site Plan</span></a></li>
     
     </ul>
-    <div id="add" >
+    <div id="add" class="TabSpec" >
 	<h1>Site Plan</h1>
 	
 	
 	<h2>Sites waiting to be planned</h2>
 	<form action='{site_url}index.php/projects/site_planned' method='post' name="planForm">
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>&nbsp;</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Project Code</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Site Name</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Status</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Created on</strong></p></td>              
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" ><strong>&nbsp;</strong></td>
+		  <td align="center" ><strong>Project Code</strong></td>
+		  <td align="center" ><strong>Site Name</strong></td>
+		  <td align="center" ><strong>Status</strong></td>
+		  <td align="center" ><strong>Created on</strong></td>              
 		</tr>
 	
 		<tr>
@@ -49,7 +49,7 @@ $this->load->view('header');
 	<h3>Plan Selected Projects</h3>
 	
 		
-	<table cellspacing="2" cellpadding="2" border="0" width="100%">
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	
 		<tr valign="top" height="20">
 			<td align="right"> <b> Start Date : </b> </td>
@@ -129,16 +129,16 @@ $this->load->view('header');
 	<div id="showplan">
 	<h2>Sites waiting to be rolledout</h2>
 	
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
 	
-		  <td align="center" bgcolor="#e8e8d0"><strong>Code</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Status</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Created on</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Planned on</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>Start Date</strong></p></td>
-		  <td align="center" bgcolor="#e8e8d0"><p><strong>End Date</strong></p></td>                    
-		  <td align="center" bgcolor="#e8e8d0">&nbsp;</td>                  
+		  <td align="center" ><strong>Code</strong></td>
+		  <td align="center" ><strong>Status</strong></td>
+		  <td align="center" ><strong>Created on</strong></td>
+		  <td align="center" ><strong>Planned on</strong></td>
+		  <td align="center" ><strong>Start Date</strong></td>
+		  <td align="center" ><strong>End Date</strong></td>                    
+		  <td align="center" >&nbsp;</td>                  
 		</tr>
 	
 		<tr>
@@ -180,6 +180,5 @@ $this->load->view('header');
 
 </div>
 
-<?php
-$this->load->view('footer');
-?>
+<?php $this->load->view('footer-new');?> 
+<?php // $this->load->view('footer'); ?>
