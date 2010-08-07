@@ -13,6 +13,45 @@ var ICONPATH = '<?php echo base_url()."images/"; ?>';
 var SITEURL = '<?php echo site_url(); ?>';
 </script>
 
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="{site_url}js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="{site_url}js/fusion.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> 
+<script type="text/javascript" src="{site_url}js/confirm.js"></script>
+
+<!-- calendar icon -->
+<!--<base href="http://www.monkeyphysics.com/" /> -->
+<link rel="stylesheet" href="{site_url}css/calendar.css" type="text/css" />
+<script type="text/javascript"  src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.3/mootools.js'></script> 
+<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/mootools/1.2.3/mootools-yui-compressed.js'></script> 
+<script type="text/javascript" src="{site_url}js/live_validation.js" charset="utf-8"></script>
+<script src="{site_url}js/calendar.js" type="text/javascript" charset="utf-8"></script> 
+<script src="{site_url}js/datepicker.js" type="text/javascript" charset="utf-8"></script> 
+
+<!-- end calendar icon -->
+
+<!-- js expand -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{site_url}js/jExpand.js"></script>
+<link rel="stylesheet" href="{site_url}css/js_expand.css" type="text/css" media="screen">
+<!-- end js expand -->
+
+<!-- slide up down div script -->
+<script type="text/javascript" src="{site_url}js/slide_up_down.js"></script>
+<link rel="stylesheet" href="{site_url}css/slide_up_down.css" type="text/css" media="screen">
+<!-- end slide up down div script -->
+
+<!-- zebra filtering script -->
+<link rel="stylesheet" href="{site_url}css/zebra_filter.css" type="text/css" media="screen" charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script> 
+<script src="{site_url}js/zebra_filter.js" type="text/javascript" charset="utf-8"></script> 
+<!-- end zebra filtering script -->
+          
+<script src="{site_url}js/select_all.js" type="text/javascript" charset="utf-8"></script>           
+<script src="{site_url}js/FusionCharts.js" type="text/javascript" charset="utf-8"></script> 
+<script src="{site_url}js/scroll_to_div.js" type="text/javascript" charset="utf-8"></script>      
+
+
 <?php $this->load->view('inc-css');?>
 <?php $this->load->view('inc-js');?>
 

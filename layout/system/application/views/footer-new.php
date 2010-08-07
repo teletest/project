@@ -23,44 +23,66 @@
                   </tr>
                   <tr>
                     <td height="160" align="center" valign="middle" bgcolor="#FFFFFF">
-<div id="summary">
-<table align="center" class="ewTable"  style="width:178px">
-  <tbody>
-    <tr class="ewTableHeader">
-      <td valign="top"><strong>Application</strong></td>
-      <td valign="top"><strong>Remaining</strong></td>
-      <td valign="top"><strong>Used</strong></td>
-    </tr>
-  </tbody>
-  <tbody id="thetable">
-    <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-      <td><div>13</div></td>
-      <td><div>admin</div></td>
-      <td><div>98</div></td>
-    </tr>
-    <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
-      <td><div>14</div></td>
-      <td><div>asd</div></td>
-      <td><div>asd</div></td>
-    </tr>
-    <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
-      <td><div>15</div></td>
-      <td><div>fgh</div></td>
-      <td><div>fhf</div></td>
-    </tr>
-    <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
-      <td><div>16</div></td>
-      <td><div>fgh</div></td>
-      <td><div>fhf</div></td>
-    </tr>
-    <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
-      <td><div>16</div></td>
-      <td><div>fgh</div></td>
-      <td><div>fhf</div></td>
-    </tr>
-  </tbody>
-</table>
-</div>                    </td>
+					<div id="summary">
+					<table align="center" class="ewTable"  style="width:178px">
+					  <tbody>
+						<!-- <tr class="ewTableHeader">
+						  <td valign="top"><strong>Application</strong></td>
+						  <td valign="top"><strong>Remaining</strong></td>
+						  <td valign="top"><strong>Used</strong></td>
+						</tr> -->
+					  </tbody>
+					  <tbody id="thetable">
+					    <!--<tr class="ewTableHeader">
+						 <td colspan="3">
+							 Sites Summary
+						 </td>
+						 </tr> -->
+						 <tr>
+							 <td colspan="3"><?php echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "200", "200"); ?></td>
+						</tr>
+						<tr>
+						<tr class="ewTableHeader">
+				         <td colspan="3">
+							<span style="font-family: Arial,Arial;">
+							<strong>
+							<font size="2">Select Month & Year </font>	
+							</strong>
+							</span>
+							<?php
+							echo "<form id=form1 name=form1 method=post action={site_url}index.php/projects/project_summary>
+							<select style='font-family: Arial; font-size: 12px; size=1' name=month onChange='showSelected()'>
+							{months}
+							<option value={value} {selected}>{name}</option>
+							{/months}
+							</select>
+							
+							<select style=font-family: Arial; font-size: 12px; size=1 name=year onChange='showSelected()'>
+							{years}
+							<option value={value} {selected}>{name}</option>
+							{/years}
+							</select>
+							</form>";?>
+				         </td>
+				 
+						</tr>
+						<tr>
+					       <td colspan="3"><?php echo renderChart( "{site_url}charts/"."{chart_type1}",  "", "{bargraph_xml}" , "chart1", "200", "200"); ?></td>
+				        </tr>
+						<!-- <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+						  <td><div>13</div></td>
+						  <td><div>admin</div></td>
+						  <td><div>98</div></td>
+						</tr>
+						<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
+						  <td><div>14</div></td>
+						  <td><div>asd</div></td>
+						  <td><div>asd</div></td>
+						</tr> -->
+
+					  </tbody>
+					</table>
+					</div>                    </td>
                   </tr>
                 </table></td>
               </tr>

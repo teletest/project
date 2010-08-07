@@ -105,26 +105,26 @@
 
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <tr class="ewTableHeader">
+				 <!-- <tr class="ewTableHeader">
 				 <td>
 					 Sites Summary
 				 </td>
 				 </tr>
 				 <tr>
-					 <td><?php echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "{width}", "{height}"); ?></td>
-				</tr>
+					 <td><?php // echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "{width}", "{height}"); ?></td>
+				</tr> -->
 		   </tbody>
 	</table>	
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		   <tbody>
-				 <tr class="ewTableHeader">
+				<!-- <tr class="ewTableHeader">
 				 <td>
 						<span style="font-family: Arial,Arial;">
 						<strong>
 						<font size="2">Select Month & Year </font>	
 						</strong>
 						</span>
-						<?php
+						<?php /*
 						echo "<form id=form1 name=form1 method=post action={site_url}index.php/projects/project_summary>
 						<select style='font-family: Arial; font-size: 12px; size=1' name=month onChange='showSelected()'>
 						{months}
@@ -137,12 +137,13 @@
 						<option value={value} {selected}>{name}</option>
 						{/years}
 						</select>
-						</form>";?>
+						</form>"; */
+						?>
 				 </td>
 				 </tr>
 				 <tr>
-					 <td><?php echo renderChart( "{site_url}charts/"."{chart_type1}",  "", "{bargraph_xml}" , "chart1", "{width}", "{height}"); ?></td>
-				</tr>
+					 <td><?php  //echo renderChart( "{site_url}charts/"."{chart_type1}",  "", "{bargraph_xml}" , "chart1", "{width}", "{height}"); ?></td>
+				</tr> -->
 		   </tbody>
 	</table>
     </div>
