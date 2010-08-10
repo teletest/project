@@ -22,7 +22,7 @@
 		  <td align="center" ><strong>Comments</strong></td>
 		  <td align="center" ><strong>Action</strong></td>           
 		</tr>
-		
+		<tbody id="thetable">
 		<tr>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
@@ -33,7 +33,7 @@
 		</tr>
 		
 	{activities}
-		<tr>
+		<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 		  <td>{name}</td>
 		  <td>{activity_on}</td>
 		  <td><a href='{site_url}index.php/projects/activity_update/{id}/{project_id}/{site_id}/{candidate_id}' rel="lyteframe">{subject}</a></td>
@@ -43,6 +43,7 @@
 		</tr>
 		
 	{/activities}
+	   </tbody>
 	</table>
 	
 	 {pagination}

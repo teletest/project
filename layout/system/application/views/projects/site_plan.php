@@ -14,6 +14,7 @@
 	<h2>Sites waiting to be planned</h2>
 	<form action='{site_url}index.php/projects/site_planned' method='post' name="planForm">
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+	<tbody>
 		<tr class="ewTableHeader">
 		  <td align="center" ><strong>&nbsp;</strong></td>
 		  <td align="center" ><strong>Project Code</strong></td>
@@ -21,19 +22,14 @@
 		  <td align="center" ><strong>Status</strong></td>
 		  <td align="center" ><strong>Created on</strong></td>              
 		</tr>
-	
-		<tr>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td> 
-		</tr>
+    </tbody>
 	<a href="#" onClick="checkAll('project[]',1);">Check All Sites</a> | <a href="#" onClick="checkAll('project[]',0);">Uncheck All 
 	Sites</a><br><br>	
 	{projects_np}
+	<tbody id="thetable">
+		
+		<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);"> 
 		<input type="hidden" value="{project_id}" name="project_id" />
-		<tr>  
 		  <td><input type="checkbox" value="{id}" name="project[]"  /> </td>
 		  <td><a href='projects_details/{id}' rel="lyteframe">{code}</a></td>
 		  <td><a href='projects_details/{id}' rel="lyteframe">{name}</a></td>
@@ -43,7 +39,7 @@
 		  <!-- <td> <a href='site_attach_document/{id}' >Document</a></td> -->
 		</tr>
 	{/projects_np}                  
-					  
+	</tbody>				  
 	</table>
 	
 	<h3>Plan Selected Projects</h3>
@@ -140,7 +136,7 @@
 		  <td align="center" ><strong>End Date</strong></td>                    
 		  <td align="center" >&nbsp;</td>                  
 		</tr>
-	
+	<tbody id="thetable">
 		<tr>
 		 
 		  <td>&nbsp;</td>
@@ -153,7 +149,7 @@
 		</tr>
 		
 	{projects_nr}
-		<tr>
+		<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 		  <td><a href='site_details/{id}' rel="lyteframe">{name}</a></td>
 		  <td>{status}</td>
 		  <td>{created_on}</td>
@@ -173,7 +169,7 @@
 		  </td>
 		</tr>
 	{/projects_nr}                  
-					  
+	</tbody>				  
 	</table>
 
     </div>

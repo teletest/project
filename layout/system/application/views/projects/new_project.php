@@ -48,11 +48,13 @@
 			<tr>
 				<th>Project Code</th><th>Action</th>
 			</tr>
+			<tbody id="thetable">
 			{projects}
-			<tr>
+			<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 				<td><a href='{site_url}index.php/projects/projects_details/{id}' >{code}</a> </td><td><a href='{site_url}index.php/projects/projects_details/{id}' rel="lyteframe" >Details</a> | <a href='{site_url}index.php/projects/projects_delete/{id}'>Delete</a></td>
 			</tr>
 			{/projects}
+			</tbody>
 			</table>
 
       </div>

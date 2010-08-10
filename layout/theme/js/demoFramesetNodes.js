@@ -75,15 +75,15 @@ HIGHLIGHT = 1
   aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
   //Rool out Menu
 
-    	  aux1 = insFld(foldersTree, gFld("Site Rollout", SITEURL+"/projects//site_rollout/none/0/0/0/0/0"))
+    	  aux1 = insFld(foldersTree, gFld("Site Rollout", SITEURL+"/projects/site_rollout/none/0/0/0/0/0"))
 
-          aux2 = insFld(aux1, gFld("Rollout Log", SITEURL+"/projects//rollout_log"))
+          aux2 = insFld(aux1, gFld("Rollout Log", SITEURL+"/projects/rollout_log"))
 
-          aux2 = insFld(aux1, gFld("Rollout Documents", SITEURL+"/projects//rollout_documents"))
+          aux2 = insFld(aux1, gFld("Rollout Documents", SITEURL+"/projects/rollout_documents"))
 
 	      //Site Close Menu
 
-	      aux1 = insFld(foldersTree, gFld("Site Close", SITEURL+"/projects//site_closing"))
+	      aux1 = insFld(foldersTree, gFld("Site Close", SITEURL+"/projects/site_closing"))
 
           aux2 = insFld(aux1, gFld("Closing Documents", SITEURL+"/projects/closing_documents"))
 

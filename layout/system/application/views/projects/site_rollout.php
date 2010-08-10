@@ -23,7 +23,7 @@
 		  <td align="center" ><strong>View Status</strong></td>    
 		  <td align="center"  colspan="5">&nbsp;</td>            
 		</tr>
-	
+	    <tbody id="thetable">
 		<tr>
 		  <td>&nbsp;</td>
 		  <td>&nbsp;</td>
@@ -39,7 +39,7 @@
 		  <td>&nbsp;</td>
 		</tr>
 	  {if_not_found}	  
-		  <tr >
+		  <tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 		  <td colspan="12">No Site found at this stage</td>
 		  </tr>
 	  {/if_not_found}
@@ -51,8 +51,8 @@
 		  <td>{start}</td>
 		  <td>{end}</td>
 		  <td>{name}</td>
-		  <td>{percentage_complete}</td>
-		  <td><a href='{site_url}index.php/projects/chart/{site_id}/Active' target="_blank">view Status</a> </td>
+		  <td nowrap >{percentage_complete}</td>
+		  <td nowrap><a href='{site_url}index.php/projects/chart/{site_id}/Active' target="_blank">view Status</a> </td>
 		  <td><a href='{site_url}index.php/projects/rollout_details/{site_id}/{project_id}/{s_name}/{state_id}/0'>Details</a> </td>
 		  <td><a href='{site_url}index.php/projects/site_attach_document/{site_id}/{state_id}' >Document</a> </td>
 		  <?php if($this->session->userdata('is_admin')) { ?>  
@@ -68,6 +68,7 @@
 		<tr >
 		  <td colspan="12"><a href='{site_url}index.php/charts/Bar2D/{stage}' >View progress of all sites at this stage</a></td>
 		</tr>
+		</tbody>
 	</table>
 	{/states}
 	

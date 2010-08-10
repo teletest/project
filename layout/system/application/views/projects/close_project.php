@@ -12,14 +12,14 @@
 	<h2>Projects ready to be closed</h2>
 	
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-			 <tbody>
+			
 		
 						<tr class="ewTableHeader">
 						<td><strong>Project Code</strong></td>
 						<td align="center"><strong>Action</strong></td>
 						</tr>
-						
-						<tr>
+						<tbody id="thetable">
+						<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 						<td align="center">&nbsp;</td>
 						<td align="center">&nbsp;</td>	
 						</tr>

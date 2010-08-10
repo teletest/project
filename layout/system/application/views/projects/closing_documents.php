@@ -18,7 +18,7 @@
 					  <td align="center"><strong>Attached On</strong></td>
 					  <td align="center"><strong>Actions</strong></td>          
 					</tr>
-			
+			        <tbody id="thetable">
 					<tr>
 					  <td>&nbsp;</td>
 					  <td>&nbsp;</td>
@@ -26,7 +26,7 @@
 					</tr>
 				
 							{closing_attachments} 
-								<tr>  
+								<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">  
 								  <td>{filename}</td>
 							  <td>{attached_on}</td>
 							  <td><a href='{site_url}uploads/{project_id}_{filename}' rel="lyteframe">View</a> | <a href='{site_url}uploads/{project_id}_{filename}'  onClick="window.print();return false">Print</a>

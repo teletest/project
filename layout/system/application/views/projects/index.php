@@ -23,26 +23,16 @@ $this->load->view('header-new');
 		 <!-- <td valign="top">% Complete</td>  -->                
 		</tr>
 		</tbody>
-		<tbody >
-		<tr>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <td>&nbsp;</td>
-		  <!--<td>&nbsp;</td> -->
-		 <!-- <td>&nbsp;</td> -->
-		</tr>
+		<tbody id="thetable">
 	{if_not_found}
-    <tr>
+    <tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 	<td colspan="8"> Your search did not return any results. </td>
 	</tr>
 	{/if_not_found}
 	{if_found}
 
     {projects}
-	<tr>
+	<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 
 	  <td><a href='{site_url}index.php/projects/project_summary/{id}' >{code}</a></td>
 	  <td>{status}</td>

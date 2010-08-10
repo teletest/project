@@ -146,7 +146,40 @@
 				</tr> -->
 		   </tbody>
 	</table>
-    </div>
+
+<!-- am pice chart -->
+	
+   <table  width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+	   <tbody>
+			 <tr>
+				 <td class="textBold" align="center">Charts</td>
+			 </tr>
+			 <tr>
+				 <td>
+				 <!--
+				 <script type="text/javascript" src="{site_url}charts/amcolumn/swfobject.js"></script>
+		                 <div id="flashcontent">
+			              <strong>You need to upgrade your Flash Player</strong>
+		                 </div>
+		             <script type="text/javascript">
+					// <![CDATA[		
+					var myChart = new SWFObject("{site_url}charts/amcolumn/{object_type}", "my_id", "800", "400", "8", "#FFFFFF");
+					myChart.addVariable("chart_id", "my_id");
+					myChart.addVariable("path", ".{site_url}charts/amcolumn/");
+					myChart.addVariable("settings_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_setting.xml"));
+					myChart.addVariable("data_file", encodeURIComponent("{site_url}charts/amcolumn/{chart_type2}/chart_data.xml"));		
+					myChart.addVariable("preloader_color", "#999999");
+					myChart.write("flashcontent");
+						// ]]>
+					</script>
+					-->
+                </td>
+			</tr>
+	   </tbody>
+   </table>
+</div> 
+<!-- end am pice chart -->
+
 
 </div>
 <?php $this->load->view('footer-new');?> 

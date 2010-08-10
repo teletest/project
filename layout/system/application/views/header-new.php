@@ -47,7 +47,7 @@ var SITEURL = '<?php echo site_url(); ?>';
 <script src="{site_url}js/zebra_filter.js" type="text/javascript" charset="utf-8"></script> 
 <!-- end zebra filtering script -->
           
-<script src="{site_url}js/select_all.js" type="text/javascript" charset="utf-8"></script>           
+<script src="{site_url}js/select_all.js" type="text/javascript" ></script>           
 <script src="{site_url}js/FusionCharts.js" type="text/javascript" charset="utf-8"></script> 
 <script src="{site_url}js/scroll_to_div.js" type="text/javascript" charset="utf-8"></script>      
 

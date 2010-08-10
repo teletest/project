@@ -12,24 +12,24 @@
 <?php echo validation_errors();  ?>
 	<!--<form action='{site_url}index.php/projects/implement_process' method='post' name="planForm"> -->
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-					  <tbody>
-					  <tr class="ewTableHeader">
-					   
-						<td><strong>Plan Name</strong></td>
-					<!--<td bgcolor="#e8e8d0"><strong>Project Name</strong></td>-->
-						<td align="center" ><strong>View Plan</strong></td>
+			
+				<tr class="ewTableHeader">	   
+					<td><strong>Plan Name</strong></td>
+				<!--<td bgcolor="#e8e8d0"><strong>Project Name</strong></td>-->
+					<td align="center" ><strong>View Plan</strong></td>
                     <td align="center"><strong>Delete</strong></td>
                     <td align="center"><strong>Edit</strong></td>
                   </tr>
-					  <tr>
-						<td>&nbsp;</td>
-                    <!--<td>&nbsp;</td>-->
-						<td>&nbsp;</td>
+				  <tbody id="thetable">
+				  <tr>
+					<td>&nbsp;</td>
+				<!--<td>&nbsp;</td>-->
+					<td>&nbsp;</td>
                     <td align="center">&nbsp;</td>
                     <td align="center">&nbsp;</td>
                   </tr>
 					  {plan}
-					  <tr>
+					  <tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 						<td>{plan_name}</td>
 					    <!--<td>{project_name}</td>-->
 						<!--<td align="center"><a href='{site_url}index.php/projects/display_nominal_plan/{id}' ><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td> -->

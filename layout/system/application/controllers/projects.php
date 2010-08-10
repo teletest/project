@@ -31,13 +31,13 @@ class Projects extends My_Controller {
 		$this->load->library('pagination');
 		$this->load->library('Workdays');
 		$this->load->library('cigooglemapapi');
+		$this->load->library('Csv_validation');
 		$this->load->helper(array('form', 'url', 'file'));
 		$this->load->library('form_validation');
 		$this->load->plugin('fusion');
 		$this->load->helper('file');
 		$this->load->helper('download');
 		$this->load->helper('url');
-		
 			
 	}
 /*	function mail()
@@ -55,7 +55,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
 		
 		// setup breadcrumb
         $bc = array(
@@ -114,9 +113,7 @@ class Projects extends My_Controller {
 	{
 	
 		 $m = $data['month'];
-		 $y = $data['year'];
-
-	
+		 $y = $data['year'];	
 		// calculate the first day of the month and the total days in month
 		 $d1 = date("w", mktime(0, 0, 0, $m, 1, $y));
 		//This gets us the month name 
@@ -221,8 +218,7 @@ class Projects extends My_Controller {
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['projects_title'] = 'Projects';
-
-
+		
 		$query = $this->db->get('calendars');
         $data['calendar'] = $query->result_array();
 		$data['error_msg']=$msg;
@@ -231,9 +227,7 @@ class Projects extends My_Controller {
 	
 	function calendar_uploaded()
 	{
-
-
-		if ($this->input->post('submit') != '')
+	    if ($this->input->post('submit') != '')
 		{  
 		    $overwrite = $this->input->post("overwrite");
 			$mypath = './uploads';
@@ -353,7 +347,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$query = $this->db->get_where('event_details', array('calendar_id' => $id));
 		$data['event_details'] = $query->result_array();
 	    
@@ -363,8 +356,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		$query = $this->db->get_where('event_details', array('calendar_id' => $id));
 		$data['event_details'] = $query->result_array();
 	
@@ -372,9 +363,7 @@ class Projects extends My_Controller {
 	} 
 	function calendar_edited()
 	{
-
-
-		    $this->load->helper(array('form', 'url'));
+	        $this->load->helper(array('form', 'url'));
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('id[]', 'Event Selection', 'required|isset');
 			$this->form_validation->set_rules('definition[]', 'Even Description', 'required');
@@ -404,8 +393,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		$this->db->delete('calendars' , array('id' => $id));
 		$this->db->delete('event_details' , array('calendar_id' => $id));	
 		redirect('projects/upload_calendar');
@@ -419,7 +406,6 @@ class Projects extends My_Controller {
 	
 	function site_planned()
 	{
-		 
 		 $date = $this->input->post('start_date');
 		 $process_id = $this->input->post('f');
 		 $projects = $this->input->post('project');
@@ -454,7 +440,7 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
+		
 		/*$bc = array(
                'title' => 'Site Plam',
                'url' => 'projects/site_plan',
@@ -488,22 +474,22 @@ class Projects extends My_Controller {
 		$this->parser->parse('projects/site_plan', $data);	
 	}
 	/**
-	* Gives the documents attached to site whose ID has been passed to it
+	* Gives the documents attached to site whose ID has been passed to it (pass site id)
 	*
 	* Takes the Project ID as input
 	*
 	* @access public
 	*/
-	function site_attach_document($id, $state="")
+	function site_attach_document($site_id="", $state_id="")
 	{    
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
-		$query = $this->db->get_where('sites' , array('id' => $id));
+        $data['site_id'] = $site_id;
+		$data['state_id'] = $state_id;
+		$query = $this->db->get_where('sites' , array('id' => $site_id));
 		$result = $query->result_array();
 		$data['site_code']  = $result[0]['name'];
-		$data['attachements'] = $this->projects_model->get_attachement($id);
+		$data['attachements'] = $this->projects_model->get_attachement($site_id, $state_id);
 	 
 		$_true = array(array());
         $_false = array();
@@ -527,8 +513,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		/*
 		   $name = $this->input->post('project_code');
 		   $date = $this->input->post('created_on');
@@ -581,8 +565,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		if ($this->input->post('submit') != '')
 		{
 			$project = array(
@@ -653,7 +635,6 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects'); 
-
 	      
 	   if ($this->input->post('submit') != '')
 	   {
@@ -661,10 +642,15 @@ class Projects extends My_Controller {
 			$name = $this->input->post('file_info');;
 			$value = json_decode($name);
 			$name = $value->{'file_name'};
-			$location = $value->{'file_path'};
+			$path = $value->{'file_path'};
+			
+			$site_id = $this->input->post('id');
+			$state_id = $this->input->post('state_id');
+			rename($path.$name, $path.$site_id.'_'.$state_id.'_'.$name); 
+			
 				$data = array(
-					'site_id' 	=> $this->input->post('id'),
-					'stage_id' => $this->input->post('stage_id'),
+					'site_id' 	=> $site_id,
+					'stage_id' => $state_id,
 					'filename' 	=> $name,
 					'is_active' 	=> $this->input->post('is_active'),
 					'attached_on' => $this->input->post('attached_on'),
@@ -676,7 +662,7 @@ class Projects extends My_Controller {
 				}*/
 				 //adds attachement related info in database 
 				$this->db->insert('attachements', $data); 
-				redirect("projects/site_attach_document/$id");	
+				redirect("projects/site_attach_document/$site_id/$state_id");	
 						
 		}
 	}
@@ -692,7 +678,6 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-
 	   $data['site_name'] = $this->projects_model->get_site_name($id);
 	   $data['site_id'] = $id;
 	   // gets the details of site
@@ -714,8 +699,6 @@ class Projects extends My_Controller {
 	   $id = $this->input->post('id');
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-
-
 
 		if ($this->input->post('submit') != '')
 		{
@@ -802,9 +785,7 @@ class Projects extends My_Controller {
 	{
 	    $data['cat'] = $_POST['cat'];
 		$data['id'] = $_POST['id'];
-		$data['ShowLeftSide']	=	true;
-        $data['ShowRightSide']	=	true;
-
+		
 		$query2 = $this->db->get_where('persons' , array('department' => $data['cat']));
 		$data['users'] = $query2->result_array();
 		
@@ -824,7 +805,7 @@ class Projects extends My_Controller {
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['site_id'] = $id;
-
+		
 		if($action == 'add'){
 		
 		   if($this->input->post('Submit') != '')
@@ -968,7 +949,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function attachment_delete($id,$project_id)
+	function attachment_delete($id="")
 	{
 	    $update = array(
 				'is_active' 	=> '0',
@@ -989,8 +970,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		$query = $this->db->get_where('attachements', array('is_active'=>'0'));
 		$rows=$query->num_rows();
 		// Do the pagination
@@ -1018,8 +997,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 	
@@ -1083,7 +1060,6 @@ class Projects extends My_Controller {
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		$data['pid'] = $pid;			
-
 
 		$site_id = $sid;
 		$data['sid'] = $site_id;
@@ -1168,9 +1144,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
-		
 		$s= $this->input->post('s');
 		// show all activities on sites
 		$query = $this->db->get( 'activities' );
@@ -1198,8 +1171,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
-
 		$s=$this->input->post('s');
 		$config['base_url'] = BASE_URL . 'index.php/projects/rollout_documents';
 		
@@ -1225,11 +1196,10 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function add_activity($pid, $sid, $name, $state_id, $cid)
+	function add_activity($pid, $sid, $name, $state_id, $cid, $values="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$data['pid']= $pid;
 		$data['sid']= $sid;
 	    $data['cid']= $cid;
@@ -1248,11 +1218,23 @@ class Projects extends My_Controller {
 	*/
 	function activity_added()
 	{  
-               $pid=$this->input->post('pid');
-			   $sid=$this->input->post('sid');
-			   $cid=$this->input->post('cid');
-			   $state_id=$this->input->post('state_id');
-			   $sname=$this->input->post('sname');
+		   $pid=$this->input->post('pid');
+		   $sid=$this->input->post('sid');
+		   $cid=$this->input->post('cid');
+		   $state_id=$this->input->post('state_id');
+		   $sname=$this->input->post('sname');
+		   $this->form_validation->set_rules('act_subject', 'Subject', 'required');
+		   $this->form_validation->set_rules('act_desc', 'Description', 'required');
+		   $this->form_validation->set_rules('act_comments', 'Comments', 'required');
+
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				//$this->upload_calendar(validation_errors());
+				$this->activity_add($pid, $sid, $sname, $state_id, $cid, validation_errors());
+			}
+			else
+			{ 
 			   
 	           $data = array(
 					'project_id' 	=> $this->input->post('pid'),
@@ -1268,6 +1250,7 @@ class Projects extends My_Controller {
 				);			  
 				$this->db->insert('activities', $data);
 				$this->rollout_details($sid,$pid,$sname,$cid); 
+			}
 	}
 	/**
 	* Taked Activity Id, Project Id, Site ID and Candidate Id as input
@@ -1284,7 +1267,6 @@ class Projects extends My_Controller {
 		$data['pid']= $pid;
 		$data['sid']= $sid;
 	    $data['cid']= $cid;
-
 		$data['state_id']= $state_id;
 		$query = $this->db->get_where('activities' , array('id'=>$id));
 		$data['a_details'] = $query->result_array();
@@ -1331,7 +1313,6 @@ class Projects extends My_Controller {
 	{
 		    $data = tags();
 			$data['tabs']	= tabs('projects');
-
 			//$data['projects_menu'] = $this->projects_model->menu();
 			$data['sid']= $sid;
 			$data['pid']= $pid;
@@ -1376,13 +1357,12 @@ class Projects extends My_Controller {
 		    $this->load->helper(array('form', 'url'));
 		    $this->load->library('form_validation');
 		    $this->form_validation->set_rules('code', 'Code', 'required');
-			$this->form_validation->set_rules('latitude', 'Latitude', 'required');
-			$this->form_validation->set_rules('longitude', 'Longitude', 'required');
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
 			$this->form_validation->set_rules('candidate_distance', 'Candidate Distance', 'required');
 			
 			if ($this->form_validation->run() == FALSE)
 			{
-				//$this->upload_calendar(validation_errors());
 				$this->candidate_add($sid, $pid, $sname, validation_errors());
 			}
 			else
@@ -1413,7 +1393,6 @@ class Projects extends My_Controller {
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
 			$data['site_id']= $site_id;
-
 			
 		    $query = $this->db->get_where('candidates', array('id' => $candidate_id));
             $data['candidate'] = $query->result_array();	
@@ -1466,7 +1445,6 @@ class Projects extends My_Controller {
 		 $data['tabs']	= tabs('projects');
 		 $data['redirect']= "candidate_upload";
 		 $data['import'] = "Candidate";
-
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
 		 $project_id = $data['project_id']=($project_id=="") ? $this->input->post('project_id') : $project_id;
 		 $s_name = $data['site_name'] =($name=="") ? $this->input->post('site_name') : $name;
@@ -1569,7 +1547,6 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
 		 $data['redirect']= "activity_upload";
 		 $data['import'] = "Activities";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
@@ -1656,7 +1633,6 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
 		 $data['redirect']= "survey_upload";
 		 $data['import'] = "Surveys";
 		 $site_id = $data['site_id'] = ($site_id == "") ? $this->input->post('site_id') : $site_id;
@@ -1762,7 +1738,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function survey_add($pid, $sid, $name, $cid)
+	function survey_add($pid, $sid, $name, $cid, $values="")
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
@@ -1788,6 +1764,17 @@ class Projects extends My_Controller {
 		$sid=$this->input->post('sid');
 		$name=$this->input->post('sname');
 		$cid = $this->input->post('cid');
+		
+		$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
+		$this->form_validation->set_rules('comments', 'Comments', 'required');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->survey_add($pid, $sid, $name, $cid, validation_errors());
+		}
+		else
+		{ 
 		$data = array(
 					'site_id' => $this->input->post('sid'),
 					'candidate_id' => $this->input->post('cid'),
@@ -1827,6 +1814,7 @@ class Projects extends My_Controller {
 				);			  
 				$this->db->insert('surveys', $data);
 				$this->rollout_details($sid,$pid,$name,$cid); 
+			}
 	}
 	/**
 	* Shows the details of survey
@@ -1839,7 +1827,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		//gets the details of site		
 		$query = $this->db->get_where('surveys' , array('id'=>$id));
 		$data['survey_details'] = $query->result_array();
@@ -1854,11 +1841,10 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function survey_update($id, $sid, $cid, $pid)
+	function survey_update($id, $sid, $cid, $pid, $values="")
 	{
 	        $data = tags();
 			$data['tabs']	= tabs('projects');
-
 
 			$data['sid']= $sid;
 			$data['cid']= $cid;
@@ -1878,11 +1864,22 @@ class Projects extends My_Controller {
 	{  
 	  	$data = tags();
 		$data['tabs']	= tabs('projects');
-
         $pid=$this->input->post('pid');
+		$cid = $this->input->post('cid');
+		$sid = $this->input->post('sid');
 		$id= $this->input->post('id');
 		if ($this->input->post('submit') != '')
 		{
+			$this->form_validation->set_rules('latitude', 'Latitude', 'required|callback_valid_latitude');
+			$this->form_validation->set_rules('longitude', 'Longitude', 'required|callback_valid_longitude');
+			$this->form_validation->set_rules('comments', 'Comments', 'required');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->survey_update($id, $sid, $cid, $pid, validation_errors());
+			}
+			else
+			{ 
 			$project = array(
 				    'site_id' => $this->input->post('sid'),
 					'candidate_id' => $this->input->post('cid'),
@@ -1919,7 +1916,8 @@ class Projects extends My_Controller {
 					'summary' => $this->input->post('summary'),
 					'survey_on' => $this->input->post('survey_on'),
 			);
-			$this->db->update('surveys', $project, array('id' => $id));	
+			$this->db->update('surveys', $project, array('id' => $id));
+		   }	
 		}
 		$this->rollout_details($pid,0); 
 	}
@@ -1934,7 +1932,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$s=$this->input->post('s');
 		$data['project_monitoring']= $this->projects_model->get_project_monitoring($s);		
 		$this->parser->parse('projects/project_monitoring', $data);	
@@ -1952,7 +1949,6 @@ class Projects extends My_Controller {
 	{  
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$data['surveys']= $this->projects_model->get_survey_on_site($site_id);		
 		$this->parser->parse('projects/surveys_on_site', $data);	
 	}
@@ -1967,7 +1963,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 		$data['closing_sites']= $this->projects_model->get_closing_sites($s, $f);		
@@ -1984,7 +1979,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-	
 		$s = $this->input->post('s');
 		$data['closing_attachments'] = $this->projects_model->get_closing_documents( $s );			
 		$this->parser->parse('projects/closing_documents', $data);	
@@ -2000,7 +1994,6 @@ class Projects extends My_Controller {
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$s = $this->input->post('s');
 		$data['closing_projects']= $this->projects_model->get_closing_projects($s);
 		$this->parser->parse('projects/close_project', $data);	
@@ -2035,7 +2028,6 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-
 	  $data['projects_title'] = 'Projects - Nominal Plan';
 	  $this->parser->parse('projects/nominal_plans', $data);	
 	}
@@ -2050,7 +2042,6 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-
 	  $data['projects_title'] = 'Projects - Nominal Plan';
        // import plan
 	  if($value == '0')
@@ -2210,7 +2201,6 @@ class Projects extends My_Controller {
 	    $data['tabs']	= tabs('projects');
 	    $data['projects_title'] = 'Projects - Nominal Plan';
 	    $data['plan_id'] = $plan_id;
-
 		$this->db->where('nominal_plan_id', $plan_id);
         $this->db->from('nominal_plan_details');
 
@@ -2255,7 +2245,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-	
 		$this->db->delete('nominal_plan' , array('id' => $id));
 		$this->db->delete('nominal_plan_details' , array('nominal_plan_id' => $id));
 		$this->db->delete('sites' , array('project_id' => $project_id));
@@ -2274,7 +2263,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$this->db->delete('processes' , array('id' => $id));
 		$this->db->delete('process_details' , array('process_id' => $id));
 	    $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
@@ -2291,7 +2279,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 	    $data['projects_title'] = 'Projects - Nominal Plan';
 		$data['plan_id'] = $plan_id;
 		$this->db->where('nominal_plan_id', $plan_id);
@@ -2345,7 +2332,6 @@ class Projects extends My_Controller {
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
-
 	  $data['projects_title'] = 'Projects - Nominal Plan';
 	  $s = $this->input->post('s');
 	  $dis = $this->input->post('district');
@@ -2397,6 +2383,8 @@ class Projects extends My_Controller {
 	    $this->load->library('form_validation');
 		$this->form_validation->set_rules('commit', 'Commit ', 'required');
 		$this->form_validation->set_rules('fields[]', 'At least 1 ', 'required|isset');
+		$this->form_validation->set_rules('latitude', 'Latitude', 'callback_valid_latitude');
+		$this->form_validation->set_rules('longitude', 'Longitude', 'callback_valid_longitude');
 	    //$this->form_validation->set_message('required', 'Please supply a commit message if you want to make changes');
         $nmp_id = $this->input->post('nominal_plan_id');
 		$id = $this->input->post('id');
@@ -2531,7 +2519,6 @@ class Projects extends My_Controller {
 	{ 
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-
 		  $data['projects_title'] = 'List of Processes';
 		  $query = $this->db->get("processes");
 		  $data['process']= $query->result_array(); 
@@ -2670,7 +2657,6 @@ class Projects extends My_Controller {
 	{    
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-
 		  $data['projects_title'] = 'List of Processes';
 		  $query = $this->db->get_where('processes' ,array('id' => $id));
 		  $data['process']= $query->result_array(); 
@@ -2683,7 +2669,6 @@ class Projects extends My_Controller {
 	{
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-
 		  $data['projects_title'] = 'Plan Summary';
 		  
 		  $filters = array("district","bsc","msc","region", "phase" , "division");
@@ -2707,7 +2692,6 @@ class Projects extends My_Controller {
 	{
 	      $data = tags();
 		  $data['tabs']	= tabs('projects');
-
 		  $data['projects_title'] = 'Plan Summary';
 		  $data['field']=$field;
 		  $data['value']=$value;
@@ -2718,7 +2702,7 @@ class Projects extends My_Controller {
 	}
 	function display_counted_sites($field, $value)
 	{
-		  $data['sites'] = $this->projects_model->get_site_count_details($field, $value);
+	      $data['sites'] = $this->projects_model->get_site_count_details($field, $value);
 		  $this->parser->parse('projects/counted_sites', $data);
 	}
 	function view_planned_stages($site_id)
@@ -2726,14 +2710,14 @@ class Projects extends My_Controller {
 	  $this->db->order_by("id", "asc"); 
 	  $query=$this->db->get_where("states", array('site_id' => $site_id));
 	  $data['stages']=$query->result_array();
-
 	  $this->parser->parse('projects/view_planned_stages', $data);
 	}
 	function project_summary($project_id="",  $month="", $year="",$export_option="")
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
+	    $server_path = tags('server_path');
+		 
 		$this->load->plugin( 'fusion' );
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -2808,6 +2792,7 @@ class Projects extends My_Controller {
 		    exit;
 		
 		}
+		$url = $this->config->item('base_url'); 
 		$chart_values = array('Planned' => $data['projects_nr'] , 'Not Planned' =>$data['projects_np'], 'Active'=>$data['projects_rollout']);
 		
 		$data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
@@ -2816,14 +2801,18 @@ class Projects extends My_Controller {
 		$data['process'] = $this->projects_model->get_procees_based_sites( $project_id );				
 	    $data['region'] = $this->projects_model->get_project_regions( $project_id );
 		$data['region_values'] = $this->projects_model->get_project_regions( $project_id , '1');
+		$xml_file =  $server_path['server_path']."/charts/amcolumn/pie/chart_data.xml";
 		
 		$xml_data = ' <?xml version="1.0" encoding="UTF-8"?>'."\n";
 	    $xml_data .= '<pie>'."\n";
-	    $xml_data .= '<slice title="Twice a day" pull_out="true">358</slice>'."\n";
-	    $xml_data .= '<slice title="Once a day">258</slice>'."\n";
-	    $xml_data .= '<slice title="Once a week">154</slice>'."\n";
-	    $xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	    //$xml_data .= '"<message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[Project Summary]]></message>'."\n";
+		$xml_data .= '"<slice title="Sites Not Planned" url="'.$url .'index.php/projects/site_plan/'.$project_id.'" pull_out="false">'. $data['projects_np'] . "</slice>\n";
+		$xml_data .= '"<slice title="Planned Sites" url="'.$url .'index.php/projects/site_plan/'.$project_id.'" pull_out="false">'. $data['projects_nr'] . "</slice>\n";
+		$xml_data .= '"<slice title="Rollout Sites" url="'.$url .'index.php/projects/rollout_summary/'.$project_id.'" pull_out="false">'. $data['projects_rollout'] . "</slice>\n";
+	    //$xml_data .= '<slice title="Never" url="http://www.interactivemaps.org" description="Click on the slice to find more information" alpha="50">114</slice>'."\n";
+	   
 	    $xml_data .= '</pie>'."\n";
+		file_put_contents($xml_file, $xml_data);
 		$data['object_type'] ="ampie.swf";
 		$data['chart_type2']="pie";
 		$data['xml_data'] = $xml_data;
@@ -2834,7 +2823,7 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
+		 
 		 $data['region_values'] = $this->projects_model->get_region_sites( $project_id , $region_name);
 		 $this->view_googlemap($data['region_values']);
 		 //$this->parser->parse('projects/google_map', $data);
@@ -2843,7 +2832,6 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
 		 
 		 $data['site_values'] = $this->projects_model->get_region_district_sites( $project_id , $region_name, $district_name);
 		 $this->view_googlemap($data['site_values']);
@@ -2852,7 +2840,6 @@ class Projects extends My_Controller {
 	{
 	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
 		 if( $_SERVER['SERVER_NAME'] == "localhost")
 		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		 else
@@ -2885,9 +2872,8 @@ class Projects extends My_Controller {
 	}
 	function view_all_districts_in_region_googlemap( $project_id ="", $region="")
 	{
-	   	 $data = tags();
+	   	     $data = tags();
 		 $data['tabs']	= tabs('projects');
-
 		 if( $_SERVER['SERVER_NAME'] == "localhost")
 		 $this->cigooglemapapi->setAPIKey('ABQIAAAATMD9H-Gy8U0tWqj9J61jJRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRV5tdaEkFv8JiTEOxQHeLQbWY9SQ');
 		 else
@@ -2913,6 +2899,7 @@ class Projects extends My_Controller {
 		      { 
 		      $this->cigooglemapapi->addMarkerByAddress( $value['nominal_latitude']." ".$value['nominal_longitude'],$value['name'],"<b>".$value['name']."</b>");   
 		      }
+
            $i++;
 		}
 		// End google map
@@ -2922,7 +2909,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$data['project_id'] = $project_id;
 		$this->db->where('process_id', "1");
         $this->db->from('process_details');
@@ -2946,7 +2932,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -2973,7 +2958,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
 		$this->load->plugin('fusion');
 		$data['chart_type']= "Pie3D.swf";
 		$data['chart_type1']= "MSColumn2D.swf";
@@ -2997,7 +2981,6 @@ class Projects extends My_Controller {
 	{
 	   $data = tags();
 	   $data['tabs']	= tabs('projects');
-
 	   $this->load->plugin('fusion');
 	   $data['chart_type']= "Pie3D.swf";
 	   $data['chart_type1']= "MSColumn2D.swf";
@@ -3015,6 +2998,7 @@ class Projects extends My_Controller {
 	   $data['xml'] = $this->charts_model->get_piechart_xml($chart_values);
 
 	   $this->parser->parse('projects/sites_in_process', $data);
+
 	}
 	/**
 	* Taked Site Id as input
@@ -3027,44 +3011,13 @@ class Projects extends My_Controller {
 	{
 		    $data = tags();
 		    $data['tabs']	= tabs('projects');
-
 			$data['site_id'] =  $this->projects_model->get_site_name($site_id);
 		    $this->load->plugin( 'fusion' );
-		    $this->db->order_by("id", "asc");
-		    $query = $this->db->get_where('states' , array('site_id' => $site_id));
+			$query = $this->db->get_where('states' , array('site_id' => $site_id));
 		    $length = $query->num_rows();
-			$first = $query->first_row('array');
-            $start_date = $first['start'];
-			$pieces = explode("-", $start_date);
-			$year_F = $year_f = $pieces[0]; 
-			$month_F = $month_f = $pieces[1];
-			$dm_f = cal_days_in_month(0, $month_f, $year_f) ;
-			
-			$last = $query->last_row('array'); 
-		    $end_date = $last['end'];
-			$pieces = explode("-", $end_date);
-			$year_L = $year_l = $pieces[0]; 
-			$month_L = $month_l = $pieces[1];
-		    $dm_l = cal_days_in_month(0, $month_l, $year_l) ;
-			
-			$data['stages'] = $query->result_array();
-			for ($i = 0; $i < $length; $i++)
-			{
-				$start[$i] = $data['stages'][$i]['start'];
-				$end[$i] = $data['stages'][$i]['end'];
-				$state[$i] = $data['stages'][$i]['state'];
-				$state_id = $data['stages'][$i]['id'];
-				if($status == "Active" )
-				{
-					$query = $this->db->get_where('stages_planned' , array('state_id' => $state_id));
-					$data['actual_stages'] = $query->result_array();
-					$actual_start[$i] = $data['actual_stages'][0]['actual_start_date'];
-					$actual_end[$i]= $data['actual_stages'][0]['actual_end_date'];
-					$percentage[$i]= $data['actual_stages'][0]['percentage_complete'];
-				}
-
-			} 
-	        //$data['chart_details']=$this->projects_model->get_chart_details($id);
+		    
+			$strXML = $this->charts_model->get_ganttchart_xml($site_id , $status);
+			$data['xml'] = $strXML;
 			$height = 300;
 			if ($length >= 30)
 			  $height = 1800;
@@ -3074,115 +3027,8 @@ class Projects extends My_Controller {
 			  $height = 800;
 			else if ($length>= 5)
 			  $height = 600;
-			$data['height'] = $height; 		
-			$strXML  = "";
-			$strXML .= "<chart dateFormat='yyyy-mm-dd' showSlackAsFill='0' outputDateFormat='ddds mns yy' showPercentLabel='1' ganttWidthPercent='65' canvasBorderColor='999999' canvasBorderThickness='0' gridBorderColor='4567aa' gridBorderAlpha='20' ganttPaneDuration='12' ganttPaneDurationUnit='m' >";
+			$data['height'] = $height; 
 			
-			$strXML .= "<categories bgColor='009999'>";
-			$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='Gantt Chart' fontColor='ffffff' fontSize='16'/>";
-			$strXML .= "</categories>";
-		   
-			$strXML .= "<categories bgColor='4567aa' fontColor='ff0000'>";
-			$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='Years' alpha='' font='Verdana' fontColor='ffffff' fontSize='16' />";
-			$strXML .= "</categories>";
-			
-			$strXML .= "<categories bgColor='4567aa' fontColor='ff0000'>";
-			for($y=$year_f; $y<=$year_l; $y++)
-			{
-			$strXML .= "<category start='".$year_f."-".$month_f."-01' end='".$year_l."-".$month_l."-".$dm_l."' label='".$y."' alpha='' font='Verdana' fontColor='ffffff' fontSize='16' />";
-			}
-			$strXML .= "</categories>";          
-					
-			$strXML .= "<categories bgColor='ffffff' fontColor='1288dd' fontSize='10' isBold='1' align='center'>";
-		
-			for($year_F = $year_f; $year_F<= $year_l; $year_F++  )
-			{
-				if ($year_L == $year_F)
-				{
-				  for( $c = $month_F; $c <=$month_l; $c++)
-				  {
-					$dm = cal_days_in_month(0, $c, $year_l) ;
-					$name = date('F', mktime(0,0,0,$c,1));
-					$strXML .= "<category start='".$year_F."-".$c."-"."01' end='".$year_F."-".$c."-".$dm."' name='".$name."' />";
-				  }
-				}		  
-			    else
-			    {
-				  $month_L = 12;
-				  for( $c = $month_F; $c <=$month_L; $c++)
-				  {
-					$dm = cal_days_in_month(0, $c, $year_F) ;
-					$name = date('F', mktime(0,0,0,$c,1));
-					$strXML .= "<category start='".$year_F."-".$c."-"."01' end='".$year_F."-".$c."-".$dm."' name='".$name."' />";
-				  }
-			    }
-				$month_F = 01;
-				$month_L = $month_l;
-			}
-			$strXML .= "</categories>"; 
-			
-			$strXML .= "<processes headerText='Task' fontColor='000000' fontSize='11' isAnimated='1' bgColor='4567aa' headerVAlign='bottom' headerAlign='left' headerbgColor='4567aa' headerFontColor='ffffff' headerFontSize='16' align='left' isBold='1' bgAlpha='25' >"; 
-			$y = 1;
-			for($x = 0 ; $x < $length ; $x++){ 
-			$strXML .= "<process Name='" . $state[$x] . "' id='" . $y . "' />";
-			   $y++;
-			} 
-		    $strXML .= "</processes>";
-			
-			$strXML .= "<dataTable showProcessName='1' nameAlign='left' fontColor='000000' fontSize='10' vAlign='right' align='center' headerVAlign='bottom' headerAlign='left' headerbgColor='567aa' headerFontColor='ffffff' headerFontSize='16' >";
-			$strXML .= "<dataColumn bgColor='eeeeee' headerText='Start'>";
-			for($x = 0 ; $x < $length ; $x++){ 
-			$strXML .= "<text label='" . $start[$x] . "' />";
-			} 
-			$strXML .= "</dataColumn>";
-				
-			$strXML .= "<dataColumn bgColor='eeeeee' headerText='Finish'>";	
-			for($x = 0 ; $x < $length ; $x++){ 		
-			$strXML .= "<text label='" . $end[$x] . "' />";
-			} 
-			$strXML .= "</dataColumn>";
-			$strXML .= "</dataTable>";
-			
-			$strXML .= "<tasks width='10' showEndDate='1'>";
-			$y = 1;
-			for($x = 0 ; $x < $length ; $x++){ 
-			
-			$strXML .= "<task name=' Planned' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."P' link='../projects' color='4567aa' height='32%25 ' topPadding='12%25 ' label='view month'  /> ";
-		    if($status == "Active")
-			$strXML .= "<task name=' Actual' processId='" . $y . "' start='" . $actual_start[$x] . "' end='" . $actual_end[$x] . "' id='".$y."A' link='../projects' color='EEEEEE' height='32%25 ' topPadding='56%25 ' label='view month' percentComplete='".$percentage[$x]."' /> ";
-		   
-		   // $strXML .= "<task name='" . Actual . "' processId='" . $y . "' start='" . $start[$x] . "' end='" . $end[$x] . "' id='".$y."A'  color='EEEEEE' alpha='100' topPadding='56%25 ' height='32%25 ' /> ";
-				$y++;
-			} 
-			$strXML .= "</tasks>";
-			// connectors
-			$strXML .= "<connectors>";
-			$y = 1; 
-			$z= 2;
-			for($x = 0 ; $x < $length ; $x++){ 
-			
-			$strXML .= "<connector fromTaskId='". $y ."P' toTaskId='". $z ."P' color='4567aa' thickness='2' fromTaskConnectStart='0'/>";
-			$strXML .= "<connector fromTaskId='". $y ."A' toTaskId='". $z ."A' color='EEEEEE' thickness='2' fromTaskConnectStart='0'/>";
-			 $y++; $z++;
-			} 
-			$strXML .= "</connectors>";
-			$strXML .="<legend>";
-						 $strXML .= "<item label='Planned' color='4567aa' />";
-						 $strXML .= "<item label='Actual' color='999999' />";
-						 $strXML .= "<item label='Slack (Delay)' color='FF5E5E' />";
-						 $strXML .= "</legend>";
-						
-			$strXML .="<styles>";						
-						 $strXML .= "<definition>";
-						 $strXML .= "<style type='Font' name='legendFont' size='12' />";
-						 $strXML .= "</definition>";
-						
-						 $strXML .= "<application>";
-						 $strXML .= "<apply toObject='LEGEND' styles='legendFont' />";
-						 $strXML .= "</application>";
-		    $strXML .= "</styles>"; 
-		    $strXML .= "</chart>";
-		    $data['xml'] = $strXML;
 	        $this->parser->parse('projects/view_chart', $data);
 	}
 	function userfile()
@@ -3221,7 +3067,6 @@ class Projects extends My_Controller {
 	{
 	    $data = tags();
 		$data['tabs']	= tabs('projects');
-
       
 	    // local
 		if( $_SERVER['SERVER_NAME'] == "localhost")
@@ -3301,6 +3146,34 @@ class Projects extends My_Controller {
 	     } // end outer if    
 		$this->display_nominal_plan($plan_id); 
 		//$this->display_nominal_plan(1);
+	}
+	function valid_longitude($str)
+	{
+	   $validation = new Csv_validation();
+	   // check value is valid longitude && longitude must>=-180 & <180.
+       $result = $validation->matches_pattern($str, "", 'longitude'); 
+	   if ($result == '1') {
+			  return true;
+	   }
+	   else
+	   {
+		  $this->form_validation->set_message('valid_longitude', ' %s must>=-180 & <180');
+          return false;
+	   }
+	}
+	function valid_latitude($str)
+	{
+	    $validation = new Csv_validation(); 
+		// check value is valid latitude && Latitude must<90 >=-90
+		$result = $validation->matches_pattern($str, "", 'latitude');
+		if ($result == '1') {
+			  return true;
+		}
+		else
+		{
+			$this->form_validation->set_message('valid_latitude', ' %s must<90 >=-90');
+            return false;
+		}
 	}
 }
 /* End of file projects.php */
