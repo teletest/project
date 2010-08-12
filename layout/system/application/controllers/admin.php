@@ -6,23 +6,26 @@ class Admin extends My_Controller {
 		parent::My_Controller();
 		$this->load->model('admin_model');
 		
-		/*if ( ! $this->site_sentry->is_admin())
+		/*if ( ! $this->session->userdata('logged_in'))
 		{
-			redirect('');
+			redirect('/login/');
 		}*/
-		
 		
 	}
 
 	function index()
 	{
+	
 		$data = tags();
-		$data['tabs']	= tabs('admin');
+		$data['tabs']	=    tabs('admin');
+		// $data['tabs']	= array();
 		$data['admin_title'] = 'Administration - General';
 		$data['admin_menu'] = $this->admin_model->menu();
+	    $ShowLeftSide	= "";		
+		$ShowRightSide	= "";
 		if(!$this->session->userdata('logged_in'))
 		{
-		  redirect('login/');
+		  redirect('login/');                            
 		}
 		
 		if ($this->input->post('submit') != '')
@@ -1046,3 +1049,4 @@ class Admin extends My_Controller {
 
 /* End of file admin.php */
 /* Location: ./system/application/controllers/admin.php */
+?>

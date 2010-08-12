@@ -38,6 +38,15 @@ function tags()
 {		
 
 		$CI =& get_instance();
+
+		if( $_SERVER['SERVER_NAME'] == "localhost")
+		{
+		   		$server_path = $_SERVER['DOCUMENT_ROOT']."/ttest/project";
+		}
+		else
+		{
+		   		$server_path = $_SERVER['DOCUMENT_ROOT'];
+		}
 		
 		// Tags used in the theme
 		$tags = array(
@@ -51,7 +60,9 @@ function tags()
 			'main_menu'		=> '',
 			'user'			=> '',
 			'logout'		=> '',
+			'change_password' => '',
 			'is_admin'		=> FALSE,
+			'server_path'   => $server_path,
 			'message'		=> '',
 			'debug'			=> '',
 			
@@ -69,13 +80,16 @@ function tags()
 			$tags[$k] = $v;
 		
 		
-		if ($CI->site_sentry->is_logged_in()) 
+		//if ($CI->site_sentry->is_logged_in()) 
+		if($CI->session->userdata('logged_in'))
 		{
-			$tags['user_id']	= $CI->session->userdata('user_id');
-			$tags['user']		= $CI->session->userdata('user');
+			$tags['user_id']	= $CI->session->userdata('id');
+		    $tags['user']		= $CI->session->userdata('username');
 			$tags['is_admin']	= $CI->session->userdata('is_admin');
+			$user_id = $CI->session->userdata('user_id');
 			if($tags['user'] != '')
-				$tags['logout']		= ' | <a href="' . $tags['site_url'] . 'index.php/logout">Logout</a><br />';
+				$tags['logout']		= ' | <a href="' . $tags['site_url'] . 'index.php/login/logout">Logout</a><br />';
+				$tags['change_password']		= ' | <a href="' . $tags['site_url'] . 'index.php/login/change_password/'.$user_id. '">Change Password</a><br />';
 		}
 			
 			

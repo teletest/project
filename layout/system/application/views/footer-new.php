@@ -14,78 +14,60 @@
                         <td width="73%" align="left"><span class="BoldTest">Summary</span></td>
                         <td width="27%"><table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
                           <tr>
-                            <td align="center" valign="middle"><img src="{site_url}theme/images/minimize.png" width="24" height="24" style="cursor:pointer;" alt="Minimize Menu" /></td>
+                            <td align="center" valign="middle"><img src="{site_url}theme/images/minimize.png" width="24" id="img_right_sum1" height="24" style="cursor:pointer;" onclick="HideMe(right_sum1,img_right_sum1);" alt="Minimize Menu" /></td>
                             <td align="center" valign="middle"><img src="{site_url}theme/images/close.png" width="24" height="24" style="cursor:pointer;" alt="Close Menu" /></td>
                           </tr>
                         </table></td>
                       </tr>
                     </table></td>
                   </tr>
+				  
+				  <tbody id="right_sum1">
                   <tr>
-                    <td height="160" align="center" valign="middle" bgcolor="#FFFFFF">
-					<div id="summary">
-					<table align="center" class="ewTable"  style="width:178px">
-					  <tbody>
-						<!-- <tr class="ewTableHeader">
-						  <td valign="top"><strong>Application</strong></td>
-						  <td valign="top"><strong>Remaining</strong></td>
-						  <td valign="top"><strong>Used</strong></td>
-						</tr> -->
-					  </tbody>
-					  <tbody id="thetable">
-					    <!--<tr class="ewTableHeader">
-						 <td colspan="3">
-							 Sites Summary
-						 </td>
-						 </tr> -->
-						 <tr>
-							 <td colspan="3"><?php echo renderChart( "{site_url}charts/"."{chart_type}",  "", "{xml}" , "chart", "200", "200"); ?></td>
-						</tr>
-						<tr>
-						<tr class="ewTableHeader">
-				         <td colspan="3">
-							<span style="font-family: Arial,Arial;">
-							<strong>
-							<font size="2">Select Month & Year </font>	
-							</strong>
-							</span>
-							<?php
-							echo "<form id=form1 name=form1 method=post action={site_url}index.php/projects/project_summary>
-							<select style='font-family: Arial; font-size: 12px; size=1' name=month onChange='showSelected()'>
-							{months}
-							<option value={value} {selected}>{name}</option>
-							{/months}
-							</select>
-							
-							<select style=font-family: Arial; font-size: 12px; size=1 name=year onChange='showSelected()'>
-							{years}
-							<option value={value} {selected}>{name}</option>
-							{/years}
-							</select>
-							</form>";?>
-				         </td>
-				 
-						</tr>
-						<tr>
-					       <td colspan="3"><?php echo renderChart( "{site_url}charts/"."{chart_type1}",  "", "{bargraph_xml}" , "chart1", "200", "200"); ?></td>
-				        </tr>
-						<!-- <tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-						  <td><div>13</div></td>
-						  <td><div>admin</div></td>
-						  <td><div>98</div></td>
-						</tr>
-						<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
-						  <td><div>14</div></td>
-						  <td><div>asd</div></td>
-						  <td><div>asd</div></td>
-						</tr> -->
-
-					  </tbody>
-					</table>
-					</div>                    </td>
-                  </tr>
+					<td height="160" align="center" valign="middle" bgcolor="#FFFFFF">
+							<div id="summary">
+							<table align="center" class="ewTable"  style="width:178px">
+							  <tbody>
+								<tr class="ewTableHeader">
+								  <td valign="top"><strong>Application</strong></td>
+								  <td valign="top"><strong>Remaining</strong></td>
+								  <td valign="top"><strong>Used</strong></td>
+								</tr>
+							  </tbody>
+							  <tbody id="thetable">
+								<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+								  <td><div>13</div></td>
+								  <td><div>admin</div></td>
+								  <td><div>98</div></td>
+								</tr>
+								<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
+								  <td><div>14</div></td>
+								  <td><div>asd</div></td>
+								  <td><div>asd</div></td>
+								</tr>
+								<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
+								  <td><div>15</div></td>
+								  <td><div>fgh</div></td>
+								  <td><div>fhf</div></td>
+								</tr>
+								<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
+								  <td><div>16</div></td>
+								  <td><div>fgh</div></td>
+								  <td><div>fhf</div></td>
+								</tr>
+								<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
+								  <td><div>16</div></td>
+								  <td><div>fgh</div></td>
+								  <td><div>fhf</div></td>
+								</tr>
+							  </tbody>
+							 </table>
+							</div> 
+					</td>
                 </table></td>
               </tr>
+			  </tbody>
+			  
               <tr>
                 <td height="4"></td>
               </tr>
@@ -97,17 +79,21 @@
                         <td width="73%" align="left"><span class="BoldTest">Summary</span></td>
                         <td width="27%"><table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
                           <tr>
-                            <td align="center" valign="middle"><img src="{site_url}theme/images/minimize.png" width="24" height="24" style="cursor:pointer;" alt="Minimize Menu" /></td>
+                            <td align="center" valign="middle"><img src="{site_url}theme/images/minimize.png" width="24" height="24" id="img_right_sum2" style="cursor:pointer;" onclick="HideMe(right_sum2,img_right_sum2);" alt="Minimize Menu" /></td>
                             <td align="center" valign="middle"><img src="{site_url}theme/images/close.png" width="24" height="24" style="cursor:pointer;" alt="Close Menu" /></td>
                           </tr>
                         </table></td>
                       </tr>
                     </table></td>
                   </tr>
-                  <tr>
+                  
+				  <tbody id="right_sum2">
+				  <tr>
                     <td height="160" bgcolor="#FFFFFF">&nbsp;</td>
                   </tr>
-                </table></td>
+				  </tbody>
+                
+				</table></td>
               </tr>
               <tr>
                 <td height="4"></td>

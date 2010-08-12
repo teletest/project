@@ -1,10 +1,10 @@
 function checkAll(field, value) { 
-for (var i=0;i<document.forms[1].elements[field].length;i++) { 
+for (var i=0;i<document.forms[0].elements[field].length;i++) { 
 	if(value == 1) { 
 	
-	document.forms[1].elements[field][i].checked = true 
+	document.forms[0].elements[field][i].checked = true 
 	} else { 
-	document.forms[1].elements[field][i].checked = false 
+	document.forms[0].elements[field][i].checked = false 
 	} 
   } 
 } 
