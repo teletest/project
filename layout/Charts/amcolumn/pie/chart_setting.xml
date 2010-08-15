@@ -98,7 +98,7 @@
     <text_color></text_color>                                 <!-- [#FFFFFF] (hex color code) -->
     <text_size></text_size>                                   <!-- [text_size] (Number) -->    
     <show>
-       <![CDATA[]]>                                           <!-- [{title}: {percents}% ({value}) <br>{description}] ({value} {title} {percents} {description}) You can format any data label: {value} - will be replaced with value and so on. You can add your own text or html code too. -->
+       <![CDATA[]]>                                           <!ⴭ嬠瑻瑩敬㩽笠数捲湥獴╽⠠登污敵⥽㰠牢笾敤捳楲瑰潩絮⁝笨慶畬絥笠楴汴絥笠数捲湥獴⁽摻獥牣灩楴湯⥽夠畯挠湡映牯慭⁴湡⁹慤慴氠扡汥›登污敵⁽‭楷汬戠⁥敲汰捡摥眠瑩⁨慶畬⁥湡⁤潳漠⹮夠畯挠湡愠摤礠畯⁲睯⁮整瑸漠⁲瑨汭挠摯⁥潴⹯ⴠ->
     </show>
     <max_width></max_width>                                   <!-- [220] (Number) The maximum width of a balloon -->
     <corner_radius></corner_radius>                           <!-- [0] (Number) Corner radius of a balloon. If you set it > 0, the balloon will not display arrow -->
@@ -186,7 +186,7 @@
       <text_color></text_color>                               <!-- [text_color] (hex color code) button text color -->
       <text_size>12</text_size>                               <!-- [text_size](Number) button text size -->
       <text>                                                  <!-- [] (text) html tags may be used (supports <b>, <i>, <u>, <font>, <a href="">, <br/>. Enter text between []: <![CDATA[your <b>bold</b> and <i>italic</i> text]]>-->
-        <![CDATA[<b>How often do you brush your teeth?</b>]]>
+        <![CDATA[<b>Site Summary</b>]]>
       </text>        
     </label>
   </labels>

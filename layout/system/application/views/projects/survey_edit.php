@@ -1,7 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php  // $this->load->view('header');  ?>
-<?php $this->load->view('header-new');?>
 
+<?php $this->load->view('header-new');?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() { 
+	  // define lognitude latitude format
+	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
+		return this.optional(element)  || 
+			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
+        
+		}, "Please specify a valid latitude");
+		jQuery.validator.addMethod("Longitude", function(longitude, element) {
+		return this.optional(element)  || 
+			 longitude.match(/(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)/);
+        
+		}, "Please specify a valid longitude"); 
+		
+      $("#survey_form").validate({  
+        rules: {
+          comments: "required",// simple rule, converted to {required:true}
+		  longitude: {
+		    required:true,
+		    number:true,
+			Longitude: true
+		   },
+		  latitude: {// compound rule
+          required: true,
+          number: true,
+		  Latitude: true
+        }
+        },
+        messages: {
+		  latitude: {
+		   required : "Please enter latitude",
+		   number: "Latitude value should be Number"
+		   },
+		  longitude: {
+		   required : "Please enter longitude",
+		   number: "Longitude value should be Number"
+		   },
+		  comments: {
+		   required : "Please enter comments"
+		   }
+		  }
+      });
+    }); 
+</script>
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/survey_edit/#add"><span>Edit Survey</span></a></li>
@@ -10,7 +55,7 @@
     <div id="add" class="TabSpec" >
 
 	<h3>Edit Survey</h3>
-	<form action='{site_url}index.php/projects/survey_edit' method='post'>
+	<form action='{site_url}index.php/projects/survey_edit' method='post' id="survey_form" name="survey_form">
 	{s_details}	
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	
@@ -42,16 +87,16 @@
 		</tr>
 		<tr valign="top" height="20">
 			<td align="right"> <b> Area : </b> </td>
-			<td><span style="color:red;"><?php echo form_error('latitude'); ?></span><input type="text" name="area" size="25" value="{area}">  </td> 
+			<td><input type="text" name="area" size="25" value="{area}">  </td> 
 		</tr>
 	
 		<tr valign="top" height="20">
-			<td align="right"> <b> Latitude : </b> </td>
-			<td><span style="color:red;"><?php echo form_error('longitude'); ?></span><input type="text" name="latitude" size="20" value="{latitude}">  </td> 
+			<td align="right"> <b>* Latitude : </b> </td>
+			<td><span style="color:red;"><?php echo form_error('latitude'); ?></span><input type="text" name="latitude" size="20" value="{latitude}">  </td> 
 		</tr>
 		 <tr valign="top" height="20">
-			<td align="right"> <b> Longitude : </b> </td>
-			<td> <input type="text" name="longitude" size="20" value="{longitude}">  </td> 
+			<td align="right"> <b>* Longitude : </b> </td>
+			<td><span style="color:red;"><?php echo form_error('longitude'); ?></span> <input type="text" name="longitude" size="20" value="{longitude}">  </td> 
 		</tr>
 		 <tr valign="top" height="20">
 			<td align="right"> <b> Candidate Distance: </b> </td>

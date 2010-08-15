@@ -116,19 +116,19 @@ var SITEURL = '<?php echo site_url(); ?>';
         
         <table  border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td height="22" width="80" align="center" class="TopMenuText">Dash Board</td>
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">Projects</td>
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/projects"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">Reports</td>                
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">Contacts</td>                
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">About Us</td>  
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">Charts</td>                 
-                <td height="22"  align="center" class="TopMenuText"><a href="{site_url}index.php/admin"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></a></td>
-               	<td height="22" width="80" align="center" class="TopMenuText">Admin</td>                 
+                <td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/">Dash Board</a></td>
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/projects">Projects</a></td>
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/reports">Reports</a></td>                
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/contacts">Contacts</a></td>                
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/about">About Us</a></td>  
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/charts">Charts</a></td>                 
+                <td height="22"  align="center" class="TopMenuText"><img src="{site_url}theme/images/cat-divider.gif" width="2" height="26" /></td>
+               	<td height="22" width="80" align="center" class="TopMenuText"><a href="{site_url}index.php/admin">Admin</a></td>                 
                               
                 
               </tr>

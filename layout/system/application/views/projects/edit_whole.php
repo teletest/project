@@ -1,6 +1,55 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 
-<table >
-	  <form name="editplan" action="{site_url}index.php/projects/plan_edited/1" method="post"  >
+<script type="text/javascript">
+    $(document).ready(function() { 
+	  // define lognitude latitude format
+	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
+		return this.optional(element)  || 
+			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
+        
+		}, "Please specify a valid latitude");
+		jQuery.validator.addMethod("Longitude", function(longitude, element) {
+		return this.optional(element)  || 
+			 longitude.match(/(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)/);
+        
+		}, "Please specify a valid longitude"); 
+		
+      $("#editplan").validate({  
+        rules: {
+          code: "required",// simple rule, converted to {required:true}
+		  longitude: {
+		  
+		    number:true,
+			Longitude: true
+		   },
+		  candidate_distance:
+		  {
+		   number:true
+		  },
+		  latitude: {// compound rule
+          number: true,
+		  Latitude: true
+        }
+        },
+        messages: {
+          code: "Please enter a code.",
+		  latitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  longitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  height: {
+
+		   number : "Please specify valid height value"
+		   }
+		  }
+      });
+    }); 
+</script>
+<form name="editplan" id="editplan" action="{site_url}index.php/projects/plan_edited/1" method="post"  >
+<table >	
       <input type="hidden" name="login_id" value="<?php echo $this->session->userdata('username'); ?>" />
       <input type="hidden" name="id" value="{id}" />
       <input type="hidden" name="nominal_plan_id" value="{nominal_plan_id}" /> 
@@ -66,12 +115,16 @@
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="longitude" <?php //echo set_checkbox('fields[]', 'longitude'); ?>/></td>
 			<td align="right">Longitude</td>
-			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="longitude" value="" /></span> </td>
+			<td ><span class="divClass" id="input1ID" style="display:block">
+			<span style="color:red;"><?php echo form_error('longitude'); ?></span>
+			<input class="text" name="longitude" value="" /></span> </td>
 		</tr>
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="latitude" <?php //echo set_checkbox('fields[]', 'latitude'); ?>/></td>
 			<td align="right">Latitude</td>
-			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="latitude" value="" /></span> </td>
+			<td ><span class="divClass" id="input1ID" style="display:block">
+			<span style="color:red;"><?php echo form_error('latitude'); ?></span>
+			<input class="text" name="latitude" value="" /></span> </td>
 		</tr>
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="phase" <?php //echo set_checkbox('fields[]', 'phase'); ?>/></td>
@@ -131,8 +184,8 @@
 		</tr>
 		<tr>
 		   <td align="right">&nbsp;</td>
-		   <td colspan="2"> <input value="Commit"  class="confirmClick" title="change these fields" type="button" onclick="this.form.submit();" /></td>
+		   <td colspan="2"> <input value="Commit"  class="confirmClick" title="change these fields" type="submit" onclick="this.form.submit();" /></td>
 		 </tr>
 	  </tbody>
-	  </form>
 </table>
+	  </form>

@@ -1,6 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php  // $this->load->view('header');  ?>
 <?php $this->load->view('header-new');?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() { 
+	  // define lognitude latitude format
+	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
+		return this.optional(element)  || 
+			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
+        
+		}, "Please specify a valid latitude");
+		jQuery.validator.addMethod("Longitude", function(longitude, element) {
+		return this.optional(element)  || 
+			 longitude.match(/(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)/);
+        
+		}, "Please specify a valid longitude"); 
+		
+      $("#editfilter").validate({  
+        rules: {
+		  longitude: {
+		  
+		    number:true,
+			Longitude: true
+		   },
+		  candidate_distance:
+		  {
+		   number:true
+		  },
+		  latitude: {// compound rule
+          number: true,
+		  Latitude: true
+        }
+        },
+        messages: {
+		  latitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  longitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  height: {
+
+		   number : "Please specify valid height value"
+		   }
+		  }
+      });
+    }); 
+</script>
 
 <div id="ShowTab" style="width:96%;overflow:auto;">
 <ul>
@@ -40,8 +88,9 @@
 <br>
 <br>
 <h2>Edit Fields</h2>
-<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-	  <form name="editplan" action="{site_url}index.php/projects/plan_edited/2" method="post"  >
+<form name="editfilter" id="editfilter" action="{site_url}index.php/projects/plan_edited/2" method="post"  >
+<table >
+	  
       <input type="hidden" name="login_id" value="<?php echo $this->session->userdata('username'); ?>" />
       <input type="hidden" name="id" value="{id}" />
       <input type="hidden" name="nominal_plan_id" value="{nominal_plan_id}" /> 
@@ -110,11 +159,13 @@
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="longitude" <?php //echo set_checkbox('fields[]', 'longitude'); ?>/></td>
 			<td align="right">Longitude</td>
+			<span style="color:red;"><?php echo form_error('longitude'); ?>
 			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="longitude" value="" /></span> </td>
 		</tr>
 		<tr>
 		    <td><input type="checkbox" class="checkBox1" name="fields[]" value="latitude" <?php //echo set_checkbox('fields[]', 'latitude'); ?>/></td>
 			<td align="right">Latitude</td>
+			<span style="color:red;"><?php echo form_error('latitude'); ?>
 			<td ><span class="divClass" id="input1ID" style="display:block"><input class="text" name="latitude" value="" /></span> </td>
 		</tr>
 		<tr>
@@ -178,9 +229,9 @@
 		   <td colspan="2"> <input value="Commit"  class="confirmClick" title="change these fields" type="button" onclick="this.form.submit();" /></td>
 		 </tr>
 	  </tbody>
-	  
+	
 </table>
-</form>
+  </form>
 </div>
 </div>
 <?php $this->load->view('footer-new');?> 

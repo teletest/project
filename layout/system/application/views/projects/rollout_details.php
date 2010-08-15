@@ -11,9 +11,8 @@
 
 	<h1>Rollout Details</h1>
 	
-	
 	<h2>Site - {name}</h2>
-    {if_not_candidate}
+		{if_not_candidate}
 		<br>
 		<b> No candidate for this site </b>
 		</br>
@@ -25,15 +24,15 @@
 		{/if_not_candidate}
 	{if_candidate}
 	<h3>Candidates</h3>
-<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-		<tr class="ewTableHeader">
-		  <td align="center"><strong>Code</strong></td>
-	  <td align="center"><strong>Latitude</strong></td>
-	  <td align="center"><strong>Longitude</strong></td> 
-	  <td align="center"><strong>Is Active</strong></td> 	  
-	  <td align="center"><strong>Activate</strong></td>
-	  <td align="center"><strong>Action</strong></td>               
-	</tr>
+	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+		<tr>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Code</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Latitude</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Longitude</strong></p></td> 
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Is Active</strong></p></td> 	  
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Activate</strong></p></td>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Action</strong></p></td>               
+		</tr>
 		
 		<tr>
 		  <td>&nbsp;</td>
@@ -47,21 +46,21 @@
 		{candidates}
 		<tr>
 		  <td><a href='{site_url}index.php/projects/rollout_details/{pid}/{id}'> {code} </a></td>
-	  <td>{latitude}</td>
-	  <td>{longitude}</td>
-	  <td>{isactive}</td>
-      <?php if($this->session->userdata('is_admin')) { ?>  
-	  {if_not_active}	  
-	  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Activate</a></td>
-	  {/if_not_active}
-	  {if_active}
-	  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Deactivate</a></td>
-	  {/if_active}
-	  <?php } else { ?>
-	  <td>&nbsp;</td>
-	  <?php } ?>
-	  <td><a href='{site_url}index.php/projects/rollout_details/{sid}/{pid}/{name}/{state_id}/{id}'>View Activities</a></td>
-	</tr>
+		  <td>{latitude}</td>
+		  <td>{longitude}</td>
+		  <td>{isactive}</td>
+		  <?php if($this->session->userdata('is_admin')) { ?>  
+		  {if_not_active}	  
+		  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Activate</a></td>
+		  {/if_not_active}
+		  {if_active}
+		  <td><a href='{site_url}index.php/projects/candidate_active/{id}/{sid}/{pid}/{name}'>Deactivate</a></td>
+		  {/if_active}
+		  <?php } else { ?>
+		  <td>&nbsp;</td>
+		  <?php } ?>
+		  <td><a href='{site_url}index.php/projects/rollout_details/{sid}/{pid}/{name}/{state_id}/{id}'>View Activities</a></td>
+		</tr>
 		{/candidates}
 	</table>
 	<?php if($this->session->userdata('is_admin')) { ?>
@@ -74,15 +73,15 @@
 	{/if_not_active}
 	{if_active}
 	<h2>Candidate {cname}</h2>
-
-<h3>Activities</h3>
-<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-		<tr class="ewTableHeader">
-		  <td align="center"><strong>On</strong></td>
-	  <td align="center"><strong>Subject</strong></td>
-	  <td align="center"><strong>Description</strong></td> 
-	  <td align="center"><strong>Comments</strong></td>         
-	</tr>
+	
+	<h3>Activities</h3>
+	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+		<tr>
+		  <td align="center" bgcolor="#e8e8d0"><strong>On</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Subject</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Description</strong></p></td> 
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Comments</strong></p></td>         
+		</tr>
 		
 		<tr>
 		  <td>&nbsp;</td>
@@ -93,16 +92,16 @@
 		{if_not_activities}
 		 <tr>	  
 		  <td colspan="4"> No activities found for this candidate</td>
-	 </tr>
+		 </tr>
 		{/if_not_activities}
 		{if_activities}
 		{activities}
 		<tr>
 			<td>{activity_on}</td>
-	  <td><a href='../activty_edit/{id}' rel="lyteframe">{subject}</a></td>
-	  <td>{desc}</td>
-	  <td>{comments}</td>
-	</tr>
+		  <td><a href='../activty_edit/{id}' rel="lyteframe">{subject}</a></td>
+		  <td>{desc}</td>
+		  <td>{comments}</td>
+		</tr>
 		
 		{/activities}
 		{/if_activities}
@@ -112,15 +111,15 @@
 	<a href='{site_url}index.php/projects/activity_upload/{sid}/{pid}/{name}/{state_id}/{cid}'>Upload Activities</a> <br />
 	<?php } ?>
 	<h3>Surveys</h3>
-<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-		<tr class="ewTableHeader">
-		  <td align="center"><strong>Date</strong></td>  
-	  <td align="center" ><strong>Category</strong></td>
-	  <td align="center" ><strong>Type</strong></td>
-	  <td align="center" ><strong>Reason</strong></td> 
-	  <td align="center" ><strong>View Details</strong></td> 
-	             
-	</tr>
+	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+		<tr>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Date</strong></p></td>  
+		  <td align="center" bgcolor="#e8e8d0"><strong>Category</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Type</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Reason</strong></p></td> 
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>View Details</strong></p></td> 
+					 
+		</tr>
 		
 		<tr>
 		  <td>&nbsp;</td>
@@ -132,17 +131,17 @@
 		{if_not_surveys}
 		 <tr>	  
 		  <td colspan="5"> No surveys found for this candidate</td>
-	 </tr>
+		 </tr>
 		{/if_not_surveys}
 		{if_surveys}	
 		{surveys}
 			<tr>
 				<td>{survey_on}</td>
-		  <td>{category}</a></td>
-		  <td>{type}</td>
-		  <td>{reason}</td>
-		  <td><a href='{site_url}index.php/projects/survey_details/{id}' >View</a> | <a href='{site_url}index.php/projects/survey_update/{id}/{sid}/{cid}/{pid}/{state_id}' >Edit</a></td>
-		</tr>
+			  <td>{category}</a></td>
+			  <td>{type}</td>
+			  <td>{reason}</td>
+			  <td><a href='{site_url}index.php/projects/survey_details/{id}' >View</a> | <a href='{site_url}index.php/projects/survey_update/{id}/{sid}/{cid}/{pid}/{state_id}' >Edit</a></td>
+			</tr>
 		{/surveys}
 		{/if_surveys}
 	</table>
@@ -150,14 +149,13 @@
 	<a href='{site_url}index.php/projects/survey_add/{pid}/{sid}/{name}/{cid}' >Add Another Survey</a><br />
 	<a href='{site_url}index.php/projects/survey_upload/{sid}/{pid}/{name}/{state_id}/{cid}'>Upload Surveys</a> <br />
 	<?php } ?>
-	
 	<h3>Atachments</h3>
-<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-		<tr class="ewTableHeader">
-		  <td align="center" ><strong>Filename</strong></td>
-	  <td align="center" ><strong>Attached on</strong></td>     
-	  <td align="center" >&nbsp;</td>            
-	</tr>
+	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
+		<tr>
+		  <td align="center" bgcolor="#e8e8d0"><strong>Filename</strong></td>
+		  <td align="center" bgcolor="#e8e8d0"><p><strong>Attached on</strong></p></td>     
+		  <td align="center" bgcolor="#e8e8d0">&nbsp;</td>            
+		</tr>
 	
 		<tr>
 		  <td>&nbsp;</td>
@@ -167,7 +165,7 @@
 		{if_not_attachements}
 		 <tr>	  
 		  <td colspan="3"> No attachement found for this candidate</td>
-	 </tr>
+		 </tr>
 		{/if_not_attachements}
 		{if_attachements}
 		
@@ -184,6 +182,7 @@
 	</table>
 	 {/if_active}
 	{/if_candidate}
+
    </div>
 </div>
 <?php $this->load->view('footer-new');?> 

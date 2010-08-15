@@ -1,7 +1,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php  // $this->load->view('header');  ?>
-<?php $this->load->view('header-new');?>
 
+<?php $this->load->view('header-new');?>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() { 
+	  // define lognitude latitude format
+	  jQuery.validator.addMethod("Latitude", function(latitude, element) {
+		return this.optional(element)  || 
+			 latitude.match(/(^\+?([1-8])?\d(\.\d+)?$)|(^-90$)|(^-(([1-8])?\d(\.\d+)?$))/);
+        
+		}, "Please specify a valid latitude");
+		jQuery.validator.addMethod("Longitude", function(longitude, element) {
+		return this.optional(element)  || 
+			 longitude.match(/(^\+?1[0-7]\d(\.\d+)?$)|(^\+?([1-9])?\d(\.\d+)?$)|(^-180$)|(^-1[1-7]\d(\.\d+)?$)|(^-[1-9]\d(\.\d+)?$)|(^\-\d(\.\d+)?$)/);
+        
+		}, "Please specify a valid longitude"); 
+		
+      $("#editplan").validate({  
+        rules: {
+          code: "required",// simple rule, converted to {required:true}
+		  longitude: {
+		  
+		    number:true,
+			Longitude: true
+		   },
+		  candidate_distance:
+		  {
+		   number:true
+		  },
+		  latitude: {// compound rule
+          number: true,
+		  Latitude: true
+        }
+        },
+        messages: {
+          code: "Please enter a code.",
+		  latitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  longitude: {
+		   number: "Longitude value should be Number"
+		   },
+		  height: {
+
+		   number : "Please specify valid height value"
+		   }
+		  }
+      });
+    }); 
+</script>
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/cell_results/#add"><span>Cell Results</span></a></li>
@@ -162,4 +211,4 @@
 </div>
 
 <?php $this->load->view('footer-new');?> 
-<?php // $this->load->view('footer'); ?>
+

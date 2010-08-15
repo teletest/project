@@ -1,5 +1,5 @@
 <?php
-$this->load->view('header');
+$this->load->view('header-new');
 ?>
 
 <?php echo form_open('clients/newclient', array('id' => 'newClientForm', 'onsubmit' => 'return requiredFields();'));?>
@@ -44,5 +44,5 @@ $this->load->view('header');
 <?php echo form_close();?>
 
 <?php
-$this->load->view('footer');
+$this->load->view('footer-new');
 ?>

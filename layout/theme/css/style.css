@@ -31,11 +31,28 @@ body {
 	font-size: 10px;
 	font-weight:bold;
 	color:#CCCCCC;
-	cursor:pointer;
+	
 	background-image:url(../images/top-cat-mouse-over.gif);
-	background-repeat:no-repeat;
+	background-repeat:no-repeat; 
 }
+.TopMenuText a, .TopMenuText a:link
+{
+    font-family: Verdana;
+	color:#FFFFFF;
+	font-weight:bold;
+	font-size: 10px;
+	cursor:pointer;
 
+}
+.TopMenuText a:visited
+{
+    font-family: Verdana;
+	font-size: 10px;
+	font-weight:bold;
+    text-decoration: none;
+	color: #C8C8C8 ;
+
+}
 
 .BoldTest {
 	font-family: Verdana;

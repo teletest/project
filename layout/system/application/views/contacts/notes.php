@@ -1,5 +1,5 @@
 <?php
-$this->load->view('header');
+$this->load->view('header-new');
 ?>
 
 	<h2><label for="client_notes"><?php echo $page_title; ?></label></h2>
@@ -23,5 +23,5 @@ $this->load->view('header');
 	<?php echo form_close();?>
 
 <?php
-$this->load->view('footer');
+$this->load->view('footer-new');
 ?>
