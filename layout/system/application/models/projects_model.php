@@ -510,6 +510,12 @@ class Projects_model extends Model{
 		  $row = $query->row();
           return  $row->plan_name; 
 		}
+		function get_plan_project_id($id)
+		{
+		  $query = $this->db->get_where('nominal_plan' , array('id' => $id));
+		  $row = $query->row();
+          return  $row->project_id; 
+		}
 		//these r sites instead of project
 		function planned_site( $projects , $date, $p_id, $project_id, $c_id, $off1, $off2)
 		{

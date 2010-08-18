@@ -1,7 +1,7 @@
-   </td>
+           </td>
           </tr>
         </table></td>
-        </tr>
+        </tr> 
       <tr>
         <td height="30" align="center" valign="middle" bgcolor="#D2D2D2"><a href="#">Contact Us</a> | <a href="#">Terms of Use</a> | <a href="#">Trademarks</a> | <a href="#">Privacy Statement</a><br />
            Copyright © 2009 ---. All Rights Reserved.</td>

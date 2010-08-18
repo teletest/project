@@ -2,21 +2,6 @@
 <?php  // $this->load->view('header');  ?>
 <?php $this->load->view('header-new');?>
 
-<script type="text/javascript">  
-   $(document).ready(function(){  
-	/*$('.checkBox1').click(function () {
-	 $(".checkBox1").each( function () {  
-	  if($(this).is(':checked')){
-	  $('#input1ID').slideDown("slow");  
-	  }
-	  else{
-	   $('#input1ID').slideUp("slow");
-	  }
-	 })
-	});*/
-  });
-</script>
-
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/edit_options/#add"><span>Edit Options</span></a></li>

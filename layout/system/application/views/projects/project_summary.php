@@ -11,6 +11,7 @@
 	  year=document.form1.year.options[document.form1.year.selectedIndex].value;
 	  strAddress = "{site_url}index.php/projects/project_summary/{project_id}/"+month+'/'+year;  
       location.href = strAddress; 
+
 	}
 </script>
 

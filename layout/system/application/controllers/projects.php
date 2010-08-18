@@ -2038,12 +2038,13 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/			
-	function create_plan($value, $msg="")
+	function create_plan($value, $selected_id="", $msg="")
 	{
 	  $data = tags();
 	  $data['tabs']	= tabs('projects');
 	  $data['projects_title'] = 'Projects - Nominal Plan';
-       // import plan
+      $data['selected_id'] = $selected_id;
+	   // import plan
 	  if($value == '0')
 	  {
 	  $query = $this->db->get_where('projects' ,array('status' => "Created") ,$this->db->order_by("id", "asc"));
@@ -2067,15 +2068,21 @@ class Projects extends My_Controller {
 		$data['pagination']= $this->pagination->create_links();
 		// get the list of stages
 	    $data['plan']= $this->projects_model->get_nominal_plans($limit, $this->uri->segment(4));
-		/*$i=0;
+		$i=0;
 		foreach($data['plan'] as $row)
 		{
-		  $data['plan'][$i]['project_name']=$this->projects_model->get_project_name($data['plan'][$i]['project_id']);
+		  if ($data['plan'][$i]['id'] == $selected_id)
+		  {
+		    $data['plan'][$i]['selected']='checked';
+			$data['selected_project_id'] = $this->projects_model->get_plan_project_id($selected_id);
+		  }
+		  else
+		  {
+		    $data['plan'][$i]['selected']=''; 
+		  }
 		  $i++;
-		}*/
-	  //$query=$this->db->get('nominal_plans');
-	  //$data['plan']=$query->result_array();
-	  $this->load->library('form_validation');
+		}
+
 	  $this->parser->parse('projects/existing_plan', $data);
 	  } 
 	}
