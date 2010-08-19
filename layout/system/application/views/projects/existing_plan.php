@@ -2,24 +2,35 @@
 
 <?php $this->load->view('header-new');?>
 
-</script>
+
 
 <script type="text/javascript">
-  function checkBoxIsChecked(frm, elementId) {
 
-  for(var i=0; i < document.frm1.plan_id.length; i++){
+window.onload = firstLoad;
+function firstLoad() {
+document.getElementById("view").href = "";
+document.getElementById("view").style.color = "grey";
+document.getElementById("delete").href = "";
+document.getElementById("delete").style.color = "grey";
+document.getElementById("edit").href = "";
+document.getElementById("edit").style.color = "grey";
+}
+  function checkBoxIsChecked(frm, selected_id) {
+
+ /* for(var i=0; i < document.frm1.plan_id.length; i++){
     if(document.frm1.plan_id[i].checked)
 	{
-	   selected_id =document.frm1.plan_id[i].value;
+	   selected_id =document.frm1.plan_id[i].value; */
 	   strAddress = "{site_url}index.php/projects/create_plan/1/"+selected_id;  
        location.href = strAddress;
-	   break;
+	/*   break;
 	 }
 	  
-   }
-
-
+   }*/
 }
+
+
+
 </script>
 <div id="ShowTab" style="width:96%;overflow:auto;">
 	<ul>
@@ -102,13 +113,13 @@
 						  </tbody>
 						  <tbody id="thetable">
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/plan_summary/{selected_id}' disabled="true" >View</a></div></td>
+							  <td colspan="3"> <div><a href='{site_url}index.php/projects/plan_summary/{selected_id}' id="view">View</a></div></td>
 							</tr>
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/edit_plan/{selected_id}' >Edit</a></div></td>
+							  <td colspan="3"> <div><a href='{site_url}index.php/projects/edit_plan/{selected_id}' id="edit">Edit</a></div></td>
 							</tr>
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/delete_plan/{selected_id}/{selected_project_id}'  class="confirmClick" title="Delete this project">Delete</a></div></td>
+							  <td colspan="3"> <div><a href='{site_url}index.php/projects/delete_plan/{selected_id}/{selected_project_id}'  class="confirmClick" title="Delete this project" id="delete">Delete</a></div></td>
 							</tr>
 						  </tbody>
 						 </table>
