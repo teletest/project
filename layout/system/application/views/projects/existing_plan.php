@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
 
-window.onload = firstLoad;
+/*window.onload = firstLoad;
 function firstLoad() {
 document.getElementById("view").href = "";
 document.getElementById("view").style.color = "grey";
@@ -14,7 +14,7 @@ document.getElementById("delete").href = "";
 document.getElementById("delete").style.color = "grey";
 document.getElementById("edit").href = "";
 document.getElementById("edit").style.color = "grey";
-}
+} */
   function checkBoxIsChecked(frm, selected_id) {
 
  /* for(var i=0; i < document.frm1.plan_id.length; i++){
