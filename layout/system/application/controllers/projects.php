@@ -2709,7 +2709,10 @@ class Projects extends My_Controller {
 	}
 	function display_counted_sites($field, $value)
 	{
-	      $data['sites'] = $this->projects_model->get_site_count_details($field, $value);
+	      $data = tags();
+		  $data['tabs']	= tabs('projects');
+		  $data['projects_title'] = 'Plan Summary';
+		  $data['sites'] = $this->projects_model->get_site_count_details($field, $value);
 		  $this->parser->parse('projects/counted_sites', $data);
 	}
 	function view_planned_stages($site_id)

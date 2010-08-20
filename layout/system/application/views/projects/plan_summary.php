@@ -3,7 +3,7 @@
 
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
-    <li><a href="{site_url}index.php/projects/stages_planned/#add"><span>Plan Summary</span></a></li> 
+    <li><a href="{site_url}index.php/projects/plan_summary/{id}#add"><span>Plan Summary</span></a></li> 
     </ul>
     <div id="add" class="TabSpec">
 	 <table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
@@ -27,8 +27,9 @@
 			</tr>
 			{values}
 			<tr>
-				<td><a href='{site_url}index.php/projects/get_counted_sites/{filters}/{name}' >{name}</a></td>
-				<td><a href='{site_url}index.php/projects/get_counted_sites/{filters}/{name}' >{sites_count}</a></td>
+				<td><a href='{site_url}index.php/projects/display_counted_sites/{filters}/{name}' >{name}</a></td>
+				<td><a href='{site_url}index.php/projects/display_counted_sites/{filters}/{name}' >{sites_count}</a></td>
+				<!-- <td><a href='{site_url}index.php/projects/get_counted_sites/{filters}/{name}' >{sites_count}</a></td>-->
 			</tr>
 			{/values}
 			<tr>

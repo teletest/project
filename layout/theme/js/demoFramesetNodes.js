@@ -60,9 +60,7 @@ HIGHLIGHT = 1
   aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
   aux2 = insFld(foldersTree, gFld("Nominal Plan", SITEURL+"/projects/nominal_plans"))
 
-  insDoc(aux2, gLnk("S", "View Plan", SITEURL+"/projects/create_plan/1"))
-  
-  insDoc(aux2, gLnk("S", "Edit Plan", SITEURL+"/projects/create_plan/1"))
+  insDoc(aux2, gLnk("S", "Nominal Plans", SITEURL+"/projects/create_plan/1"))
 	
   insDoc(aux2, gLnk("S", "Import Plan", SITEURL+"/projects/create_plan/0"))
 
