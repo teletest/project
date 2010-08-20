@@ -41,11 +41,6 @@ var SITEURL = '<?php echo site_url(); ?>';
 <link rel="stylesheet" href="{site_url}css/slide_up_down.css" type="text/css" media="screen">
 <!-- end slide up down div script -->
 
-<!-- zebra filtering script -->
-<link rel="stylesheet" href="{site_url}css/zebra_filter.css" type="text/css" media="screen" charset="utf-8">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script> 
-<script src="{site_url}js/zebra_filter.js" type="text/javascript" charset="utf-8"></script> 
-<!-- end zebra filtering script -->
           
 <script src="{site_url}js/select_all.js" type="text/javascript" ></script>           
 <script src="{site_url}js/FusionCharts.js" type="text/javascript" charset="utf-8"></script> 
@@ -54,7 +49,6 @@ var SITEURL = '<?php echo site_url(); ?>';
 
 <?php $this->load->view('inc-css');?>
 <?php $this->load->view('inc-js');?>
-
 
 </head>
 <body onload="alternate('thetable');">

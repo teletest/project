@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <?php $this->load->view('header-new');?>
+<!--
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/validate/jquery.validate.js"></script>
 
@@ -50,7 +51,7 @@
 		  }
       });
     }); 
-</script>
+</script> -->
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
     <li><a href="{site_url}index.php/projects/cell_results/#add"><span>Cell Results</span></a></li>
@@ -58,12 +59,12 @@
     </ul>
     <div id="add" class="TabSpec" >
 
-	<table class="filterable" border="0" cellpadding="1" cellspacing="2" width="100%" id="report">
-		<tr>
-		  <th align="center" ><strong>ID</strong></th>
-		  <th align="center" ><strong>Cell ID</strong></th>
-		  <th align="center" ><p><strong>Site ID</strong></p></th> 
-		  <th align="center" >&nbsp;</th>            
+	<table  border="0" cellpadding="1" cellspacing="1" width="90%" id="report" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td align="center" >ID</td>
+		  <td align="center" >Cell ID</td>
+		  <td align="center" >Site ID</td> 
+		  <td align="center" >&nbsp;</td>            
 		</tr>
 	<!--
 		{if_not_found}
@@ -73,7 +74,8 @@
 		{/if_not_found} -->
 		{if_found}
 		{cells}
-		<tr>
+		<tbody id="thetable">
+		<tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
 		  <td>{id}</td>
 		  <td>{cell_id}</td>
 		  <td><a href='projects/projects_details/{id}' rel="lyteframe" >{site_id}</a></td>
@@ -81,7 +83,7 @@
 		</tr>
 			<tr >
 				<td colspan="4"> 
-				 <div style=" width:900px; " >  
+				 <div style="width:900px;" >  
 				  <form name="editplan2" action="{site_url}index.php/projects/plan_edited/3" method="post"  >
 				  <input type="hidden" name="login_id" value="<?php echo $this->session->userdata('username'); ?>" />
 				  <input type="hidden" name="id" value="{id}" />
@@ -201,12 +203,12 @@
 					</form>
 				  </div>	
 				</td> 
-			 </tr> 
+			 </tr>
+			 </tbody> 
 		{/cells} 
 	   {/if_found}                                  
 	</table>
-	<br>
-	<br>
+
     </div>
 </div>
 

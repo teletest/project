@@ -2082,8 +2082,11 @@ class Projects extends My_Controller {
 		  }
 		  $i++;
 		}
-
-	  $this->parser->parse('projects/existing_plan', $data);
+        $_true = array(array());
+	    $_false = array();
+	    $data['if_plan_selected'] = ( $selected_id != NULL) ? $_true : $_false;
+	    $data['if_not_plan_selected'] = ( $selected_id == NULL) ? $_true : $_false;
+	    $this->parser->parse('projects/existing_plan', $data);
 	  } 
 	}
 	/**

@@ -90,7 +90,7 @@ document.getElementById("edit").style.color = "grey";
                   <tr>
                     <td height="30" bgcolor="#d1d1d1"><table width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td width="73%" align="left"><span class="BoldTest">Summary</span></td>
+                        <td width="73%" align="left"><span class="BoldTest">Action</span></td>
                         <td width="27%"><table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
                           <tr>
                             <td align="center" valign="middle"><img src="{site_url}theme/images/minimize.png" width="24" id="img_right_sum1" height="24" style="cursor:pointer;" onclick="HideMe(right_sum1,img_right_sum1);" alt="Minimize Menu" /></td>
@@ -106,21 +106,34 @@ document.getElementById("edit").style.color = "grey";
 					<td height="160" align="center" valign="middle" bgcolor="#FFFFFF">
 						<div id="summary">
 						<table align="center" class="ewTable"  style="width:178px">
-						  <tbody>
-							<tr class="ewTableHeader">
+		
+							<!--<tr class="ewTableHeader">
 							  <td colspan="3" valign="top"><strong>Action</strong></td>
-							</tr>
-						  </tbody>
+							</tr> -->
+						
 						  <tbody id="thetable">
+							{if_plan_selected}
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/plan_summary/{selected_id}' id="view">View</a></div></td>
+							  <td colspan="3" align="center"> <div><a href='{site_url}index.php/projects/plan_summary/{selected_id}' id="view" title="view" ><img src="{site_url}/theme/images/kghostview.png" height="24" width="24" alt="view" title="view"></a></div></td>
 							</tr>
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/edit_plan/{selected_id}' id="edit">Edit</a></div></td>
+							  <td colspan="3" align="center"> <div><a href='{site_url}index.php/projects/edit_plan/{selected_id}' id="edit" title="edit"><img src="{site_url}/theme/images/edit-icon.png" height="24" width="24" alt="edit" title="edit"></a></div></td>
 							</tr>
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
-							  <td colspan="3"> <div><a href='{site_url}index.php/projects/delete_plan/{selected_id}/{selected_project_id}'  class="confirmClick" title="Delete this project" id="delete">Delete</a></div></td>
+							  <td colspan="3" align="center"> <div><a href='{site_url}index.php/projects/delete_plan/{selected_id}/{selected_project_id}'  class="confirmClick" title="Delete this plan" id="delete"><img src="{site_url}/theme/images/delete.png" height="24" width="24" title="delete"></a></div></td>
 							</tr>
+							{/if_plan_selected}
+							{if_not_plan_selected}
+							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+							  <td colspan="3" align="center"> <div><a href='#' id="view" title="view" onclick="javascript: alert('No Plan Selected')"><img src="{site_url}/theme/images/kghostview.png" height="24" width="24"></a></div></td>
+							</tr>
+							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+							  <td colspan="3" align="center"> <div><a href='#' id="edit" title="edit" onclick="javascript: alert('No Plan Selected')"><img src="{site_url}/theme/images/edit-icon.png" height="24" width="24"></a></div></td>
+							</tr>
+							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+							  <td colspan="3" align="center"> <div><a href='#'  onclick="javascript: alert('No Plan Selected')" title="Delete this plan" id="delete"><img src="{site_url}/theme/images/delete.png" height="24" width="24"></a></div></td>
+							</tr>
+							{/if_not_plan_selected}
 						  </tbody>
 						 </table>
 						</div> 
