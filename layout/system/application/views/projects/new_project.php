@@ -45,8 +45,9 @@
 			<h3>Projects waiting to be planned</h3>
 			
 			<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
-			<tr>
-				<th>Project Code</th><th>Action</th>
+			<tr class="ewTableHeader">
+				<td>Project Code</td>
+				<td>Action</td>
 			</tr>
 			<tbody id="thetable">
 			{projects}

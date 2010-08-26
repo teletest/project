@@ -21,14 +21,13 @@
 					
 					<td colspan="2"><input type="text"  value="<?php  echo set_value('process_name'); ?>" name="process_name" /><span style="color:red;"><?php echo form_error('userfile'); ?></span> </td>
 				</tr>
-					 <tr>
-					   
-						<td bgcolor="#e8e8d0"><strong>Select</strong></td>
-					<td ><strong> ID</strong></td>
-                    <td align="center" ><strong>Stage Name</strong></td>
-                    <td align="center"><strong>Lead Time</strong></td>
-                    <td align="center"><strong>Dependency</strong></td>
-                  </tr>
+					 <tr class="ewTableHeader">
+					   <td><strong>Select</strong></td>
+					   <td ><strong> ID</strong></td>
+                       <td align="center" ><strong>Stage Name</strong></td>
+                       <td align="center"><strong>Lead Time</strong></td>
+                       <td align="center"><strong>Dependency</strong></td>
+                     </tr>
 					  <tr>
 						<!--<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -77,7 +76,7 @@
 							 <?php if($this->session->userdata('is_admin')) { ?>    				
 							 <td colspan="3">
 							 <input type="button"  value="Create Process" onclick="this.form.submit();" /></td>
-							 <?php  else { ?> <td colspan="3">&nbsp;  </td><?php } ?>
+							 <?php  } else { ?> <td colspan="3">&nbsp;  </td><?php } ?>
 						 
 						</tr>
 	

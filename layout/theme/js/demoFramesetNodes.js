@@ -51,13 +51,16 @@ HIGHLIGHT = 1
 
 
 
-  foldersTree = gFld("Project Explorer", SITEURL+"/projects/")
+  foldersTree = gFld("Project Explorer", SITEURL+"/projects/project_management")
 
   foldersTree.treeID = "Frameset"
   
-  aux1 = insFld(foldersTree, gFld("New Project", SITEURL+"/projects/new_project"))
+  aux1 = insFld(foldersTree, gFld("Projects", SITEURL+"/projects/"))
+  
+  insDoc(aux1, gLnk("S", "Projects", SITEURL+"/projects/"))
+  insDoc(aux1, gLnk("S", "New Project", SITEURL+"/projects/new_project"))
 
-  aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
+  
   aux2 = insFld(foldersTree, gFld("Nominal Plan", SITEURL+"/projects/nominal_plans"))
 
   insDoc(aux2, gLnk("S", "Nominal Plans", SITEURL+"/projects/create_plan/1"))
@@ -65,13 +68,15 @@ HIGHLIGHT = 1
   insDoc(aux2, gLnk("S", "Import Plan", SITEURL+"/projects/create_plan/0"))
 
   insDoc(aux2, gLnk("S", "Display Existing Process", SITEURL+"/projects/display_process/1"))
+  
+  insDoc(aux2, gLnk("S", "Create Process", SITEURL+"/projects/display_process/display_process/0"))
 
   insDoc(aux2, gLnk("S", "Upload Calender Holiday", SITEURL+"/projects/upload_calendar"))
 
 
-
+  aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
   aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
-  //Rool out Menu
+  //Roll out Menu
 
     	  aux1 = insFld(foldersTree, gFld("Site Rollout", SITEURL+"/projects/site_rollout/none/0/0/0/0/0"))
 

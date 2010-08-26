@@ -108,7 +108,12 @@ class Projects extends My_Controller {
 				$this->parser->parse('projects/index', $data);		
 		
 	}
-
+    function project_management()
+	{
+	   $data = tags();
+	   $data['tabs']	= tabs('projects');
+	   $this->parser->parse('projects/project_management', $data);
+	}
 	function _calendar(&$data)
 	{
 	

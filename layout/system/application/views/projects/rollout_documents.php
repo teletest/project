@@ -10,24 +10,25 @@
     <div id="add" class="TabSpec">
 	<h1>Rollout Documents</h1>
 
-
-<table align="center" border="0" cellpadding="1" cellspacing="2">
-                  <tbody><tr>
-                    <td bgcolor="#e8e8d0"><strong>File Name</strong></td>
-                    <td bgcolor="#e8e8d0"><strong>Date</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><p><strong>View</strong></p></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Delete</strong></td>
-                    <td align="center" bgcolor="#e8e8d0"><strong>Download</strong></td>
+<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+                  
+				  <tr class="ewTableHeader">
+                    <td>File Name</td>
+                    <td>Date</td>
+                    <td>View</td>
+                    <td>Delete</td>
+                    <td>Download</td>
                   </tr>
-                  <tr>
+                  <tbody id="thetable">
+				  <tr>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
-                    <td align="center">&nbsp;</td>
-                    <td align="center">&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                   </tr>
 				  {rolled_out_doc}
-                  <tr>
+                  <tr onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);">
                     <td><strong>{filename}</strong></td>
                     <td>{attached_on}</td>
                     <td align="center"><a href='{site_url}uploads/{site_id}_{filename}' rel="lyteframe"><img src="{site_url}/images/kghostview.png" height="24" width="24"></a></td>
