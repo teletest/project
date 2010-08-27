@@ -1,0 +1,13 @@
+ALTER TABLE nominal_plan ADD created_on DATE NOT NULL AFTER plan_name;
+ALTER TABLE nominal_plan ADD created_by VARCHAR(25) NOT NULL AFTER created_on;
+ALTER TABLE nominal_plan ADD description TEXT NOT NULL AFTER created_by;
+ALTER TABLE nominal_plan ADD comments TEXT  AFTER description;
+
+
+
+ALTER TABLE calendars ADD created_on DATE NOT NULL AFTER name;
+ALTER TABLE calendars ADD created_by VARCHAR(25) NOT NULL AFTER created_on;
+ALTER TABLE calendars ADD description TEXT NOT NULL AFTER created_by;
+ALTER TABLE calendars ADD comments TEXT  AFTER description;
+
+

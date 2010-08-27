@@ -13,13 +13,12 @@
 	 $this->load->view('projects/attachment_form');
 	?>
 	<br /><br />
-	
-	<h2>Attachments</h2>
-	<table class="table" border="0" cellpadding="1" cellspacing="2" width="100%">
-		<tr>
-		  <td align="center" bgcolor="#e8e8d0"><strong>File name</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Attached On</strong></td>
-		  <td align="center" bgcolor="#e8e8d0"><strong>Actions</strong></td>          
+
+	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
+		<tr class="ewTableHeader">
+		  <td><strong>File name</strong></td>
+		  <td><strong>Attached On</strong></td>
+		  <td><strong>Actions</strong></td>          
 		</tr>
 		<tr>
 		  <td>&nbsp;</td>
@@ -50,4 +49,4 @@
 </div>
 </div>
 <?php $this->load->view('footer-new');?> 
-<?php // $this->load->view('footer'); ?>
+

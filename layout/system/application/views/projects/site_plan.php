@@ -31,8 +31,8 @@
 		<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);"> 
 		<input type="hidden" value="{project_id}" name="project_id" />
 		  <td><input type="checkbox" value="{id}" name="project[]"  /> </td>
-		  <td><a href='projects_details/{id}' rel="lyteframe">{code}</a></td>
-		  <td><a href='projects_details/{id}' rel="lyteframe">{name}</a></td>
+		  <td><a href='{site_url}index.php/projects/projects_details/{project_id}' rel="lyteframe">{code}</a></td>
+		  <td><a href='{site_url}index.php/projects/site_details/{id}' rel="lyteframe">{name}</a></td>
 		  <td>{status}</td>
 		  <td>{created_on}</td>
 		  <!-- <td><a href='site_doplan/{id}/{code}' rel="lyteframe">Plan</a> | <a href='site_attach_document/{id}' >Document</a></td> -->

@@ -65,7 +65,7 @@
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-						<td align="right">Comment:</td>
+						    <td align="right">Comment:</td>
 						<td colspan="3">
 							<textarea class="text"  cols="48" name="comment" style="height: 100px;" value="" > </textarea><br />
 							</td>

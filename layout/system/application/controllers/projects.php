@@ -272,6 +272,10 @@ class Projects extends My_Controller {
 						$c_data= array(
 						  'name' => $name,
 						  'is_active' => '0',
+						  'created_on' => $this->input->post('date'),
+						  'created_by' => $this->input->post('created_by'),
+						  'description' => $this->input->post('description'),
+						  'comments' => $this->input->post('comment'),
 						); 
 						if ( $this->live_validation($name) != "0"  && $overwrite == "1"  )
 						{
@@ -2135,6 +2139,10 @@ class Projects extends My_Controller {
 				$plan_data= array(
 				  'project_id' => $project_id,
 				  'plan_name' => $plan_name,
+				  'created_on' => $this->input->post('date'),
+				  'created_by' => $this->input->post('created_by'),
+				  'description' => $this->input->post('description'),
+				  'comments' => $this->input->post('comment'),
 				);
 				$this->db->insert('nominal_plan', $plan_data);
 				$plan_id = mysql_insert_id();

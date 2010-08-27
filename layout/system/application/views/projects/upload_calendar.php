@@ -25,6 +25,8 @@
 	<h3>Import Calendar</h3>
    <table  width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	<form name="calendarForm" id="calendarForm" action="{site_url}index.php/projects/calendar_uploaded" method="post"  enctype="multipart/form-data">
+	<input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="created_on"  />
+	<input type="hidden" name="created_by" value="<?php echo $this->session->userdata('id'); ?>" />
 	<tbody>
 	<tr>
 		<td align="right" width="230">Calendar Name:</td>
@@ -42,7 +44,18 @@
 	<tr>
 		<td align="right">Import File:</td>
 	<td> <input name="userfile" type="file" value="" size="35" disabled="disabled" ></td>
-   
+    <tr>
+        <td align="right">Description:</td>
+		<td colspan="3"><span style="color:red;"><?php echo form_error('description'); ?></span>
+			<textarea class="text"  cols="60" name="description" style="height: 100px;" value="<?php  echo set_value('description'); ?>" > </textarea><br />
+		</td>
+	</tr>
+	<tr>
+	   <td align="right">Comment:</td>
+	   <td colspan="3">
+		    <textarea class="text"  cols="60" name="comment" style="height: 100px;" value="" > </textarea><br />
+	   </td>
+	</tr>
     </tr>
 	<tr>
 		<td align="left">

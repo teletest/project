@@ -26,8 +26,8 @@
 					   {closing_projects}
 					   <tr>
 						<td>{code}</td>
-						<td><a href='projects_details/{id}' rel="lyteframe"> Details </a> | 
-						<a href='site_attach_document/{id}' >Document</a> 
+						<td><a href='projects_details/{id}' rel="lyteframe"> Details </a>
+						 <!-- | <a href='site_attach_document/{id}' >Document</a> --> 
 						<?php if($this->session->userdata('is_admin')) { ?>
 					    | <a href='project_closed/{id}' >Close</a></td>
                         <?php } ?>
