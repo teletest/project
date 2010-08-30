@@ -426,6 +426,15 @@ class Projects_model extends Model{
 		   $query=$this->db->get();
 		   return $query->result_array();
 		}
+		function get_nominal_plan_info($plan_id = "")
+		{
+		   $this->db->select('nominal_plan.id, nominal_plan.project_id, nominal_plan.plan_name, nominal_plan.created_on, nominal_plan.created_by, nominal_plan.description, nominal_plan.comments, persons.name');
+		   $this->db->from('nominal_plan');
+		   $this->db->join('persons', 'nominal_plan.created_by = persons.id');
+		   $this->db->where('nominal_plan.id' , $plan_id );
+		   $query=$this->db->get();
+		   return $query->result_array();
+		}
 		function get_processes()
 		{
            $this->db->select('*');
@@ -524,6 +533,7 @@ class Projects_model extends Model{
 
 		  $site = array( 
 		             'process_id' => $p_id,
+					 'calendar_id' => $c_id,
 		             'status' => 'status'+2,
 		             ); 
 		  $this->db->update('sites', $site, array('id' => $site_id));

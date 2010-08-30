@@ -13,7 +13,7 @@
 	<table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 	<form name="addFrm" action="{site_url}index.php/projects/process_implemented" method="post" >
 	<input type="hidden" value="<?php echo date('Y-m-d'); ?>" name="created_on"  />
-	<input type="hidden" name="created_by" value="<?php echo $this->session->userdata('username'); ?>" />
+	<input type="hidden" name="created_by" value="<?php echo $this->session->userdata('id'); ?>" />
 	<input type="hidden" value="{process_id}" name="process_id" />
 	<tbody>
 					<tr>

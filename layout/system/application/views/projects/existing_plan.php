@@ -2,31 +2,13 @@
 
 <?php $this->load->view('header-new');?>
 
-
-
 <script type="text/javascript">
 
-/*window.onload = firstLoad;
-function firstLoad() {
-document.getElementById("view").href = "";
-document.getElementById("view").style.color = "grey";
-document.getElementById("delete").href = "";
-document.getElementById("delete").style.color = "grey";
-document.getElementById("edit").href = "";
-document.getElementById("edit").style.color = "grey";
-} */
   function checkBoxIsChecked(frm, selected_id) {
 
- /* for(var i=0; i < document.frm1.plan_id.length; i++){
-    if(document.frm1.plan_id[i].checked)
-	{
-	   selected_id =document.frm1.plan_id[i].value; */
 	   strAddress = "{site_url}index.php/projects/create_plan/1/"+selected_id;  
        location.href = strAddress;
-	/*   break;
-	 }
-	  
-   }*/
+
 }
 
 
@@ -122,6 +104,9 @@ document.getElementById("edit").style.color = "grey";
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
 							  <td colspan="3" align="center"> <div><a href='{site_url}index.php/projects/delete_plan/{selected_id}/{selected_project_id}'  class="confirmClick" title="Delete this plan" id="delete"><img src="{site_url}/theme/images/delete.png" height="24" width="24" title="delete"></a></div></td>
 							</tr>
+							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+							  <td colspan="3" align="center"> <div><a href='{site_url}index.php/projects/nominap_plan_info/{selected_id}'  title="View plan" id="delete">Plan info</a></div></td>
+							</tr>
 							{/if_plan_selected}
 							{if_not_plan_selected}
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
@@ -132,6 +117,9 @@ document.getElementById("edit").style.color = "grey";
 							</tr>
 							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
 							  <td colspan="3" align="center"> <div><a href='#'  onclick="javascript: alert('No Plan Selected')" title="Delete this plan" id="delete"><img src="{site_url}/theme/images/delete.png" height="24" width="24"></a></div></td>
+							</tr>
+							<tr  onmouseover="ew_MouseOver(this);" onmouseout="ew_MouseOut(this);" >
+							  <td colspan="3" align="center"> <div><a href='#'  onclick="javascript: alert('No Plan Selected')" >View Plan Info</a></div></td>
 							</tr>
 							{/if_not_plan_selected}
 						  </tbody>

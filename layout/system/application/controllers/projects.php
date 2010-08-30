@@ -1516,7 +1516,7 @@ class Projects extends My_Controller {
 					   }
 					   else
 					   {
-						 $msg="Plan can not be imported as given site name does not match selected site name";
+						 $msg="Candidate can not be imported as given site name does not match selected site name";
 						 $pieces = explode("index.php", $_SERVER['HTTP_REFERER']); 
 						 $this->session->set_flashdata('conf_msg', $msg);
 						 redirect( $pieces[1]);				   
@@ -2242,6 +2242,16 @@ class Projects extends My_Controller {
 	    $data['states']= $this->projects_model->get_nominal_plan($limit, $this->uri->segment(4), $s, $f, $plan_id);
 		
 	    $this->parser->parse('projects/nominal_plan', $data);
+	}
+	function nominap_plan_info($plan_id = "")
+	{
+	    $data = tags();
+	    $data['tabs']	= tabs('projects');
+	    $data['projects_title'] = 'Projects - Nominal Plan';
+	    $data['plan_id'] = $plan_id;
+
+		$data['nominal_plan_info'] = $this->projects_model->get_nominal_plan_info($plan_id);
+		$this->parser->parse('projects/nominal_plan_info', $data);
 	}
 	function iframe_view($plan_id, $type)
 	{
