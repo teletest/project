@@ -449,6 +449,18 @@ class Projects_model extends Model{
 		   $query=$this->db->get();
 		   return $query->result_array();
 		}
+		function get_calnedar_implemented_on_processes( $calendar_id )
+		{
+		   $this->db->select('sites.process_id, sites.project_id, projects.code, processes.name');
+		   $this->db->distinct();
+  		   $this->db->from('sites');
+		   $this->db->join('projects', 'sites.project_id = projects.id');
+		   $this->db->join('processes', 'sites.process_id = processes.id');
+		   $this->db->where('calendar_id', $calendar_id);
+		   $this->db->order_by('project_id');
+		   $query=$this->db->get();
+		   return $query->result_array();
+		}
 		function get_nominal_plan($limit, $offset, $s, $f, $id)
 		{ 	 
 		  $this->db->select('*');
@@ -525,10 +537,37 @@ class Projects_model extends Model{
 		  $row = $query->row();
           return  $row->project_id; 
 		}
-		//these r sites instead of project
+		function planned_site_edit( $sites , $date, $p_id, $project_id, $c_id, $project_process_off_id, $off1, $off2)
+		{
+		  $start_date = $date;
+		  // save off days against this calenda and process
+		  $off_days = array(
+		              'id' => $project_process_off_id,
+					  'project_id' => $project_id,
+					  'process_id' => $p_id,
+					  'calendar_id' => $c_id,
+					  'day_off_1' => $off1,
+					  'day_off_2' => $off2,
+		  );
+		  $this->db->update('project_process_off_days', $off_days, array('id' => $project_process_off_id));
+		  $query = $this->db->get_where('process_details' , array('process_id' => $p_id ));
+		  $dates = new Workdays("", $c_id, $off1, $off2);
+		}
+		/* these are sites instead of project */
 		function planned_site( $projects , $date, $p_id, $project_id, $c_id, $off1, $off2)
 		{
           $start_date = $date;
+		  // save off days against this calenda and process
+		  $off_days = array(
+		              'project_id' => $project_id,
+					  'process_id' => $p_id,
+					  'calendar_id' => $c_id,
+					  'day_off_1' => $off1,
+					  'day_off_2' => $off2,
+		  );
+		  $this->db->insert('project_process_off_days', $off_days);
+		  
+		  // change site status to 'plan'
 		  foreach ($projects as $site_id) {
 
 		  $site = array( 

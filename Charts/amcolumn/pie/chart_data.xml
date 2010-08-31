@@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="UTF-8"?>
 <pie>
-"<slice title="Sites Not Planned" url="http://localhost/ttest/project/layout/index.php/projects/site_plan/175" pull_out="false">234</slice>
-"<slice title="Planned Sites" url="http://localhost/ttest/project/layout/index.php/projects/site_plan/175" pull_out="false">9</slice>
-"<slice title="Rollout Sites" url="http://localhost/ttest/project/layout/index.php/projects/rollout_summary/175" pull_out="false">9</slice>
+"<slice title="Sites Not Planned" url="http://localhost/ttest/project/layout/index.php/projects/site_plan/173" pull_out="false">169</slice>
+"<slice title="Planned Sites" url="http://localhost/ttest/project/layout/index.php/projects/site_plan/173" pull_out="false">3</slice>
+"<slice title="Rollout Sites" url="http://localhost/ttest/project/layout/index.php/projects/rollout_summary/173" pull_out="false">8</slice>
 </pie>

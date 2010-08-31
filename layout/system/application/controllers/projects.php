@@ -406,6 +406,18 @@ class Projects extends My_Controller {
 		$this->db->delete('event_details' , array('calendar_id' => $id));	
 		redirect('projects/upload_calendar');
 	}
+	function calendar_implemented_on_processes( $calendar_id = "")
+	{
+	    $data = tags();
+		$data['tabs']	= tabs('projects');
+		$data['list_of_processes'] = $this->projects_model->get_calnedar_implemented_on_processes( $calendar_id );
+		$_true = array(array());
+        $_false = array();
+        
+		$data['if_process_found'] = ( $data['list_of_processes'] != NULL ) ? $_true : $_false;
+		$data['if_process_not_found'] = ( $data['list_of_processes'] == NULL) ? $_true : $_false;
+		$this->parser->parse('projects/calendar_processes', $data);
+	}
 
 	/**
 	* Plan selected projects according to selected Process

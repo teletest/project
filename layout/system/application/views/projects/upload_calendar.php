@@ -81,9 +81,10 @@
 		<td>{name} </td>
 	    <td><a href='calendar_details/{id}'  >Details</a>
 	    <?php if($this->session->userdata('is_admin')) { ?>  
-	    | <a href='calendar_edit/{id}'>Edit</a> | <a href='calendar_delete/{id}'>Delete</a>
+	    | <a href='{site_url}index.php/projects/calendar_edit/{id}'>Edit</a> | <a href='{site_url}index.php/projects/calendar_delete/{id}'>Delete</a>
 	    <?php } ?>
-	    </td>
+	    | <a href='{site_url}index.php/projects/calendar_implemented_on_processes/{id}'>View Processes</a>
+		</td>
     </tr>
 	{/calendar}
 	</tbody>

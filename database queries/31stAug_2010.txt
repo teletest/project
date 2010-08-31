@@ -1,0 +1,2 @@
+UPDATE sites
+SET calendar_id='1'
