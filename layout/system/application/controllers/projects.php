@@ -393,6 +393,7 @@ class Projects extends My_Controller {
 					);
 				  $this->db->update('event_details', $data, array('id' => $id));
 			  }// end for loop  
+				// change processes using these calendar
 				 $this->upload_calendar();
 			}// end else  
 				
@@ -417,6 +418,24 @@ class Projects extends My_Controller {
 		$data['if_process_found'] = ( $data['list_of_processes'] != NULL ) ? $_true : $_false;
 		$data['if_process_not_found'] = ( $data['list_of_processes'] == NULL) ? $_true : $_false;
 		$this->parser->parse('projects/calendar_processes', $data);
+	}
+	/*
+	* Takes Calendar Id as input
+	*
+	*  Changes date of sites stages using this calendar
+	*/
+	function edit_planned_sites_with_calendar($calendar_id = "")
+	{
+	    $data['list_of_processes'] = $this->projects_model->get_calnedar_implemented_on_processes( $calendar_id );
+		foreach( $data['list_of_processes'] as $row)
+		{
+		  $data['sites'] = $this->projects_model->get_procees_calendar_based_sites( $row['project_id'], $row['process_id'] , $row['calendar_id']);
+          $data['off_days'] = $this->projects_model->get_off_days($row['project_id'], $row['process_id'] , $row['calendar_id']);
+		  echo $data['day_off_1'] = $data['off_days']['day_off1'];
+		  echo $data['day_off_2'] = $data['off_days']['day_off2'];
+		  $data['start']= date('Y-m-d');
+		  $this->projects_model->planned_site_edit($data['sites'], $data['start'], $row['project_id'], $row['process_id'], $row['calendar_id'], $data['day_off_1'], $data['day_off_2']);		
+		}
 	}
 
 	/**

@@ -20,10 +20,10 @@
 					  <td colspan="4">Select process which you want to modify</td>
 					  </tr>
 					  <tr class="ewTableHeader">
-						<td bgcolor="#e8e8d0"><strong>Select</strong></td>
-						<td bgcolor="#e8e8d0"><strong>Process Name</strong></td>
-						<td align="center" bgcolor="#e8e8d0"><p><strong>View</strong></p></td>
-						<td align="center" bgcolor="#e8e8d0"><strong>Delete</strong></td>
+						<td>Select</td>
+						<td>Process Name</td>
+						<td>View</td>
+						<td>Delete</td>
 						<!--<td align="center" bgcolor="#e8e8d0"><strong>Edit</strong></td>-->
 					  </tr>
 					  <tr>

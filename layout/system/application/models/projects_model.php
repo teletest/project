@@ -451,7 +451,7 @@ class Projects_model extends Model{
 		}
 		function get_calnedar_implemented_on_processes( $calendar_id )
 		{
-		   $this->db->select('sites.process_id, sites.project_id, projects.code, processes.name');
+		   $this->db->select('sites.process_id, sites.project_id, sites.calendar_id, projects.code, processes.name');
 		   $this->db->distinct();
   		   $this->db->from('sites');
 		   $this->db->join('projects', 'sites.project_id = projects.id');
@@ -460,6 +460,21 @@ class Projects_model extends Model{
 		   $this->db->order_by('project_id');
 		   $query=$this->db->get();
 		   return $query->result_array();
+		}
+		function get_off_days($project_id, $process_id, $calendar_id)
+		{
+	        if($process_id == "12")
+			{	
+		        $query= $this->db->get_where('project_process_off_days', array('project_id' => $project_id, 'process_id' => $process_id , 'calendar_id' => $calendar_id));
+		        $row = $query->row();
+			  
+			    $result =array(
+			    'day_off1' =>  $row->day_off_1,
+				'day_off2' => $row->day_off_2
+			   );
+			  //return $row->day_off_2;
+			  return $result;
+			}
 		}
 		function get_nominal_plan($limit, $offset, $s, $f, $id)
 		{ 	 
@@ -537,21 +552,70 @@ class Projects_model extends Model{
 		  $row = $query->row();
           return  $row->project_id; 
 		}
-		function planned_site_edit( $sites , $date, $p_id, $project_id, $c_id, $project_process_off_id, $off1, $off2)
+		// sites planned dates are changed when calendar is edited
+		function planned_site_edit( $sites , $date, $project_id, $process_id, $calendar_id, $off1, $off2)
 		{
 		  $start_date = $date;
-		  // save off days against this calenda and process
-		  $off_days = array(
-		              'id' => $project_process_off_id,
-					  'project_id' => $project_id,
-					  'process_id' => $p_id,
-					  'calendar_id' => $c_id,
-					  'day_off_1' => $off1,
-					  'day_off_2' => $off2,
-		  );
-		  $this->db->update('project_process_off_days', $off_days, array('id' => $project_process_off_id));
-		  $query = $this->db->get_where('process_details' , array('process_id' => $p_id ));
-		  $dates = new Workdays("", $c_id, $off1, $off2);
+		  $dates = new Workdays("", $calendar_id, $off1, $off2);
+		  // get all stages of site and change date
+		  foreach ($sites as $row) {
+		   $query = $this->db->get_where('process_details' , array('process_id' => $p_id ));
+		   
+		   if ($query->num_rows() > 0)
+		   {
+			   foreach ($query->result() as $row)
+			   {
+			     // calculate end date frome leadtime
+				 $timeStamp =  strtotime($date);
+				 $lead_time = $row->lead_time;
+				 
+				 $timeStamp += 24 * 60 * 60 * $lead_time; // (add days according to lead time)
+				 $end_date = date("Y-m-d", $timeStamp);
+			     $working_days = $dates->days_diff($date, $end_date);
+				 if($lead_time == '0')
+				 {
+				     $end_date=$date;
+				 }
+				 else
+				 {
+				     if( $dates->days_diff($end_date)== '0')
+					 {
+						 while($dates->days_diff($end_date)=='0')
+						 {
+							 $timeStamp =  strtotime($end_date);
+							 $timeStamp += 24 * 60 * 60 * 1; // (add 1 day according to lead time)
+							 $end_date = date("Y-m-d", $timeStamp);
+						 }
+						 $lead_time = $lead_time+1;
+						 if($working_days != $lead_time)
+						 {
+						   $lead_time_new= $lead_time;
+						   while($working_days != $lead_time)
+						   {
+								$timeStamp =  strtotime($date);
+								$difference =  $lead_time_new - $working_days ;
+								$lead_time_new = $lead_time + $difference;
+								$timeStamp += 24 * 60 * 60 * $lead_time_new; // (add days according to lead time)
+								$end_date = date("Y-m-d", $timeStamp);
+								$working_days = $dates->days_diff($date, $end_date);
+						   }
+						 }
+					 }
+					 $state = array( 
+							'site_id' =>  $site_id ,  
+							'state' => $current_stage,
+							'next_state' => $next_state,
+							'start' => $date,
+							'end' => $end_date,
+					
+						 ); 
+				  $this->db->update('states', $state, array('id' => $site_id, 'state' => $current_stage));
+				  $date =$end_date;
+					 
+				 }
+			   }
+		   }
+		 }  
 		}
 		/* these are sites instead of project */
 		function planned_site( $projects , $date, $p_id, $project_id, $c_id, $off1, $off2)
@@ -673,6 +737,16 @@ class Projects_model extends Model{
 		   'count' => $query->num_rows(),
 		  );
 		  return $result;	  
+		}
+		function get_procees_calendar_based_sites( $project_id , $process_id , $calendar_id)
+		{
+		  $this->db->select('*');
+          $this->db->from('sites');
+		  $this->db->where('project_id' , $project_id );
+		  $this->db->where('process_id' , $process_id );
+		  $this->db->where('calendar_id' , $calendar_id );
+		  $query=$this->db->get();
+	      return $query->result_array();
 		}
 		function get_sites_count( $field, $value)
 		{

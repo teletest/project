@@ -4,7 +4,7 @@
 
 <div id="ShowTab" style="width:96%;overflow:auto;">
     <ul>
-      <li><a href="{site_url}index.php/projects/calendar_details/#add"><span>Calendar Details</span></a></li> 
+      <li><a href="{site_url}index.php/projects/calendar_details/#add"><span>Processes using this Calendar</span></a></li> 
     </ul>
     <div id="add" >
 	  <table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
