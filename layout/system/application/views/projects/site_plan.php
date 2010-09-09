@@ -8,8 +8,6 @@
     
     </ul>
     <div id="add" class="TabSpec" >
-	<h1>Site Plan</h1>
-	
 	
 	<h2>Sites waiting to be planned</h2>
 	<form action='{site_url}index.php/projects/site_planned' method='post' name="planForm">
@@ -41,7 +39,7 @@
 	{/projects_np}                  
 	</tbody>				  
 	</table>
-	
+	{pagination}
 	<h3>Plan Selected Projects</h3>
 	
 		

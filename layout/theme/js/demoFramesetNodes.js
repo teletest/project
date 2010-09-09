@@ -74,7 +74,7 @@ HIGHLIGHT = 1
   insDoc(aux2, gLnk("S", "Upload Calender Holiday", SITEURL+"/projects/upload_calendar"))
 
 
-  aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan"))
+  aux1 = insFld(foldersTree, gFld("Site Plan", SITEURL+"/projects/site_plan/0/0/0/0/0"))
   aux2 = insFld(aux1, gFld("Planning Documents", SITEURL+"/projects/planing_documents"))
   //Roll out Menu
 

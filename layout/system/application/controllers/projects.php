@@ -476,7 +476,7 @@ class Projects extends My_Controller {
 	*
 	* @access public
 	*/
-	function site_plan($project_id="", $msg="", $parameter="", $region="", $district="")
+	function site_plan($project_id="", $msg="", $parameter="", $region="", $district="", $offset="")
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
@@ -494,22 +494,37 @@ class Projects extends My_Controller {
 		$msg="";
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
+	    $result = $this->projects_model->get_not_planned_sites("","", $project_id, $parameter, $region, $district);
+		$rows = $result['count'];
+		$ts=$this->uri->total_segments();
+        $offset = $this->uri->segment($ts);
+		// Do the pagination
+		$config['base_url'] = BASE_URL . 'index.php/projects/site_plan/'.$project_id.'/'.$parameter.'/'.$region.'/'.$district;
+		$config['uri_segment'] = $ts;
+		$config['total_rows'] = $rows;
+		$config['per_page'] = $limit = '10';
+
+		$this->load->library('pagination');
+		$this->pagination->initialize($config);
+		$data['pagination']= $this->pagination->create_links();
+
 		if ( $s == '' ) 
-		{
+		{ 
 			// Sites not planned
-			$results_np = $this->projects_model->get_not_planned_sites($project_id, $parameter, $region, $district);
+			$results_np = $this->projects_model->get_not_planned_sites($limit,$offset, $project_id, $parameter, $region, $district);
 			$data['projects_np']= $results_np['values'];
 			$data['error_message']=$msg;
 			// Sites not rolled out
 			$data['plans'] = $this->projects_model->get_processes();
 			$data['calendars'] = $this->projects_model->get_calendars();
-			$results_nr = $this->projects_model->get_planned_sites($project_id, $parameter, $region, $district);
+			$results_nr = $this->projects_model->get_planned_sites("", "", $project_id, $parameter, $region, $district);
 			$data['projects_nr'] = $results_nr['values'];	    			
 		}
 		else
 		{
-		  $data['projects_np']= $this->projects_model->get_filtered_results($f, $s, 'Created');
-		  $data['projects_nr']= $this->projects_model->get_filtered_results($f, $s, 'Planned');
+		  
+		  $data['projects_np']= $this->projects_model->get_filtered_results($limit,$this->uri->segment(3), $f, $s, 'Created');
+		  $data['projects_nr']= $this->projects_model->get_filtered_results($limit,$this->uri->segment(3), $f, $s, 'Planned');
 		}		
 		$this->parser->parse('projects/site_plan', $data);	
 	}

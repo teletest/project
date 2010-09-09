@@ -10,7 +10,7 @@ class Projects_model extends Model{
 		$this->load->library('Csv_validation');
 
 	}	
-		function get_filtered_results($f, $s, $status)
+		function get_filtered_results($limit, $offset,$f, $s, $status)
 		{ 
 		     if ( $f == "")
 			 {
@@ -48,7 +48,7 @@ class Projects_model extends Model{
 				 }
 			 
 			 }
-			
+			 $this->db->limit($limit, $offset);
 			 $query = $this->db->get();
 			 return $query->result_array();
 		}
@@ -146,7 +146,7 @@ class Projects_model extends Model{
 		  else
 		  return NULL;
 		}
-		function get_planned_sites($project_id, $parameter, $region, $district)
+		function get_planned_sites($limit, $offset, $project_id, $parameter, $region, $district)
 		{
 		    $this->db->select('sites.id, sites.name, sites.project_id, sites.status, projects.status As p_status, projects.created_on, projects.start_date, projects.end_date, projects.code, projects.planned_on');
 			$this->db->from('projects');
@@ -168,6 +168,8 @@ class Projects_model extends Model{
 			    $this->db->where( 'region' , $region);
 			  }
 			}
+              if($limit != "" && $offset != "")
+			  $this->db->limit($limit, $offset);			 
 			  $query = $this->db->get();
 			  $result = array(
 			  'count' => $query->num_rows(),
@@ -177,18 +179,18 @@ class Projects_model extends Model{
 
 		}
 		// to do
-		function get_not_planned_sites($project_id, $parameter, $region, $district)
+		function get_not_planned_sites($limit, $offset, $project_id, $parameter, $region, $district)
 		{
 		    $this->db->select('sites.id, sites.name, sites.district, sites.project_id, sites.status,projects.code, projects.created_on, projects.start_date, projects.end_date, projects.code, projects.planned_on');
 			$this->db->from('projects');
 			$this->db->join('sites', 'sites.project_id= projects.id' );
 			$this->db->where('sites.process_id' , '0' );
 			$this->db->where('sites.status' , 'Nominated' );
-			if($project_id!="")
+			if($project_id!="" && $project_id!=0)
 			{
 			  $this->db->where('sites.project_id' , $project_id ); 
 			}
-			if($parameter != "" )
+			if($parameter != "" && $parameter != 0 )
 			{
 			  if($parameter == "district" )
 			  {
@@ -200,6 +202,8 @@ class Projects_model extends Model{
 			    $this->db->where( 'region' , $region);
 			  }
 			}
+			//if($limit != "" && $offset != "")
+			$this->db->limit($limit, $offset);
 		  	$query = $this->db->get();
 		  	$result = array(
 		  		'count' => $query->num_rows(),
