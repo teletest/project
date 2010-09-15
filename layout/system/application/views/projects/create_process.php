@@ -9,7 +9,6 @@
     </ul>
     <div id="add"  class="TabSpec" >
 
-	<h3>Create Process</h3>
 	<?php echo validation_errors(); ?>
 	<?php //echo $this->validation->error_string; ?>
 	<form action='{site_url}index.php/projects/implement_process' method='post' name="planForm">

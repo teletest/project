@@ -51,7 +51,7 @@ class Projects extends My_Controller {
 		$this->email->send();   
 	
 	} */
-	function index($m="", $y="")
+	function index($m="", $y="", $selected_id ="")
 	{
 		$data = tags();
 		$data['tabs']	= tabs('projects');
@@ -84,28 +84,48 @@ class Projects extends My_Controller {
 			  $this->db->like('code', $s);
 			  $query = $this->db->get();
               $data['projects'] = $query->result_array();		
-	    }		    
-		        $_true = array(array());
-				$_false = array();
-				$data['if_found'] = ( $data['projects'] != NULL) ? $_true : $_false;
-				$data['if_not_found'] = ( $data['projects'] == NULL) ? $_true : $_false;
-			    if ( $data['projects'] == NULL )
-				{
-				$data['projects']='Your search did not return any results.';
-				}
-				// to show calendar
-				if ($m=="" || $y=="")
-				{
-				 $data['month'] = date('m');
-				 $data['year'] = date('Y');
-				}
-				else
-				{
-				 $data['month'] = $m;
-				 $data['year'] = $y;
-				}
-				$this->_calendar($data);
-				$this->parser->parse('projects/index', $data);		
+	    }		
+		if($selected_id == "" || $selected_id == 0)
+		{
+		  $selected_id = $data['projects'][0]['id'];
+		}
+		$i=0;
+		$data['selected_id'] = $selected_id;
+		foreach($data['projects'] as $row)
+		{
+		  if ($data['projects'][$i]['id'] == $selected_id)
+		  {
+		    $data['projects'][$i]['selected']='checked';
+			$data['selected_project_id'] = $selected_id;
+		  }
+		  else
+		  {
+		    $data['plan'][$i]['selected']=''; 
+		  }
+		  $i++;
+		}
+
+		$_true = array(array());
+		$_false = array();
+		$data['if_found'] = ( $data['projects'] != NULL) ? $_true : $_false;
+		$data['if_not_found'] = ( $data['projects'] == NULL) ? $_true : $_false;
+		if ( $data['projects'] == NULL )
+		{
+		   $data['projects']='Your search did not return any results.';
+		}
+		// to show calendar
+		if ($m=="" || $m==0 || $y==0 || $y=="")
+		{
+		 $data['month'] = date('m');
+		 $data['year'] = date('Y');
+		}
+		else
+		{
+		 $data['month'] = $m;
+		 $data['year'] = $y;
+		}
+		$this->_calendar($data);
+		$this->parser->parse('projects/index', $data);		
 		
 	}
     function project_management()
@@ -481,7 +501,7 @@ class Projects extends My_Controller {
 		$data = tags();
 		$data['tabs']	= tabs('projects');
 		
-		/*$bc = array(
+		/* $bc = array(
                'title' => 'Site Plam',
                'url' => 'projects/site_plan',
                'isRoot' => false
@@ -490,8 +510,10 @@ class Projects extends My_Controller {
 
 		$data['breadcrumbs'] =get_Instance()->breadcrumblist->display(); */
 		
-		if($msg == 0)
-		$msg="";
+		if($msg == 0 || $msg == "")
+		{
+		  $msg="";
+		}
 		$s = $this->input->post('s');
 		$f = $this->input->post('f');
 	    $result = $this->projects_model->get_not_planned_sites("","", $project_id, $parameter, $region, $district);
@@ -511,7 +533,7 @@ class Projects extends My_Controller {
 		if ( $s == '' ) 
 		{ 
 			// Sites not planned
-			$results_np = $this->projects_model->get_not_planned_sites($limit,$offset, $project_id, $parameter, $region, $district);
+			$results_np = $this->projects_model->get_not_planned_sites($limit, $offset, $project_id, $parameter, $region, $district);
 			$data['projects_np']= $results_np['values'];
 			$data['error_message']=$msg;
 			// Sites not rolled out
@@ -2848,10 +2870,10 @@ class Projects extends My_Controller {
 		$results = $this->projects_model->get_total_sites_project($project_id);
 		$data['total_sites']= $results['count'];
 		// get not planned sites
-		$results = $this->projects_model->get_not_planned_sites($project_id, "", "", "");
+		$results = $this->projects_model->get_not_planned_sites("", "", $project_id, "", "", "");
 		$data['projects_np']= $results['count'];
 		// get planned sites
-		$results=$this->projects_model->get_planned_sites($project_id, "", "", "");
+		$results=$this->projects_model->get_planned_sites("", "", $project_id, "", "", "");
 		$data['projects_nr']= $results['count'];	    
         // get rollout sites
 		$this->db->where('status', 'Active');

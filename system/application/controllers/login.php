@@ -87,7 +87,7 @@ class Login extends Controller {
 		//This assumes you used the sample MySQL table
 		$user_table = 'persons';
 		$data = tags();
-		$data['tabs']	= tabs('project');
+		$data['tabs']	= array();
 		$data['page_title'] = "Login";
 		//Load the URL helper
 		$this->load->helper('url');
@@ -112,6 +112,8 @@ class Login extends Controller {
 	
 	function create()
 	{
+		$data = tags();
+		$data['tabs']	= array();
 		//Load
 		$this->load->helper('url');
 		$this->load->library('validation');
@@ -153,6 +155,8 @@ class Login extends Controller {
 		 */
 		
 		//Load
+		$data = tags();
+		$data['tabs']	= array();
 		$this->load->helper('url');
 
 		if($this->simplelogin->delete($user_id)) {
@@ -168,7 +172,7 @@ class Login extends Controller {
 	function change_password( $user_id = "", $value = "")
 	{
 	    $data = tags();
-		$data['tabs']	= tabs('projects');
+		$data['tabs']	= array();
 		$data['page_title'] = $this->lang->line('login_change_password');
 		
 	//	if($this->session->userdata('logged_in')) {
@@ -241,10 +245,12 @@ class Login extends Controller {
 
 	function log_in()
 	{
+		
 		//Load
 		$this->load->helper('url');
 		$this->load->library('validation');
-		
+		$data = tags();
+		$data['tabs']	= array();
 		//Check incoming variables
 		$rules['login_username']	= "required|min_length[4]|max_length[32]|alpha_dash";
 		$rules['login_password']	= "required|min_length[4]|max_length[32]|alpha_dash";		
@@ -274,6 +280,8 @@ class Login extends Controller {
 
 	function logout()
 	{
+		$data = tags();
+		$data['tabs']	= array();
 		//Load
 		$this->load->helper('url');
 

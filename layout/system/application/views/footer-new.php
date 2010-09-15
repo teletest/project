@@ -2,7 +2,8 @@
             <td width="210" align="center" valign="top">
             <!-- Start Right Column-->
             <?php if (@$ShowRightSide!="No"){ ?>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+       
+		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td height="4"></td>
               </tr>

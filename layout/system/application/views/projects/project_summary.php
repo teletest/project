@@ -22,7 +22,6 @@
     </ul>
     <div id="add" class="TabSpec">
 
-	<h3>Project Summary</h3>
 <table width="90%" border="0" cellpadding="0" cellspacing="1" class="ewTable">
 		
 			<tr class="ewTableHeader">

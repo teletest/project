@@ -146,7 +146,8 @@ var SITEURL = '<?php echo site_url(); ?>';
             <td width="210" height="129" align="center" valign="top">
             <!-- Start right Column-->
             <?php 
-			if (@$ShowLeftSide!="No"){ ?>
+			if (@$ShowLeftSide!="No"){ ?>    
+			<div style="overflow:hidden;width:209px">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td height="4"></td>
@@ -234,6 +235,7 @@ var SITEURL = '<?php echo site_url(); ?>';
               </tr>
            
             </table>
+			</div>
             <?php }?>
             <!-- End right Column-->
             </td>
