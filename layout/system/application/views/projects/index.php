@@ -132,7 +132,7 @@ $this->load->view('header-new');
 							  <td align="center"><a href='{site_url}index.php/projects/project_summary/{selected_id}' >Details</a></td>
 							</tr>
 							<tr>
-							  <td align="center">Project Plan</td>
+							  <td align="center"><a href='{site_url}index.php/projects/project_plan_graph/{selected_id}' >Project Plan</a></td>
 							</tr>
 							<tr>
 							  <td align="center"><input value="back" onclick="javascript:history.back(-1);" class="button" type="button" /></td>

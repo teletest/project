@@ -152,7 +152,7 @@ class Projects_model extends Model{
 			$this->db->from('projects');
 			$this->db->join('sites', 'sites.project_id= projects.id' );
 			$this->db->where('sites.status' , "Planned" );
-			if($project_id!="")
+			if($project_id!="" && $project_id!=0)
 			{
 			  $this->db->where('sites.project_id' , $project_id );
 			}
@@ -168,8 +168,10 @@ class Projects_model extends Model{
 			    $this->db->where( 'region' , $region);
 			  }
 			}
-              if($limit != "" && $offset != "")
-			  $this->db->limit($limit, $offset);			 
+            /*  if($limit != "" && $offset != "")
+			  {
+			    $this->db->limit($limit, $offset);			 
+			  } */
 			  $query = $this->db->get();
 			  $result = array(
 			  'count' => $query->num_rows(),

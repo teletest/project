@@ -2816,6 +2816,53 @@ class Projects extends My_Controller {
 	  $data['stages']=$query->result_array();
 	  $this->parser->parse('projects/view_planned_stages', $data);
 	}
+	function project_plan_graph($project_id="",  $month="", $year="")
+	{
+	     $data = tags();
+		 $data['tabs']	= tabs('projects');
+		 $data['chart_type1']= "MSColumn2D.swf";
+		 $data['project_id']=$project_id;
+         $data['selected_id'] = $project_id;
+		if( ($month=="" || $month==0) && ($year=="" || $year==0))
+		{
+		  $month = date('m');
+	      $year = date('y');
+		}
+		//get months
+		$data['months'] = $this->projects_model->get_months();
+		//=========== Months dropdown ====================				
+			foreach($data['months'] as $k=>$v)
+			{
+				if($v['value'] == $month)
+				{
+					$data['months'][$k]['selected'] = "selected";                     
+ 					
+				}else{
+					
+					$data['months'][$k]['selected'] = "";
+				}
+			
+			}
+		//====================================================
+		//get years
+		$data['years'] = $this->projects_model->get_years();
+		//=========== Year dropdown ====================				
+			foreach($data['years'] as $k=>$v)
+			{
+				if($v['value'] == $year)
+				{
+					$data['years'][$k]['selected'] = "selected";                     
+ 					
+				}else{
+					
+					$data['years'][$k]['selected'] = "";
+				}
+			
+			}
+		//====================================================
+	    $data['bargraph_xml'] = $this->charts_model->get_mscol2D_xml($project_id, $month, $year);
+		$this->parser->parse('projects/project_plan_graph', $data);
+	}
 	function project_summary($project_id="",  $month="", $year="",$export_option="")
 	{
 	    $data = tags();
